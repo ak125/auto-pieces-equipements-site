@@ -1,0 +1,66 @@
+from weasyprint import HTML
+
+# HTML content from the created site
+html_content = """
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Pièces Équipements - Pièces auto neuves Pavillons-sous-Bois</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
+    header { background: #222; color: #fff; padding: 2rem; text-align: center; }
+    header h1 { margin: 0; font-size: 2rem; }
+    nav { text-align: center; margin-top: 1rem; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #007BFF; }
+    section { padding: 2rem; max-width: 1000px; margin: auto; background: #fff; }
+    .contact { background: #222; color: #fff; text-align: center; padding: 2rem; }
+    .contact a { color: #00e676; text-decoration: none; font-weight: bold; }
+    footer { background: #000; color: #ccc; text-align: center; padding: 1rem; font-size: 0.9rem; }
+    .button { display: inline-block; background: #007BFF; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Auto Pièces Équipements</h1>
+    <p>Pièces détachées automobiles 100% neuves - Depuis 2016 à Pavillons-sous-Bois</p>
+  </header>
+
+  <section>
+    <h2>Nos Services</h2>
+    <p>Nous proposons un vaste choix de <strong>pièces détachées neuves</strong>, <strong>batteries</strong>, <strong>accessoires auto</strong> et produits d’entretien pour tous types de véhicules. Nos produits sont garantis, disponibles en retrait magasin ou en livraison rapide.</p>
+    <ul>
+      <li>Conseils personnalisés sur place</li>
+      <li>Commandes sur mesure</li>
+      <li>Livraison en Seine-Saint-Denis (93)</li>
+    </ul>
+    <a class="button" href="tel:+33148479627">📞 Appelez-nous : 01 48 47 96 27</a>
+  </section>
+
+  <section>
+    <h2>Pourquoi nous choisir ?</h2>
+    <p>Implantés au <strong>184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois</strong>, nous servons les automobilistes et professionnels de la région depuis plus de 8 ans. Nous ne faisons <strong>aucune casse</strong> : uniquement des pièces <strong>100% neuves</strong>.</p>
+    <p>Zones desservies : Livry-Gargan, Bondy, Gagny, Le Raincy, Aulnay-sous-Bois, Drancy, Bobigny, et plus encore.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Contactez-nous</h2>
+    <p><strong>📍 Adresse :</strong> 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois</p>
+    <p><strong>📞 Téléphone :</strong> <a href="tel:+33148479627">01 48 47 96 27</a></p>
+    <p><strong>📦 Retrait / Livraison :</strong> du lundi au samedi</p>
+    <p><strong>🕘 Horaires :</strong> Lun-Ven : 09:30–19:00 · Sam : 09:30–17:00 · Dim : Fermé</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Auto Pièces Équipements · Pièces neuves uniquement · Tous droits réservés
+  </footer>
+</body>
+</html>
+"""
+
+# Generate PDF from HTML
+pdf_path = "/mnt/data/site_vitrine_auto_pieces.pdf"
+HTML(string=html_content).write_pdf(pdf_path)
+
+pdf_path
