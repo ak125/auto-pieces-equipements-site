@@ -29,6 +29,7 @@
   <!-- Préchargement des ressources critiques -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
   <link rel="preload" href="logo.png" as="image">
+  <link rel="preload" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" as="style">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -51,6 +52,13 @@
   
   <!-- Styles critiques inlined -->
   <style>
+    :root {
+      --primary: #c21f1f;
+      --primary-hover: #9e1919;
+      --secondary: #ffd700;
+      --animation-curve: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0 }
     .loading-spinner { 
       animation: spin 1s linear infinite;
@@ -58,25 +66,89 @@
       height: 24px;
     }
     @keyframes spin { 100% { transform: rotate(360deg); } }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(194,31,31,0.9) 0%, rgba(0,0,0,0.8) 100%),
+                  url('garage-bg.jpg') center/cover;
+    }
+
+    .card-hover {
+      transition: transform 0.3s var(--animation-curve), box-shadow 0.3s var(--animation-curve);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    }
+
+    .staggered-animation > * {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s var(--animation-curve) forwards;
+    }
+
+    .animate-delay-100 { animation-delay: 100ms; }
+    .animate-delay-200 { animation-delay: 200ms; }
+    .animate-delay-300 { animation-delay: 300ms; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/swiper@8/swiper-bundle.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
-  <main class="max-w-5xl mx-auto px-4 py-8 pb-16 md:pb-8">
-    <header class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <img src="logo.png" alt="Logo Auto Pièces" class="w-10 h-10">
-        <h1 class="text-3xl font-bold text-primary">Auto Pièces Équipements</h1>
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white py-20 px-4">
+    <div class="max-w-6xl mx-auto text-center staggered-animation">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-delay-100">
+        Votre expert en pièces auto<br>
+        <span class="text-secondary">à Pavillons-sous-Bois</span>
+      </h1>
+      <p class="text-xl mb-8 max-w-2xl mx-auto animate-delay-200">
+        Pièces neuves originales • Livraison express 24h • Garantie 2 ans
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-delay-300">
+        <a href="#devis" class="bg-secondary text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition">
+          📞 Demander un devis gratuit
+        </a>
+        <a href="#meilleures-pieces" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
+          🔍 Voir le catalogue
+        </a>
       </div>
-      <nav class="hidden md:flex gap-4 text-sm">
-        <a href="#services" class="text-primary hover:underline">Services</a>
-        <a href="#meilleures-pieces" class="text-primary hover:underline">Nos pièces</a>
-        <a href="#avis" class="text-primary hover:underline">Avis</a>
-        <a href="#devis" class="text-primary hover:underline">Devis</a>
-      </nav>
-    </header>
+    </div>
+  </section>
 
+  <!-- Value Propositions -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
+        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+          <i data-lucide="clock" class="text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Livraison Express</h3>
+        <p class="text-gray-600 dark:text-gray-300">Recevez vos pièces en 24h dans tout le 93</p>
+      </div>
+      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
+        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+          <i data-lucide="shield-check" class="text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Garantie 2 Ans</h3>
+        <p class="text-gray-600 dark:text-gray-300">Toutes nos pièces sont garanties d'origine</p>
+      </div>
+      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
+        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+          <i data-lucide="headphones" class="text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Experts À Votre Service</h3>
+        <p class="text-gray-600 dark:text-gray-300">Conseils personnalisés pour tous vos besoins</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 pb-16 md:pb-8">
     <section id="services" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="wrench"></i> Services proposés</h2>
       <details class="mb-2">
@@ -93,21 +165,58 @@
       </details>
     </section>
 
+    <!-- Produits phares -->
     <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="star"></i> Nos meilleures pièces</h2>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="transition hover:scale-105 hover:shadow-xl bg-gray-50 dark:bg-gray-700 p-4 rounded shadow text-center">
-          <img src="produits/batterie-varta.jpg" alt="Batterie" class="mx-auto mb-2 rounded">
-          <p class="font-semibold">Batterie Bosch 12V</p>
-        </div>
-        <div class="transition hover:scale-105 hover:shadow-xl bg-gray-50 dark:bg-gray-700 p-4 rounded shadow text-center">
-          <img src="produits/filtre-huile-bosch.jpg" alt="Filtres" class="mx-auto mb-2 rounded">
-          <p class="font-semibold">Filtres Mann pour diesel</p>
-        </div>
-        <div class="transition hover:scale-105 hover:shadow-xl bg-gray-50 dark:bg-gray-700 p-4 rounded shadow text-center">
-          <img src="produits/plaquettes-frein.jpg" alt="Plaquettes" class="mx-auto mb-2 rounded">
-          <p class="font-semibold">Plaquettes de frein Brembo</p>
-        </div>
+      <h2 class="text-3xl font-bold mb-6 flex items-center gap-2"><i data-lucide="star"></i> Nos meilleures ventes</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+          <div class="relative pb-[100%] mb-4">
+            <img src="produits/batterie-varta.jpg" alt="Batterie voiture" class="absolute h-full w-full object-contain" loading="lazy">
+          </div>
+          <h3 class="font-bold mb-2">Batterie Bosch S5</h3>
+          <div class="flex justify-between items-center">
+            <p class="text-primary font-bold">129€</p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+              Ajouter au panier
+            </button>
+          </div>
+        </article>
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+          <div class="relative pb-[100%] mb-4">
+            <img src="produits/filtre-huile-bosch.jpg" alt="Filtre à huile" class="absolute h-full w-full object-contain" loading="lazy">
+          </div>
+          <h3 class="font-bold mb-2">Filtre Huile Mann</h3>
+          <div class="flex justify-between items-center">
+            <p class="text-primary font-bold">12€</p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+              Ajouter au panier
+            </button>
+          </div>
+        </article>
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+          <div class="relative pb-[100%] mb-4">
+            <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein" class="absolute h-full w-full object-contain" loading="lazy">
+          </div>
+          <h3 class="font-bold mb-2">Plaquettes Brembo</h3>
+          <div class="flex justify-between items-center">
+            <p class="text-primary font-bold">45€</p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+              Ajouter au panier
+            </button>
+          </div>
+        </article>
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+          <div class="relative pb-[100%] mb-4">
+            <img src="produits/essuie-glace.jpg" alt="Essuie-glace" class="absolute h-full w-full object-contain" loading="lazy">
+          </div>
+          <h3 class="font-bold mb-2">Essuie-glaces Bosch</h3>
+          <div class="flex justify-between items-center">
+            <p class="text-primary font-bold">20€</p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+              Ajouter au panier
+            </button>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -124,20 +233,55 @@
       </div>
     </section>
 
+    <!-- Témoignages -->
     <section id="avis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="message-circle"></i> Avis clients</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
-          <p class="italic">"Excellent service et conseils pour ma première commande. Merci à toute l'équipe !"</p>
-          <p class="text-sm font-medium text-right mt-2">— Karim B.</p>
+      <h2 class="text-xl font-semibold mb-6 flex items-center gap-2"><i data-lucide="message-circle"></i> Avis clients</h2>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide bg-gray-50 dark:bg-gray-700 p-8 rounded-xl">
+            <div class="flex items-center gap-4 mb-4">
+              <img src="client1.jpg" alt="Client satisfait" class="w-12 h-12 rounded-full object-cover bg-gray-200">
+              <div>
+                <p class="font-bold">Marc Dupont</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Renault Clio</p>
+              </div>
+            </div>
+            <p class="text-lg italic">"Service exceptionnel et conseils experts. Ma voiture est comme neuve !"</p>
+            <div class="flex text-secondary mt-4">
+              ★★★★★
+            </div>
+          </div>
+          <div class="swiper-slide bg-gray-50 dark:bg-gray-700 p-8 rounded-xl">
+            <div class="flex items-center gap-4 mb-4">
+              <img src="client2.jpg" alt="Client satisfait" class="w-12 h-12 rounded-full object-cover bg-gray-200">
+              <div>
+                <p class="font-bold">Sophie Laurent</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Peugeot 208</p>
+              </div>
+            </div>
+            <p class="text-lg italic">"Livraison ultra rapide et pièces parfaitement compatibles. Je recommande !"</p>
+            <div class="flex text-secondary mt-4">
+              ★★★★★
+            </div>
+          </div>
+          <div class="swiper-slide bg-gray-50 dark:bg-gray-700 p-8 rounded-xl">
+            <div class="flex items-center gap-4 mb-4">
+              <img src="client3.jpg" alt="Client satisfait" class="w-12 h-12 rounded-full object-cover bg-gray-200">
+              <div>
+                <p class="font-bold">Karim Benali</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">BMW Série 3</p>
+              </div>
+            </div>
+            <p class="text-lg italic">"Prix imbattables et personnel très compétent. Adresse à conserver !"</p>
+            <div class="flex text-secondary mt-4">
+              ★★★★★
+            </div>
+          </div>
         </div>
-        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
-          <p class="italic">"Livraison rapide et produit conforme. Très bon rapport qualité/prix."</p>
-          <p class="text-sm font-medium text-right mt-2">— Aïcha L.</p>
-        </div>
+        <div class="swiper-pagination mt-4"></div>
       </div>
-      <div class="mt-4 text-center">
-        <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-red-700 transition">Donner mon avis</a>
+      <div class="mt-6 text-center">
+        <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="inline-block px-6 py-3 bg-primary text-white rounded-full hover:bg-red-700 transition">Donner mon avis</a>
       </div>
     </section>
 
@@ -178,6 +322,22 @@
     </section>
   </main>
 
+  <!-- CTA Final -->
+  <section class="py-16 bg-dark text-white text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4">Prêt à réparer votre véhicule ?</h2>
+      <p class="mb-8 text-xl">Nos experts vous accompagnent à chaque étape</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+33123456789" class="bg-secondary text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition flex items-center gap-2 justify-center">
+          <i data-lucide="phone"></i> Appeler maintenant
+        </a>
+        <a href="#devis" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
+          ✉️ Nous écrire
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Navigation améliorée mobile -->
   <nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-gray-800 shadow-lg z-50">
     <div class="flex justify-around p-4">
@@ -193,13 +353,17 @@
     </div>
   </nav>
 
-  <!-- Chat flottant -->
-  <button id="chat-button" class="fixed bottom-20 md:bottom-4 right-4 bg-primary p-3 rounded-full shadow-lg hover:bg-red-700 transition" aria-label="Ouvrir le chat">
-    <i data-lucide="message-circle" class="text-white"></i>
-  </button>
+  <!-- Chat WhatsApp -->
+  <a href="https://wa.me/33123456789" target="_blank" 
+     class="fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-xl hover:bg-green-700 transition z-50"
+     aria-label="Contact WhatsApp">
+    <i data-lucide="message-circle"></i>
+  </a>
 
   <!-- Scripts optimisés -->
   <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script defer src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js"></script>
   <script defer>
     // Gestionnaire de formulaire amélioré
     const formHandler = {
@@ -249,6 +413,41 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
+      
+      // Initialisation du slider Swiper
+      new Swiper('.swiper-container', {
+        loop: true,
+        pagination: { 
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        autoplay: { 
+          delay: 5000 
+        },
+        slidesPerView: 1,
+        spaceBetween: 20,
+        breakpoints: {
+          640: {
+            slidesPerView: 1
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          }
+        }
+      });
+      
+      // Animation d'entrée
+      if (window.anime) {
+        anime({
+          targets: '.staggered-animation > *',
+          opacity: [0, 1],
+          translateY: [30, 0],
+          delay: anime.stagger(100),
+          easing: 'easeOutExpo'
+        });
+      }
+      
       formHandler.init();
     });
   </script>
