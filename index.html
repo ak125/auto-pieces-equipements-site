@@ -4,12 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auto Pièces Équipements | Pièces auto neuves Pavillons-sous-Bois</title>
+  <meta name="description" content="Magasin de pièces auto neuves à Pavillons-sous-Bois. Livraison rapide, conseils personnalisés, retrait en magasin et devis gratuit.">
+  <meta property="og:title" content="Auto Pièces Équipements | Pièces neuves 93" />
+  <meta property="og:description" content="Vente de pièces détachées neuves toutes marques. Livraison rapide, accueil pro et devis gratuit." />
+  <meta property="og:image" content="https://ak125.github.io/auto-pieces-equipements-site/logo.png" />
+  <meta property="og:url" content="https://ak125.github.io/auto-pieces-equipements-site/" />
+  <meta name="theme-color" content="#1d4ed8" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1d4ed8',
+            secondary: '#10b981',
+            dark: '#1f2937'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="logo.png" type="image/png">
 </head>
-<body class="bg-gray-100 text-gray-800 font-[Inter]">
-  <header class="bg-gradient-to-r from-blue-700 to-green-500 text-white text-center py-10 px-4">
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <header class="bg-gradient-to-r from-primary to-secondary text-white text-center py-10 px-4">
     <img src="logo.png" alt="Logo Auto Pièces Équipements" class="mx-auto w-24 mb-4">
     <h1 class="text-4xl font-bold mb-2">Auto Pièces Équipements</h1>
     <p class="text-lg">Pièces auto 100% neuves à Pavillons-sous-Bois depuis 2016</p>
