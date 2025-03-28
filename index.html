@@ -40,12 +40,12 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
   <main class="max-w-5xl mx-auto px-4 py-8">
-    <header class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
-      <div class="flex items-center gap-3 mb-4 md:mb-0 justify-center md:justify-start">
+    <header class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
         <img src="logo.png" alt="Logo Auto Pièces" class="w-10 h-10">
         <h1 class="text-3xl font-bold text-primary">Auto Pièces Équipements</h1>
       </div>
-      <nav class="flex gap-4 text-sm justify-center md:justify-start">
+      <nav class="hidden md:flex gap-4 text-sm">
         <a href="#services" class="text-primary hover:underline">Services</a>
         <a href="#meilleures-pieces" class="text-primary hover:underline">Nos pièces</a>
         <a href="#avis" class="text-primary hover:underline">Avis</a>
@@ -55,7 +55,7 @@
 
     <section id="services" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="wrench"></i> Services proposés</h2>
-      <details class="mb-2" open>
+      <details class="mb-2">
         <summary class="cursor-pointer font-medium text-primary flex items-center gap-2"><i data-lucide="truck"></i> Livraison rapide</summary>
         <p class="mt-2 text-sm">Livraison en 24h sur toute la Seine-Saint-Denis et départements limitrophes.</p>
       </details>
@@ -67,59 +67,52 @@
         <summary class="cursor-pointer font-medium text-primary flex items-center gap-2"><i data-lucide="user-check"></i> Conseils personnalisés</summary>
         <p class="mt-2 text-sm">Nos experts vous accompagnent dans le choix des pièces selon votre véhicule.</p>
       </details>
-      <details class="mb-2">
-        <summary class="cursor-pointer font-medium text-primary flex items-center gap-2"><i data-lucide="archive"></i> Large stock multi-marques</summary>
-        <p class="mt-2 text-sm">Des milliers de références disponibles pour tous types de véhicules.</p>
-      </details>
     </section>
 
     <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="star"></i> Notre sélection en avant</h2>
+      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="star"></i> Nos meilleures pièces</h2>
       <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
         <div class="transition hover:scale-105 hover:shadow-xl bg-gray-50 dark:bg-gray-700 p-4 rounded shadow text-center">
-          <img src="produits/batterie-varta.jpg" alt="Batterie auto" class="mx-auto mb-2 rounded">
-          <p class="font-semibold">Batteries toutes marques</p>
+          <img src="produits/batterie-varta.jpg" alt="Batterie" class="mx-auto mb-2 rounded">
+          <p class="font-semibold">Batterie Bosch 12V</p>
         </div>
         <div class="transition hover:scale-105 hover:shadow-xl bg-gray-50 dark:bg-gray-700 p-4 rounded shadow text-center">
-          <img src="produits/filtre-huile-bosch.jpg" alt="Filtres à huile" class="mx-auto mb-2 rounded">
-          <p class="font-semibold">Filtres à huile & air</p>
+          <img src="produits/filtre-huile-bosch.jpg" alt="Filtres" class="mx-auto mb-2 rounded">
+          <p class="font-semibold">Filtres Mann pour diesel</p>
         </div>
         <div class="transition hover:scale-105 hover:shadow-xl bg-gray-50 dark:bg-gray-700 p-4 rounded shadow text-center">
-          <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein" class="mx-auto mb-2 rounded">
-          <p class="font-semibold">Plaquettes de frein haute performance</p>
+          <img src="produits/plaquettes-frein.jpg" alt="Plaquettes" class="mx-auto mb-2 rounded">
+          <p class="font-semibold">Plaquettes de frein Brembo</p>
         </div>
+      </div>
+    </section>
+
+    <section id="avis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="message-circle"></i> Avis clients</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
+          <p class="italic">"Excellent service et conseils pour ma première commande. Merci à toute l'équipe !"</p>
+          <p class="text-sm font-medium text-right mt-2">— Karim B.</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
+          <p class="italic">"Livraison rapide et produit conforme. Très bon rapport qualité/prix."</p>
+          <p class="text-sm font-medium text-right mt-2">— Aïcha L.</p>
+        </div>
+      </div>
+      <div class="mt-4 text-center">
+        <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-red-700 transition">Donner mon avis</a>
       </div>
     </section>
 
     <section id="devis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="file-text"></i> Demande de devis</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST" onsubmit="return handleSubmit(event)">
-        <input type="text" name="nom" placeholder="Nom" required class="block w-full mb-2 p-2 rounded border dark:bg-gray-700 dark:border-gray-600" />
-        <input type="email" name="email" placeholder="Email" required class="block w-full mb-2 p-2 rounded border dark:bg-gray-700 dark:border-gray-600" />
-        <textarea name="message" placeholder="Décrivez votre besoin" required class="block w-full mb-2 p-2 rounded border dark:bg-gray-700 dark:border-gray-600"></textarea>
-        <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Envoyer</button>
-        <p id="confirmation" class="text-green-600 dark:text-green-400 mt-2 hidden">✅ Votre demande a bien été envoyée !</p>
+      <form method="POST" action="#" onsubmit="handleSubmit(event)" class="space-y-4">
+        <input required type="text" name="nom" placeholder="Nom et prénom" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
+        <input required type="email" name="email" placeholder="Adresse e-mail" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
+        <textarea required name="message" placeholder="Votre demande (pièce recherchée, véhicule, etc.)" rows="4" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700"></textarea>
+        <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition">Envoyer ma demande</button>
       </form>
-    </section>
-
-    <section id="avis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="message-circle"></i> Avis Clients</h2>
-      <div class="text-yellow-400 text-xl mb-4">★★★★★ <span class="text-sm text-gray-500 dark:text-gray-400">(4.9/5 sur Google)</span></div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
-          <p>"Service rapide, accueil excellent. Très satisfait !"</p>
-          <p class="mt-2 font-semibold">- Karim B.</p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
-          <p>"Pièces de qualité et personnel compétent, je recommande."</p>
-          <p class="mt-2 font-semibold">- Sarah M.</p>
-        </div>
-        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
-          <p>"Conseils au top et livraison ultra-rapide. Parfait."</p>
-          <p class="mt-2 font-semibold">- Lucas T.</p>
-        </div>
-      </div>
-      <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="inline-block bg-secondary text-dark px-5 py-3 mt-4 rounded shadow hover:bg-opacity-90 transition flex items-center gap-2 mx-auto"><i data-lucide="thumbs-up"></i> Donner votre avis sur Google</a>
+      <p id="confirmation" class="mt-4 text-green-600 dark:text-green-400 hidden">✅ Votre demande a été envoyée. Nous vous contacterons rapidement.</p>
     </section>
   </main>
 
