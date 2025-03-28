@@ -4,116 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auto Pièces Équipements | Pièces auto neuves Pavillons-sous-Bois</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background: #f8f9fa;
-      color: #212529;
-      line-height: 1.6;
-    }
-    header {
-      background: #007bff;
-      color: white;
-      text-align: center;
-      padding: 3rem 1rem;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-    }
-    nav {
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 1rem;
-      text-align: center;
-    }
-    nav a {
-      margin: 0 1rem;
-      color: #007bff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-      background: white;
-      margin-top: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    section h2 {
-      color: #007bff;
-    }
-    .services ul {
-      padding-left: 1.5rem;
-    }
-    .cta {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .cta a {
-      display: inline-block;
-      padding: 1rem 2rem;
-      background: #28a745;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: 600;
-    }
-    footer {
-      background: #343a40;
-      color: #ccc;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <h1>Auto Pièces Équipements</h1>
-    <p>Pièces auto 100% neuves à Pavillons-sous-Bois depuis 2016</p>
+<body class="bg-gray-100 text-gray-800 font-[Inter]">
+  <header class="bg-blue-600 text-white text-center py-10 px-4">
+    <h1 class="text-4xl font-bold mb-2">Auto Pièces Équipements</h1>
+    <p class="text-lg">Pièces auto 100% neuves à Pavillons-sous-Bois depuis 2016</p>
   </header>
-  <nav>
-    <a href="#services">Nos Services</a>
-    <a href="#pourquoi">Pourquoi Nous Choisir</a>
-    <a href="#contact">Contact</a>
+
+  <nav class="bg-white shadow p-4 text-center sticky top-0 z-50">
+    <a href="#services" class="mx-4 text-blue-600 font-semibold">Nos Services</a>
+    <a href="#pourquoi" class="mx-4 text-blue-600 font-semibold">Pourquoi Nous Choisir</a>
+    <a href="#produits" class="mx-4 text-blue-600 font-semibold">Nos Meilleures Pièces</a>
+    <a href="#avis" class="mx-4 text-blue-600 font-semibold">Avis Clients</a>
+    <a href="#contact" class="mx-4 text-blue-600 font-semibold">Contact</a>
   </nav>
 
-  <section id="services" class="services">
-    <h2>Nos Services</h2>
-    <p>Nous proposons une large gamme de pièces détachées neuves, batteries, accessoires et produits d’entretien pour tous types de véhicules :</p>
-    <ul>
-      <li>Conseils personnalisés sur place</li>
-      <li>Commandes sur mesure</li>
-      <li>Livraison rapide dans le 93</li>
-      <li>Retrait en magasin</li>
-    </ul>
-  </section>
+  <main class="max-w-5xl mx-auto p-4">
+    <section id="services" class="bg-white rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Nos Services</h2>
+      <ul class="list-disc list-inside space-y-2">
+        <li>Conseils personnalisés sur place</li>
+        <li>Commandes sur mesure</li>
+        <li>Livraison rapide dans le 93</li>
+        <li>Retrait en magasin</li>
+      </ul>
+    </section>
 
-  <section id="pourquoi">
-    <h2>Pourquoi Nous Choisir ?</h2>
-    <p>Depuis plus de 8 ans, nous sommes référencés comme un acteur local de confiance, à l'écoute des automobilistes et professionnels. Situés au <strong>184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois</strong>, nous ne vendons que des <strong>pièces neuves garanties</strong>, jamais de casse auto.</p>
-  </section>
+    <section id="pourquoi" class="bg-white rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Pourquoi Nous Choisir ?</h2>
+      <p>Depuis plus de 8 ans, nous sommes référencés comme un acteur local de confiance, à l'écoute des automobilistes et professionnels. Situés au <strong>184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois</strong>, nous ne vendons que des <strong>pièces neuves garanties</strong>, jamais de casse auto.</p>
+    </section>
 
-  <section id="contact">
-    <h2>Contactez-nous</h2>
-    <p><strong>Adresse :</strong> 184 Av. Aristide Briand, 93320 Les Pavillons-sous-Bois</p>
-    <p><strong>Tél :</strong> <a href="tel:+33148479627">01 48 47 96 27</a></p>
-    <p><strong>Horaires :</strong> Lun-Ven : 09:30–19:00, Sam : 09:30–17:00</p>
-    <p><strong>Langues parlées :</strong> Français, Arabe, Anglais</p>
-    <div class="cta">
-      <a href="https://g.page/r/CVmEyj9fgKz5EB0/review" target="_blank">Laisser un avis Google ⭐</a>
-    </div>
-  </section>
+    <section id="produits" class="bg-white rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Nos Meilleures Pièces</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="border p-4 rounded">
+          <h3 class="font-semibold">Batterie Varta E44</h3>
+          <p>Puissance, durabilité, garantie 2 ans</p>
+          <p class="text-green-600 font-bold">129€</p>
+        </div>
+        <div class="border p-4 rounded">
+          <h3 class="font-semibold">Filtre à huile Bosch</h3>
+          <p>Compatible multimarques</p>
+          <p class="text-green-600 font-bold">12€</p>
+        </div>
+        <!-- Ajoutez d'autres produits ici si besoin -->
+      </div>
+    </section>
 
-  <footer>
+    <section id="avis" class="bg-white rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Avis Clients</h2>
+      <iframe src="https://search.google.com/local/reviews?placeid=ChIJYQ3GuB_96EcRUt9g9kDBKDU" width="100%" height="300" class="rounded" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p class="mt-4 text-center">
+        <a href="https://g.page/r/CVmEyj9fgKz5EB0/review" target="_blank" class="inline-block mt-2 px-6 py-2 bg-green-600 text-white rounded">Laisser un avis Google ⭐</a>
+      </p>
+    </section>
+
+    <section id="contact" class="bg-white rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Demande de Devis</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST" class="grid gap-4">
+        <input type="text" name="Nom" placeholder="Votre nom" class="p-2 border rounded" required />
+        <input type="email" name="Email" placeholder="Votre email" class="p-2 border rounded" required />
+        <input type="text" name="Véhicule" placeholder="Marque et modèle du véhicule" class="p-2 border rounded" required />
+        <input type="text" name="Pièce" placeholder="Pièce recherchée" class="p-2 border rounded" required />
+        <textarea name="Message" placeholder="Message complémentaire..." rows="4" class="p-2 border rounded"></textarea>
+        <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Envoyer la demande</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-gray-300 text-center py-6 mt-10 text-sm">
     &copy; 2025 Auto Pièces Équipements — Site vitrine. Pièces neuves uniquement. Aucun lien avec les casses automobiles.
   </footer>
 </body>
