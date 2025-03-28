@@ -13,6 +13,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'media',
       theme: {
         extend: {
           colors: {
@@ -30,24 +31,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="logo.png" type="image/png">
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
   <header class="bg-gradient-to-r from-primary to-secondary text-white text-center py-10 px-4">
     <img src="logo.png" alt="Logo Auto Pièces Équipements" class="mx-auto w-24 mb-4">
     <h1 class="text-4xl font-bold mb-2">Auto Pièces Équipements</h1>
     <p class="text-lg">Pièces auto 100% neuves à Pavillons-sous-Bois depuis 2016</p>
   </header>
 
-  <nav class="bg-white shadow p-4 text-center sticky top-0 z-50">
-    <a href="#services" class="mx-4 text-blue-600 font-semibold">Nos Services</a>
-    <a href="#pourquoi" class="mx-4 text-blue-600 font-semibold">Pourquoi Nous Choisir</a>
-    <a href="#produits" class="mx-4 text-blue-600 font-semibold">Nos Meilleures Pièces</a>
-    <a href="#avis" class="mx-4 text-blue-600 font-semibold">Avis Clients</a>
-    <a href="#contact" class="mx-4 text-blue-600 font-semibold">Contact</a>
+  <nav class="bg-white dark:bg-gray-800 shadow p-4 text-center sticky top-0 z-50">
+    <a href="#services" class="mx-4 text-primary font-semibold">Nos Services</a>
+    <a href="#pourquoi" class="mx-4 text-primary font-semibold">Pourquoi Nous Choisir</a>
+    <a href="#produits" class="mx-4 text-primary font-semibold">Nos Meilleures Pièces</a>
+    <a href="#avis" class="mx-4 text-primary font-semibold">Avis Clients</a>
+    <a href="#contact" class="mx-4 text-primary font-semibold">Contact</a>
   </nav>
 
   <main class="max-w-5xl mx-auto p-4">
-    <section id="services" class="bg-white rounded-lg shadow p-6 my-6">
-      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Nos Services</h2>
+    <section id="services" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-primary font-semibold mb-4">Nos Services</h2>
       <ul class="list-disc list-inside space-y-2">
         <li>Conseils personnalisés sur place</li>
         <li>Commandes sur mesure</li>
@@ -56,64 +57,106 @@
       </ul>
     </section>
 
-    <section id="pourquoi" class="bg-white rounded-lg shadow p-6 my-6">
-      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Pourquoi Nous Choisir ?</h2>
+    <section id="pourquoi" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-primary font-semibold mb-4">Pourquoi Nous Choisir ?</h2>
       <p>Depuis plus de 8 ans, nous sommes référencés comme un acteur local de confiance, à l'écoute des automobilistes et professionnels. Situés au <strong>184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois</strong>, nous ne vendons que des <strong>pièces neuves garanties</strong>, jamais de casse auto.</p>
     </section>
 
-    <section id="produits" class="bg-white rounded-lg shadow p-6 my-6">
-      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Nos Meilleures Pièces</h2>
+    <section id="produits" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-primary font-semibold mb-4">Nos Meilleures Pièces</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="border p-4 rounded text-center">
+        <div class="border dark:border-gray-700 p-4 rounded text-center">
           <img src="produits/batterie-varta.jpg" alt="Batterie Varta E44" class="mx-auto w-32 mb-2 rounded">
           <h3 class="font-semibold text-lg">Batterie Varta E44</h3>
           <p>Puissance, durabilité, garantie 2 ans</p>
-          <p class="text-green-600 font-bold">129€</p>
+          <p class="text-green-600 dark:text-green-400 font-bold">129€</p>
         </div>
-        <div class="border p-4 rounded text-center">
+        <div class="border dark:border-gray-700 p-4 rounded text-center">
           <img src="produits/filtre-huile-bosch.jpg" alt="Filtre à huile Bosch" class="mx-auto w-24 mb-2 rounded">
           <h3 class="font-semibold text-lg">Filtre à huile Bosch</h3>
           <p>Compatible multimarques</p>
-          <p class="text-green-600 font-bold">12€</p>
+          <p class="text-green-600 dark:text-green-400 font-bold">12€</p>
         </div>
-        <div class="border p-4 rounded text-center">
+        <div class="border dark:border-gray-700 p-4 rounded text-center">
           <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein Brembo" class="mx-auto w-24 mb-2 rounded">
           <h3 class="font-semibold text-lg">Plaquettes de frein Brembo</h3>
           <p>Performance freinage premium</p>
-          <p class="text-green-600 font-bold">45€</p>
+          <p class="text-green-600 dark:text-green-400 font-bold">45€</p>
         </div>
-        <div class="border p-4 rounded text-center">
+        <div class="border dark:border-gray-700 p-4 rounded text-center">
           <img src="produits/essuie-glace.jpg" alt="Essuie-glaces Bosch AeroTwin" class="mx-auto w-24 mb-2 rounded">
           <h3 class="font-semibold text-lg">Essuie-glaces Bosch AeroTwin</h3>
           <p>Confort visuel et silence</p>
-          <p class="text-green-600 font-bold">20€</p>
+          <p class="text-green-600 dark:text-green-400 font-bold">20€</p>
         </div>
       </div>
     </section>
 
-    <section id="avis" class="bg-white rounded-lg shadow p-6 my-6">
-      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Avis Clients</h2>
+    <section id="avis" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-primary font-semibold mb-4">Avis Clients</h2>
+      <div class="text-center text-yellow-400 text-xl mb-4">★★★★★ <span class="text-sm text-gray-500 dark:text-gray-400">(4.9/5 sur Google)</span></div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
+          <p class="text-sm italic">"Excellent service, j'ai trouvé exactement la pièce qu'il me fallait en quelques minutes."</p>
+          <p class="mt-2 font-semibold">- Mohamed L.</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
+          <p class="text-sm italic">"Personnel très accueillant, livraison rapide et bons conseils pour le montage."</p>
+          <p class="mt-2 font-semibold">- Amina T.</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded shadow">
+          <p class="text-sm italic">"Des prix compétitifs, du stock, et une équipe réactive. Je recommande sans hésiter !"</p>
+          <p class="mt-2 font-semibold">- Julien R.</p>
+        </div>
+      </div>
+      
       <iframe src="https://search.google.com/local/reviews?placeid=ChIJYQ3GuB_96EcRUt9g9kDBKDU" width="100%" height="300" class="rounded" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <p class="mt-4 text-center">
-        <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="inline-block mt-2 px-6 py-2 bg-green-600 text-white rounded">Laisser un avis Google ⭐</a>
+        <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="inline-block mt-2 px-6 py-2 bg-secondary text-white rounded hover:bg-emerald-700 transition">Laisser un avis Google ⭐</a>
       </p>
     </section>
 
-    <section id="contact" class="bg-white rounded-lg shadow p-6 my-6">
-      <h2 class="text-2xl text-blue-600 font-semibold mb-4">Demande de Devis</h2>
-      <form action="https://formspree.io/f/your-form-id" method="POST" class="grid gap-4">
-        <input type="text" name="Nom" placeholder="Votre nom" class="p-2 border rounded" required />
-        <input type="email" name="Email" placeholder="Votre email" class="p-2 border rounded" required />
-        <input type="text" name="Véhicule" placeholder="Marque et modèle du véhicule" class="p-2 border rounded" required />
-        <input type="text" name="Pièce" placeholder="Pièce recherchée" class="p-2 border rounded" required />
-        <textarea name="Message" placeholder="Message complémentaire..." rows="4" class="p-2 border rounded"></textarea>
-        <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Envoyer la demande</button>
+    <section id="contact" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 my-6">
+      <h2 class="text-2xl text-primary font-semibold mb-4">Demande de Devis</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST" class="grid gap-4" onsubmit="return handleSubmit(event)">
+        <input type="text" name="Nom" placeholder="Votre nom" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600" required />
+        <input type="email" name="Email" placeholder="Votre email" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600" required />
+        <input type="text" name="Véhicule" placeholder="Marque et modèle du véhicule" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600" required />
+        <input type="text" name="Pièce" placeholder="Pièce recherchée" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600" required />
+        <textarea name="Message" placeholder="Message complémentaire..." rows="4" class="p-2 border rounded dark:bg-gray-700 dark:border-gray-600"></textarea>
+        <button type="submit" class="bg-primary text-white py-2 px-4 rounded hover:bg-blue-700 transition">Envoyer la demande</button>
+        <p id="confirmation" class="text-green-600 dark:text-green-400 mt-2 hidden">✅ Votre demande a bien été envoyée !</p>
       </form>
     </section>
+
+    <div class="text-center my-10">
+      <a href="javascript:window.print()" class="inline-block bg-primary text-white px-6 py-3 rounded shadow hover:bg-blue-700 transition">
+        📄 Télécharger cette page en PDF
+      </a>
+    </div>
   </main>
 
-  <footer class="bg-gray-800 text-gray-300 text-center py-6 mt-10 text-sm">
+  <footer class="bg-gray-800 dark:bg-gray-900 text-gray-300 text-center py-6 mt-10 text-sm">
     &copy; 2025 Auto Pièces Équipements — Site vitrine. Pièces neuves uniquement. Aucun lien avec les casses automobiles.
   </footer>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('confirmation').classList.remove('hidden');
+          form.reset();
+        }
+      });
+      return false;
+    }
+  </script>
 </body>
 </html>
