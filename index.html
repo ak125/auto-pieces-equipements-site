@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auto Pièces Équipements | Pièces auto neuves à Pavillons-sous-Bois (93)</title>
+  
+  <!-- Meta optimisés -->
   <meta name="description" content="Magasin spécialisé dans la vente de pièces automobiles neuves à Pavillons-sous-Bois. Livraison rapide, conseils techniques et retrait en magasin. Devis gratuit en ligne.">
   <meta name="keywords" content="pièces auto neuves, accessoires voiture, pavillons-sous-bois, pièces détachées, livraison auto 93">
   <meta name="author" content="Auto Pièces Équipements">
@@ -15,8 +17,19 @@
   <meta property="og:url" content="https://ak125.github.io/auto-pieces-equipements-site/" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#c21f1f" />
+  <meta name="google-site-verification" content="votre_code_verification">
+  <meta name="geo.region" content="FR-93">
+  <meta name="geo.placename" content="Pavillons-sous-Bois">
+  
+  <!-- Ressources -->
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="icon" href="logo.png" type="image/png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+  <!-- Préchargement des ressources critiques -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
+  <link rel="preload" href="logo.png" as="image">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -35,11 +48,22 @@
       }
     }
   </script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Styles critiques inlined -->
+  <style>
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0 }
+    .loading-spinner { 
+      animation: spin 1s linear infinite;
+      width: 24px;
+      height: 24px;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
-  <main class="max-w-5xl mx-auto px-4 py-8">
+  <main class="max-w-5xl mx-auto px-4 py-8 pb-16 md:pb-8">
     <header class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <img src="logo.png" alt="Logo Auto Pièces" class="w-10 h-10">
@@ -87,6 +111,19 @@
       </div>
     </section>
 
+    <!-- Section marques supportées -->
+    <section id="marques" class="bg-gray-50 dark:bg-gray-800 p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="award"></i> Marques principales</h2>
+      <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
+        <img src="marques/bosch.svg" alt="Logo Bosch" class="h-12 w-auto mx-auto" loading="lazy">
+        <img src="marques/valeo.svg" alt="Logo Valeo" class="h-12 w-auto mx-auto" loading="lazy">
+        <img src="marques/febi.svg" alt="Logo Febi" class="h-12 w-auto mx-auto" loading="lazy">
+        <img src="marques/textar.svg" alt="Logo Textar" class="h-12 w-auto mx-auto" loading="lazy">
+        <img src="marques/mann.svg" alt="Logo Mann-Filter" class="h-12 w-auto mx-auto" loading="lazy">
+        <img src="marques/sachs.svg" alt="Logo Sachs" class="h-12 w-auto mx-auto" loading="lazy">
+      </div>
+    </section>
+
     <section id="avis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="message-circle"></i> Avis clients</h2>
       <div class="grid md:grid-cols-2 gap-4">
@@ -104,9 +141,34 @@
       </div>
     </section>
 
+    <!-- Section FAQ -->
+    <section id="faq" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="help-circle"></i> Questions fréquentes</h2>
+      <div class="space-y-4">
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="font-medium text-primary">Comment connaître la référence exacte de ma pièce ?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text" class="mt-2 text-sm">Nos experts peuvent vous aider à identifier la pièce nécessaire via notre service de diagnostic en ligne ou en magasin.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="font-medium text-primary">Les pièces sont-elles garanties ?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text" class="mt-2 text-sm">Oui, toutes nos pièces bénéficient de la garantie constructeur, généralement entre 1 et 2 ans selon les marques.</p>
+          </div>
+        </div>
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 itemprop="name" class="font-medium text-primary">Quels sont les délais de livraison ?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text" class="mt-2 text-sm">Dans le 93, nous livrons généralement en 24h. Pour les autres départements d'Île-de-France, comptez 2 à 3 jours ouvrés.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="devis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="file-text"></i> Demande de devis</h2>
-      <form method="POST" action="#" onsubmit="handleSubmit(event)" class="space-y-4">
+      <form method="POST" action="#" onsubmit="return false;" class="space-y-4">
         <input required type="text" name="nom" placeholder="Nom et prénom" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
         <input required type="email" name="email" placeholder="Adresse e-mail" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
         <textarea required name="message" placeholder="Votre demande (pièce recherchée, véhicule, etc.)" rows="4" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700"></textarea>
@@ -116,22 +178,88 @@
     </section>
   </main>
 
-  <script>
-    lucide.createIcons();
-    function handleSubmit(event) {
-      event.preventDefault();
-      const form = event.target;
-      fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          document.getElementById('confirmation').classList.remove('hidden');
-          form.reset();
+  <!-- Navigation améliorée mobile -->
+  <nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-gray-800 shadow-lg z-50">
+    <div class="flex justify-around p-4">
+      <a href="#services" class="text-primary" aria-label="Services">
+        <i data-lucide="settings"></i>
+      </a>
+      <a href="#meilleures-pieces" class="text-primary" aria-label="Produits">
+        <i data-lucide="shopping-cart"></i>
+      </a>
+      <a href="#devis" class="text-primary" aria-label="Contact">
+        <i data-lucide="phone"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Chat flottant -->
+  <button id="chat-button" class="fixed bottom-20 md:bottom-4 right-4 bg-primary p-3 rounded-full shadow-lg hover:bg-red-700 transition" aria-label="Ouvrir le chat">
+    <i data-lucide="message-circle" class="text-white"></i>
+  </button>
+
+  <!-- Scripts optimisés -->
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script defer>
+    // Gestionnaire de formulaire amélioré
+    const formHandler = {
+      init() {
+        this.form = document.querySelector('form');
+        this.submitBtn = this.form.querySelector('button[type="submit"]');
+        this.form.addEventListener('submit', this.handleSubmit.bind(this));
+      },
+
+      async handleSubmit(e) {
+        e.preventDefault();
+        
+        this.submitBtn.disabled = true;
+        this.submitBtn.innerHTML = `<i data-lucide="loader" class="loading-spinner"></i> Envoi en cours...`;
+        lucide.createIcons();
+
+        try {
+          const response = await fetch(this.form.action, {
+            method: 'POST',
+            body: new FormData(this.form),
+          });
+
+          if (!response.ok) throw new Error('Erreur réseau');
+          this.showSuccess();
+        } catch (error) {
+          this.showError();
+        } finally {
+          this.resetButton();
         }
-      });
-      return false;
+      },
+
+      showSuccess() {
+        const confirmation = document.getElementById('confirmation');
+        confirmation.classList.remove('hidden');
+        setTimeout(() => confirmation.classList.add('hidden'), 5000);
+      },
+
+      showError() {
+        // Afficher un message d'erreur
+      },
+
+      resetButton() {
+        this.submitBtn.disabled = false;
+        this.submitBtn.innerHTML = 'Envoyer ma demande';
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      formHandler.init();
+    });
+  </script>
+
+  <!-- Web Vitals Tracking -->
+  <script defer src="https://unpkg.com/web-vitals"></script>
+  <script defer>
+    if (window.webVitals) {
+      webVitals.getCLS(console.log);
+      webVitals.getFID(console.log);
+      webVitals.getLCP(console.log);
     }
   </script>
 </body>
