@@ -163,6 +163,25 @@
       color: white;
       border-bottom-right-radius: 4px;
     }
+
+    .service-card {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    @keyframes ping {
+      75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    .availability-ping {
+      animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
   </style>
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -219,20 +238,104 @@
   </section>
 
   <main class="max-w-7xl mx-auto px-4 py-8 pb-16 md:pb-8">
-    <section id="services" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="wrench"></i> Services proposés</h2>
-      <details class="mb-2">
-        <summary class="cursor-pointer font-medium text-primary flex items-center gap-2"><i data-lucide="truck"></i> Livraison rapide</summary>
-        <p class="mt-2 text-sm">Livraison en 24h sur toute la Seine-Saint-Denis et départements limitrophes.</p>
-      </details>
-      <details class="mb-2">
-        <summary class="cursor-pointer font-medium text-primary flex items-center gap-2"><i data-lucide="store"></i> Retrait en magasin</summary>
-        <p class="mt-2 text-sm">Commandez en ligne et récupérez vos pièces en boutique sans attente.</p>
-      </details>
-      <details class="mb-2">
-        <summary class="cursor-pointer font-medium text-primary flex items-center gap-2"><i data-lucide="user-check"></i> Conseils personnalisés</summary>
-        <p class="mt-2 text-sm">Nos experts vous accompagnent dans le choix des pièces selon votre véhicule.</p>
-      </details>
+    <!-- Services section - NOUVELLE VERSION -->
+    <section id="services" class="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg shadow mb-6">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          <span class="bg-primary text-white px-4 py-2 rounded-full">Nos services experts</span>
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Livraison Rapide -->
+          <div class="service-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <i data-lucide="rocket" class="text-primary w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+              Livraison Express
+              <span class="bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">24/48h</span>
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Recevez vos pièces en moins de 24h dans un rayon de 50km autour de Pavillons-sous-Bois.
+            </p>
+            <div class="flex items-center gap-2 text-sm text-primary font-medium">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+              <span>Suivi GPS en temps réel</span>
+            </div>
+            <div class="mt-4 border-t pt-4">
+              <div class="flex justify-between text-sm">
+                <span>Zones couvertes :</span>
+                <span class="font-semibold">93, 75, 94</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Retrait en Magasin -->
+          <div class="service-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <i data-lucide="store" class="text-primary w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+              Click & Collect
+              <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full">Disponible maintenant</span>
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Commandez en ligne et récupérez vos pièces en magasin en 1h, 7j/7.
+            </p>
+            <div class="flex items-center gap-2 text-sm text-primary font-medium">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>Horaires étendus : 8h-20h</span>
+            </div>
+            <div class="mt-4 border-t pt-4">
+              <div class="flex justify-between text-sm">
+                <span>Préparation :</span>
+                <span class="font-semibold text-green-600">≤ 15min</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conseils Experts -->
+          <div class="service-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
+            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <i data-lucide="users" class="text-primary w-8 h-8"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+              Conseil Expert
+              <span class="bg-purple-100 text-purple-800 text-sm px-2 py-1 rounded-full">Gratuit</span>
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Nos mécaniciens diplômés vous accompagnent par chat, téléphone ou en magasin.
+            </p>
+            <div class="flex items-center gap-2 text-sm text-primary font-medium">
+              <i data-lucide="badge-check" class="w-4 h-4"></i>
+              <span>Certifiés RGE AutoPro</span>
+            </div>
+            <div class="mt-4 border-t pt-4">
+              <div class="flex justify-between text-sm">
+                <span>Disponibilité :</span>
+                <span class="font-semibold">24h/24</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bandeau de Garantie -->
+        <div class="mt-12 bg-primary/10 rounded-xl p-6 text-center border border-primary/20">
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+            <div class="flex items-center gap-2 text-primary font-bold">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+              <span>Satisfait ou remboursé</span>
+            </div>
+            <div class="hidden md:block h-6 w-px bg-primary/20"></div>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              14 jours pour retourner vos pièces - Assistance technique incluse
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Produits phares -->
