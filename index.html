@@ -70,8 +70,6 @@
     .card-hover {
       transition: transform 0.3s var(--animation-curve), box-shadow 0.3s var(--animation-curve);
     }
-    
-    /* Les styles non critiques ont été déplacés vers styles/main.css */
   </style>
   
   <!-- Polices avec fallback local -->
@@ -115,6 +113,25 @@
   <noscript>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </noscript>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#c21f1f',
+            secondary: '#ffc107',
+            dark: '#1f2937'
+          },
+          fontFamily: {
+            sans: ['"Segoe UI"', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
   
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" defer></script>
   
@@ -189,7 +206,8 @@
   </section>
 
   <!-- Value Propositions -->
-  <section class="py-16 bg-gray-50 dark:bg-gray-800">
+  <section class="py-16 bg-gray-50 dark:bg-gray-800" aria-labelledby="propositions-heading">
+    <h2 id="propositions-heading" class="sr-only">Nos avantages</h2>
     <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
       <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
         <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
@@ -217,19 +235,11 @@
 
   <main class="max-w-7xl mx-auto px-4 py-8 pb-16 md:pb-8">
     <!-- Section Services améliorée -->
-    <section id="services" class="relative py-16 bg-gray-50 dark:bg-gray-900 rounded-lg shadow mb-6">
-      <h2 class="text-3xl font-bold text-center mb-8">
+    <section id="services" class="relative py-16 bg-gray-50 dark:bg-gray-900 rounded-lg shadow mb-6" aria-labelledby="services-heading">
+      <h2 id="services-heading" class="text-3xl font-bold text-center mb-8">
         <span class="bg-primary text-white px-4 py-2 rounded-full">Nos services experts</span>
       </h2>
       
-      <!-- Indicateur de disponibilité temps réel -->
-      <div class="availability-banner bg-primary/10 py-3 mb-8 rounded-lg">
-        <div class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2">
-          <span class="availability-dot availability-ping"></span>
-          <span class="text-sm font-medium" id="livraisonStatus">Calcul en cours...</span>
-        </div>
-      </div>
-
       <!-- Cartes de services -->
       <div class="grid md:grid-cols-3 gap-8 mb-8">
         <!-- Livraison Rapide -->
@@ -307,64 +317,6 @@
           </div>
         </div>
       </div>
-      
-      <!-- Résultats de comparaison -->
-      <div id="comparisonResults" class="comparison-results hidden bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-8">
-        <h3 class="text-xl font-bold mb-4">Comparaison des services</h3>
-        <div class="grid md:grid-cols-2 gap-6" id="compareContent">
-          <!-- Le contenu sera rempli par JavaScript -->
-        </div>
-      </div>
-
-      <!-- Suivi de commande intégré -->
-      <div class="order-tracker bg-white dark:bg-gray-800 p-6 rounded-xl shadow mb-8">
-        <h3 class="text-xl font-bold mb-6">Suivi de votre commande</h3>
-        <div class="tracker-timeline mb-6">
-          <div class="tracker-step flex flex-col items-center" data-status="confirmed">
-            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mb-2 z-10">
-              <i data-lucide="check" class="text-white w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Confirmée</span>
-          </div>
-          <div class="tracker-step flex flex-col items-center" data-status="preparing">
-            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
-              <i data-lucide="package" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Préparation</span>
-          </div>
-          <div class="tracker-step flex flex-col items-center" data-status="shipped">
-            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
-              <i data-lucide="truck" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Expédiée</span>
-          </div>
-          <div class="tracker-step flex flex-col items-center" data-status="delivered">
-            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
-              <i data-lucide="home" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Livrée</span>
-          </div>
-        </div>
-        <div class="text-center">
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            Commande #AE1234 | Estimation : <span class="font-medium">Lundi 28 Mars</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- Bandeau de Garantie -->
-      <div class="mt-8 bg-primary/10 rounded-xl p-6 text-center border border-primary/20">
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-          <div class="flex items-center gap-2 text-primary font-bold">
-            <i data-lucide="shield-check" class="w-6 h-6"></i>
-            <span>Satisfait ou remboursé</span>
-          </div>
-          <div class="hidden md:block h-6 w-px bg-primary/20"></div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">
-            14 jours pour retourner vos pièces - Assistance technique incluse
-          </p>
-        </div>
-      </div>
     </section>
 
     <!-- Widget de réservation flottant -->
@@ -399,8 +351,8 @@
     </button>
 
     <!-- Produits phares avec microdata amélioré et WebP -->
-    <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-3xl font-bold mb-6 flex items-center gap-2"><i data-lucide="star" aria-hidden="true"></i> Nos meilleures ventes</h2>
+    <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6" aria-labelledby="products-heading">
+      <h2 id="products-heading" class="text-3xl font-bold mb-6 flex items-center gap-2"><i data-lucide="star" aria-hidden="true"></i> Nos meilleures ventes</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
           <meta itemprop="mpn" content="BS5-12V-80A">
