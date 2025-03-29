@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <!-- Meta optimisés -->
+  <title>Tableau de Bord Client | Auto Pièces Équipements</title>
+  <meta name="description" content="Gérez vos commandes, suivez l'état de votre véhicule et accédez à vos récompenses sur votre espace personnel Auto Pièces Équipements.">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Ressources -->
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="icon" href="logo.png" type="image/png">
+  
+  <!-- Styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/innovations.css">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#c21f1f',
+            secondary: '#ffc107',
+            dark: '#1f2937'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
+  <!-- En-tête -->
+  <header class="bg-white dark:bg-gray-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2">
+      <nav aria-label="Navigation principale" class="flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3" aria-label="Accueil Auto Pièces Équipements">
+          <img src="logo.webp" srcset="logo.webp 1x, logo@2x.webp 2x" alt="Logo Auto Pièces Équipements" width="40" height="40" 
+               onerror="this.onerror=null; this.src='logo.png'; this.srcset='logo.png 1x, logo@2x.png 2x';">
+          <span class="font-bold text-lg hidden sm:inline">Auto Pièces Équipements</span>
+        </a>
+        
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <button class="voice-search-button" id="voiceSearchBtn" aria-label="Recherche vocale">
+              <i data-lucide="mic" aria-hidden="true"></i>
+              <div class="voice-feedback"></div>
+            </button>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <img src="https://via.placeholder.com/40?text=JD" alt="Avatar" class="w-10 h-10 rounded-full">
+            <div class="hidden md:block">
+              <p class="font-medium">Jean Dupont</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Niveau 3: Mécano</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <!-- Bannière de bienvenue avec glassmorphism -->
+    <section class="relative overflow-hidden rounded-xl mb-8">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 animate-gradient-flow"></div>
+      
+      <div class="relative glassmorphism rounded-xl p-8">
+        <h1 class="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+          Bienvenue, Jean 👋
+        </h1>
+        <p class="mb-4">Votre tableau de bord personnalisé pour suivre vos commandes et l'état de votre véhicule.</p>
+        
+        <div class="flex flex-wrap gap-4 mt-4">
+          <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+            Nouvelle commande
+          </a>
+          <a href="#" class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-white/30 transition">
+            Contacter le support
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tableau de bord principal -->
+    <div class="customer-dashboard">
+      <!-- Garage virtuel -->
+      <div class="garage-virtuel">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+          <i data-lucide="car" aria-hidden="true"></i>
+          Mon garage virtuel
+        </h2>
+        
+        <div class="vehicle-cards">
+          <div class="card-3d p-4 bg-white dark:bg-gray-800 rounded-lg shadow mb-4" data-vin="ABC123XYZ">
+            <div class="flex items-center gap-4 mb-4">
+              <model-viewer src="models/car-generic.glb" 
+                auto-rotate ar-scale="fixed" 
+                style="width: 120px; height: 80px;"
+                loading="lazy">
+              </model-viewer>
+              
+              <div>
+                <h3 class="font-semibold">Peugeot 308</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400">2018 - Diesel - 95 000 km</p>
+              </div>
+            </div>
+            
+            <div class="vehicle-health">
+              <div class="flex justify-between text-sm mb-1">
+                <span>État général</span>
+                <span class="font-medium">75%</span>
+              </div>
+              <div class="health-meter" style="--percentage: 75%"></div>
+            </div>
+            
+            <div class="maintenance-schedule mt-4">
+              <h4 class="font-medium mb-2">Maintenance recommandée</h4>
+              <ul class="space-y-2 text-sm">
+                <li class="flex justify-between">
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-500"></i>
+                    Vidange moteur
+                  </span>
+                  <span class="text-amber-500 font-medium">Dans 1 500 km</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i>
+                    Plaquettes de frein
+                  </span>
+                  <span class="text-green-500 font-medium">Bon état</span>
+                </li>
+                <li class="flex justify-between">
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="alert-circle" class="w-4 h-4 text-primary"></i>
+                    Filtre à air
+                  </span>
+                  <span class="text-primary font-medium">À vérifier</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <button class="w-full bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4 text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            <i data-lucide="plus-circle" class="inline-block w-5 h-5 mr-2"></i>
+            Ajouter un véhicule
+          </button>
+        </div>
+      </div>
+
+      <!-- Historique commandes -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+          <i data-lucide="package" aria-hidden="true"></i>
+          Mes commandes
+        </h2>
+        
+        <div class="order-timeline">
+          <div class="order-event" data-status="delivered">
+            <div class="event-dot"></div>
+            <div class="event-content">
+              <h4 class="font-medium">Plaquettes de frein Brembo</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Livré le 12/02/2024</p>
+              <a href="#" class="text-primary text-sm hover:underline">Voir les détails</a>
+            </div>
+          </div>
+          
+          <div class="order-event" data-status="processing">
+            <div class="event-dot"></div>
+            <div class="event-content">
+              <h4 class="font-medium">Filtre à huile Mann</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">En préparation</p>
+              <a href="#" class="text-primary text-sm hover:underline">Suivre la commande</a>
+            </div>
+          </div>
+          
+          <div class="order-event" data-status="delivered">
+            <div class="event-dot"></div>
+            <div class="event-content">
+              <h4 class="font-medium">Batterie Bosch S5</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Livré le 05/01/2024</p>
+              <a href="#" class="text-primary text-sm hover:underline">Voir les détails</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Système de gamification et récompenses -->
+    <section class="gamification-system mt-12">
+      <h2 class="text-2xl font-bold mb-6">Vos récompenses et badges</h2>
+      
+      <div class="achievement-board">
+        <div class="achievement unlocked" data-badge="first-order">
+          <div class="badge-icon">🎯</div>
+          <h4 class="text-lg">Première commande</h4>
+          <p class="text-green-500">+50 points</p>
+        </div>
+        
+        <div class="achievement unlocked" data-badge="loyal-customer">
+          <div class="badge-icon">🏆</div>
+          <h4 class="text-lg">Client fidèle</h4>
+          <p class="text-green-500">+100 points</p>
+        </div>
+        
+        <div class="achievement unlocked" data-badge="quick-review">
+          <div class="badge-icon">⭐</div>
+          <h4 class="text-lg">Critique rapide</h4>
+          <p class="text-green-500">+25 points</p>
+        </div>
+        
+        <div class="achievement locked" data-badge="expert">
+          <div class="badge-icon">🔧</div>
+          <h4 class="text-lg">Expert mécanique</h4>
+          <p class="text-gray-500">Complétez 5 guides</p>
+        </div>
+      </div>
+
+      <div class="loyalty-progress">
+        <h3 class="text-lg font-semibold mb-2">Progression de fidélité</h3>
+        <div class="progress-bar" style="--progress: 65%">
+          <div class="progress-label">Niveau 3 - Mécano</div>
+        </div>
+        <div class="flex justify-between text-sm mt-1">
+          <span>175/250 points</span>
+          <span>Niveau 4 dans 75 points</span>
+        </div>
+        
+        <div class="rewards-preview mt-4">
+          <div class="reward">🚚 Livraison gratuite</div>
+          <div class="reward">🔧 Diagnostic gratuit</div>
+          <div class="reward">🎁 Accès VIP aux promotions</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Activité sociale -->
+    <section class="social-proof mt-12">
+      <div class="live-activity-feed bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-4">
+          🎉 Activité récente
+        </h3>
+        <div class="activity-items">
+          <div class="activity-item">
+            <img src="https://via.placeholder.com/40?text=SD" alt="Sarah D." loading="lazy">
+            <p><strong>Sarah D.</strong> a acheté des <em>essuie-glaces Bosch</em></p>
+            <time>2 min ago</time>
+          </div>
+          <div class="activity-item">
+            <img src="https://via.placeholder.com/40?text=MT" alt="Michel T." loading="lazy">
+            <p><strong>Michel T.</strong> a donné un avis ⭐⭐⭐⭐⭐</p>
+            <time>15 min ago</time>
+          </div>
+          <div class="activity-item">
+            <img src="https://via.placeholder.com/40?text=KL" alt="Kevin L." loading="lazy">
+            <p><strong>Kevin L.</strong> a acheté une <em>batterie Varta</em></p>
+            <time>37 min ago</time>
+          </div>
+          <div class="activity-item">
+            <img src="https://via.placeholder.com/40?text=CM" alt="Claude M." loading="lazy">
+            <p><strong>Claude M.</strong> a atteint le niveau 4</p>
+            <time>1 heure ago</time>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-reviews bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-4">
+          🌟 Avis vérifiés
+        </h3>
+        <div class="review-cards">
+          <div class="review-card">
+            <div class="review-meta">
+              <div class="verified-badge">✅ Achat vérifié</div>
+              <div class="product-info">
+                <img src="produits/batterie-varta.webp" alt="Batterie Varta" loading="lazy">
+                <span>Batterie VARTA</span>
+              </div>
+            </div>
+            <div class="review-content mt-2">
+              <p>"Excellent rapport qualité/prix, et la livraison en 24h comme promis !"</p>
+              <div class="flex text-yellow-400 mt-1">★★★★★</div>
+            </div>
+          </div>
+          
+          <div class="review-card mt-4">
+            <div class="review-meta">
+              <div class="verified-badge">✅ Achat vérifié</div>
+              <div class="product-info">
+                <img src="produits/plaquettes-frein.webp" alt="Plaquettes Brembo" loading="lazy">
+                <span>Plaquettes Brembo</span>
+              </div>
+            </div>
+            <div class="review-content mt-2">
+              <p>"Parfaites pour ma 308, le frein est beaucoup plus performant maintenant."</p>
+              <div class="flex text-yellow-400 mt-1">★★★★☆</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
+      <p>&copy; 2024 Auto Pièces Équipements - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module" src="scripts/modules/voice-search.js"></script>
+  <script type="module" src="scripts/modules/gamification.js"></script>
+  <script type="module">
+    // Effet de carte 3D
+    document.querySelectorAll('.card-3d').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateY = (x - centerX) / 15;
+        const rotateX = (centerY - y) / 15;
+        
+        card.style.setProperty('--rotate-y', `${rotateY}deg`);
+        card.style.setProperty('--rotate-x', `${rotateX}deg`);
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--rotate-y', '0deg');
+        card.style.setProperty('--rotate-x', '0deg');
+      });
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialisation des icônes Lucide
+      lucide?.createIcons();
+    });
+  </script>
+</body>
+</html>

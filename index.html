@@ -208,29 +208,179 @@
   <!-- Value Propositions -->
   <section class="py-16 bg-gray-50 dark:bg-gray-800" aria-labelledby="propositions-heading">
     <h2 id="propositions-heading" class="sr-only">Nos avantages</h2>
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-          <i data-lucide="clock" class="text-white text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Livraison Express</h3>
-        <p class="text-gray-600 dark:text-gray-300">Recevez vos pièces en 24h dans tout le 93</p>
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold mb-4">Pourquoi choisir Auto Pièces Équipements ?</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Des solutions sur mesure pour votre véhicule avec la garantie d'un service premium</p>
       </div>
-      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-          <i data-lucide="shield-check" class="text-white text-2xl"></i>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Livraison Express -->
+        <div class="value-card bg-white dark:bg-gray-700 p-8 rounded-xl card-hover transform transition-all duration-300 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
+            POPULAIRE
+          </div>
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 value-icon">
+            <i data-lucide="truck" class="text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">Livraison Express 24h</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Recevez vos pièces en 24h dans tout le 93 et les départements limitrophes. Service prioritaire pour les urgences.</p>
+          
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Suivi GPS en temps réel</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Livraison offerte dès 100€</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Option urgent 2h disponible</span>
+            </li>
+          </ul>
+          
+          <div class="delivery-map mt-4 bg-gray-50 dark:bg-gray-800 p-3 rounded-lg text-sm">
+            <p class="font-medium mb-1 flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i>
+              Zones desservies en 24h :
+            </p>
+            <p>93, 92, 75, 94, 95, 77, 91, 78</p>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-2">Garantie 2 Ans</h3>
-        <p class="text-gray-600 dark:text-gray-300">Toutes nos pièces sont garanties d'origine</p>
+
+        <!-- Garantie 2 Ans -->
+        <div class="value-card bg-white dark:bg-gray-700 p-8 rounded-xl card-hover transform transition-all duration-300 relative overflow-hidden">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 value-icon">
+            <i data-lucide="shield-check" class="text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">Garantie Premium 2 Ans</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Toutes nos pièces sont garanties d'origine avec certification constructeur et traçabilité complète.</p>
+          
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Pièces 100% d'origine constructeur</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Remplacement sans frais si défaut</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Certificat d'authenticité inclus</span>
+            </li>
+          </ul>
+          
+          <div class="warranty-timeline relative pt-2">
+            <div class="flex justify-between mb-2 relative z-10">
+              <div class="warranty-point text-center">
+                <div class="warranty-dot bg-primary w-4 h-4 rounded-full mx-auto mb-1"></div>
+                <span class="text-xs">Achat</span>
+              </div>
+              <div class="warranty-point text-center">
+                <div class="warranty-dot bg-primary w-4 h-4 rounded-full mx-auto mb-1"></div>
+                <span class="text-xs">1 an</span>
+              </div>
+              <div class="warranty-point text-center">
+                <div class="warranty-dot bg-green-500 w-4 h-4 rounded-full mx-auto mb-1"></div>
+                <span class="text-xs">2 ans</span>
+              </div>
+            </div>
+            <div class="absolute top-4 left-0 right-0 h-1 bg-primary"></div>
+          </div>
+        </div>
+
+        <!-- Experts À Votre Service -->
+        <div class="value-card bg-white dark:bg-gray-700 p-8 rounded-xl card-hover transform transition-all duration-300 relative overflow-hidden">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6 value-icon">
+            <i data-lucide="headphones" class="text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">Experts À Votre Service</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Nos techniciens certifiés vous accompagnent pour l'identification précise des pièces et le choix optimal.</p>
+          
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Diagnostic par téléphone ou en magasin</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Support technique après achat</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check-circle" class="text-green-500 w-5 h-5 flex-shrink-0 mt-0.5"></i>
+              <span>Guides de montage personnalisés</span>
+            </li>
+          </ul>
+          
+          <div class="expert-availability bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+            <p class="font-medium mb-2 flex items-center gap-1">
+              <i data-lucide="clock" class="w-4 h-4 text-primary"></i>
+              Disponibilité des experts :
+            </p>
+            <div class="grid grid-cols-7 text-center text-xs gap-1">
+              <div class="day-block bg-green-100 text-green-800 p-1 rounded">L</div>
+              <div class="day-block bg-green-100 text-green-800 p-1 rounded">M</div>
+              <div class="day-block bg-green-100 text-green-800 p-1 rounded">M</div>
+              <div class="day-block bg-green-100 text-green-800 p-1 rounded">J</div>
+              <div class="day-block bg-green-100 text-green-800 p-1 rounded">V</div>
+              <div class="day-block bg-green-100 text-green-800 p-1 rounded">S</div>
+              <div class="day-block bg-gray-100 text-gray-400 p-1 rounded">D</div>
+            </div>
+            <p class="text-xs text-center mt-2">8h-20h en semaine, 9h-18h le samedi</p>
+          </div>
+        </div>
       </div>
-      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-          <i data-lucide="headphones" class="text-white text-2xl"></i>
+      
+      <!-- Bannière de confiance -->
+      <div class="trust-banner mt-12 bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between">
+        <div class="flex items-center gap-3 mb-4 md:mb-0">
+          <div class="bg-yellow-400 rounded-full p-3">
+            <i data-lucide="award" class="text-white w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="font-bold">Service certifié 5 étoiles</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Plus de 10 000 clients satisfaits</p>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-2">Experts À Votre Service</h3>
-        <p class="text-gray-600 dark:text-gray-300">Conseils personnalisés pour tous vos besoins</p>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+          <img src="logos/bosch-service.webp" alt="Partenaire Bosch Service" class="h-10 w-auto" loading="lazy">
+          <img src="logos/eurorepar.webp" alt="Partenaire Euro Repar" class="h-10 w-auto" loading="lazy">
+          <img src="logos/valeo.webp" alt="Partenaire Valeo" class="h-10 w-auto" loading="lazy">
+        </div>
       </div>
     </div>
+    
+    <!-- Ajout de styles pour les animations -->
+    <style>
+      .value-card:hover .value-icon {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(194, 31, 31, 0.3);
+      }
+      
+      .value-icon {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .warranty-point:hover .warranty-dot {
+        transform: scale(1.5);
+      }
+      
+      .warranty-dot {
+        transition: transform 0.2s ease;
+      }
+      
+      .day-block {
+        transition: transform 0.2s ease;
+      }
+      
+      .day-block:hover {
+        transform: translateY(-2px);
+      }
+    </style>
   </section>
 
   <main class="max-w-7xl mx-auto px-4 py-8 pb-16 md:pb-8">

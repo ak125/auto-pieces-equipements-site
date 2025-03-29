@@ -1,0 +1,23 @@
+name = "google-places-proxy"
+type = "javascript"
+compatibility_date = "2023-10-30"
+main = "google-places-worker.js"
+
+workers_dev = true
+
+# Configuration de la production
+[env.production]
+vars = { 
+  API_KEY = "VOTRE_CLE_SECRETE",
+  ALLOWED_ORIGINS = "https://votre-domaine.com" 
+}
+
+# Règle de sécurité pour bloquer les requêtes non autorisées
+[[rules]]
+type = "REQUEST"
+expression = '''
+  (http.request.uri matches "^/api/.*") && 
+  (http.request.method != "GET" || 
+  !any(allow_origins, origin => http.headers.origin contains origin))
+'''
+action = "block"

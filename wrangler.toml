@@ -1,0 +1,8 @@
+name = "google-places-proxy"
+type = "webpack"
+route = ''
+zone_id = ''
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
+compatibility_date = "2025-03-29"

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place ID Finder - Administration Auto Pièces Équipements</title>
+    <link rel="icon" href="../logo.png" type="image/png">
+    
+    <!-- Styles -->
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Inter, sans-serif;
+            background-color: #f9fafb;
+        }
+
+        header {
+            background-color: #c21f1f;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .controls {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            position: absolute;
+            z-index: 1;
+            top: 80px;
+            left: 10px;
+        }
+
+        #infowindow-content {
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-weight: bold;
+            color: #c21f1f;
+        }
+
+        .instruction {
+            margin-bottom: 1rem;
+        }
+
+        .result-card {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f0f4f8;
+            border-radius: 8px;
+            border-left: 4px solid #c21f1f;
+        }
+
+        #copy-button {
+            background-color: #c21f1f;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        #copy-button:hover {
+            background-color: #9e1919;
+        }
+
+        .copy-success {
+            color: #059669;
+            margin-left: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Administration - Auto Pièces Équipements</h1>
+        <a href="../index.html">Retour au site</a>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Outil de recherche de Place ID</h2>
+            <p class="instruction">
+                Cet outil vous permet de trouver facilement l'identifiant Google Place ID d'un emplacement. 
+                Utilisez le champ de recherche sur la carte pour trouver un lieu, puis copiez le Place ID affiché.
+            </p>
+            <p class="instruction">
+                <strong>Place ID actuel:</strong> ChIJVVXZlqAT5kcRICTpgHlqx9A (Auto Pièces Équipements)
+            </p>
+        </div>
+
+        <!-- Champ de recherche -->
+        <input
+            id="pac-input"
+            class="controls"
+            type="text"
+            placeholder="Entrez une adresse ou un nom d'établissement"
+        />
+        
+        <!-- Conteneur de la carte -->
+        <div id="map"></div>
+
+        <!-- Résultat -->
+        <div class="result-card" id="result-container">
+            <h3>Informations du lieu</h3>
+            <p><strong>Nom:</strong> <span id="result-name"></span></p>
+            <p><strong>Adresse:</strong> <span id="result-address"></span></p>
+            <p><strong>Place ID:</strong> <span id="result-placeid"></span></p>
+            <button id="copy-button">Copier le Place ID</button>
+            <span class="copy-success" id="copy-message">✓ Copié!</span>
+        </div>
+    </div>
+
+    <!-- Template pour l'infobulle -->
+    <div id="infowindow-content">
+        <span id="place-name" class="title"></span><br />
+        <strong>Place ID:</strong> <span id="place-id"></span><br />
+        <span id="place-address"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialisation de la carte
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 48.9061, lng: 2.5053 }, // Coordonnées des Pavillons-sous-Bois
+                zoom: 15,
+            });
+
+            const input = document.getElementById("pac-input");
+            const autocomplete = new google.maps.places.Autocomplete(input);
+            
+            autocomplete.bindTo("bounds", map);
+            
+            const infowindow = new google.maps.InfoWindow();
+            const infowindowContent = document.getElementById("infowindow-content");
+            infowindow.setContent(infowindowContent);
+            
+            const resultContainer = document.getElementById("result-container");
+            const resultName = document.getElementById("result-name");
+            const resultAddress = document.getElementById("result-address");
+            const resultPlaceid = document.getElementById("result-placeid");
+            
+            autocomplete.addListener("place_changed", () => {
+                infowindow.close();
+                const place = autocomplete.getPlace();
+
+                if (!place.place_id) {
+                    alert("Aucun lieu trouvé pour cette adresse");
+                    return;
+                }
+
+                // Affichage des détails
+                document.getElementById("place-name").textContent = place.name;
+                document.getElementById("place-id").textContent = place.place_id;
+                document.getElementById("place-address").textContent = place.formatted_address;
+
+                // Mise à jour du panneau de résultats
+                resultName.textContent = place.name;
+                resultAddress.textContent = place.formatted_address;
+                resultPlaceid.textContent = place.place_id;
+                resultContainer.style.display = "block";
+
+                // Positionnement de la carte
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                }
+
+                // Affichage du marqueur
+                new google.maps.Marker({
+                    map,
+                    position: place.geometry.location,
+                });
+
+                infowindow.open(map);
+            });
+
+            // Fonction pour copier le Place ID
+            document.getElementById("copy-button").addEventListener("click", function() {
+                const placeid = document.getElementById("result-placeid").textContent;
+                navigator.clipboard.writeText(placeid).then(function() {
+                    const copyMessage = document.getElementById("copy-message");
+                    copyMessage.style.display = "inline";
+                    setTimeout(function() {
+                        copyMessage.style.display = "none";
+                    }, 2000);
+                });
+            });
+        }
+    </script>
+
+    <!-- Remplacez YOUR_API_KEY par votre propre clé Google Maps API -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
+        defer
+    ></script>
+
+    <div class="container">
+        <div class="card">
+            <h3>Comment utiliser l'identifiant Place ID</h3>
+            <p>Une fois que vous avez trouvé le Place ID d'un emplacement, vous pouvez l'utiliser pour :</p>
+            <ul>
+                <li>Mettre à jour le lien vers les avis Google dans <code>index.html</code></li>
+                <li>Mettre à jour le script <code>google-reviews.js</code> pour afficher les avis</li>
+                <li>Mettre à jour les données structurées Schema.org pour le SEO</li>
+            </ul>
+            <p>Exemple de lien vers les avis Google :</p>
+            <pre>https://search.google.com/local/reviews?placeid=VOTRE_PLACE_ID</pre>
+        </div>
+    </div>
+</body>
+</html>
