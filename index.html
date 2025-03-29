@@ -40,33 +40,9 @@
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="manifest" href="/site.webmanifest">
   
-  <!-- Préchargement des ressources critiques -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
-  <link rel="preload" href="logo.png" as="image" imagesrcset="logo.png 1x, logo@2x.png 2x">
-  <link rel="preload" href="https://unpkg.com/lucide@latest" as="script">
-  <link rel="preload" href="scripts/google-reviews.js" as="script">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'media',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#c21f1f',
-            secondary: '#ffc107',
-            dark: '#1f2937'
-          },
-          fontFamily: {
-            sans: ['"Segoe UI"', 'Inter', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  
   <!-- Styles critiques inlined -->
   <style>
+    /* Styles strictement critiques maintenus pour le rendu initial */
     :root {
       --primary: #c21f1f;
       --primary-hover: #9e1919;
@@ -75,6 +51,14 @@
     }
 
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0 }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(194,31,31,0.9) 0%, rgba(0,0,0,0.8) 100%),
+                  url('garage-bg.webp') center/cover;
+      background-image: linear-gradient(135deg, rgba(194,31,31,0.9) 0%, rgba(0,0,0,0.8) 100%),
+                  url('garage-bg.jpg');
+    }
+
     .loading-spinner { 
       animation: spin 1s linear infinite;
       width: 24px;
@@ -82,204 +66,46 @@
     }
     @keyframes spin { 100% { transform: rotate(360deg); } }
     
-    .hero-gradient {
-      background: linear-gradient(135deg, rgba(194,31,31,0.9) 0%, rgba(0,0,0,0.8) 100%),
-                  url('garage-bg.jpg') center/cover;
-    }
-
+    /* Autres styles critiques pour le premier affichage */
     .card-hover {
       transition: transform 0.3s var(--animation-curve), box-shadow 0.3s var(--animation-curve);
     }
     
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-    }
-
-    .staggered-animation > * {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.6s var(--animation-curve) forwards;
-    }
-
-    .animate-delay-100 { animation-delay: 100ms; }
-    .animate-delay-200 { animation-delay: 200ms; }
-    .animate-delay-300 { animation-delay: 300ms; }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .progress-bar { transition: width 0.5s ease; }
-    .ar-button { background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; }
-    .ugc-overlay { 
-      position: absolute; 
-      bottom: 0; 
-      left: 0; 
-      right: 0; 
-      padding: 12px; 
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
-      color: white;
-      border-radius: 0 0 8px 8px;
-    }
-    .animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
-    
-    .reward-card {
-      background: rgba(255,255,255,0.2);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      text-align: center;
-    }
-    
-    .color-option {
-      padding: 0.5rem;
-      border-radius: 0.25rem;
-      background-color: white;
-      transition: transform 0.2s;
-    }
-    
-    .color-option:hover {
-      transform: scale(1.05);
-    }
-    
-    .step {
-      position: relative;
-      font-weight: 500;
-    }
-    
-    .step.active {
-      color: var(--primary);
-      font-weight: 700;
-    }
-    
-    .chat-messages {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .message {
-      max-width: 80%;
-      margin-bottom: 10px;
-      padding: 8px 12px;
-      border-radius: 18px;
-      line-height: 1.4;
-    }
-    
-    .message.bot {
-      align-self: flex-start;
-      background-color: #f1f1f1;
-      border-bottom-left-radius: 4px;
-    }
-    
-    .message.user {
-      align-self: flex-end;
-      background-color: var(--primary);
-      color: white;
-      border-bottom-right-radius: 4px;
-    }
-
-    .service-card {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-    @keyframes ping {
-      75%, 100% {
-        transform: scale(2);
-        opacity: 0;
-      }
-    }
-
-    .availability-ping {
-      animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
-
-    /* Styles pour les services avancés */
-    .availability-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: var(--primary);
-    }
-    
-    .comparator-card {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: move;
-    }
-    
-    .comparator-card:hover { 
-      transform: scale(1.02); 
-    }
-    
-    .comparator-card.dragging { 
-      opacity: 0.5; 
-    }
-    
-    .booking-widget {
-      width: 350px;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-    }
-    
-    .booking-widget.active { 
-      transform: translateY(0); 
-    }
-    
-    .tracker-timeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      position: relative;
-    }
-    
-    .tracker-timeline::before {
-      content: '';
-      position: absolute;
-      top: 25%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: #e5e7eb;
-    }
-    
-    @media (max-width: 768px) {
-      .service-comparator { 
-        grid-template-columns: 1fr; 
-      }
-      .booking-widget { 
-        width: 100%; 
-      }
-    }
-
-    /* Styles pour les reviews Google */
-    .review-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .review-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-
-    .skeleton-review {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
+    /* Les styles non critiques ont été déplacés vers styles/main.css */
   </style>
   
-  <!-- Chargement différé des styles non critiques -->
+  <!-- Polices avec fallback local -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" media="print" onload="this.media='all'">
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
   </noscript>
+  <style>
+    /* Fallback de police si Inter ne se charge pas */
+    @font-face {
+      font-family: 'Inter Fallback';
+      src: local('Segoe UI'), local('Helvetica'), local('Arial'), local('sans-serif');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Inter Fallback';
+      src: local('Segoe UI Bold'), local('Helvetica Bold'), local('Arial Bold'), local('sans-serif');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    body {
+      font-family: 'Inter', 'Inter Fallback', sans-serif;
+    }
+  </style>
   
+  <!-- Styles non critiques externalisés -->
+  <link rel="stylesheet" href="styles/main.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles/main.css"></noscript>
+  
+  <!-- Chargement différé des styles non critiques -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" media="print" onload="this.media='all'">
   <noscript>
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
@@ -291,10 +117,58 @@
   </noscript>
   
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" defer></script>
+  
+  <!-- Script de détection des fonctionnalités et fallbacks -->
+  <script>
+    // Détection des fonctionnalités et ajout de classes au <html>
+    document.documentElement.className = 
+      (('IntersectionObserver' in window) ? 'has-io ' : 'no-io ') + 
+      (('querySelector' in document) ? 'has-qs ' : 'no-qs ') +
+      ((window.CSS && CSS.supports('color', 'var(--primary)')) ? 'has-css-vars ' : 'no-css-vars ');
+    
+    // Fallback pour les variables CSS
+    if (!document.documentElement.classList.contains('has-css-vars')) {
+      document.write('<script src="scripts/css-vars-fallback.js"><\/script>');
+    }
+  </script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
-  <!-- Hero Section -->
-  <section class="hero-gradient text-white py-20 px-4">
+  <!-- En-tête de page avec navigation principale (barre supérieure) -->
+  <header class="bg-white dark:bg-gray-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2">
+      <nav aria-label="Navigation principale" class="flex justify-between items-center">
+        <a href="/" class="flex items-center gap-3" aria-label="Accueil Auto Pièces Équipements">
+          <img src="logo.webp" srcset="logo.webp 1x, logo@2x.webp 2x" alt="Logo Auto Pièces Équipements" width="40" height="40" 
+               onerror="this.onerror=null; this.src='logo.png'; this.srcset='logo.png 1x, logo@2x.png 2x';">
+          <span class="font-bold text-lg hidden sm:inline">Auto Pièces Équipements</span>
+        </a>
+        
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="#services" class="text-gray-700 dark:text-gray-300 hover:text-primary transition">Services</a></li>
+          <li><a href="#meilleures-pieces" class="text-gray-700 dark:text-gray-300 hover:text-primary transition">Produits</a></li>
+          <li><a href="#avis-clients" class="text-gray-700 dark:text-gray-300 hover:text-primary transition">Avis</a></li>
+          <li><a href="#devis" class="text-gray-700 dark:text-gray-300 hover:text-primary transition">Contact</a></li>
+        </ul>
+        
+        <button id="mobile-menu-button" class="md:hidden p-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+      </nav>
+      
+      <!-- Menu mobile -->
+      <div id="mobile-menu" class="md:hidden hidden py-4" aria-label="Menu mobile">
+        <ul class="space-y-3">
+          <li><a href="#services" class="block py-2 hover:text-primary">Services</a></li>
+          <li><a href="#meilleures-pieces" class="block py-2 hover:text-primary">Produits</a></li>
+          <li><a href="#avis-clients" class="block py-2 hover:text-primary">Avis</a></li>
+          <li><a href="#devis" class="block py-2 hover:text-primary">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section avec H1 unique -->
+  <section class="hero-gradient text-white py-20 px-4" role="banner">
     <div class="max-w-6xl mx-auto text-center staggered-animation">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-delay-100">
         Votre expert en pièces auto<br>
@@ -524,54 +398,96 @@
       <i data-lucide="calendar" class="w-5 h-5"></i>
     </button>
 
-    <!-- Produits phares -->
+    <!-- Produits phares avec microdata amélioré et WebP -->
     <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-3xl font-bold mb-6 flex items-center gap-2"><i data-lucide="star"></i> Nos meilleures ventes</h2>
+      <h2 class="text-3xl font-bold mb-6 flex items-center gap-2"><i data-lucide="star" aria-hidden="true"></i> Nos meilleures ventes</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+          <meta itemprop="mpn" content="BS5-12V-80A">
           <div class="relative pb-[100%] mb-4">
-            <img src="produits/batterie-varta.jpg" alt="Batterie voiture" class="absolute h-full w-full object-contain" loading="lazy">
+            <picture>
+              <source srcset="produits/batterie-varta.webp" type="image/webp">
+              <img src="produits/batterie-varta.jpg" alt="Batterie Bosch S5 pour voiture, modèle haute performance" 
+                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
+            </picture>
           </div>
-          <h3 class="font-bold mb-2">Batterie Bosch S5</h3>
+          <h3 class="font-bold mb-2" itemprop="name">Batterie Bosch S5</h3>
           <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">129€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+              <span itemprop="price">129</span><span itemprop="priceCurrency" content="EUR">€</span>
+              <meta itemprop="availability" content="https://schema.org/InStock">
+              <meta itemprop="url" content="https://votre-domaine.com/produits/batterie-bosch-s5">
+            </p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
+                    aria-label="Ajouter la batterie Bosch S5 au panier">
               Ajouter au panier
             </button>
           </div>
         </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+        
+        <!-- Autres produits similaires avec la même structure améliorée -->
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+          <meta itemprop="mpn" content="FH-MANN-12">
           <div class="relative pb-[100%] mb-4">
-            <img src="produits/filtre-huile-bosch.jpg" alt="Filtre à huile" class="absolute h-full w-full object-contain" loading="lazy">
+            <picture>
+              <source srcset="produits/filtre-huile-bosch.webp" type="image/webp">
+              <img src="produits/filtre-huile-bosch.jpg" alt="Filtre à huile Mann pour moteur, haute efficacité" 
+                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
+            </picture>
           </div>
-          <h3 class="font-bold mb-2">Filtre Huile Mann</h3>
+          <h3 class="font-bold mb-2" itemprop="name">Filtre Huile Mann</h3>
           <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">12€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+              <span itemprop="price">12</span><span itemprop="priceCurrency" content="EUR">€</span>
+              <meta itemprop="availability" content="https://schema.org/InStock">
+              <meta itemprop="url" content="https://votre-domaine.com/produits/filtre-huile-mann">
+            </p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
+                    aria-label="Ajouter le filtre à huile Mann au panier">
               Ajouter au panier
             </button>
           </div>
         </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+          <meta itemprop="mpn" content="PB-BREMBO-45">
           <div class="relative pb-[100%] mb-4">
-            <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein" class="absolute h-full w-full object-contain" loading="lazy">
+            <picture>
+              <source srcset="produits/plaquettes-frein.webp" type="image/webp">
+              <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein Brembo, haute performance et durabilité" 
+                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
+            </picture>
           </div>
-          <h3 class="font-bold mb-2">Plaquettes Brembo</h3>
+          <h3 class="font-bold mb-2" itemprop="name">Plaquettes Brembo</h3>
           <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">45€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+              <span itemprop="price">45</span><span itemprop="priceCurrency" content="EUR">€</span>
+              <meta itemprop="availability" content="https://schema.org/InStock">
+              <meta itemprop="url" content="https://votre-domaine.com/produits/plaquettes-brembo">
+            </p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
+                    aria-label="Ajouter les plaquettes Brembo au panier">
               Ajouter au panier
             </button>
           </div>
         </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
+        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+          <meta itemprop="mpn" content="EG-BOSCH-20">
           <div class="relative pb-[100%] mb-4">
-            <img src="produits/essuie-glace.jpg" alt="Essuie-glace" class="absolute h-full w-full object-contain" loading="lazy">
+            <picture>
+              <source srcset="produits/essuie-glace.webp" type="image/webp">
+              <img src="produits/essuie-glace.jpg" alt="Essuie-glaces Bosch, modèle haute performance pour visibilité optimale" 
+                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
+            </picture>
           </div>
-          <h3 class="font-bold mb-2">Essuie-glaces Bosch</h3>
+          <h3 class="font-bold mb-2" itemprop="name">Essuie-glaces Bosch</h3>
           <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">20€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
+            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+              <span itemprop="price">20</span><span itemprop="priceCurrency" content="EUR">€</span>
+              <meta itemprop="availability" content="https://schema.org/InStock">
+              <meta itemprop="url" content="https://votre-domaine.com/produits/essuie-glaces-bosch">
+            </p>
+            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
+                    aria-label="Ajouter les essuie-glaces Bosch au panier">
               Ajouter au panier
             </button>
           </div>
@@ -579,233 +495,150 @@
       </div>
     </section>
     
-    <!-- Suivi Commande -->
+    <!-- UGC avec alt descriptifs et WebP -->
     <section class="py-8 bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-8 flex items-center gap-2"><i data-lucide="package"></i> Suivi de commande en temps réel</h2>
-      <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
-        <div class="relative h-2 bg-gray-300 dark:bg-gray-600 mb-8">
-          <div class="progress-bar absolute h-full bg-primary" style="width: 50%"></div>
-        </div>
-        <div class="grid grid-cols-4 gap-4 text-center">
-          <div class="step active">Commandé</div>
-          <div class="step active">Préparation</div>
-          <div class="step">Expédié</div>
-          <div class="step">Livré</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section marques supportées -->
-    <section id="marques" class="bg-gray-50 dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="award"></i> Marques principales</h2>
-      <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
-        <img src="marques/bosch.svg" alt="Logo Bosch" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/valeo.svg" alt="Logo Valeo" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/febi.svg" alt="Logo Febi" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/textar.svg" alt="Logo Textar" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/mann.svg" alt="Logo Mann-Filter" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/sachs.svg" alt="Logo Sachs" class="h-12 w-auto mx-auto" loading="lazy">
-      </div>
-    </section>
-
-    <!-- Avis clients - Nouvelle version améliorée -->
-    <section id="avis-clients" class="py-16 bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <!-- En-tête avec lien Google -->
-      <div class="flex flex-col md:flex-row justify-between items-center mb-12">
-        <h2 class="text-3xl font-bold mb-4 md:mb-0">
-          ❤️ Ce que disent nos clients
-          <span class="text-primary">4,9/5</span>
-        </h2>
-        <a href="https://search.google.com/local/reviews?placeid=ChIJVVXZlqAT5kcRICTpgHlqx9A" 
-           target="_blank"
-           class="bg-primary text-white px-6 py-3 rounded-full hover:bg-red-700 transition flex items-center gap-2">
-          <i data-lucide="star"></i>
-          Voir tous les avis Google
-        </a>
-      </div>
-
-      <!-- Grille d'avis dynamique -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="google-reviews-container">
-        <!-- Avis générés dynamiquement -->
-        <div class="skeleton-review bg-gray-100 dark:bg-gray-800 p-6 rounded-xl animate-pulse">
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-2 w-2/3"></div>
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-4 w-1/2"></div>
-          <div class="h-32 bg-gray-300 dark:bg-gray-700 rounded"></div>
-        </div>
-        <div class="skeleton-review bg-gray-100 dark:bg-gray-800 p-6 rounded-xl animate-pulse">
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-2 w-2/3"></div>
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-4 w-1/2"></div>
-          <div class="h-32 bg-gray-300 dark:bg-gray-700 rounded"></div>
-        </div>
-        <div class="skeleton-review bg-gray-100 dark:bg-gray-800 p-6 rounded-xl animate-pulse">
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-2 w-2/3"></div>
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-4 w-1/2"></div>
-          <div class="h-32 bg-gray-300 dark:bg-gray-700 rounded"></div>
-        </div>
-      </div>
-
-      <!-- Schema.org pour améliorer le référencement -->
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "AutoPartsStore",
-        "name": "Auto Pièces Équipements",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "127",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "image": "https://ak125.github.io/auto-pieces-equipements-site/logo.png",
-        "priceRange": "€€-€€€",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "184 Av. Aristide Briand",
-          "addressLocality": "Les Pavillons-sous-Bois",
-          "postalCode": "93320",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33123456789",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "19:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "09:00",
-            "closes": "17:00"
-          }
-        ]
-      }
-      </script>
-    </section>
-    
-    <!-- Intégration UGC -->
-    <section class="py-8 bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-8 flex items-center gap-2"><i data-lucide="users"></i> Nos clients partagent</h2>
+      <h2 class="text-xl font-semibold mb-8 flex items-center gap-2"><i data-lucide="users" aria-hidden="true"></i> Nos clients partagent</h2>
       <div class="ugc-grid grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="ugc-item relative">
-          <img src="ugc/customer1.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
+          <picture>
+            <source srcset="ugc/customer1.webp" type="image/webp">
+            <img src="ugc/customer1.jpg" loading="lazy" 
+                 alt="Client satisfait montrant des plaquettes de frein installées sur sa voiture" 
+                 class="w-full h-48 object-cover rounded-lg">
+          </picture>
           <div class="ugc-overlay">"👍 Excellente qualité"</div>
         </div>
         <div class="ugc-item relative">
-          <img src="ugc/customer2.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
+          <picture>
+            <source srcset="ugc/customer2.webp" type="image/webp">
+            <img src="ugc/customer2.jpg" loading="lazy" 
+                 alt="Client examinant un filtre à air neuf près de son moteur" 
+                 class="w-full h-48 object-cover rounded-lg">
+          </picture>
           <div class="ugc-overlay">"✨ Service impeccable"</div>
         </div>
         <div class="ugc-item relative">
-          <img src="ugc/customer3.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
+          <picture>
+            <source srcset="ugc/customer3.webp" type="image/webp">
+            <img src="ugc/customer3.jpg" loading="lazy" 
+                 alt="Cliente montrant sa voiture réparée avec des pièces de notre magasin" 
+                 class="w-full h-48 object-cover rounded-lg">
+          </picture>
           <div class="ugc-overlay">"🚗 Ma voiture est comme neuve"</div>
         </div>
         <div class="ugc-item relative">
-          <img src="ugc/customer4.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
+          <picture>
+            <source srcset="ugc/customer4.webp" type="image/webp">
+            <img src="ugc/customer4.jpg" loading="lazy" 
+                 alt="Client souriant en montrant son reçu après un achat dans notre magasin" 
+                 class="w-full h-48 object-cover rounded-lg">
+          </picture>
           <div class="ugc-overlay">"⭐ Je recommande vivement"</div>
         </div>
       </div>
     </section>
     
-    <!-- Programme Fidélité -->
-    <section class="py-8 bg-gradient-to-r from-primary to-secondary text-white p-6 rounded shadow mb-6">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="mb-6 md:mb-0">
-          <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="award"></i> Votre Carte de Fidélité</h2>
-          <div class="flex items-center gap-4">
-            <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center">
-              <span class="text-4xl font-bold">4</span>/10
-            </div>
-            <p>Points jusqu'au prochain niveau</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-3 gap-8">
-          <div class="reward-card">
-            <div class="text-4xl mb-4">🎁</div>
-            <p>5% de réduction</p>
-          </div>
-          <div class="reward-card">
-            <div class="text-4xl mb-4">🚚</div>
-            <p>Livraison gratuite</p>
-          </div>
-          <div class="reward-card">
-            <div class="text-4xl mb-4">💎</div>
-            <p>Cadeau surprise</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section FAQ -->
-    <section id="faq" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="help-circle"></i> Questions fréquentes</h2>
-      <div class="space-y-4">
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h3 itemprop="name" class="font-medium text-primary">Comment connaître la référence exacte de ma pièce ?</h3>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text" class="mt-2 text-sm">Nos experts peuvent vous aider à identifier la pièce nécessaire via notre service de diagnostic en ligne ou en magasin.</p>
-          </div>
-        </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h3 itemprop="name" class="font-medium text-primary">Les pièces sont-elles garanties ?</h3>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text" class="mt-2 text-sm">Oui, toutes nos pièces bénéficient de la garantie constructeur, généralement entre 1 et 2 ans selon les marques.</p>
-          </div>
-        </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h3 itemprop="name" class="font-medium text-primary">Quels sont les délais de livraison ?</h3>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text" class="mt-2 text-sm">Dans le 93, nous livrons généralement en 24h. Pour les autres départements d'Île-de-France, comptez 2 à 3 jours ouvrés.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Section Devis avec amélioration accessibilité -->
     <section id="devis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="file-text"></i> Demande de devis</h2>
+      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="file-text" aria-hidden="true"></i> Demande de devis</h2>
       <form method="POST" action="#" onsubmit="return false;" class="space-y-4">
-        <input required type="text" name="nom" placeholder="Nom et prénom" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
-        <input required type="email" name="email" placeholder="Adresse e-mail" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
-        <textarea required name="message" placeholder="Votre demande (pièce recherchée, véhicule, etc.)" rows="4" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700"></textarea>
-        <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition">Envoyer ma demande</button>
+        <div class="form-group">
+          <label for="nom" class="block mb-1 text-sm">Nom et prénom</label>
+          <input required type="text" id="nom" name="nom" placeholder="Votre nom et prénom" 
+                 class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
+        </div>
+        <div class="form-group">
+          <label for="email" class="block mb-1 text-sm">Adresse e-mail</label>
+          <input required type="email" id="email" name="email" placeholder="Votre adresse e-mail" 
+                 class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
+        </div>
+        <div class="form-group">
+          <label for="message" class="block mb-1 text-sm">Votre demande</label>
+          <textarea required id="message" name="message" placeholder="Détails sur la pièce recherchée, véhicule, etc." rows="4" 
+                    class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700"></textarea>
+        </div>
+        <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition">
+          Envoyer ma demande
+        </button>
       </form>
-      <p id="confirmation" class="mt-4 text-green-600 dark:text-green-400 hidden">✅ Votre demande a été envoyée. Nous vous contacterons rapidement.</p>
-    </section>
-    
-    <!-- Indicateurs Confiance -->
-    <div class="trust-badges py-8 bg-gray-50 dark:bg-gray-700 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="shield"></i> Nos certifications</h2>
-      <div class="flex flex-wrap justify-center gap-8">
-        <img src="trust/iso-certified.svg" alt="Certifié ISO" class="h-16 w-auto">
-        <img src="trust/secure-payments.svg" alt="Paiements sécurisés" class="h-16 w-auto">
-        <img src="trust/warranty.svg" alt="Garantie Fabricant" class="h-16 w-auto">
-        <img src="trust/fast-delivery.svg" alt="Livraison Rapide" class="h-16 w-auto">
+      <div id="confirmation" class="mt-4 text-green-600 dark:text-green-400 hidden" role="alert" aria-live="polite">
+        ✅ Votre demande a été envoyée. Nous vous contacterons rapidement.
       </div>
-    </div>
+      <div id="error-message" class="mt-4 text-red-600 dark:text-red-400 hidden" role="alert" aria-live="polite">
+        ⚠️ Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.
+      </div>
+    </section>
   </main>
 
-  <!-- CTA Final -->
-  <section class="py-16 bg-dark text-white text-center">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">Prêt à réparer votre véhicule ?</h2>
-      <p class="mb-8 text-xl">Nos experts vous accompagnent à chaque étape</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="tel:+33123456789" class="bg-secondary text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition flex items-center gap-2 justify-center">
-          <i data-lucide="phone"></i> Appeler maintenant
-        </a>
-        <a href="#devis" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
-          ✉️ Nous écrire
-        </a>
+  <!-- Footer avec liens accessibles -->
+  <footer class="bg-dark text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h2 class="text-xl font-bold mb-4">Contact</h2>
+          <address class="not-italic">
+            <p class="mb-3 flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-5 h-5 mt-1 flex-shrink-0" aria-hidden="true"></i>
+              <span>184 Av. Aristide Briand<br>93320 Les Pavillons-sous-Bois</span>
+            </p>
+            <p class="mb-3 flex items-center gap-2">
+              <i data-lucide="phone" class="w-5 h-5 flex-shrink-0" aria-hidden="true"></i>
+              <a href="tel:+33123456789" class="hover:text-secondary transition">01 23 45 67 89</a>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-5 h-5 flex-shrink-0" aria-hidden="true"></i>
+              <a href="mailto:contact@autopieces-equipements.fr" class="hover:text-secondary transition">contact@autopieces-equipements.fr</a>
+            </p>
+          </address>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-bold mb-4">Horaires d'ouverture</h2>
+          <dl class="space-y-2">
+            <div class="flex justify-between">
+              <dt>Lundi - Vendredi:</dt>
+              <dd>8h - 19h</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt>Samedi:</dt>
+              <dd>9h - 17h</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt>Dimanche:</dt>
+              <dd>Fermé</dd>
+            </div>
+          </dl>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-bold mb-4">Navigation</h2>
+          <ul class="space-y-2">
+            <li><a href="#services" class="hover:text-secondary transition">Nos Services</a></li>
+            <li><a href="#meilleures-pieces" class="hover:text-secondary transition">Produits</a></li>
+            <li><a href="#avis-clients" class="hover:text-secondary transition">Avis clients</a></li>
+            <li><a href="#devis" class="hover:text-secondary transition">Demande de devis</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2024 Auto Pièces Équipements - Tous droits réservés</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="#" aria-label="Suivez-nous sur Facebook" class="text-white hover:text-secondary transition">
+            <i data-lucide="facebook" class="w-6 h-6" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="Suivez-nous sur Instagram" class="text-white hover:text-secondary transition">
+            <i data-lucide="instagram" class="w-6 h-6" aria-hidden="true"></i>
+          </a>
+          <a href="#" aria-label="Suivez-nous sur Twitter" class="text-white hover:text-secondary transition">
+            <i data-lucide="twitter" class="w-6 h-6" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- Navigation améliorée mobile -->
+  <!-- Navigation mobile -->
   <nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-gray-800 shadow-lg z-50">
     <div class="flex justify-around p-4">
       <a href="#services" class="text-primary" aria-label="Services">
@@ -820,214 +653,28 @@
     </div>
   </nav>
 
-  <!-- Chatbot IA -->
-  <div id="chatbot" class="fixed bottom-20 right-6 w-80 bg-white dark:bg-gray-800 shadow-xl rounded-lg hidden z-50">
-    <div class="chat-header bg-primary text-white p-4 rounded-t-lg flex justify-between items-center">
-      <h3 class="font-bold">Assistant Virtuel</h3>
-      <button id="close-chat" class="text-white"><i data-lucide="x"></i></button>
-    </div>
-    <div class="chat-messages h-64 overflow-y-auto p-4">
-      <div class="message bot">Bonjour ! Comment puis-je vous aider à trouver la pièce parfaite pour votre véhicule ?</div>
-    </div>
-    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-      <input type="text" id="chat-input" class="chat-input w-full p-2 rounded border dark:bg-gray-700 dark:border-gray-600" 
-             placeholder="Tapez votre message...">
-    </div>
-  </div>
-
-  <!-- Chat WhatsApp -->
-  <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-    <button id="chat-toggle" class="bg-primary text-white p-4 rounded-full shadow-xl hover:bg-red-700 transition">
-      <i data-lucide="message-circle"></i>
-    </button>
-    
-    <a href="https://wa.me/33123456789" target="_blank" 
-       class="bg-green-600 text-white p-4 rounded-full shadow-xl hover:bg-green-700 transition"
-       aria-label="Contact WhatsApp">
-      <i data-lucide="phone"></i>
-    </a>
-  </div>
-
-  <!-- Scripts optimisés -->
+  <!-- Scripts optimisés et modularisés -->
   <script defer src="https://unpkg.com/lucide@latest"></script>
-  <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-  <script defer src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script defer src="scripts/advanced-services.js"></script>
-  <script defer src="scripts/google-reviews.js"></script>
-  <script defer src="scripts/performance-optimizations.js" type="module"></script>
-  <script defer>
-    // Gestionnaire de formulaire amélioré
-    const formHandler = {
-      init() {
-        this.form = document.querySelector('form');
-        this.submitBtn = this.form.querySelector('button[type="submit"]');
-        this.form.addEventListener('submit', this.handleSubmit.bind(this));
-      },
+  <script type="module" src="scripts/main.js"></script>
+  
+  <!-- Fallback pour les navigateurs sans support de JavaScript modules -->
+  <script nomodule src="scripts/main-legacy.js"></script>
 
-      async handleSubmit(e) {
-        e.preventDefault();
-        
-        this.submitBtn.disabled = true;
-        this.submitBtn.innerHTML = `<i data-lucide="loader" class="loading-spinner"></i> Envoi en cours...`;
-        lucide.createIcons();
-
-        try {
-          const response = await fetch(this.form.action, {
-            method: 'POST',
-            body: new FormData(this.form),
-          });
-
-          if (!response.ok) throw new Error('Erreur réseau');
-          this.showSuccess();
-        } catch (error) {
-          this.showError();
-        } finally {
-          this.resetButton();
-        }
-      },
-
-      showSuccess() {
-        const confirmation = document.getElementById('confirmation');
-        confirmation.classList.remove('hidden');
-        setTimeout(() => confirmation.classList.add('hidden'), 5000);
-      },
-
-      showError() {
-        // Afficher un message d'erreur
-      },
-
-      resetButton() {
-        this.submitBtn.disabled = false;
-        this.submitBtn.innerHTML = 'Envoyer ma demande';
-      }
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
+  <!-- Script d'initialisation de base -->
+  <script>
+    // Initialiser le menu mobile
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
       
-      // Initialisation du slider Swiper
-      new Swiper('.swiper-container', {
-        loop: true,
-        pagination: { 
-          el: '.swiper-pagination',
-          clickable: true
-        },
-        autoplay: { 
-          delay: 5000 
-        },
-        slidesPerView: 1,
-        spaceBetween: 20,
-        breakpoints: {
-          640: {
-            slidesPerView: 1
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 30
-          }
-        }
-      });
-      
-      // Animation d'entrée
-      if (window.anime) {
-        anime({
-          targets: '.staggered-animation > *',
-          opacity: [0, 1],
-          translateY: [30, 0],
-          delay: anime.stagger(100),
-          easing: 'easeOutExpo'
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function() {
+          const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+          menuButton.setAttribute('aria-expanded', !isExpanded);
+          mobileMenu.classList.toggle('hidden');
         });
       }
-      
-      // Chatbot IA
-      const chatToggle = document.getElementById('chat-toggle');
-      const chatbox = document.getElementById('chatbot');
-      const closeChat = document.getElementById('close-chat');
-      const chatInput = document.getElementById('chat-input');
-      const chatMessages = document.querySelector('.chat-messages');
-      
-      if (chatToggle && chatbox) {
-        chatToggle.addEventListener('click', () => {
-          chatbox.classList.toggle('hidden');
-        });
-      }
-      
-      if (closeChat) {
-        closeChat.addEventListener('click', () => {
-          chatbox.classList.add('hidden');
-        });
-      }
-      
-      if (chatInput) {
-        chatInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            const userMessage = chatInput.value.trim();
-            if (userMessage) {
-              // Ajouter le message utilisateur
-              const userDiv = document.createElement('div');
-              userDiv.classList.add('message', 'user');
-              userDiv.textContent = userMessage;
-              chatMessages.appendChild(userDiv);
-              
-              // Réinitialiser l'input
-              chatInput.value = '';
-              
-              // Scroll to bottom
-              chatMessages.scrollTop = chatMessages.scrollHeight;
-              
-              // Simuler une réponse (à remplacer par une API réelle)
-              setTimeout(() => {
-                const botDiv = document.createElement('div');
-                botDiv.classList.add('message', 'bot');
-                botDiv.textContent = `Merci pour votre message. Un conseiller vous répondra dans les plus brefs délais.`;
-                chatMessages.appendChild(botDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-              }, 1000);
-            }
-          }
-        });
-      }
-      
-      // A/B Testing CTAs
-      const ctaVariants = [
-        { text: '📞 Demandez un devis gratuit', color: 'bg-secondary' },
-        { text: '💸 Économisez sur vos pièces auto', color: 'bg-green-500' }
-      ];
-
-      const mainCta = document.querySelector('a[href="#devis"]');
-      if (mainCta) {
-        const randomCta = ctaVariants[Math.floor(Math.random() * ctaVariants.length)];
-        mainCta.textContent = randomCta.text;
-        mainCta.className = `${randomCta.color} text-gray-900 px-8 py-4 rounded-full font-bold hover:opacity-90 transition`;
-      }
-      
-      // Animations au scroll
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('section').forEach(el => {
-        el.classList.add('animate-on-scroll');
-        observer.observe(el);
-      });
-      
-      formHandler.init();
     });
-  </script>
-
-  <!-- Web Vitals Tracking -->
-  <script defer src="https://unpkg.com/web-vitals"></script>
-  <script defer>
-    if (window.webVitals) {
-      webVitals.getCLS(console.log);
-      webVitals.getFID(console.log);
-      webVitals.getLCP(console.log);
-    }
   </script>
 </body>
 </html>
