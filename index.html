@@ -3,23 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auto Pièces Équipements | Pièces auto neuves à Pavillons-sous-Bois (93)</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   
   <!-- Meta optimisés -->
+  <title>Auto Pièces Équipements | Pièces auto neuves à Pavillons-sous-Bois (93)</title>
   <meta name="description" content="Magasin spécialisé dans la vente de pièces automobiles neuves à Pavillons-sous-Bois. Livraison rapide, conseils techniques et retrait en magasin. Devis gratuit en ligne.">
   <meta name="keywords" content="pièces auto neuves, accessoires voiture, pavillons-sous-bois, pièces détachées, livraison auto 93">
   <meta name="author" content="Auto Pièces Équipements">
   <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph optimisé -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Auto Pièces Équipements | Magasin de pièces auto neuves 93" />
   <meta property="og:description" content="Commandez vos pièces détachées neuves au meilleur prix. Livraison rapide, conseils pro, retrait magasin ou devis gratuit en ligne." />
   <meta property="og:image" content="https://ak125.github.io/auto-pieces-equipements-site/logo.png" />
   <meta property="og:url" content="https://ak125.github.io/auto-pieces-equipements-site/" />
+  <meta property="og:locale" content="fr_FR">
+  
+  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@autopiecessequipements">
+  
   <meta name="theme-color" content="#c21f1f" />
   <meta name="google-site-verification" content="votre_code_verification">
   <meta name="geo.region" content="FR-93">
   <meta name="geo.placename" content="Pavillons-sous-Bois">
+  
+  <!-- Préconnexion et préchargement optimisés -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
   
   <!-- Ressources -->
   <link rel="apple-touch-icon" href="logo.png">
@@ -28,10 +42,9 @@
   
   <!-- Préchargement des ressources critiques -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
-  <link rel="preload" href="logo.png" as="image">
-  <link rel="preload" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" as="style">
-  <link rel="preload" href="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" as="script">
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" as="style">
+  <link rel="preload" href="logo.png" as="image" imagesrcset="logo.png 1x, logo@2x.png 2x">
+  <link rel="preload" href="https://unpkg.com/lucide@latest" as="script">
+  <link rel="preload" href="scripts/google-reviews.js" as="script">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -261,10 +274,23 @@
     }
   </style>
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/swiper@8/swiper-bundle.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- Chargement différé des styles non critiques -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  </noscript>
+  
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+  </noscript>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  </noscript>
+  
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" defer></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
   <!-- Hero Section -->
@@ -829,6 +855,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script defer src="scripts/advanced-services.js"></script>
   <script defer src="scripts/google-reviews.js"></script>
+  <script defer src="scripts/performance-optimizations.js" type="module"></script>
   <script defer>
     // Gestionnaire de formulaire amélioré
     const formHandler = {
