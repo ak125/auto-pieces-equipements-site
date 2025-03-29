@@ -31,6 +31,7 @@
   <link rel="preload" href="logo.png" as="image">
   <link rel="preload" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" as="style">
   <link rel="preload" href="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" as="script">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" as="style">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -182,10 +183,68 @@
     .availability-ping {
       animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
     }
+
+    /* Styles pour les services avancés */
+    .availability-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--primary);
+    }
+    
+    .comparator-card {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: move;
+    }
+    
+    .comparator-card:hover { 
+      transform: scale(1.02); 
+    }
+    
+    .comparator-card.dragging { 
+      opacity: 0.5; 
+    }
+    
+    .booking-widget {
+      width: 350px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .booking-widget.active { 
+      transform: translateY(0); 
+    }
+    
+    .tracker-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+    
+    .tracker-timeline::before {
+      content: '';
+      position: absolute;
+      top: 25%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #e5e7eb;
+    }
+    
+    @media (max-width: 768px) {
+      .service-comparator { 
+        grid-template-columns: 1fr; 
+      }
+      .booking-widget { 
+        width: 100%; 
+      }
+    }
   </style>
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/swiper@8/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
@@ -238,105 +297,187 @@
   </section>
 
   <main class="max-w-7xl mx-auto px-4 py-8 pb-16 md:pb-8">
-    <!-- Services section - NOUVELLE VERSION -->
-    <section id="services" class="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg shadow mb-6">
-      <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">
-          <span class="bg-primary text-white px-4 py-2 rounded-full">Nos services experts</span>
-        </h2>
+    <!-- Section Services améliorée -->
+    <section id="services" class="relative py-16 bg-gray-50 dark:bg-gray-900 rounded-lg shadow mb-6">
+      <h2 class="text-3xl font-bold text-center mb-8">
+        <span class="bg-primary text-white px-4 py-2 rounded-full">Nos services experts</span>
+      </h2>
+      
+      <!-- Indicateur de disponibilité temps réel -->
+      <div class="availability-banner bg-primary/10 py-3 mb-8 rounded-lg">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2">
+          <span class="availability-dot availability-ping"></span>
+          <span class="text-sm font-medium" id="livraisonStatus">Calcul en cours...</span>
+        </div>
+      </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Livraison Rapide -->
-          <div class="service-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
-            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-              <i data-lucide="rocket" class="text-primary w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-              Livraison Express
-              <span class="bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">24/48h</span>
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Recevez vos pièces en moins de 24h dans un rayon de 50km autour de Pavillons-sous-Bois.
-            </p>
-            <div class="flex items-center gap-2 text-sm text-primary font-medium">
-              <i data-lucide="map-pin" class="w-4 h-4"></i>
-              <span>Suivi GPS en temps réel</span>
-            </div>
-            <div class="mt-4 border-t pt-4">
-              <div class="flex justify-between text-sm">
-                <span>Zones couvertes :</span>
-                <span class="font-semibold">93, 75, 94</span>
-              </div>
-            </div>
+      <!-- Cartes de services -->
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <!-- Livraison Rapide -->
+        <div class="service-card comparator-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all" data-service="livraison" draggable="true">
+          <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i data-lucide="rocket" class="text-primary w-8 h-8"></i>
           </div>
-
-          <!-- Retrait en Magasin -->
-          <div class="service-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
-            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-              <i data-lucide="store" class="text-primary w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-              Click & Collect
-              <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full">Disponible maintenant</span>
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Commandez en ligne et récupérez vos pièces en magasin en 1h, 7j/7.
-            </p>
-            <div class="flex items-center gap-2 text-sm text-primary font-medium">
-              <i data-lucide="clock" class="w-4 h-4"></i>
-              <span>Horaires étendus : 8h-20h</span>
-            </div>
-            <div class="mt-4 border-t pt-4">
-              <div class="flex justify-between text-sm">
-                <span>Préparation :</span>
-                <span class="font-semibold text-green-600">≤ 15min</span>
-              </div>
-            </div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            Livraison Express
+            <span class="bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">24/48h</span>
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Recevez vos pièces en moins de 24h dans un rayon de 50km autour de Pavillons-sous-Bois.
+          </p>
+          <div class="flex items-center gap-2 text-sm text-primary font-medium">
+            <i data-lucide="map-pin" class="w-4 h-4"></i>
+            <span>Suivi GPS en temps réel</span>
           </div>
-
-          <!-- Conseils Experts -->
-          <div class="service-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
-            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-              <i data-lucide="users" class="text-primary w-8 h-8"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-              Conseil Expert
-              <span class="bg-purple-100 text-purple-800 text-sm px-2 py-1 rounded-full">Gratuit</span>
-            </h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
-              Nos mécaniciens diplômés vous accompagnent par chat, téléphone ou en magasin.
-            </p>
-            <div class="flex items-center gap-2 text-sm text-primary font-medium">
-              <i data-lucide="badge-check" class="w-4 h-4"></i>
-              <span>Certifiés RGE AutoPro</span>
-            </div>
-            <div class="mt-4 border-t pt-4">
-              <div class="flex justify-between text-sm">
-                <span>Disponibilité :</span>
-                <span class="font-semibold">24h/24</span>
-              </div>
+          <div class="mt-4 border-t pt-4">
+            <div class="flex justify-between text-sm">
+              <span>Zones couvertes :</span>
+              <span class="font-semibold">93, 75, 94</span>
             </div>
           </div>
         </div>
 
-        <!-- Bandeau de Garantie -->
-        <div class="mt-12 bg-primary/10 rounded-xl p-6 text-center border border-primary/20">
-          <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-            <div class="flex items-center gap-2 text-primary font-bold">
-              <i data-lucide="shield-check" class="w-6 h-6"></i>
-              <span>Satisfait ou remboursé</span>
+        <!-- Retrait en Magasin -->
+        <div class="service-card comparator-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all" data-service="retrait" draggable="true">
+          <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i data-lucide="store" class="text-primary w-8 h-8"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            Click & Collect
+            <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full">Disponible maintenant</span>
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Commandez en ligne et récupérez vos pièces en magasin en 1h, 7j/7.
+          </p>
+          <div class="flex items-center gap-2 text-sm text-primary font-medium">
+            <i data-lucide="clock" class="w-4 h-4"></i>
+            <span>Horaires étendus : 8h-20h</span>
+          </div>
+          <div class="mt-4 border-t pt-4">
+            <div class="flex justify-between text-sm">
+              <span>Préparation :</span>
+              <span class="font-semibold text-green-600">≤ 15min</span>
             </div>
-            <div class="hidden md:block h-6 w-px bg-primary/20"></div>
-            <p class="text-sm text-gray-600 dark:text-gray-300">
-              14 jours pour retourner vos pièces - Assistance technique incluse
-            </p>
+          </div>
+        </div>
+
+        <!-- Conseils Experts -->
+        <div class="service-card comparator-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all" data-service="conseil" draggable="true">
+          <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i data-lucide="users" class="text-primary w-8 h-8"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+            Conseil Expert
+            <span class="bg-purple-100 text-purple-800 text-sm px-2 py-1 rounded-full">Gratuit</span>
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Nos mécaniciens diplômés vous accompagnent par chat, téléphone ou en magasin.
+          </p>
+          <div class="flex items-center gap-2 text-sm text-primary font-medium">
+            <i data-lucide="badge-check" class="w-4 h-4"></i>
+            <span>Certifiés RGE AutoPro</span>
+          </div>
+          <div class="mt-4 border-t pt-4">
+            <div class="flex justify-between text-sm">
+              <span>Disponibilité :</span>
+              <span class="font-semibold">24h/24</span>
+            </div>
           </div>
         </div>
       </div>
+      
+      <!-- Résultats de comparaison -->
+      <div id="comparisonResults" class="comparison-results hidden bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-8">
+        <h3 class="text-xl font-bold mb-4">Comparaison des services</h3>
+        <div class="grid md:grid-cols-2 gap-6" id="compareContent">
+          <!-- Le contenu sera rempli par JavaScript -->
+        </div>
+      </div>
+
+      <!-- Suivi de commande intégré -->
+      <div class="order-tracker bg-white dark:bg-gray-800 p-6 rounded-xl shadow mb-8">
+        <h3 class="text-xl font-bold mb-6">Suivi de votre commande</h3>
+        <div class="tracker-timeline mb-6">
+          <div class="tracker-step flex flex-col items-center" data-status="confirmed">
+            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mb-2 z-10">
+              <i data-lucide="check" class="text-white w-4 h-4"></i>
+            </div>
+            <span class="text-sm">Confirmée</span>
+          </div>
+          <div class="tracker-step flex flex-col items-center" data-status="preparing">
+            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
+              <i data-lucide="package" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
+            </div>
+            <span class="text-sm">Préparation</span>
+          </div>
+          <div class="tracker-step flex flex-col items-center" data-status="shipped">
+            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
+              <i data-lucide="truck" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
+            </div>
+            <span class="text-sm">Expédiée</span>
+          </div>
+          <div class="tracker-step flex flex-col items-center" data-status="delivered">
+            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
+              <i data-lucide="home" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
+            </div>
+            <span class="text-sm">Livrée</span>
+          </div>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Commande #AE1234 | Estimation : <span class="font-medium">Lundi 28 Mars</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Bandeau de Garantie -->
+      <div class="mt-8 bg-primary/10 rounded-xl p-6 text-center border border-primary/20">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+          <div class="flex items-center gap-2 text-primary font-bold">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+            <span>Satisfait ou remboursé</span>
+          </div>
+          <div class="hidden md:block h-6 w-px bg-primary/20"></div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            14 jours pour retourner vos pièces - Assistance technique incluse
+          </p>
+        </div>
+      </div>
     </section>
+
+    <!-- Widget de réservation flottant -->
+    <div id="bookingWidget" class="booking-widget fixed bottom-0 right-0 bg-white dark:bg-gray-800 shadow-xl rounded-tl-xl z-40">
+      <div class="p-6">
+        <h3 class="text-lg font-bold mb-4 flex items-center justify-between">
+          <span>📆 Réservation express</span>
+          <button id="closeBooking" class="text-gray-400 hover:text-gray-600">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </h3>
+        <form id="bookingForm" class="space-y-4">
+          <div class="form-group">
+            <label class="block mb-1 text-sm">Service :</label>
+            <select class="booking-select w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" id="serviceType">
+              <option value="livraison">Livraison</option>
+              <option value="retrait">Retrait en magasin</option>
+              <option value="conseil">Rendez-vous conseil</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="block mb-1 text-sm">Date :</label>
+            <input type="datetime-local" id="bookingDate" 
+                   class="flatpickr w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
+          </div>
+          <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-primary-hover transition">Réserver maintenant</button>
+        </form>
+      </div>
+    </div>
+    <button id="openBooking" class="fixed bottom-6 left-6 bg-primary text-white p-4 rounded-full shadow-xl hover:bg-red-700 transition z-40 md:flex hidden">
+      <i data-lucide="calendar" class="w-5 h-5"></i>
+    </button>
 
     <!-- Produits phares -->
     <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
@@ -667,6 +808,8 @@
   <script defer src="https://unpkg.com/lucide@latest"></script>
   <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script defer src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script defer src="scripts/advanced-services.js"></script>
   <script defer>
     // Gestionnaire de formulaire amélioré
     const formHandler = {
