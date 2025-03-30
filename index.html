@@ -114,6 +114,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </noscript>
   
+  <!-- Améliorations de design -->
+  <link rel="stylesheet" href="styles/design-enhancements.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles/design-enhancements.css"></noscript>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -123,10 +127,19 @@
           colors: {
             primary: '#c21f1f',
             secondary: '#ffc107',
-            dark: '#1f2937'
+            dark: '#1f2937',
+            accent: '#007bff',
+            success: '#10b981',
+            warning: '#f59e0b',
+            error: '#ef4444'
           },
           fontFamily: {
-            sans: ['"Segoe UI"', 'Inter', 'sans-serif']
+            sans: ['"Segoe UI"', 'Inter', 'sans-serif'],
+            display: ['Playfair Display', 'serif']
+          },
+          boxShadow: {
+            'soft': '0 4px 6px rgba(0, 0, 0, 0.05)',
+            'hover': '0 8px 15px rgba(0, 0, 0, 0.1)'
           }
         }
       }

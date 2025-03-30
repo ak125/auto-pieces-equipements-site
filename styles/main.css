@@ -383,3 +383,57 @@
     transition: none !important;
   }
 }
+
+/* Classes utilitaires de design */
+.title-gradient {
+  background: linear-gradient(90deg, var(--primary) 0%, #ff5757 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.section-divider {
+  height: 4px;
+  width: 80px;
+  background: var(--primary);
+  margin: 1.5rem auto;
+  border-radius: 2px;
+}
+
+.section-divider.left {
+  margin-left: 0;
+}
+
+.card-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-shadow:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+/* Support de nouveaux éléments UI */
+.floating-badge {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: var(--primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.hover-raise {
+  transition: transform 0.3s var(--animation-curve);
+}
+
+.hover-raise:hover {
+  transform: translateY(-5px);
+}
