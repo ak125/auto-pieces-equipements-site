@@ -10,6 +10,7 @@ import { setupBooking } from './modules/booking.js';
 import { setupFormHandling } from './modules/forms.js';
 import { setupChatbot } from './modules/chatbot.js';
 import { setupAnimations } from './modules/animations.js';
+import { setupProductFilters } from './modules/products.js'; // Nouveau module
 
 // Créer les icônes Lucide
 function createIcons() {
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupFormHandling();
   setupChatbot();
   setupAnimations();
+  setupProductFilters(); // Nouvelle fonction
   
   // A/B Testing des CTA
   const ctaVariants = [

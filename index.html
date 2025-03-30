@@ -500,241 +500,346 @@
       <i data-lucide="calendar" class="w-5 h-5"></i>
     </button>
 
-    <!-- Produits phares avec microdata amélioré et WebP -->
+    <!-- Produits phares avec design amélioré et fonctionnalités interactives -->
     <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6" aria-labelledby="products-heading">
-      <h2 id="products-heading" class="text-3xl font-bold mb-6 flex items-center gap-2"><i data-lucide="star" aria-hidden="true"></i> Nos meilleures ventes</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+        <h2 id="products-heading" class="text-3xl font-bold flex items-center gap-2">
+          <i data-lucide="star" aria-hidden="true"></i> Nos meilleures ventes
+        </h2>
+        
+        <!-- Contrôles de filtrage -->
+        <div class="mt-4 md:mt-0 flex items-center gap-3">
+          <div class="inline-flex rounded-md shadow-sm" role="group">
+            <button type="button" class="filter-btn active px-4 py-2 text-sm font-medium rounded-l-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" data-filter="all">
+              Tous
+            </button>
+            <button type="button" class="filter-btn px-4 py-2 text-sm font-medium bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" data-filter="essentiel">
+              Essentiels
+            </button>
+            <button type="button" class="filter-btn px-4 py-2 text-sm font-medium rounded-r-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600" data-filter="promo">
+              Promos
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="products-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Batterie Bosch S5 -->
+        <article class="product-card filter-product bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden card-hover transition-all duration-300" 
+                 itemscope itemtype="https://schema.org/Product" 
+                 data-categories="essentiel">
           <meta itemprop="mpn" content="BS5-12V-80A">
-          <div class="relative pb-[100%] mb-4">
-            <picture>
-              <source srcset="produits/batterie-varta.webp" type="image/webp">
-              <img src="produits/batterie-varta.jpg" alt="Batterie Bosch S5 pour voiture, modèle haute performance" 
-                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
-            </picture>
+          <span class="product-badge bg-primary text-white py-1 px-3 absolute top-3 right-3 rounded-full text-xs font-bold z-10">
+            TOP VENTES
+          </span>
+          
+          <div class="relative pb-[100%] group overflow-hidden">
+            <div class="product-image-container absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+              <picture>
+                <source srcset="produits/batterie-varta.webp" type="image/webp">
+                <img src="produits/batterie-varta.jpg" alt="Batterie Bosch S5 pour voiture, modèle haute performance" 
+                     class="absolute h-full w-full object-contain p-4" loading="lazy" itemprop="image">
+              </picture>
+              
+              <!-- Quick Action Buttons -->
+              <div class="absolute -bottom-10 left-0 right-0 flex justify-center gap-2 transition-all duration-300 group-hover:bottom-4">
+                <button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Aperçu rapide de la batterie Bosch S5">
+                  <i data-lucide="eye" class="w-5 h-5"></i>
+                </button>
+                <button class="compare-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Comparer la batterie Bosch S5">
+                  <i data-lucide="columns" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
           </div>
-          <h3 class="font-bold mb-2" itemprop="name">Batterie Bosch S5</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-              <span itemprop="price">129</span><span itemprop="priceCurrency" content="EUR">€</span>
-              <meta itemprop="availability" content="https://schema.org/InStock">
-              <meta itemprop="url" content="https://votre-domaine.com/produits/batterie-bosch-s5">
-            </p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
-                    aria-label="Ajouter la batterie Bosch S5 au panier">
-              Ajouter au panier
-            </button>
+          
+          <div class="p-5">
+            <!-- Détails produit -->
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-lg group-hover:text-primary transition-colors" itemprop="name">Batterie Bosch S5</h3>
+              <div class="flex gap-0.5 text-yellow-400">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star-half" class="w-4 h-4 fill-current"></i>
+              </div>
+            </div>
+            
+            <!-- Caractéristiques produit -->
+            <div class="space-y-1 mb-3">
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="zap" class="w-4 h-4 text-primary"></i> 12V - 80Ah - 800A
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Compatible multi-marques
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="truck" class="w-4 h-4 text-primary"></i> En stock - Livrable en 24h
+              </p>
+            </div>
+            
+            <!-- Prix et bouton d'action -->
+            <div class="flex justify-between items-center pt-3 border-t border-gray-200 dark:border-gray-600">
+              <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <p class="text-primary font-bold text-xl">
+                  <span itemprop="price">129</span><span itemprop="priceCurrency" content="EUR">€</span>
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Prix TTC</p>
+                <meta itemprop="availability" content="https://schema.org/InStock">
+                <meta itemprop="url" content="https://votre-domaine.com/produits/batterie-bosch-s5">
+              </div>
+              <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition flex items-center gap-1" 
+                      aria-label="Ajouter la batterie Bosch S5 au panier">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                <span>Ajouter</span>
+              </button>
+            </div>
           </div>
         </article>
         
-        <!-- Autres produits similaires avec la même structure améliorée -->
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+        <!-- Filtre à huile Mann -->
+        <article class="product-card filter-product bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden card-hover transition-all duration-300" 
+                 itemscope itemtype="https://schema.org/Product"
+                 data-categories="promo">
           <meta itemprop="mpn" content="FH-MANN-12">
-          <div class="relative pb-[100%] mb-4">
-            <picture>
-              <source srcset="produits/filtre-huile-bosch.webp" type="image/webp">
-              <img src="produits/filtre-huile-bosch.jpg" alt="Filtre à huile Mann pour moteur, haute efficacité" 
-                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
-            </picture>
+          <span class="product-badge bg-green-500 text-white py-1 px-3 absolute top-3 right-3 rounded-full text-xs font-bold z-10">
+            -15%
+          </span>
+          
+          <div class="relative pb-[100%] group overflow-hidden">
+            <div class="product-image-container absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+              <picture>
+                <source srcset="produits/filtre-huile-bosch.webp" type="image/webp">
+                <img src="produits/filtre-huile-bosch.jpg" alt="Filtre à huile Mann pour moteur, haute efficacité" 
+                     class="absolute h-full w-full object-contain p-4" loading="lazy" itemprop="image">
+              </picture>
+              
+              <!-- Quick Action Buttons -->
+              <div class="absolute -bottom-10 left-0 right-0 flex justify-center gap-2 transition-all duration-300 group-hover:bottom-4">
+                <button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Aperçu rapide du filtre à huile Mann">
+                  <i data-lucide="eye" class="w-5 h-5"></i>
+                </button>
+                <button class="compare-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Comparer le filtre à huile Mann">
+                  <i data-lucide="columns" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
           </div>
-          <h3 class="font-bold mb-2" itemprop="name">Filtre Huile Mann</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-              <span itemprop="price">12</span><span itemprop="priceCurrency" content="EUR">€</span>
-              <meta itemprop="availability" content="https://schema.org/InStock">
-              <meta itemprop="url" content="https://votre-domaine.com/produits/filtre-huile-mann">
-            </p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
-                    aria-label="Ajouter le filtre à huile Mann au panier">
-              Ajouter au panier
-            </button>
+          
+          <div class="p-5">
+            <!-- Détails produit -->
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-lg group-hover:text-primary transition-colors" itemprop="name">Filtre Huile Mann</h3>
+              <div class="flex gap-0.5 text-yellow-400">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+            </div>
+            
+            <!-- Caractéristiques produit -->
+            <div class="space-y-1 mb-3">
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="filter" class="w-4 h-4 text-primary"></i> Haute filtration
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Qualité OEM
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="truck" class="w-4 h-4 text-primary"></i> Livraison immédiate
+              </p>
+            </div>
+            
+            <!-- Prix et bouton d'action -->
+            <div class="flex justify-between items-center pt-3 border-t border-gray-200 dark:border-gray-600">
+              <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <div>
+                  <span class="text-gray-400 line-through text-sm">14€</span>
+                  <span class="text-primary font-bold text-xl">
+                    <span itemprop="price">12</span><span itemprop="priceCurrency" content="EUR">€</span>
+                  </span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Prix TTC</p>
+                <meta itemprop="availability" content="https://schema.org/InStock">
+                <meta itemprop="url" content="https://votre-domaine.com/produits/filtre-huile-mann">
+              </div>
+              <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition flex items-center gap-1" 
+                      aria-label="Ajouter le filtre à huile Mann au panier">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                <span>Ajouter</span>
+              </button>
+            </div>
           </div>
         </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+        
+        <!-- Plaquettes Brembo -->
+        <article class="product-card filter-product bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden card-hover transition-all duration-300" 
+                 itemscope itemtype="https://schema.org/Product"
+                 data-categories="essentiel">
           <meta itemprop="mpn" content="PB-BREMBO-45">
-          <div class="relative pb-[100%] mb-4">
-            <picture>
-              <source srcset="produits/plaquettes-frein.webp" type="image/webp">
-              <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein Brembo, haute performance et durabilité" 
-                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
-            </picture>
+          <span class="product-badge bg-blue-500 text-white py-1 px-3 absolute top-3 right-3 rounded-full text-xs font-bold z-10">
+            EXCLUSIF
+          </span>
+          
+          <div class="relative pb-[100%] group overflow-hidden">
+            <div class="product-image-container absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+              <picture>
+                <source srcset="produits/plaquettes-frein.webp" type="image/webp">
+                <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein Brembo, haute performance et durabilité" 
+                     class="absolute h-full w-full object-contain p-4" loading="lazy" itemprop="image">
+              </picture>
+              
+              <!-- Quick Action Buttons -->
+              <div class="absolute -bottom-10 left-0 right-0 flex justify-center gap-2 transition-all duration-300 group-hover:bottom-4">
+                <button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Aperçu rapide des plaquettes Brembo">
+                  <i data-lucide="eye" class="w-5 h-5"></i>
+                </button>
+                <button class="compare-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Comparer les plaquettes Brembo">
+                  <i data-lucide="columns" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
           </div>
-          <h3 class="font-bold mb-2" itemprop="name">Plaquettes Brembo</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-              <span itemprop="price">45</span><span itemprop="priceCurrency" content="EUR">€</span>
-              <meta itemprop="availability" content="https://schema.org/InStock">
-              <meta itemprop="url" content="https://votre-domaine.com/produits/plaquettes-brembo">
-            </p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
-                    aria-label="Ajouter les plaquettes Brembo au panier">
-              Ajouter au panier
-            </button>
+          
+          <div class="p-5">
+            <!-- Détails produit -->
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-lg group-hover:text-primary transition-colors" itemprop="name">Plaquettes Brembo</h3>
+              <div class="flex gap-0.5 text-yellow-400">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star-half" class="w-4 h-4 fill-current"></i>
+              </div>
+            </div>
+            
+            <!-- Caractéristiques produit -->
+            <div class="space-y-1 mb-3">
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="shield" class="w-4 h-4 text-primary"></i> Haute performance
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="clock" class="w-4 h-4 text-primary"></i> Durée de vie +30%
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="check" class="w-4 h-4 text-green-500"></i> Compatible multi-marques
+              </p>
+            </div>
+            
+            <!-- Prix et bouton d'action -->
+            <div class="flex justify-between items-center pt-3 border-t border-gray-200 dark:border-gray-600">
+              <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <p class="text-primary font-bold text-xl">
+                  <span itemprop="price">45</span><span itemprop="priceCurrency" content="EUR">€</span>
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Prix TTC</p>
+                <meta itemprop="availability" content="https://schema.org/InStock">
+                <meta itemprop="url" content="https://votre-domaine.com/produits/plaquettes-brembo">
+              </div>
+              <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition flex items-center gap-1" 
+                      aria-label="Ajouter les plaquettes Brembo au panier">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                <span>Ajouter</span>
+              </button>
+            </div>
           </div>
         </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover" itemscope itemtype="https://schema.org/Product">
+        
+        <!-- Essuie-glaces Bosch -->
+        <article class="product-card filter-product bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden card-hover transition-all duration-300" 
+                 itemscope itemtype="https://schema.org/Product"
+                 data-categories="promo">
           <meta itemprop="mpn" content="EG-BOSCH-20">
-          <div class="relative pb-[100%] mb-4">
-            <picture>
-              <source srcset="produits/essuie-glace.webp" type="image/webp">
-              <img src="produits/essuie-glace.jpg" alt="Essuie-glaces Bosch, modèle haute performance pour visibilité optimale" 
-                   class="absolute h-full w-full object-contain" loading="lazy" itemprop="image">
-            </picture>
+          <span class="product-badge bg-yellow-500 text-white py-1 px-3 absolute top-3 right-3 rounded-full text-xs font-bold z-10">
+            PACK 2×1
+          </span>
+          
+          <div class="relative pb-[100%] group overflow-hidden">
+            <div class="product-image-container absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+              <picture>
+                <source srcset="produits/essuie-glace.webp" type="image/webp">
+                <img src="produits/essuie-glace.jpg" alt="Essuie-glaces Bosch, modèle haute performance pour visibilité optimale" 
+                     class="absolute h-full w-full object-contain p-4" loading="lazy" itemprop="image">
+              </picture>
+              
+              <!-- Quick Action Buttons -->
+              <div class="absolute -bottom-10 left-0 right-0 flex justify-center gap-2 transition-all duration-300 group-hover:bottom-4">
+                <button class="quick-view-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Aperçu rapide des essuie-glaces Bosch">
+                  <i data-lucide="eye" class="w-5 h-5"></i>
+                </button>
+                <button class="compare-btn bg-white text-gray-800 p-2 rounded-full shadow hover:bg-gray-100" 
+                        aria-label="Comparer les essuie-glaces Bosch">
+                  <i data-lucide="columns" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
           </div>
-          <h3 class="font-bold mb-2" itemprop="name">Essuie-glaces Bosch</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-              <span itemprop="price">20</span><span itemprop="priceCurrency" content="EUR">€</span>
-              <meta itemprop="availability" content="https://schema.org/InStock">
-              <meta itemprop="url" content="https://votre-domaine.com/produits/essuie-glaces-bosch">
-            </p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition" 
-                    aria-label="Ajouter les essuie-glaces Bosch au panier">
-              Ajouter au panier
-            </button>
+          
+          <div class="p-5">
+            <!-- Détails produit -->
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-lg group-hover:text-primary transition-colors" itemprop="name">Essuie-glaces Bosch</h3>
+              <div class="flex gap-0.5 text-yellow-400">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+            </div>
+            
+            <!-- Caractéristiques produit -->
+            <div class="space-y-1 mb-3">
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="droplets" class="w-4 h-4 text-primary"></i> Technologie AeroTwin
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="package" class="w-4 h-4 text-primary"></i> Lot de 2 balais
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-1">
+                <i data-lucide="truck" class="w-4 h-4 text-primary"></i> Livraison gratuite
+              </p>
+            </div>
+            
+            <!-- Prix et bouton d'action -->
+            <div class="flex justify-between items-center pt-3 border-t border-gray-200 dark:border-gray-600">
+              <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <div>
+                  <span class="text-gray-400 line-through text-sm">24€</span>
+                  <span class="text-primary font-bold text-xl">
+                    <span itemprop="price">20</span><span itemprop="priceCurrency" content="EUR">€</span>
+                  </span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Prix TTC</p>
+                <meta itemprop="availability" content="https://schema.org/InStock">
+                <meta itemprop="url" content="https://votre-domaine.com/produits/essuie-glaces-bosch">
+              </div>
+              <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition flex items-center gap-1" 
+                      aria-label="Ajouter les essuie-glaces Bosch au panier">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                <span>Ajouter</span>
+              </button>
+            </div>
           </div>
         </article>
-      </div>
-    </section>
-    
-    <!-- UGC avec alt descriptifs et WebP -->
-    <section class="py-8 bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-8 flex items-center gap-2"><i data-lucide="users" aria-hidden="true"></i> Nos clients partagent</h2>
-      <div class="ugc-grid grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="ugc-item relative">
-          <picture>
-            <source srcset="ugc/customer1.webp" type="image/webp">
-            <img src="ugc/customer1.jpg" loading="lazy" 
-                 alt="Client satisfait montrant des plaquettes de frein installées sur sa voiture" 
-                 class="w-full h-48 object-cover rounded-lg">
-          </picture>
-          <div class="ugc-overlay">"👍 Excellente qualité"</div>
-        </div>
-        <div class="ugc-item relative">
-          <picture>
-            <source srcset="ugc/customer2.webp" type="image/webp">
-            <img src="ugc/customer2.jpg" loading="lazy" 
-                 alt="Client examinant un filtre à air neuf près de son moteur" 
-                 class="w-full h-48 object-cover rounded-lg">
-          </picture>
-          <div class="ugc-overlay">"✨ Service impeccable"</div>
-        </div>
-        <div class="ugc-item relative">
-          <picture>
-            <source srcset="ugc/customer3.webp" type="image/webp">
-            <img src="ugc/customer3.jpg" loading="lazy" 
-                 alt="Cliente montrant sa voiture réparée avec des pièces de notre magasin" 
-                 class="w-full h-48 object-cover rounded-lg">
-          </picture>
-          <div class="ugc-overlay">"🚗 Ma voiture est comme neuve"</div>
-        </div>
-        <div class="ugc-item relative">
-          <picture>
-            <source srcset="ugc/customer4.webp" type="image/webp">
-            <img src="ugc/customer4.jpg" loading="lazy" 
-                 alt="Client souriant en montrant son reçu après un achat dans notre magasin" 
-                 class="w-full h-48 object-cover rounded-lg">
-          </picture>
-          <div class="ugc-overlay">"⭐ Je recommande vivement"</div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Avis Google -->
-    <section id="avis-clients" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
-        <i data-lucide="star" aria-hidden="true"></i> Avis vérifiés Google
-        <span class="ml-2 bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">4.8/5</span>
-      </h2>
-      
-      <p class="mb-6 text-gray-600 dark:text-gray-300">
-        Découvrez ce que nos clients pensent de notre service. Nous sommes fiers de maintenir une note moyenne de <span class="text-primary font-bold">4.8/5</span> basée sur plus de 120 avis.
-      </p>
-      
-      <!-- Conteneur pour les avis Google -->
-      <div id="google-reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Les avis seront chargés dynamiquement ici -->
-        
-        <!-- Squelettes de chargement -->
-        <div class="skeleton-review bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600"></div>
-            <div class="flex-1">
-              <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded w-2/3 mb-2"></div>
-              <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-1/3"></div>
-            </div>
-          </div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2 w-5/6"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded w-4/6"></div>
-        </div>
-        
-        <div class="skeleton-review bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600"></div>
-            <div class="flex-1">
-              <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded w-2/3 mb-2"></div>
-              <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-1/3"></div>
-            </div>
-          </div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2 w-5/6"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded w-4/6"></div>
-        </div>
-        
-        <div class="skeleton-review bg-gray-50 dark:bg-gray-700 p-6 rounded-xl">
-          <div class="flex items-center gap-4 mb-4">
-            <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-600"></div>
-            <div class="flex-1">
-              <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded w-2/3 mb-2"></div>
-              <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-1/3"></div>
-            </div>
-          </div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded mb-2 w-5/6"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded w-4/6"></div>
-        </div>
       </div>
       
       <div class="text-center mt-8">
-        <a href="https://search.google.com/local/reviews?placeid=ChIJVVXZlqAT5kcRICTpgHlqx9A" 
-           target="_blank" 
-           rel="noopener" 
-           class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-hover transition">
-          <i data-lucide="external-link" aria-hidden="true" class="w-5 h-5"></i>
-          Voir tous nos avis sur Google
+        <a href="#" class="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 px-6 py-3 rounded-lg transition-colors">
+          <span>Voir tout le catalogue</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
-      </div>
-    </section>
-    
-    <!-- Section Devis avec amélioration accessibilité -->
-    <section id="devis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="file-text" aria-hidden="true"></i> Demande de devis</h2>
-      <form method="POST" action="#" onsubmit="return false;" class="space-y-4">
-        <div class="form-group">
-          <label for="nom" class="block mb-1 text-sm">Nom et prénom</label>
-          <input required type="text" id="nom" name="nom" placeholder="Votre nom et prénom" 
-                 class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
-        </div>
-        <div class="form-group">
-          <label for="email" class="block mb-1 text-sm">Adresse e-mail</label>
-          <input required type="email" id="email" name="email" placeholder="Votre adresse e-mail" 
-                 class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
-        </div>
-        <div class="form-group">
-          <label for="message" class="block mb-1 text-sm">Votre demande</label>
-          <textarea required id="message" name="message" placeholder="Détails sur la pièce recherchée, véhicule, etc." rows="4" 
-                    class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700"></textarea>
-        </div>
-        <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition">
-          Envoyer ma demande
-        </button>
-      </form>
-      <div id="confirmation" class="mt-4 text-green-600 dark:text-green-400 hidden" role="alert" aria-live="polite">
-        ✅ Votre demande a été envoyée. Nous vous contacterons rapidement.
-      </div>
-      <div id="error-message" class="mt-4 text-red-600 dark:text-red-400 hidden" role="alert" aria-live="polite">
-        ⚠️ Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.
       </div>
     </section>
   </main>
