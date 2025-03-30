@@ -11,6 +11,7 @@ import { setupFormHandling } from './modules/forms.js';
 import { setupChatbot } from './modules/chatbot.js';
 import { setupAnimations } from './modules/animations.js';
 import { setupProductFilters } from './modules/products.js'; // Nouveau module
+import { enhanceProductSection } from './modules/products-enhanced.js'; // Nouveau module
 
 // Créer les icônes Lucide
 function createIcons() {
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupChatbot();
   setupAnimations();
   setupProductFilters(); // Nouvelle fonction
+  enhanceProductSection(); // Amélioration des produits sans modifier le HTML
   
   // A/B Testing des CTA
   const ctaVariants = [

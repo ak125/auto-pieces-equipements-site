@@ -284,6 +284,40 @@
   transform-origin: center;
 }
 
+/* Styles pour les produits améliorés */
+#meilleures-pieces article:hover .product-badge {
+  transform: translateY(-3px);
+}
+
+#meilleures-pieces article .quick-view-btn,
+#meilleures-pieces article .compare-btn {
+  transition: all 0.2s ease;
+}
+
+#meilleures-pieces article .quick-view-btn:hover,
+#meilleures-pieces article .compare-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Amélioration des cartes produits existantes */
+#meilleures-pieces article {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#meilleures-pieces article:hover .product-image-container {
+  transform: scale(1.05);
+}
+
+#meilleures-pieces article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation pour les éléments filtrés */
+.filter-product {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 /* Styles pour les boutons d'action rapide */
 .quick-view-btn, .compare-btn {
   transition: all 0.2s ease;
