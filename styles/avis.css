@@ -1,0 +1,134 @@
+/**
+ * Styles spécifiques pour la section avis clients
+ * Auto Pièces Équipements
+ */
+
+/* Animation pour les avis */
+#google-reviews-container {
+  transition: opacity 0.3s ease;
+}
+
+/* Améliorations visuelles des cartes d'avis */
+.review-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s var(--animation-curve), 
+              box-shadow 0.3s var(--animation-curve);
+}
+
+.review-card::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  font-size: 150px;
+  color: rgba(194, 31, 31, 0.05);
+  font-family: serif;
+  line-height: 1;
+  z-index: 0;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons de navigation */
+#prev-review, #next-review {
+  transition: background-color 0.2s ease, 
+              transform 0.2s ease,
+              opacity 0.2s ease;
+}
+
+#prev-review:hover, #next-review:hover {
+  transform: translateY(-2px);
+}
+
+#prev-review:active, #next-review:active {
+  transform: translateY(0);
+}
+
+/* Animations pour les squelettes de chargement */
+@keyframes skeleton-pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.6; }
+}
+
+.skeleton-review {
+  animation: skeleton-pulse 1.5s infinite;
+}
+
+/* Testimonial video section */
+.testimonial-video-btn {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-video-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.testimonial-video-btn:hover {
+  transform: scale(1.1);
+}
+
+.testimonial-video-btn:hover::after {
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+/* Ajout du logo Google Reviews */
+.google-reviews-badge {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.google-reviews-badge:hover {
+  opacity: 1;
+}
+
+/* Animation d'entrée pour les avis */
+.review-entry-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: reviewEntry 0.5s forwards;
+}
+
+@keyframes reviewEntry {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.review-entry-animation:nth-child(1) { animation-delay: 0.1s; }
+.review-entry-animation:nth-child(2) { animation-delay: 0.2s; }
+.review-entry-animation:nth-child(3) { animation-delay: 0.3s; }
+
+/* Support pour le mode sombre */
+.dark .review-card::before {
+  color: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #google-reviews-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .review-card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
