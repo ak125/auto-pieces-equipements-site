@@ -10,8 +10,8 @@ import { setupBooking } from './modules/booking.js';
 import { setupFormHandling } from './modules/forms.js';
 import { setupChatbot } from './modules/chatbot.js';
 import { setupAnimations } from './modules/animations.js';
-import { setupProductFilters } from './modules/products.js'; // Nouveau module
-import { enhanceProductSection } from './modules/products-enhanced.js'; // Nouveau module
+import { setupProductFilters } from './modules/products.js'; 
+import { enhanceProductSection } from './modules/products-enhanced.js';
 
 // Créer les icônes Lucide
 function createIcons() {
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupFormHandling();
   setupChatbot();
   setupAnimations();
-  setupProductFilters(); // Nouvelle fonction
-  enhanceProductSection(); // Amélioration des produits sans modifier le HTML
+  setupProductFilters();
+  enhanceProductSection();
   
   // A/B Testing des CTA
   const ctaVariants = [
