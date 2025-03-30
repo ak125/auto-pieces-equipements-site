@@ -70,8 +70,6 @@
     .card-hover {
       transition: transform 0.3s var(--animation-curve), box-shadow 0.3s var(--animation-curve);
     }
-    
-    /* Les styles non critiques ont été déplacés vers styles/main.css */
   </style>
   
   <!-- Polices avec fallback local -->
@@ -115,6 +113,42 @@
   <noscript>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </noscript>
+  
+  <!-- Améliorations de design -->
+  <link rel="stylesheet" href="styles/design-enhancements.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles/design-enhancements.css"></noscript>
+  
+  <!-- Styles des avis clients -->
+  <link rel="stylesheet" href="styles/avis.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles/avis.css"></noscript>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#c21f1f',
+            secondary: '#ffc107',
+            dark: '#1f2937',
+            accent: '#007bff',
+            success: '#10b981',
+            warning: '#f59e0b',
+            error: '#ef4444'
+          },
+          fontFamily: {
+            sans: ['"Segoe UI"', 'Inter', 'sans-serif'],
+            display: ['Playfair Display', 'serif']
+          },
+          boxShadow: {
+            'soft': '0 4px 6px rgba(0, 0, 0, 0.05)',
+            'hover': '0 8px 15px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
   
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" defer></script>
   
@@ -182,630 +216,113 @@
           📞 Demander un devis gratuit
         </a>
         <a href="#meilleures-pieces" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-    @keyframes ping {
-      75%, 100% {
-        transform: scale(2);
-        opacity: 0;
-      }
-    }
-
-    .availability-ping {
-      animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
-
-    /* Styles pour les services avancés */
-    .availability-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: var(--primary);
-    }
-    
-    .comparator-card {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: move;
-    }
-    
-    .comparator-card:hover { 
-      transform: scale(1.02); 
-    }
-    
-    .comparator-card.dragging { 
-      opacity: 0.5; 
-    }
-    
-    .booking-widget {
-      width: 350px;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-    }
-    
-    .booking-widget.active { 
-      transform: translateY(0); 
-    }
-    
-    .tracker-timeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      position: relative;
-    }
-    
-    .tracker-timeline::before {
-      content: '';
-      position: absolute;
-      top: 25%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: #e5e7eb;
-    }
-    
-    @media (max-width: 768px) {
-      .service-comparator { 
-        grid-template-columns: 1fr; 
-      }
-      .booking-widget { 
-        width: 100%; 
-      }
-    }
-
-    /* Styles pour les reviews Google */
-    .review-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .review-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-
-    .skeleton-review {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-  </style>
-  
-  <!-- Chargement différé des styles non critiques -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-  </noscript>
-  
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
-  </noscript>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  </noscript>
-  
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" defer></script>
-</head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
-  <!-- Hero Section -->
-  <section class="hero-gradient text-white py-20 px-4">
-    <div class="max-w-6xl mx-auto text-center staggered-animation">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-delay-100">
-        Votre expert en pièces auto<br>
-        <span class="text-secondary">à Pavillons-sous-Bois</span>
-      </h1>
-      <p class="text-xl mb-8 max-w-2xl mx-auto animate-delay-200">
-        Pièces neuves originales • Livraison express 24h • Garantie 2 ans
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-delay-300">
-        <a href="#devis" class="bg-secondary text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition">
-          📞 Demander un devis gratuit
-        </a>
-        <a href="#meilleures-pieces" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
           🔍 Voir le catalogue
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Value Propositions -->
-  <section class="py-16 bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-          <i data-lucide="clock" class="text-white text-2xl"></i>
+  <!-- Footer avec liens accessibles et informations de contact -->
+  <footer class="bg-dark text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Auto Pièces Équipements</h3>
+          <address class="not-italic">
+            <p class="mb-2">184 Av. Aristide Briand</p>
+            <p class="mb-2">93320 Les Pavillons-sous-Bois</p>
+            <p class="mb-4">France</p>
+            <p class="flex items-center gap-2 mb-2">
+              <i data-lucide="phone" class="w-4 h-4"></i> 
+              <a href="tel:+33123456789" class="hover:text-secondary transition">01 23 45 67 89</a>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4"></i> 
+              <a href="mailto:contact@autopieces-equipements.fr" class="hover:text-secondary transition">contact@autopieces-equipements.fr</a>
+            </p>
+          </address>
         </div>
-        <h3 class="text-xl font-bold mb-2">Livraison Express</h3>
-        <p class="text-gray-600 dark:text-gray-300">Recevez vos pièces en 24h dans tout le 93</p>
-      </div>
-      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-          <i data-lucide="shield-check" class="text-white text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Garantie 2 Ans</h3>
-        <p class="text-gray-600 dark:text-gray-300">Toutes nos pièces sont garanties d'origine</p>
-      </div>
-      <div class="bg-white dark:bg-gray-700 p-8 rounded-xl card-hover">
-        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
-          <i data-lucide="headphones" class="text-white text-2xl"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Experts À Votre Service</h3>
-        <p class="text-gray-600 dark:text-gray-300">Conseils personnalisés pour tous vos besoins</p>
-      </div>
-    </div>
-  </section>
-
-  <main class="max-w-7xl mx-auto px-4 py-8 pb-16 md:pb-8">
-    <!-- Section Services améliorée -->
-    <section id="services" class="relative py-16 bg-gray-50 dark:bg-gray-900 rounded-lg shadow mb-6">
-      <h2 class="text-3xl font-bold text-center mb-8">
-        <span class="bg-primary text-white px-4 py-2 rounded-full">Nos services experts</span>
-      </h2>
-      
-      <!-- Indicateur de disponibilité temps réel -->
-      <div class="availability-banner bg-primary/10 py-3 mb-8 rounded-lg">
-        <div class="max-w-7xl mx-auto px-4 flex items-center justify-center gap-2">
-          <span class="availability-dot availability-ping"></span>
-          <span class="text-sm font-medium" id="livraisonStatus">Calcul en cours...</span>
-        </div>
-      </div>
-
-      <!-- Cartes de services -->
-      <div class="grid md:grid-cols-3 gap-8 mb-8">
-        <!-- Livraison Rapide -->
-        <div class="service-card comparator-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all" data-service="livraison" draggable="true">
-          <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-            <i data-lucide="rocket" class="text-primary w-8 h-8"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-            Livraison Express
-            <span class="bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">24/48h</span>
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Recevez vos pièces en moins de 24h dans un rayon de 50km autour de Pavillons-sous-Bois.
-          </p>
-          <div class="flex items-center gap-2 text-sm text-primary font-medium">
-            <i data-lucide="map-pin" class="w-4 h-4"></i>
-            <span>Suivi GPS en temps réel</span>
-          </div>
-          <div class="mt-4 border-t pt-4">
-            <div class="flex justify-between text-sm">
-              <span>Zones couvertes :</span>
-              <span class="font-semibold">93, 75, 94</span>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">Horaires d'ouverture</h3>
+          <ul class="space-y-2">
+            <li class="flex justify-between">
+              <span>Lundi - Vendredi:</span>
+              <span>8h - 19h</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Samedi:</span>
+              <span>9h - 17h</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Dimanche:</span>
+              <span>Fermé</span>
+            </li>
+          </ul>
+          
+          <div class="mt-6">
+            <h4 class="font-bold mb-2">Paiements acceptés</h4>
+            <div class="flex space-x-3">
+              <img src="icons/visa.svg" alt="Visa" class="h-8" width="32" height="32">
+              <img src="icons/mastercard.svg" alt="Mastercard" class="h-8" width="32" height="32">
+              <img src="icons/cb.svg" alt="Carte Bancaire" class="h-8" width="32" height="32">
             </div>
           </div>
         </div>
-
-        <!-- Retrait en Magasin -->
-        <div class="service-card comparator-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all" data-service="retrait" draggable="true">
-          <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-            <i data-lucide="store" class="text-primary w-8 h-8"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-            Click & Collect
-            <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full">Disponible maintenant</span>
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Commandez en ligne et récupérez vos pièces en magasin en 1h, 7j/7.
-          </p>
-          <div class="flex items-center gap-2 text-sm text-primary font-medium">
-            <i data-lucide="clock" class="w-4 h-4"></i>
-            <span>Horaires étendus : 8h-20h</span>
-          </div>
-          <div class="mt-4 border-t pt-4">
-            <div class="flex justify-between text-sm">
-              <span>Préparation :</span>
-              <span class="font-semibold text-green-600">≤ 15min</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Conseils Experts -->
-        <div class="service-card comparator-card group relative bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg hover:shadow-xl transition-all" data-service="conseil" draggable="true">
-          <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 rounded-xl transition-opacity"></div>
-          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-            <i data-lucide="users" class="text-primary w-8 h-8"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-            Conseil Expert
-            <span class="bg-purple-100 text-purple-800 text-sm px-2 py-1 rounded-full">Gratuit</span>
-          </h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Nos mécaniciens diplômés vous accompagnent par chat, téléphone ou en magasin.
-          </p>
-          <div class="flex items-center gap-2 text-sm text-primary font-medium">
-            <i data-lucide="badge-check" class="w-4 h-4"></i>
-            <span>Certifiés RGE AutoPro</span>
-          </div>
-          <div class="mt-4 border-t pt-4">
-            <div class="flex justify-between text-sm">
-              <span>Disponibilité :</span>
-              <span class="font-semibold">24h/24</span>
+        
+        <div>
+          <h3 class="text-xl font-bold mb-4">Liens utiles</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="/mentions-legales.html" class="hover:text-secondary transition flex items-center gap-1">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i> Mentions légales
+              </a>
+            </li>
+            <li>
+              <a href="/politique-confidentialite.html" class="hover:text-secondary transition flex items-center gap-1">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i> Politique de confidentialité
+              </a>
+            </li>
+            <li>
+              <a href="/conditions-generales.html" class="hover:text-secondary transition flex items-center gap-1">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i> Conditions générales
+              </a>
+            </li>
+            <li>
+              <a href="/plan-acces.html" class="hover:text-secondary transition flex items-center gap-1">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i> Plan d'accès
+              </a>
+            </li>
+          </ul>
+          
+          <div class="mt-6">
+            <h4 class="font-bold mb-2">Suivez-nous</h4>
+            <div class="flex space-x-4">
+              <a href="https://facebook.com/autopiecesequipements" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-secondary transition">
+                <i data-lucide="facebook" class="w-6 h-6"></i>
+              </a>
+              <a href="https://instagram.com/autopiecesequipements" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-secondary transition">
+                <i data-lucide="instagram" class="w-6 h-6"></i>
+              </a>
+              <a href="https://linkedin.com/company/autopiecesequipements" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-secondary transition">
+                <i data-lucide="linkedin" class="w-6 h-6"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- Résultats de comparaison -->
-      <div id="comparisonResults" class="comparison-results hidden bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-8">
-        <h3 class="text-xl font-bold mb-4">Comparaison des services</h3>
-        <div class="grid md:grid-cols-2 gap-6" id="compareContent">
-          <!-- Le contenu sera rempli par JavaScript -->
+      <div class="mt-8 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2024 Auto Pièces Équipements - Tous droits réservés</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="#" class="text-sm text-gray-400 hover:text-white transition">Plan du site</a>
+          <a href="#" class="text-sm text-gray-400 hover:text-white transition">Accessibilité</a>
         </div>
-      </div>
-
-      <!-- Suivi de commande intégré -->
-      <div class="order-tracker bg-white dark:bg-gray-800 p-6 rounded-xl shadow mb-8">
-        <h3 class="text-xl font-bold mb-6">Suivi de votre commande</h3>
-        <div class="tracker-timeline mb-6">
-          <div class="tracker-step flex flex-col items-center" data-status="confirmed">
-            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mb-2 z-10">
-              <i data-lucide="check" class="text-white w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Confirmée</span>
-          </div>
-          <div class="tracker-step flex flex-col items-center" data-status="preparing">
-            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
-              <i data-lucide="package" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Préparation</span>
-          </div>
-          <div class="tracker-step flex flex-col items-center" data-status="shipped">
-            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
-              <i data-lucide="truck" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Expédiée</span>
-          </div>
-          <div class="tracker-step flex flex-col items-center" data-status="delivered">
-            <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center mb-2 z-10">
-              <i data-lucide="home" class="text-gray-600 dark:text-gray-400 w-4 h-4"></i>
-            </div>
-            <span class="text-sm">Livrée</span>
-          </div>
-        </div>
-        <div class="text-center">
-          <p class="text-sm text-gray-600 dark:text-gray-400">
-            Commande #AE1234 | Estimation : <span class="font-medium">Lundi 28 Mars</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- Bandeau de Garantie -->
-      <div class="mt-8 bg-primary/10 rounded-xl p-6 text-center border border-primary/20">
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-          <div class="flex items-center gap-2 text-primary font-bold">
-            <i data-lucide="shield-check" class="w-6 h-6"></i>
-            <span>Satisfait ou remboursé</span>
-          </div>
-          <div class="hidden md:block h-6 w-px bg-primary/20"></div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">
-            14 jours pour retourner vos pièces - Assistance technique incluse
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Widget de réservation flottant -->
-    <div id="bookingWidget" class="booking-widget fixed bottom-0 right-0 bg-white dark:bg-gray-800 shadow-xl rounded-tl-xl z-40">
-      <div class="p-6">
-        <h3 class="text-lg font-bold mb-4 flex items-center justify-between">
-          <span>📆 Réservation express</span>
-          <button id="closeBooking" class="text-gray-400 hover:text-gray-600">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-        </h3>
-        <form id="bookingForm" class="space-y-4">
-          <div class="form-group">
-            <label class="block mb-1 text-sm">Service :</label>
-            <select class="booking-select w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600" id="serviceType">
-              <option value="livraison">Livraison</option>
-              <option value="retrait">Retrait en magasin</option>
-              <option value="conseil">Rendez-vous conseil</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="block mb-1 text-sm">Date :</label>
-            <input type="datetime-local" id="bookingDate" 
-                   class="flatpickr w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600">
-          </div>
-          <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded hover:bg-primary-hover transition">Réserver maintenant</button>
-        </form>
       </div>
     </div>
-    <button id="openBooking" class="fixed bottom-6 left-6 bg-primary text-white p-4 rounded-full shadow-xl hover:bg-red-700 transition z-40 md:flex hidden">
-      <i data-lucide="calendar" class="w-5 h-5"></i>
-    </button>
+  </footer>
 
-    <!-- Produits phares -->
-    <section id="meilleures-pieces" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-3xl font-bold mb-6 flex items-center gap-2"><i data-lucide="star"></i> Nos meilleures ventes</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
-          <div class="relative pb-[100%] mb-4">
-            <img src="produits/batterie-varta.jpg" alt="Batterie voiture" class="absolute h-full w-full object-contain" loading="lazy">
-          </div>
-          <h3 class="font-bold mb-2">Batterie Bosch S5</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">129€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
-              Ajouter au panier
-            </button>
-          </div>
-        </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
-          <div class="relative pb-[100%] mb-4">
-            <img src="produits/filtre-huile-bosch.jpg" alt="Filtre à huile" class="absolute h-full w-full object-contain" loading="lazy">
-          </div>
-          <h3 class="font-bold mb-2">Filtre Huile Mann</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">12€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
-              Ajouter au panier
-            </button>
-          </div>
-        </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
-          <div class="relative pb-[100%] mb-4">
-            <img src="produits/plaquettes-frein.jpg" alt="Plaquettes de frein" class="absolute h-full w-full object-contain" loading="lazy">
-          </div>
-          <h3 class="font-bold mb-2">Plaquettes Brembo</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">45€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
-              Ajouter au panier
-            </button>
-          </div>
-        </article>
-        <article class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 card-hover">
-          <div class="relative pb-[100%] mb-4">
-            <img src="produits/essuie-glace.jpg" alt="Essuie-glace" class="absolute h-full w-full object-contain" loading="lazy">
-          </div>
-          <h3 class="font-bold mb-2">Essuie-glaces Bosch</h3>
-          <div class="flex justify-between items-center">
-            <p class="text-primary font-bold">20€</p>
-            <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-hover transition">
-              Ajouter au panier
-            </button>
-          </div>
-        </article>
-      </div>
-    </section>
-    
-    <!-- Suivi Commande -->
-    <section class="py-8 bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-8 flex items-center gap-2"><i data-lucide="package"></i> Suivi de commande en temps réel</h2>
-      <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl">
-        <div class="relative h-2 bg-gray-300 dark:bg-gray-600 mb-8">
-          <div class="progress-bar absolute h-full bg-primary" style="width: 50%"></div>
-        </div>
-        <div class="grid grid-cols-4 gap-4 text-center">
-          <div class="step active">Commandé</div>
-          <div class="step active">Préparation</div>
-          <div class="step">Expédié</div>
-          <div class="step">Livré</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section marques supportées -->
-    <section id="marques" class="bg-gray-50 dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="award"></i> Marques principales</h2>
-      <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
-        <img src="marques/bosch.svg" alt="Logo Bosch" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/valeo.svg" alt="Logo Valeo" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/febi.svg" alt="Logo Febi" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/textar.svg" alt="Logo Textar" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/mann.svg" alt="Logo Mann-Filter" class="h-12 w-auto mx-auto" loading="lazy">
-        <img src="marques/sachs.svg" alt="Logo Sachs" class="h-12 w-auto mx-auto" loading="lazy">
-      </div>
-    </section>
-
-    <!-- Avis clients - Nouvelle version améliorée -->
-    <section id="avis-clients" class="py-16 bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <!-- En-tête avec lien Google -->
-      <div class="flex flex-col md:flex-row justify-between items-center mb-12">
-        <h2 class="text-3xl font-bold mb-4 md:mb-0">
-          ❤️ Ce que disent nos clients
-          <span class="text-primary">4,9/5</span>
-        </h2>
-        <a href="https://search.google.com/local/reviews?placeid=ChIJVVXZlqAT5kcRICTpgHlqx9A" 
-           target="_blank"
-           class="bg-primary text-white px-6 py-3 rounded-full hover:bg-red-700 transition flex items-center gap-2">
-          <i data-lucide="star"></i>
-          Voir tous les avis Google
-        </a>
-      </div>
-
-      <!-- Grille d'avis dynamique -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="google-reviews-container">
-        <!-- Avis générés dynamiquement -->
-        <div class="skeleton-review bg-gray-100 dark:bg-gray-800 p-6 rounded-xl animate-pulse">
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-2 w-2/3"></div>
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-4 w-1/2"></div>
-          <div class="h-32 bg-gray-300 dark:bg-gray-700 rounded"></div>
-        </div>
-        <div class="skeleton-review bg-gray-100 dark:bg-gray-800 p-6 rounded-xl animate-pulse">
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-2 w-2/3"></div>
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-4 w-1/2"></div>
-          <div class="h-32 bg-gray-300 dark:bg-gray-700 rounded"></div>
-        </div>
-        <div class="skeleton-review bg-gray-100 dark:bg-gray-800 p-6 rounded-xl animate-pulse">
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-2 w-2/3"></div>
-          <div class="h-4 bg-gray-300 dark:bg-gray-700 mb-4 w-1/2"></div>
-          <div class="h-32 bg-gray-300 dark:bg-gray-700 rounded"></div>
-        </div>
-      </div>
-
-      <!-- Schema.org pour améliorer le référencement -->
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "AutoPartsStore",
-        "name": "Auto Pièces Équipements",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "127",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "image": "https://ak125.github.io/auto-pieces-equipements-site/logo.png",
-        "priceRange": "€€-€€€",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "184 Av. Aristide Briand",
-          "addressLocality": "Les Pavillons-sous-Bois",
-          "postalCode": "93320",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33123456789",
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "19:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "09:00",
-            "closes": "17:00"
-          }
-        ]
-      }
-      </script>
-    </section>
-    
-    <!-- Intégration UGC -->
-    <section class="py-8 bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-8 flex items-center gap-2"><i data-lucide="users"></i> Nos clients partagent</h2>
-      <div class="ugc-grid grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="ugc-item relative">
-          <img src="ugc/customer1.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
-          <div class="ugc-overlay">"👍 Excellente qualité"</div>
-        </div>
-        <div class="ugc-item relative">
-          <img src="ugc/customer2.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
-          <div class="ugc-overlay">"✨ Service impeccable"</div>
-        </div>
-        <div class="ugc-item relative">
-          <img src="ugc/customer3.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
-          <div class="ugc-overlay">"🚗 Ma voiture est comme neuve"</div>
-        </div>
-        <div class="ugc-item relative">
-          <img src="ugc/customer4.jpg" loading="lazy" alt="Photo client"
-               class="w-full h-48 object-cover rounded-lg">
-          <div class="ugc-overlay">"⭐ Je recommande vivement"</div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Programme Fidélité -->
-    <section class="py-8 bg-gradient-to-r from-primary to-secondary text-white p-6 rounded shadow mb-6">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="mb-6 md:mb-0">
-          <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="award"></i> Votre Carte de Fidélité</h2>
-          <div class="flex items-center gap-4">
-            <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center">
-              <span class="text-4xl font-bold">4</span>/10
-            </div>
-            <p>Points jusqu'au prochain niveau</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-3 gap-8">
-          <div class="reward-card">
-            <div class="text-4xl mb-4">🎁</div>
-            <p>5% de réduction</p>
-          </div>
-          <div class="reward-card">
-            <div class="text-4xl mb-4">🚚</div>
-            <p>Livraison gratuite</p>
-          </div>
-          <div class="reward-card">
-            <div class="text-4xl mb-4">💎</div>
-            <p>Cadeau surprise</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section FAQ -->
-    <section id="faq" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="help-circle"></i> Questions fréquentes</h2>
-      <div class="space-y-4">
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h3 itemprop="name" class="font-medium text-primary">Comment connaître la référence exacte de ma pièce ?</h3>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text" class="mt-2 text-sm">Nos experts peuvent vous aider à identifier la pièce nécessaire via notre service de diagnostic en ligne ou en magasin.</p>
-          </div>
-        </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h3 itemprop="name" class="font-medium text-primary">Les pièces sont-elles garanties ?</h3>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text" class="mt-2 text-sm">Oui, toutes nos pièces bénéficient de la garantie constructeur, généralement entre 1 et 2 ans selon les marques.</p>
-          </div>
-        </div>
-        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <h3 itemprop="name" class="font-medium text-primary">Quels sont les délais de livraison ?</h3>
-          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text" class="mt-2 text-sm">Dans le 93, nous livrons généralement en 24h. Pour les autres départements d'Île-de-France, comptez 2 à 3 jours ouvrés.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="devis" class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="file-text"></i> Demande de devis</h2>
-      <form method="POST" action="#" onsubmit="return false;" class="space-y-4">
-        <input required type="text" name="nom" placeholder="Nom et prénom" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
-        <input required type="email" name="email" placeholder="Adresse e-mail" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700">
-        <textarea required name="message" placeholder="Votre demande (pièce recherchée, véhicule, etc.)" rows="4" class="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-700"></textarea>
-        <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition">Envoyer ma demande</button>
-      </form>
-      <p id="confirmation" class="mt-4 text-green-600 dark:text-green-400 hidden">✅ Votre demande a été envoyée. Nous vous contacterons rapidement.</p>
-    </section>
-    
-    <!-- Indicateurs Confiance -->
-    <div class="trust-badges py-8 bg-gray-50 dark:bg-gray-700 p-6 rounded shadow mb-6">
-      <h2 class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="shield"></i> Nos certifications</h2>
-      <div class="flex flex-wrap justify-center gap-8">
-        <img src="trust/iso-certified.svg" alt="Certifié ISO" class="h-16 w-auto">
-        <img src="trust/secure-payments.svg" alt="Paiements sécurisés" class="h-16 w-auto">
-        <img src="trust/warranty.svg" alt="Garantie Fabricant" class="h-16 w-auto">
-        <img src="trust/fast-delivery.svg" alt="Livraison Rapide" class="h-16 w-auto">
-      </div>
-    </div>
-  </main>
-
-  <!-- CTA Final -->
-  <section class="py-16 bg-dark text-white text-center">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">Prêt à réparer votre véhicule ?</h2>
-      <p class="mb-8 text-xl">Nos experts vous accompagnent à chaque étape</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="tel:+33123456789" class="bg-secondary text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition flex items-center gap-2 justify-center">
-          <i data-lucide="phone"></i> Appeler maintenant
-        </a>
-        <a href="#devis" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
-          ✉️ Nous écrire
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Navigation améliorée mobile -->
+  <!-- Navigation mobile -->
   <nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-gray-800 shadow-lg z-50">
     <div class="flex justify-around p-4">
       <a href="#services" class="text-primary" aria-label="Services">
@@ -814,220 +331,110 @@
       <a href="#meilleures-pieces" class="text-primary" aria-label="Produits">
         <i data-lucide="shopping-cart"></i>
       </a>
+      <a href="#avis-clients" class="text-primary" aria-label="Avis">
+        <i data-lucide="star"></i>
+      </a>
       <a href="#devis" class="text-primary" aria-label="Contact">
         <i data-lucide="phone"></i>
       </a>
     </div>
   </nav>
 
-  <!-- Chatbot IA -->
-  <div id="chatbot" class="fixed bottom-20 right-6 w-80 bg-white dark:bg-gray-800 shadow-xl rounded-lg hidden z-50">
-    <div class="chat-header bg-primary text-white p-4 rounded-t-lg flex justify-between items-center">
-      <h3 class="font-bold">Assistant Virtuel</h3>
-      <button id="close-chat" class="text-white"><i data-lucide="x"></i></button>
-    </div>
-    <div class="chat-messages h-64 overflow-y-auto p-4">
-      <div class="message bot">Bonjour ! Comment puis-je vous aider à trouver la pièce parfaite pour votre véhicule ?</div>
-    </div>
-    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-      <input type="text" id="chat-input" class="chat-input w-full p-2 rounded border dark:bg-gray-700 dark:border-gray-600" 
-             placeholder="Tapez votre message...">
-    </div>
-  </div>
-
-  <!-- Chat WhatsApp -->
+  <!-- Chat WhatsApp pour assistance rapide -->
   <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-    <button id="chat-toggle" class="bg-primary text-white p-4 rounded-full shadow-xl hover:bg-red-700 transition">
-      <i data-lucide="message-circle"></i>
-    </button>
-    
     <a href="https://wa.me/33123456789" target="_blank" 
        class="bg-green-600 text-white p-4 rounded-full shadow-xl hover:bg-green-700 transition"
-       aria-label="Contact WhatsApp">
-      <i data-lucide="phone"></i>
+       aria-label="Chat WhatsApp">
+      <i data-lucide="message-circle" class="w-6 h-6"></i>
     </a>
   </div>
 
-  <!-- Scripts optimisés -->
-  <script defer src="https://unpkg.com/lucide@latest"></script>
-  <script defer src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-  <script defer src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script defer src="scripts/advanced-services.js"></script>
-  <script defer src="scripts/google-reviews.js"></script>
-  <script defer src="scripts/performance-optimizations.js" type="module"></script>
-  <script defer>
-    // Gestionnaire de formulaire amélioré
-    const formHandler = {
-      init() {
-        this.form = document.querySelector('form');
-        this.submitBtn = this.form.querySelector('button[type="submit"]');
-        this.form.addEventListener('submit', this.handleSubmit.bind(this));
+  <!-- Schéma d'entreprise local pour SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoPartsStore",
+    "name": "Auto Pièces Équipements",
+    "image": "https://ak125.github.io/auto-pieces-equipements-site/logo.png",
+    "telephone": "+33123456789",
+    "email": "contact@autopieces-equipements.fr",
+    "url": "https://ak125.github.io/auto-pieces-equipements-site/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "184 Av. Aristide Briand",
+      "addressLocality": "Les Pavillons-sous-Bois",
+      "postalCode": "93320",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "48.9061",
+      "longitude": "2.5053"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "19:00"
       },
-
-      async handleSubmit(e) {
-        e.preventDefault();
-        
-        this.submitBtn.disabled = true;
-        this.submitBtn.innerHTML = `<i data-lucide="loader" class="loading-spinner"></i> Envoi en cours...`;
-        lucide.createIcons();
-
-        try {
-          const response = await fetch(this.form.action, {
-            method: 'POST',
-            body: new FormData(this.form),
-          });
-
-          if (!response.ok) throw new Error('Erreur réseau');
-          this.showSuccess();
-        } catch (error) {
-          this.showError();
-        } finally {
-          this.resetButton();
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    ],
+    "priceRange": "€€",
+    "potentialAction": {
+      "@type": "OrderAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://ak125.github.io/auto-pieces-equipements-site/#devis",
+        "inLanguage": "fr-FR",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Order",
+        "seller": {
+          "@type": "Organization",
+          "name": "Auto Pièces Équipements"
         }
-      },
-
-      showSuccess() {
-        const confirmation = document.getElementById('confirmation');
-        confirmation.classList.remove('hidden');
-        setTimeout(() => confirmation.classList.add('hidden'), 5000);
-      },
-
-      showError() {
-        // Afficher un message d'erreur
-      },
-
-      resetButton() {
-        this.submitBtn.disabled = false;
-        this.submitBtn.innerHTML = 'Envoyer ma demande';
       }
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      
-      // Initialisation du slider Swiper
-      new Swiper('.swiper-container', {
-        loop: true,
-        pagination: { 
-          el: '.swiper-pagination',
-          clickable: true
-        },
-        autoplay: { 
-          delay: 5000 
-        },
-        slidesPerView: 1,
-        spaceBetween: 20,
-        breakpoints: {
-          640: {
-            slidesPerView: 1
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 30
-          }
-        }
-      });
-      
-      // Animation d'entrée
-      if (window.anime) {
-        anime({
-          targets: '.staggered-animation > *',
-          opacity: [0, 1],
-          translateY: [30, 0],
-          delay: anime.stagger(100),
-          easing: 'easeOutExpo'
-        });
-      }
-      
-      // Chatbot IA
-      const chatToggle = document.getElementById('chat-toggle');
-      const chatbox = document.getElementById('chatbot');
-      const closeChat = document.getElementById('close-chat');
-      const chatInput = document.getElementById('chat-input');
-      const chatMessages = document.querySelector('.chat-messages');
-      
-      if (chatToggle && chatbox) {
-        chatToggle.addEventListener('click', () => {
-          chatbox.classList.toggle('hidden');
-        });
-      }
-      
-      if (closeChat) {
-        closeChat.addEventListener('click', () => {
-          chatbox.classList.add('hidden');
-        });
-      }
-      
-      if (chatInput) {
-        chatInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            const userMessage = chatInput.value.trim();
-            if (userMessage) {
-              // Ajouter le message utilisateur
-              const userDiv = document.createElement('div');
-              userDiv.classList.add('message', 'user');
-              userDiv.textContent = userMessage;
-              chatMessages.appendChild(userDiv);
-              
-              // Réinitialiser l'input
-              chatInput.value = '';
-              
-              // Scroll to bottom
-              chatMessages.scrollTop = chatMessages.scrollHeight;
-              
-              // Simuler une réponse (à remplacer par une API réelle)
-              setTimeout(() => {
-                const botDiv = document.createElement('div');
-                botDiv.classList.add('message', 'bot');
-                botDiv.textContent = `Merci pour votre message. Un conseiller vous répondra dans les plus brefs délais.`;
-                chatMessages.appendChild(botDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-              }, 1000);
-            }
-          }
-        });
-      }
-      
-      // A/B Testing CTAs
-      const ctaVariants = [
-        { text: '📞 Demandez un devis gratuit', color: 'bg-secondary' },
-        { text: '💸 Économisez sur vos pièces auto', color: 'bg-green-500' }
-      ];
-
-      const mainCta = document.querySelector('a[href="#devis"]');
-      if (mainCta) {
-        const randomCta = ctaVariants[Math.floor(Math.random() * ctaVariants.length)];
-        mainCta.textContent = randomCta.text;
-        mainCta.className = `${randomCta.color} text-gray-900 px-8 py-4 rounded-full font-bold hover:opacity-90 transition`;
-      }
-      
-      // Animations au scroll
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('section').forEach(el => {
-        el.classList.add('animate-on-scroll');
-        observer.observe(el);
-      });
-      
-      formHandler.init();
-    });
+    }
+  }
   </script>
 
-  <!-- Web Vitals Tracking -->
-  <script defer src="https://unpkg.com/web-vitals"></script>
-  <script defer>
-    if (window.webVitals) {
-      webVitals.getCLS(console.log);
-      webVitals.getFID(console.log);
-      webVitals.getLCP(console.log);
-    }
+  <!-- Scripts optimisés et modularisés -->
+  <script defer src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" src="scripts/main.js"></script>
+  
+  <!-- Fallback pour les navigateurs sans support de JavaScript modules -->
+  <script nomodule src="scripts/main-legacy.js"></script>
+
+  <!-- Script d'initialisation de base -->
+  <script>
+    // Initialiser le menu mobile
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function() {
+          const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+          menuButton.setAttribute('aria-expanded', !expanded);
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Initialiser les icônes Lucide
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
   </script>
 </body>
 </html>
