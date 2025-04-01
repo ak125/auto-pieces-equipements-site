@@ -1,0 +1,137 @@
+/**
+ * Styles pour visualiseur 3D
+ * Auto Pièces Équipements
+ */
+
+/* Conteneur du visualiseur 3D */
+.model-viewer-container {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+/* Barre de contrôles 3D */
+.model-controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  z-index: 10;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.model-controls:hover {
+  opacity: 1;
+}
+
+/* Boutons de contrôle */
+.model-control-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  background-color: #1f2937;
+  border: none;
+  border-radius: 9999px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.model-control-btn:hover {
+  background-color: #f59e0b;
+  transform: scale(1.1);
+}
+
+.model-control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Animation de chargement */
+.model-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(31, 41, 55, 0.7);
+  z-index: 5;
+}
+
+.loading-spinner {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 9999px;
+  border-top: 2px solid #f59e0b;
+  border-bottom: 2px solid #f59e0b;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  animation: spin 1.5s linear infinite;
+}
+
+.loading-text {
+  color: #f59e0b;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Personnalisation du visualiseur */
+model-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+}
+
+/* Styles du AR badge */
+model-viewer::part(ar-button) {
+  background-color: #f59e0b;
+  border-radius: 8px;
+  border: none;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+/* Support pour le mode sombre */
+.dark .model-viewer-container {
+  background-color: #1f2937;
+}
+
+.dark .model-control-btn {
+  background-color: #111827;
+}
+
+/* Styles responsive */
+@media (max-width: 640px) {
+  .model-controls {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    padding: 0.25rem;
+  }
+  
+  .model-control-btn {
+    width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+  }
+}

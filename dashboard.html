@@ -18,7 +18,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/innovations.css">
+  <link rel="stylesheet" href="styles/3d-viewer.css">
   
+  <!-- Correction de la configuration Tailwind -->
   <script>
     tailwind.config = {
       darkMode: 'media',
@@ -31,9 +33,10 @@
           }
         }
       }
-    }
+    };
   </script>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans">
   <!-- En-tête -->
   <header class="bg-white dark:bg-gray-800 shadow-sm">
@@ -99,12 +102,40 @@
         <div class="vehicle-cards">
           <div class="card-3d p-4 bg-white dark:bg-gray-800 rounded-lg shadow mb-4" data-vin="ABC123XYZ">
             <div class="flex items-center gap-4 mb-4">
-              <model-viewer src="models/car-generic.glb" 
-                auto-rotate ar-scale="fixed" 
-                style="width: 120px; height: 80px;"
-                loading="lazy">
+              <model-viewer 
+                src="models/car-generic.glb" 
+                auto-rotate 
+                ar-scale="fixed"
+                camera-controls
+                disable-zoom
+                loading="lazy"
+                id="car-model-viewer">
+                
+                <!-- Écran de chargement -->
+                <div slot="poster" class="model-loading">
+                  <div class="loading-spinner"></div>
+                  <p class="loading-text">Chargement du modèle 3D...</p>
+                </div>
+                
+                <!-- Contrôles personnalisés -->
+                <div class="model-controls">
+                  <button class="model-control-btn" id="rotate-left" aria-label="Rotation gauche">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                  </button>
+                  <button class="model-control-btn" id="rotate-right" aria-label="Rotation droite">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                  <button class="model-control-btn" id="reset-view" aria-label="Vue par défaut">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  </button>
+                </div>
               </model-viewer>
-              
               <div>
                 <h3 class="font-semibold">Peugeot 308</h3>
                 <p class="text-sm text-gray-500 dark:text-gray-400">2018 - Diesel - 95 000 km</p>
@@ -146,7 +177,6 @@
               </ul>
             </div>
           </div>
-          
           <button class="w-full bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-4 text-center hover:bg-gray-200 dark:hover:bg-gray-700 transition">
             <i data-lucide="plus-circle" class="inline-block w-5 h-5 mr-2"></i>
             Ajouter un véhicule
@@ -160,7 +190,6 @@
           <i data-lucide="package" aria-hidden="true"></i>
           Mes commandes
         </h2>
-        
         <div class="order-timeline">
           <div class="order-event" data-status="delivered">
             <div class="event-dot"></div>
@@ -170,7 +199,6 @@
               <a href="#" class="text-primary text-sm hover:underline">Voir les détails</a>
             </div>
           </div>
-          
           <div class="order-event" data-status="processing">
             <div class="event-dot"></div>
             <div class="event-content">
@@ -179,7 +207,6 @@
               <a href="#" class="text-primary text-sm hover:underline">Suivre la commande</a>
             </div>
           </div>
-          
           <div class="order-event" data-status="delivered">
             <div class="event-dot"></div>
             <div class="event-content">
@@ -195,7 +222,6 @@
     <!-- Système de gamification et récompenses -->
     <section class="gamification-system mt-12">
       <h2 class="text-2xl font-bold mb-6">Vos récompenses et badges</h2>
-      
       <div class="achievement-board">
         <div class="achievement unlocked" data-badge="first-order">
           <div class="badge-icon">🎯</div>
@@ -221,7 +247,7 @@
           <p class="text-gray-500">Complétez 5 guides</p>
         </div>
       </div>
-
+      
       <div class="loyalty-progress">
         <h3 class="text-lg font-semibold mb-2">Progression de fidélité</h3>
         <div class="progress-bar" style="--progress: 65%">
@@ -269,7 +295,7 @@
           </div>
         </div>
       </div>
-
+      
       <div class="social-reviews bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
         <h3 class="text-xl font-semibold mb-4">
           🌟 Avis vérifiés
@@ -278,24 +304,17 @@
           <div class="review-card">
             <div class="review-meta">
               <div class="verified-badge">✅ Achat vérifié</div>
-              <div class="product-info">
-                <img src="produits/batterie-varta.webp" alt="Batterie Varta" loading="lazy">
-                <span>Batterie VARTA</span>
-              </div>
+              <span>Batterie VARTA</span>
             </div>
             <div class="review-content mt-2">
               <p>"Excellent rapport qualité/prix, et la livraison en 24h comme promis !"</p>
               <div class="flex text-yellow-400 mt-1">★★★★★</div>
             </div>
           </div>
-          
-          <div class="review-card mt-4">
+          <div class="review-card">
             <div class="review-meta">
               <div class="verified-badge">✅ Achat vérifié</div>
-              <div class="product-info">
-                <img src="produits/plaquettes-frein.webp" alt="Plaquettes Brembo" loading="lazy">
-                <span>Plaquettes Brembo</span>
-              </div>
+              <span>Plaquettes Brembo</span>
             </div>
             <div class="review-content mt-2">
               <p>"Parfaites pour ma 308, le frein est beaucoup plus performant maintenant."</p>
@@ -307,18 +326,19 @@
     </section>
   </main>
   
-  <!-- Footer -->
   <footer class="bg-dark text-white py-8 mt-12">
     <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
       <p>&copy; 2024 Auto Pièces Équipements - Tous droits réservés</p>
     </div>
   </footer>
-
+  
   <!-- Scripts -->
   <script defer src="https://unpkg.com/lucide@latest"></script>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script type="module" src="scripts/modules/voice-search.js"></script>
   <script type="module" src="scripts/modules/gamification.js"></script>
+  
+  <!-- Script corrigé pour la carte 3D -->
   <script type="module">
     // Effet de carte 3D
     document.querySelectorAll('.card-3d').forEach(card => {
@@ -345,7 +365,36 @@
     
     document.addEventListener('DOMContentLoaded', () => {
       // Initialisation des icônes Lucide
-      lucide?.createIcons();
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+      
+      // Contrôles personnalisés pour le visualiseur 3D
+      const modelViewer = document.getElementById('car-model-viewer');
+      if (!modelViewer) return;
+      
+      // Rotation gauche
+      document.getElementById('rotate-left')?.addEventListener('click', () => {
+        modelViewer.dispatchEvent(new CustomEvent('quick-rotate', { detail: { angle: -30 } }));
+      });
+      
+      // Rotation droite
+      document.getElementById('rotate-right')?.addEventListener('click', () => {
+        modelViewer.dispatchEvent(new CustomEvent('quick-rotate', { detail: { angle: 30 } }));
+      });
+      
+      // Réinitialiser la vue
+      document.getElementById('reset-view')?.addEventListener('click', () => {
+        modelViewer.resetTurntable();
+        modelViewer.cameraOrbit = '0deg 75deg 105%';
+      });
+      
+      // Gestionnaire d'événements personnalisé pour les rotations rapides
+      modelViewer.addEventListener('quick-rotate', (event) => {
+        const theta = modelViewer.getCameraOrbit().theta;
+        const angle = event.detail.angle;
+        modelViewer.cameraOrbit = `${theta + angle}deg 75deg 105%`;
+      });
     });
   </script>
 </body>
