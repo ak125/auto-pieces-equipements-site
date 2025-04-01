@@ -1,311 +1,651 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="modern">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auto Pièces Équipements | Concept Futur</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garage Digitale - Auto Pièces Équipements</title>
   
-  <!-- Meta données avancées -->
-  <meta name="description" content="Découvrez le futur de la vente de pièces auto avec notre expérience immersive et assistée par IA">
-  <meta property="og:title" content="Auto Pièces Équipements | Technologie du Futur" />
-  <meta property="og:image" content="https://ak125.github.io/auto-pieces-equipements-site/future-concept.jpg" />
+  <!-- Polices techniques -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   
-  <!-- Intégration technologies avancées -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/three@0.141.0/build/three.min.js"></script>
-  <script src="https://unpkg.com/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose"></script>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- Styles existants -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/innovations.css">
   
-  <style>
-    :root {
-      --primary: #c21f1f;
-      --secondary: #1d4ed8;
-      --accent: #10b981;
-    }
-    
-    /* Effets visuels avancés */
-    .parallax-bg {
-      background-attachment: fixed;
-      background-position: center;
-      background-size: cover;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .glass-morphism {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    .floating {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .pulse {
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    /* Style pour le configurateur 3D */
-    .ar-button {
-      background: var(--primary);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 8px;
-    }
-
-    .color-option {
-      padding: 0.5rem;
-      border-radius: 0.25rem;
-      background-color: white;
-      transition: transform 0.2s;
-    }
-    
-    .color-option:hover {
-      transform: scale(1.05);
-    }
-  </style>
+  <!-- Nouveau style Garage Digitale -->
+  <link rel="stylesheet" href="styles/garage-digitale.css">
 </head>
-<body class="bg-gray-900 text-white overflow-x-hidden">
-  <!-- Bannière principale interactive -->
-  <header class="parallax-bg h-screen flex items-center justify-center" style="background-image: url('future-garage.jpg');">
-    <div class="glass-morphism p-10 max-w-4xl text-center">
-      <h1 class="text-5xl font-bold mb-6">Votre Garage du Futur</h1>
-      <p class="text-xl mb-8">Expérience interactive, diagnostic virtuel, maintenance prédictive</p>
-      <div class="floating inline-block">
-        <button id="start-ar" class="bg-primary hover:bg-opacity-80 px-8 py-4 rounded-full text-lg transition-all">
-          Explorer en Réalité Augmentée
+<body class="bg-gray-100 dark:bg-gray-900">
+  <!-- Header avec effet phare -->
+  <header class="headlight-effect bg-[#001B4D] text-white py-6 relative overflow-hidden">
+    <div class="headlight-beam"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <img src="logo.webp" alt="Logo" class="w-12 h-12 mr-4">
+          <h1 class="ml-4 text-3xl font-bold text-white font-['Space_Grotesk']">
+            GARAGE DIGITALE
+          </h1>
+        </div>
+        
+        <nav class="hidden md:flex space-x-6">
+          <a href="#" class="text-white hover:text-[#4CC9F0] font-['Space_Grotesk'] transition">Catalogue</a>
+          <a href="#" class="text-white hover:text-[#4CC9F0] font-['Space_Grotesk'] transition">Diagnostic</a>
+          <a href="#" class="text-white hover:text-[#4CC9F0] font-['Space_Grotesk'] transition">Tutoriels</a>
+          <a href="#" class="text-white hover:text-[#4CC9F0] font-['Space_Grotesk'] transition">Support</a>
+        </nav>
+        
+        <button class="mobile-menu-btn md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
       </div>
     </div>
   </header>
-
-  <!-- Configurateur 3D interactif -->
-  <section class="py-16 px-6 bg-gray-800">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-8 text-center">Configurateur 3D interactif</h2>
-      <model-viewer 
-        src="models/engine.glb" 
-        ar ar-modes="webxr scene-viewer quick-look" 
-        camera-controls 
-        shadow-intensity="1"
-        class="w-full h-96 rounded-xl border border-gray-700">
-        <button slot="ar-button" class="ar-button">
-          Voir en AR
-        </button>
-      </model-viewer>
-      
-      <div class="mt-6 grid grid-cols-3 gap-4 max-w-md mx-auto">
-        <button class="color-option text-gray-900" data-color="#ff0000" 
-                onclick="changePartColor('red')">
-          Rouge
-        </button>
-        <button class="color-option text-gray-900" data-color="#00ff00"
-                onclick="changePartColor('green')">
-          Vert
-        </button>
-        <button class="color-option text-gray-900" data-color="#0000ff"
-                onclick="changePartColor('blue')">
-          Bleu
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Expérience 3D interactive -->
-  <section class="py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-12 text-center">Explorez Votre Moteur en 3D</h2>
-      
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <!-- Canvas 3D -->
-          <div id="engine-model" class="aspect-square rounded-xl border border-gray-700 bg-black"></div>
-          
-          <div class="mt-6 grid grid-cols-4 gap-4">
-            <button class="part-selector bg-gray-800 p-3 rounded hover:bg-primary text-sm" data-part="piston">Pistons</button>
-            <button class="part-selector bg-gray-800 p-3 rounded hover:bg-primary text-sm" data-part="battery">Batterie</button>
-            <button class="part-selector bg-gray-800 p-3 rounded hover:bg-primary text-sm" data-part="filter">Filtres</button>
-            <button class="part-selector bg-gray-800 p-3 rounded hover:bg-primary text-sm" data-part="brake">Freins</button>
-          </div>
-        </div>
-        
-        <div class="glass-morphism p-8">
-          <h3 class="text-2xl font-bold mb-4">Diagnostic Intelligent</h3>
-          <div id="part-info" class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span>État général</span>
-              <div class="w-48 h-3 bg-gray-700 rounded-full overflow-hidden">
-                <div class="h-full bg-green-500" style="width: 85%"></div>
-              </div>
-            </div>
-            
-            <div class="flex items-center justify-between">
-              <span>Durée de vie estimée</span>
-              <span class="text-green-400 font-bold">18 mois</span>
-            </div>
-            
-            <div class="mt-6">
-              <h4 class="font-bold text-lg mb-2">Recommandations IA</h4>
-              <p>Notre système d'intelligence artificielle suggère une vérification préventive dans 3 mois pour optimiser les performances de votre véhicule.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Assistant IA -->
-  <section class="bg-gradient-to-r from-blue-900 to-indigo-900 py-20 px-6">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-16">Votre Assistant Mécanique Personnel</h2>
-      
-      <div class="glass-morphism p-8 max-w-2xl mx-auto">
-        <div class="flex items-start gap-4 mb-8">
-          <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+  
+  <!-- Barre de recherche diagnostic -->
+  <section class="diagnostic-search-section py-8 bg-[#0A1929]">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto relative">
+        <h2 class="text-xl text-white mb-4 font-['Space_Grotesk']">Outil de Diagnostic Automobile</h2>
+        <div class="relative">
+          <input type="text" placeholder="Recherchez une pièce, un symptôme ou une référence OEM..." 
+                class="w-full py-4 pl-5 pr-12 rounded-lg bg-[#001B4D] text-white border border-[#4CC9F0] focus:border-[#4CC9F0] focus:ring-2 focus:ring-[#4CC9F0] outline-none font-['JetBrains_Mono']">
+          <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#4CC9F0] wrench-animation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
-          
-          <div class="text-left bg-gray-800 rounded-xl p-4 rounded-tl-none">
-            <p>Bonjour, je suis MecaGPT, votre assistant spécialisé en mécanique automobile. Je peux vous aider à diagnostiquer les problèmes de votre véhicule, suggérer des pièces compatibles et même prévoir les maintenances futures.</p>
-          </div>
         </div>
         
-        <div class="space-y-4">
-          <input type="text" id="ai-input" placeholder="Posez une question sur votre véhicule..." class="w-full p-4 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary">
-          
-          <button class="w-full bg-primary hover:bg-opacity-80 py-3 rounded font-semibold transition-all">
-            Consulter l'expert virtuel
+        <!-- Suggestions de recherche avec icônes -->
+        <div class="search-suggestions bg-[#001B4D] mt-2 rounded-lg shadow-xl border border-[#4CC9F0]/20 p-2 hidden">
+          <div class="suggestion-item flex items-center p-2 hover:bg-[#002966] rounded cursor-pointer">
+            <div class="suggestion-icon text-[#F59E0B] mr-3">🛠️</div>
+            <div class="font-['JetBrains_Mono'] text-sm tracking-wider">Moteur</div>
+          </div>
+          <div class="suggestion-item flex items-center p-2 hover:bg-[#002966] rounded cursor-pointer">
+            <div class="suggestion-icon text-[#F59E0B] mr-3">🛞</div>
+            <div class="font-['JetBrains_Mono'] text-sm tracking-wider">Freinage</div>
+          </div>
+          <div class="suggestion-item flex items-center p-2 hover:bg-[#002966] rounded cursor-pointer">
+            <div class="suggestion-icon text-[#F59E0B] mr-3">🔧</div>
+            <div class="font-['JetBrains_Mono'] text-sm tracking-wider">Suspension</div>
+          </div>
+          <div class="suggestion-item flex items-center p-2 hover:bg-[#002966] rounded cursor-pointer">
+            <div class="suggestion-icon text-[#F59E0B] mr-3">🔌</div>
+            <div class="font-['JetBrains_Mono'] text-sm tracking-wider">Électronique</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Badge véhicule détecté -->
+      <div class="max-w-3xl mx-auto mt-4">
+        <div class="vehicle-badge bg-[#00CC66] text-white px-4 py-2 rounded-full inline-flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1v-5h2a1 1 0 00.96-.68l1.65-3.97A1 1 0 0015.1 4H3z" />
+          </svg>
+          <span class="font-['Space_Grotesk'] font-medium">Adapté à votre Renault Clio IV</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Filtres mécaniques -->
+  <section class="filter-section py-8 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold text-[#001B4D] font-['Space_Grotesk']">Pièces Compatibles</h2>
+        
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <button class="btn-filter bg-[#00CC66] text-white px-4 py-2 rounded-lg font-['Space_Grotesk'] flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            DIY Friendly
+          </button>
+          <button class="btn-filter bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-['Space_Grotesk'] flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+            </svg>
+            Pro Only
           </button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Traçabilité blockchain -->
-  <section class="py-20 px-6 bg-gray-900">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-12 text-center">Traçabilité Blockchain</h2>
       
-      <div class="glass-morphism p-8">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-12 h-12 flex-shrink-0 bg-secondary rounded-full flex items-center justify-center pulse">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-            </svg>
+      <!-- Jauge de technicité -->
+      <div class="technicality-meter bg-white p-4 rounded-lg shadow mb-8">
+        <h3 class="text-lg font-['Space_Grotesk'] mb-2">Niveau de Complexité</h3>
+        <div class="flex items-center">
+          <div class="flex space-x-2 w-full">
+            <div class="technicality-level active">
+              <div class="wrench-icon">🔧</div>
+              <span>Débutant</span>
+            </div>
+            <div class="technicality-level active">
+              <div class="wrench-icon">🔧</div>
+              <span>Facile</span>
+            </div>
+            <div class="technicality-level active">
+              <div class="wrench-icon">🔧</div>
+              <span>Intermédiaire</span>
+            </div>
+            <div class="technicality-level">
+              <div class="wrench-icon">🔧</div>
+              <span>Avancé</span>
+            </div>
+            <div class="technicality-level">
+              <div class="wrench-icon">🔧</div>
+              <span>Expert</span>
+            </div>
           </div>
-          <h3 class="text-xl font-bold">Certificat d'authenticité digital</h3>
+        </div>
+      </div>
+      
+      <!-- Produits avec design mécanique -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Produit 1 -->
+        <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="relative">
+            <img src="https://via.placeholder.com/400x300" alt="Kit de Distribution" class="w-full h-48 object-cover">
+            <div class="absolute top-3 right-3 bg-[#B87333] text-white text-xs px-2 py-1 rounded-full font-['JetBrains_Mono']">
+              GARANTIE CONSTRUCTEUR
+            </div>
+          </div>
+          
+          <div class="p-4">
+            <h3 class="text-lg font-bold font-['Space_Grotesk']">Kit de Distribution Complet</h3>
+            
+            <div class="flex items-center mt-2">
+              <div class="text-sm bg-[#00CC66] text-white px-2 py-1 rounded flex items-center mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Montage 45min
+              </div>
+              
+              <div class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13 7H7v6h6V7z" />
+                  <path fill-rule="evenodd" d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z" clip-rule="evenodd" />
+                </svg>
+                Compatible
+              </div>
+            </div>
+            
+            <div class="flex mt-4 justify-between items-baseline">
+              <div>
+                <span class="font-['JetBrains_Mono'] text-sm tracking-wider">Réf: KTD-5591-XR</span>
+                <div class="font-bold text-xl text-[#001B4D] font-['Space_Grotesk']">89,99 €</div>
+              </div>
+              
+              <button class="bg-[#4361EE] glow-effect text-white px-4 py-2 rounded-lg flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+                </svg>
+                Visualiser en 3D
+              </button>
+            </div>
+          </div>
         </div>
         
-        <div class="mb-6">
-          <p>Vérifiez l'origine et l'authenticité de chaque pièce grâce à notre système de traçabilité blockchain. Scannez le QR code de votre pièce pour accéder à son historique complet.</p>
+        <!-- Produit 2 -->
+        <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+          <!-- Contenu similaire -->
+          <div class="relative">
+            <img src="https://via.placeholder.com/400x300" alt="Plaquettes de frein" class="w-full h-48 object-cover">
+            <div class="absolute top-3 right-3 bg-[#EF4444] text-white text-xs px-2 py-1 rounded-full font-['JetBrains_Mono']">
+              QUALITÉ PREMIUM
+            </div>
+          </div>
+          
+          <div class="p-4">
+            <h3 class="text-lg font-bold font-['Space_Grotesk']">Plaquettes de Frein Haute Performance</h3>
+            
+            <div class="flex items-center mt-2">
+              <div class="text-sm bg-[#00CC66] text-white px-2 py-1 rounded flex items-center mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Montage 30min
+              </div>
+              
+              <div class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13 7H7v6h6V7z" />
+                  <path fill-rule="evenodd" d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z" clip-rule="evenodd" />
+                </svg>
+                Compatible
+              </div>
+            </div>
+            
+            <div class="flex mt-4 justify-between items-baseline">
+              <div>
+                <span class="font-['JetBrains_Mono'] text-sm tracking-wider">Réf: BRK-3322-CE</span>
+                <div class="font-bold text-xl text-[#001B4D] font-['Space_Grotesk']">45,99 €</div>
+              </div>
+              
+              <button class="bg-[#4361EE] glow-effect text-white px-4 py-2 rounded-lg flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+                </svg>
+                Visualiser en 3D
+              </button>
+            </div>
+          </div>
         </div>
         
-        <div class="bg-gray-800 p-4 rounded font-mono text-sm overflow-x-auto">
-          <p>Batterie Bosch S5 - ID: 0x7F9c2b53E13e5050914e7...</p>
-          <p>✓ Fabrication: 12/03/2023 - Usine: Stuttgart</p>
-          <p>✓ Certification: ECE-R100</p>
-          <p>✓ Tests qualité: Passés (24 critères)</p>
-          <p>✓ Garantie: 24 mois - NFT tokenID: #28794</p>
+        <!-- Produit 3 -->
+        <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+          <!-- Contenu similaire -->
+          <div class="relative">
+            <img src="https://via.placeholder.com/400x300" alt="Amortisseurs" class="w-full h-48 object-cover">
+            <div class="absolute top-3 right-3 bg-[#001B4D] text-white text-xs px-2 py-1 rounded-full font-['JetBrains_Mono']">
+              PRO ONLY
+            </div>
+          </div>
+          
+          <div class="p-4">
+            <h3 class="text-lg font-bold font-['Space_Grotesk']">Amortisseurs Sport Réglables</h3>
+            
+            <div class="flex items-center mt-2">
+              <div class="text-sm bg-[#F59E0B] text-white px-2 py-1 rounded flex items-center mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                Montage 2h
+              </div>
+              
+              <div class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13 7H7v6h6V7z" />
+                  <path fill-rule="evenodd" d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z" clip-rule="evenodd" />
+                </svg>
+                Compatible
+              </div>
+            </div>
+            
+            <div class="flex mt-4 justify-between items-baseline">
+              <div>
+                <span class="font-['JetBrains_Mono'] text-sm tracking-wider">Réf: SUS-9982-XP</span>
+                <div class="font-bold text-xl text-[#001B4D] font-['Space_Grotesk']">189,99 €</div>
+              </div>
+              
+              <button class="bg-[#4361EE] glow-effect text-white px-4 py-2 rounded-lg flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+                </svg>
+                Visualiser en 3D
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Maintenance prédictive -->
-  <section class="py-20 px-6 bg-gradient-to-b from-gray-900 to-black">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-12">Maintenance Prédictive</h2>
+  
+  <!-- Visualiseur 3D -->
+  <section class="py-12 bg-[#0A1929]">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-white mb-8 font-['Space_Grotesk']">Visualiseur de Pièces 3D</h2>
       
-      <div class="glass-morphism p-8 max-w-3xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div class="bg-gray-800 p-4 rounded-lg text-center">
-            <div class="text-4xl font-bold text-green-400 mb-2">94%</div>
-            <p class="text-sm">État batterie</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="3d-visualizer relative rounded-lg overflow-hidden h-80 bg-[#001B4D] shadow-2xl">
+          <!-- Placeholder pour le visualiseur 3D -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-white text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4 text-[#4CC9F0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+              </svg>
+              <p>Visualiseur 3D interactif</p>
+            </div>
           </div>
           
-          <div class="bg-gray-800 p-4 rounded-lg text-center">
-            <div class="text-4xl font-bold text-yellow-400 mb-2">67%</div>
-            <p class="text-sm">Plaquettes frein</p>
-          </div>
-          
-          <div class="bg-gray-800 p-4 rounded-lg text-center">
-            <div class="text-4xl font-bold text-red-400 mb-2">12%</div>
-            <p class="text-sm">Filtre à huile</p>
+          <!-- Contrôles du visualiseur -->
+          <div class="absolute bottom-4 left-4 flex space-x-2 backdrop-blur-sm bg-black/30 rounded-lg p-2">
+            <button class="p-2 bg-gray-800 rounded-full hover:bg-amber-600 transition-colors">
+              <span class="sr-only">Rotation gauche</span>
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </button>
+            <button class="p-2 bg-gray-800 rounded-full hover:bg-amber-600 transition-colors">
+              <span class="sr-only">Rotation droite</span>
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+            <button class="p-2 bg-gray-800 rounded-full hover:bg-amber-600 transition-colors">
+              <span class="sr-only">Zoom</span>
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+              </svg>
+            </button>
+            <button class="p-2 bg-gray-800 rounded-full hover:bg-amber-600 transition-colors">
+              <span class="sr-only">Réinitialiser la vue</span>
+              <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
           </div>
         </div>
         
-        <p class="mb-6">Notre IA analyse en temps réel les données de votre véhicule et prédit les besoins de maintenance avant que les problèmes n'apparaissent.</p>
-        
-        <button class="bg-accent hover:bg-opacity-80 px-6 py-3 rounded font-semibold transition-all">
-          Générer mon calendrier de maintenance intelligent
-        </button>
+        <div class="tech-specs bg-white p-6 rounded-lg shadow-xl">
+          <h3 class="text-xl font-bold text-[#001B4D] mb-4 font-['Space_Grotesk']">Spécifications Techniques</h3>
+          
+          <div class="space-y-4">
+            <div class="bg-gray-800/50 rounded-lg p-4">
+              <div class="flex justify-between py-2 border-b border-gray-700 bg-amber-900/20">
+                <span class="text-gray-400">Référence OEM</span>
+                <span class="font-mono text-amber-500">K15-489-XC</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-gray-700">
+                <span class="text-gray-400">Diamètre</span>
+                <span class="font-mono text-white">16mm</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-gray-700">
+                <span class="text-gray-400">Matériau</span>
+                <span class="font-mono text-white">Alliage renforcé</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="text-gray-400">Durée de vie</span>
+                <span class="font-mono text-white">80.000 km</span>
+              </div>
+            </div>
+            
+            <div class="bg-[#001B4D]/10 p-4 rounded-lg">
+              <h4 class="font-medium mb-2 text-[#001B4D]">Véhicules compatibles</h4>
+              <ul class="space-y-2 text-sm">
+                <li class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#00CC66] mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  Renault Clio IV (2012-2019)
+                </li>
+                <li class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#00CC66] mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  Renault Captur (2013-2019)
+                </li>
+                <li class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#00CC66] mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  Nissan Juke (2014-2019)
+                </li>
+                <li class="flex items-center text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                  Dacia Sandero (Vérifier version)
+                </li>
+              </ul>
+            </div>
+            
+            <div class="mt-6">
+              <button class="w-full bg-[#B87333] text-white py-3 rounded-lg font-['Space_Grotesk'] font-medium flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
+                </svg>
+                Voir la vue éclatée
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- Pied de page avec lien retour -->
-  <footer class="bg-black py-10 text-center">
-    <a href="index.html" class="underline text-gray-400 hover:text-white">Revenir au site principal</a>
-    <p class="mt-4 text-gray-600">Concept développé par Auto Pièces Équipements</p>
-  </footer>
-
-  <script>
-    // Code conceptuel pour l'initialisation des fonctionnalités
-    document.addEventListener('DOMContentLoaded', () => {
-      // Initialisation du modèle 3D (conceptuel)
-      const initEngine3D = () => {
-        console.log('Initialisation du moteur 3D');
-        // THREE.js initialization would go here
-      };
+  
+  <!-- Calculateur Technique -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-[#001B4D] mb-8 font-['Space_Grotesk']">Outils Calculateurs</h2>
       
-      // Gestion AI Assistant (conceptuel)
-      const initAIAssistant = () => {
-        const aiInput = document.getElementById('ai-input');
-        // TensorFlow.js model loading would go here
-      };
-      
-      // AR Experience
-      const initAR = () => {
-        const startARButton = document.getElementById('start-ar');
-        startARButton.addEventListener('click', () => {
-          alert('La fonctionnalité AR sera disponible dans la prochaine mise à jour!');
-        });
-      };
-      
-      // Initialize components
-      initEngine3D();
-      initAIAssistant();
-      initAR();
-    });
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Calculateur de couple -->
+        <div class="bg-gray-100 rounded-lg p-6 shadow">
+          <h3 class="text-lg font-bold text-[#001B4D] mb-4 font-['Space_Grotesk']">Convertisseur de Couple</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Valeur</label>
+              <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="0">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Unité</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                <option>Nm (Newton mètre)</option>
+                <option>lbf·ft (livre-pied)</option>
+                <option>kgf·m (kilogramme-force mètre)</option>
+              </select>
+            </div>
+            
+            <button class="w-full bg-[#001B4D] text-white py-2 rounded-md font-['Space_Grotesk']">
+              Convertir
+            </button>
+            
+            <div class="bg-[#001B4D]/10 p-3 rounded-md">
+              <div class="text-center font-['JetBrains_Mono']">
+                <span class="text-lg font-bold">45.00</span>
+                <span class="text-sm">Nm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Sélecteur d'huile -->
+        <div class="bg-gray-100 rounded-lg p-6 shadow">
+          <h3 class="text-lg font-bold text-[#001B4D] mb-4 font-['Space_Grotesk']">Sélecteur de Viscosité</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Type de moteur</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                <option>Essence</option>
+                <option>Diesel</option>
+                <option>Hybride</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Température moyenne</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                <option>Très froid (-20°C à 0°C)</option>
+                <option>Froid (0°C à 10°C)</option>
+                <option>Tempéré (10°C à 25°C)</option>
+                <option>Chaud (25°C+)</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Âge du moteur</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                <option>Neuf (< 50,000 km)</option>
+                <option>Moyen (50,000 - 150,000 km)</option>
+                <option>Ancien (> 150,000 km)</option>
+              </select>
+            </div>
+            
+            <button class="w-full bg-[#001B4D] text-white py-2 rounded-md font-['Space_Grotesk']">
+              Recommander
+            </button>
+            
+            <div class="relative h-12 bg-gradient-to-r from-[#001B4D] to-[#B87333] rounded-md overflow-hidden">
+              <div class="absolute inset-0 flex items-center justify-center text-white font-['JetBrains_Mono'] font-bold">
+                5W-30
+              </div>
+              <div class="absolute top-0 right-0 bg-white text-[#001B4D] text-xs px-2 py-1 rounded-bl-md font-['JetBrains_Mono']">
+                Recommandé
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Alerte d'usure -->
+        <div class="bg-gray-100 rounded-lg p-6 shadow">
+          <h3 class="text-lg font-bold text-[#001B4D] mb-4 font-['Space_Grotesk']">Rappel d'Entretien</h3>
+          
+          <div class="space-y-4">
+            <div class="bg-yellow-100 border-l-4 border-[#FFD700] p-3">
+              <div class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600 mr-3 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                </svg>
+                <div>
+                  <p class="font-medium">Entretien recommandé</p>
+                  <p class="text-sm text-gray-700">Vidange d'huile dans ~1,500 km</p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Plaquettes de frein</span>
+                <span class="text-sm text-green-600">Bon état (65%)</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-green-600 h-2 rounded-full" style="width: 65%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Filtre à air</span>
+                <span class="text-sm text-yellow-600">À surveiller (40%)</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-yellow-500 h-2 rounded-full" style="width: 40%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Liquide de frein</span>
+                <span class="text-sm text-red-600">À remplacer (15%)</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-red-600 h-2 rounded-full" style="width: 15%"></div>
+              </div>
+            </div>
+            
+            <button class="w-full bg-[#00CC66] text-white py-2 rounded-md font-['Space_Grotesk'] mt-2">
+              Planifier l'entretien
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Mode Urgence -->
+  <section class="py-8 bg-[#111827] relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="emergency-pattern"></div>
+    </div>
     
-    // Fonction pour changer la couleur des pièces dans le configurateur 3D
-    function changePartColor(color) {
-      const modelViewer = document.querySelector('model-viewer');
-      if (modelViewer && modelViewer.model) {
-        try {
-          modelViewer.model.materials[0].pbrMetallicRoughness.setBaseColorFactor(color);
-        } catch (e) {
-          console.error("Erreur lors du changement de couleur:", e);
-        }
-      }
-    }
-  </script>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-8">
+        <h2 class="inline-block text-2xl font-bold text-[#FFD700] mb-4 border-2 border-[#FFD700] p-2 rounded-lg animate-pulse font-['Space_Grotesk']">
+          MODE URGENCE
+        </h2>
+        <p class="text-white max-w-2xl mx-auto">En panne ou besoin d'aide immédiate? Notre équipe d'experts est disponible 24/7 pour vous aider à diagnostiquer et résoudre votre problème.</p>
+      </div>
+      
+      <div class="max-w-md mx-auto bg-black/50 rounded-lg p-6 backdrop-blur-sm border border-[#FFD700]/30">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-[#FFD700] text-sm font-medium mb-1">Décrivez votre problème</label>
+            <textarea class="w-full px-3 py-2 bg-[#1f2937] border border-[#FFD700]/30 rounded-md text-white" rows="3" placeholder="Ex: Ma voiture ne démarre pas, j'entends un cliquetis..."></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-[#FFD700] text-sm font-medium mb-1">Votre numéro de téléphone</label>
+            <input type="tel" class="w-full px-3 py-2 bg-[#1f2937] border border-[#FFD700]/30 rounded-md text-white" placeholder="+33 6 XX XX XX XX">
+          </div>
+          
+          <button class="w-full bg-[#00CC66] text-white py-3 rounded-md font-['Space_Grotesk'] font-bold text-lg tracking-wider glow-effect">
+            CONTACTER UN EXPERT 24/7
+          </button>
+          
+          <p class="text-center text-xs text-white/60">Temps de réponse moyen: <span class="text-[#00CC66] font-bold">3 minutes</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-[#001B4D] text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-bold mb-4 font-['Space_Grotesk']">Auto Pièces Équipements</h3>
+          <p class="text-white/80 text-sm">Votre partenaire pour toutes vos pièces et accessoires automobiles, avec une expertise technique à votre service.</p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4 font-['Space_Grotesk']">Catégories</h3>
+          <ul class="space-y-2 text-white/80 text-sm">
+            <li><a href="#" class="hover:text-[#4CC9F0]">Moteur</a></li>
+            <li><a href="#" class="hover:text-[#4CC9F0]">Freinage</a></li>
+            <li><a href="#" class="hover:text-[#4CC9F0]">Suspension</a></li>
+            <li><a href="#" class="hover:text-[#4CC9F0]">Électronique</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4 font-['Space_Grotesk']">Services</h3>
+          <ul class="space-y-2 text-white/80 text-sm">
+            <li><a href="#" class="hover:text-[#4CC9F0]">Diagnostic en ligne</a></li>
+            <li><a href="#" class="hover:text-[#4CC9F0]">Vidéos de montage</a></li>
+            <li><a href="#" class="hover:text-[#4CC9F0]">Guides techniques</a></li>
+            <li><a href="#" class="hover:text-[#4CC9F0]">Rappels d'entretien</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4 font-['Space_Grotesk']">Contact</h3>
+          <ul class="space-y-2 text-white/80 text-sm">
+            <li class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-[#4CC9F0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              01 23 45 67 89
+            </li>
+            <li class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-[#4CC9F0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              contact@autopieces.fr
+            </li>
+            <li class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-[#4CC9F0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              123 Avenue des Mécaniciens, 75000 Paris
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-white/60">&copy; 2024 Auto Pièces Équipements - Tous droits réservés</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-white/60 hover:text-white">Mentions légales</a>
+          <a href="#" class="text-white/60 hover:text-white">CGV</a>
+          <a href="#" class="text-white/60 hover:text-white">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="scripts/garage-digitale.js"></script>
 </body>
 </html>
