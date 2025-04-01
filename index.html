@@ -205,7 +205,7 @@
     </div>
   </header>
 
-  <!-- Hero Section avec H1 unique -->
+  <!-- Hero Section avec effet de phare -->
   <section class="hero-gradient header-animated text-white py-20 px-4" role="banner">
     <div class="max-w-6xl mx-auto text-center staggered-animation">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-delay-100">
@@ -245,6 +245,14 @@
     </div>
   </section>
 
+  <!-- Section Services -->
+  <section id="services" class="py-16 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 title-accent centered">Nos services</h2>
+      <!-- Contenu des services à ajouter ici -->
+    </div>
+  </section>
+
   <!-- Ajouter avant la section des produits -->
   <section class="max-w-7xl mx-auto px-4 py-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm mb-6">
     <h2 class="text-2xl font-bold mb-4 text-center">Trouvez les pièces adaptées à vos compétences</h2>
@@ -263,6 +271,134 @@
     <div class="expertise-buttons">
       <button class="btn-diy active">DIY Friendly</button>
       <button class="btn-pro">Pro Only</button>
+    </div>
+  </section>
+
+  <!-- Section Produits -->
+  <section id="meilleures-pieces" class="py-16 bg-gray-50 dark:bg-gray-800 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 title-accent centered">Nos meilleures pièces</h2>
+      <!-- Contenu des produits à ajouter ici -->
+    </div>
+  </section>
+
+  <!-- Section Avis Clients -->
+  <section id="avis-clients" class="py-16 bg-gray-50 dark:bg-gray-800 rounded-lg shadow mb-8">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-3 title-accent centered">Avis de nos clients</h2>
+        <div class="flex items-center justify-center gap-1 text-yellow-400 mb-2">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star-half" class="w-5 h-5 fill-current"></i>
+          <span class="ml-2 text-primary font-bold">4.6/5</span>
+        </div>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Découvrez ce que nos clients satisfaits disent de notre service et de nos produits
+        </p>
+      </div>
+      
+      <!-- Contrôles du carrousel (version desktop) -->
+      <div class="hidden md:flex justify-end mb-6">
+        <div class="flex gap-2">
+          <button id="prev-review" class="bg-white dark:bg-gray-700 p-2 rounded-full shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button id="next-review" class="bg-white dark:bg-gray-700 p-2 rounded-full shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Avis Google - Conserver cette section -->
+      <div id="google-reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Placeholders pendant le chargement -->
+        <div class="skeleton-review bg-white dark:bg-gray-700 p-6 rounded-xl animate-pulse">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-gray-200 dark:bg-gray-600 rounded-full"></div>
+            <div class="space-y-2">
+              <div class="h-4 w-24 bg-gray-200 dark:bg-gray-600 rounded"></div>
+              <div class="h-3 w-16 bg-gray-200 dark:bg-gray-600 rounded"></div>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+            <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+            <div class="h-3 w-3/4 bg-gray-200 dark:bg-gray-600 rounded"></div>
+          </div>
+        </div>
+        
+        <!-- Les autres squelettes de revue seront remplacés par de vrais avis -->
+      </div>
+      
+      <!-- Bouton "Voir plus d'avis" -->
+      <div class="text-center">
+        <a href="https://search.google.com/local/reviews?placeid=ChIJVVXZlqAT5kcRICTpgHlqx9A" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-hover transition-colors">
+          <span>Voir plus d'avis sur Google</span>
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+        
+        <!-- Badge Google Reviews -->
+        <div class="flex items-center justify-center mt-6 opacity-75">
+          <img src="logo-google-reviews.svg" alt="Avis Google" class="h-6 mr-2" width="24" height="24" 
+               onerror="this.onerror=null; this.src='logo-google.png';">
+          <span class="text-sm text-gray-600 dark:text-gray-400">Avis vérifiés sur Google</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bannière Témoignage Vidéo - Conserver le contenu existant -->
+  <section class="relative overflow-hidden py-16 mb-8 rounded-lg shadow bg-gradient-to-r from-primary to-primary-hover">
+    <div class="absolute inset-0 opacity-20">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="w-full h-full text-white">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+      </svg>
+    </div>
+    
+    <div class="max-w-5xl mx-auto px-4 relative z-10">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="w-full md:w-1/2 mb-8 md:mb-0">
+          <div class="aspect-video bg-black/40 rounded-xl overflow-hidden relative">
+            <img src="testimonial-thumbnail.jpg" alt="Témoignage de Jean M." class="w-full h-full object-cover opacity-80">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <button class="bg-white/90 text-primary p-4 rounded-full hover:bg-white transition-colors">
+                <i data-lucide="play" class="w-8 h-8" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-full md:w-1/2 text-white">
+          <h3 class="text-2xl font-bold mb-4">Témoignage de Jean M.</h3>
+          <blockquote class="text-lg mb-4 font-light italic">
+            « Grâce aux conseils experts d'Auto Pièces Équipements, j'ai pu réparer ma Peugeot 308 moi-même et économiser plus de 400€ par rapport au devis de mon garagiste. Les pièces étaient parfaitement compatibles et de qualité équivalente à l'origine. »
+          </blockquote>
+          <p class="font-medium">Jean Moreau, client depuis 2022</p>
+          <div class="flex gap-0.5 text-yellow-400 mt-2">
+            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Formulaire de Contact/Devis -->
+  <section id="devis" class="py-16 bg-gray-50 dark:bg-gray-800 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 title-accent centered">Demander un devis</h2>
+      <form id="contact-form" class="max-w-3xl mx-auto bg-white dark:bg-gray-700 p-8 rounded-lg shadow">
+        <!-- Formulaire de contact à ajouter ici -->
+      </form>
     </div>
   </section>
 
@@ -365,23 +501,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Modifier votre CTA final pour inclure les nouvelles fonctionnalités -->
-  <section class="py-16 bg-dark text-white text-center">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">Prêt à monter en compétences ?</h2>
-      <p class="mb-8 text-xl">Nos experts vous accompagnent à chaque étape</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button class="cta-workshop">
-          📦 Composer mon kit atelier
-          <i data-lucide="chevron-right" class="w-5 h-5"></i>
-        </button>
-        <a href="#devis" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
-          ✉️ Nous écrire
-        </a>
-      </div>
-    </div>
-  </section>
 
   <!-- Navigation mobile -->
   <nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-gray-800 shadow-lg z-50">
