@@ -19,10 +19,13 @@
   <!-- Font Awesome pour les icônes techniques -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- CSS du site -->
+  <!-- Feuilles de style -->
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/design-enhancements.css">
   <link rel="stylesheet" href="styles/tech-fonts.css">
+  <link rel="stylesheet" href="styles/enhanced-badges.css">
+  <link rel="stylesheet" href="styles/scan-animations.css">
+  <link rel="stylesheet" href="styles/innovations.css">
   
   <!-- CSS intégré pour styles critiques -->
   <style>
@@ -136,7 +139,6 @@
       align-items: center;
     }
     
-    /* Modification pour utiliser le SVG */
     .logo svg {
       width: 40px;
       height: 40px;
@@ -382,15 +384,26 @@
     </div>
   </section>
 
-  <!-- Fonctionnalités Section -->
+  <!-- Fonctionnalités Section avec animation de scan -->
   <section id="features">
     <h2>Fonctionnalités Clés</h2>
+    
+    <!-- Animation de scan technique -->
+    <div id="tech-scan-demo" class="mb-8"></div>
+    
     <ul class="features-list">
       <li><i class="fas fa-calculator me-3"></i> Calculateur de pièces intelligent</li>
       <li><i class="fas fa-history me-3"></i> Historique des interventions</li>
       <li><i class="fas fa-sync me-3"></i> Synchronisation logistique & stock</li>
       <li><i class="fas fa-cube me-3"></i> Visionneuse 3D de pièces détachées</li>
     </ul>
+    
+    <!-- Badges améliorés -->
+    <div class="flex flex-wrap gap-4 mt-8 justify-center">
+      <span data-badge data-badge-color="blue" data-badge-icon="🔍" data-badge-text="Diagnostic précis"></span>
+      <span data-badge data-badge-color="amber" data-badge-icon="⚡" data-badge-text="Livraison Express" data-badge-pulse="true"></span>
+      <span data-badge data-badge-color="green" data-badge-icon="✓" data-badge-text="Compatible multi-marques"></span>
+    </div>
   </section>
 
   <!-- Services Section -->
@@ -499,9 +512,29 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="scripts/main.js" type="module"></script>
-  <script>
+  <script type="module" src="scripts/main.js"></script>
+  <script type="module">
+    import { initTechScan } from './scripts/modules/scan-effect.js';
+    import { initBadges } from './scripts/modules/badges.js';
+    import { enhanceProductSection } from './scripts/modules/products-enhanced.js';
+    import { initCoreFeatures } from './scripts/modules/core-features.js';
+    import { initInteractiveFeatures } from './scripts/modules/interactive-features.js';
+    
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialiser les modules
+      initBadges();
+      enhanceProductSection();
+      initCoreFeatures();
+      initInteractiveFeatures();
+      
+      // Initialiser l'animation de scan
+      initTechScan('tech-scan-demo', {
+        dataPoints: 25,
+        xAxisLabel: 'Cycle moteur',
+        yAxisLabel: 'Performance',
+        analysisText: 'DIAGNOSTIC EN COURS...'
+      });
+      
       // Animation simple au défilement
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
