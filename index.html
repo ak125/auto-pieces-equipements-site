@@ -46,8 +46,27 @@
     :root {
       --primary: #c21f1f;
       --primary-hover: #9e1919;
+      --primary-light: #f8e5e5; /* Couleur claire pour les arrière-plans subtils */
       --secondary: #ffd700;
+      --secondary-hover: #e6c200;
+      --secondary-light: #fff9db;
+      --neutral-100: #f9fafb;
+      --neutral-200: #e5e7eb;
+      --neutral-300: #d1d5db;
+      --neutral-700: #374151;
+      --neutral-800: #1f2937;
+      --neutral-900: #111827;
+      --success: #10b981;
+      --info: #3b82f6;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --focus-ring: 0 0 0 3px rgba(194, 31, 31, 0.4);
       --animation-curve: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --primary-light: #2c0a0a;
+      --secondary-light: #3a3000;
     }
 
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0 }
