@@ -18,6 +18,15 @@
   --warning: #f59e0b;
   --error: #ef4444;
   
+  /* Nouvelles variables futuristes pour interfaces techniques */
+  --neon-blue: #4361EE;
+  --neon-teal: #4CC9F0;
+  --amber-glow: #F59E0B;
+  --digital-red: #EF4444;
+  --mecha-green: #10B981;
+  --dark-panel: #111827;
+  --dark-control: #1F2937;
+  
   /* Variables d'espacement */
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -470,4 +479,67 @@ select:focus-visible {
   outline: none;
   border-color: var(--primary);
   box-shadow: var(--focus-ring);
+}
+
+/* Styles pour les interfaces techniques futuristes */
+.tech-panel {
+  background-color: var(--dark-panel);
+  border-left: 4px solid var(--neon-teal);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(76, 201, 240, 0.1);
+}
+
+.tech-control {
+  background-color: var(--dark-control);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+.neon-blue-text {
+  color: var(--neon-blue);
+}
+
+.neon-teal-text {
+  color: var(--neon-teal);
+}
+
+.neon-border {
+  border: 1px solid var(--neon-teal);
+  box-shadow: 0 0 5px rgba(76, 201, 240, 0.5);
+}
+
+.amber-alert {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-left: 3px solid var(--amber-glow);
+  color: var(--amber-glow);
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.error-panel {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--digital-red);
+  color: var(--digital-red);
+}
+
+.success-panel {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid var(--mecha-green);
+  color: var(--mecha-green);
+}
+
+/* Support pour le mode sombre */
+.dark .tech-panel {
+  box-shadow: 0 0 15px rgba(76, 201, 240, 0.15);
+}
+
+.dark .error-panel {
+  background-color: rgba(239, 68, 68, 0.15);
+}
+
+.dark .success-panel {
+  background-color: rgba(16, 185, 129, 0.15);
 }
