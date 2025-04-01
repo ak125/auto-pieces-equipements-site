@@ -1,0 +1,140 @@
+/**
+ * Animations de scan technique
+ * Auto Pièces Équipements
+ */
+
+/* Conteneur de base pour le graphique */
+.tech-graph-container {
+  position: relative;
+  height: 16rem; /* équivalent à h-64 */
+  background-color: #111827; /* bg-gray-900 */
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Ligne de scan */
+.scan-line {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0) 0%, 
+    rgba(245, 158, 11, 1) 50%, /* amber-500 */
+    rgba(0, 0, 0, 0) 100%);
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+/* Animation de scan */
+@keyframes scan-animation {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(510px);
+    opacity: 0;
+  }
+}
+
+/* Classe pour activer l'animation */
+.scanning .scan-line {
+  animation: scan-animation 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Points de données sur le graphique */
+.data-point {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(245, 158, 11, 0.7);
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+/* Animation des points de données quand ils sont scannés */
+@keyframes data-point-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* Lignes de grille pour le graphique */
+.grid-line {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.grid-line-horizontal {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.grid-line-vertical {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+/* Axes du graphique */
+.axis-label {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+}
+
+.axis-x-label {
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.axis-y-label {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+}
+
+/* Overlay d'analyse active */
+.analysis-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  color: #f59e0b; /* amber-500 */
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scanning .analysis-overlay {
+  opacity: 1;
+}
+
+/* Support pour réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .scanning .scan-line {
+    animation: none;
+    opacity: 0.6;
+  }
+}

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/tech-fonts.css">
   <link rel="stylesheet" href="styles/product-technical.css">
+  <link rel="stylesheet" href="styles/tech-specs.css">
   
   <!-- Préchargement des polices -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -164,6 +165,38 @@
             <span>Roulements étanches NSK avec lubrification à vie</span>
           </li>
         </ul>
+        
+        <h3 class="font-tech text-xl text-white mb-4">Spécifications détaillées</h3>
+        
+        <!-- Version 1: Utilisation avec HTML statique -->
+        <div class="tech-specs-container">
+          <div class="tech-spec-row highlight">
+            <span class="tech-spec-label">Référence OEM</span>
+            <span class="tech-spec-value highlight">K15-489-XC</span>
+          </div>
+          <div class="tech-spec-row">
+            <span class="tech-spec-label">Diamètre</span>
+            <span class="tech-spec-value">16mm</span>
+          </div>
+          <div class="tech-spec-row">
+            <span class="tech-spec-label">Matériau</span>
+            <span class="tech-spec-value">Alliage renforcé</span>
+          </div>
+          <div class="tech-spec-row">
+            <span class="tech-spec-label">Durée de vie</span>
+            <span class="tech-spec-value">80.000 km</span>
+          </div>
+        </div>
+        
+        <!-- Version 2: Utilisation avec attribut data pour génération dynamique -->
+        <div 
+          data-tech-specs='[
+            {"label": "Tension nominale", "value": "12V", "highlight": true},
+            {"label": "Couple maximum", "value": "150 Nm"},
+            {"label": "Température max", "value": "120°C"},
+            {"label": "Pays d\'origine", "value": "France"}
+          ]'
+        ></div>
       </div>
       
       <div id="compatibility-tab" class="tech-tab-content">
@@ -280,5 +313,6 @@
   
   <!-- Scripts -->
   <script type="module" src="scripts/modules/product-tabs.js"></script>
+  <script type="module" src="scripts/modules/tech-specs.js"></script>
 </body>
 </html>

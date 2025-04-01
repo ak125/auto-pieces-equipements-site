@@ -1,0 +1,58 @@
+/**
+ * Styles pour les spécifications techniques
+ * Auto Pièces Équipements
+ */
+
+.tech-specs-container {
+  background-color: rgba(31, 41, 55, 0.5);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.tech-spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.7);
+}
+
+.tech-spec-row:last-child {
+  border-bottom: none;
+}
+
+.tech-spec-row.highlight {
+  background-color: rgba(217, 119, 6, 0.2);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.5rem;
+}
+
+.tech-spec-label {
+  color: rgba(156, 163, 175, 1);
+  font-size: 0.875rem;
+}
+
+.tech-spec-value {
+  font-family: var(--font-mono, monospace);
+  color: white;
+  font-size: 0.875rem;
+}
+
+.tech-spec-value.highlight {
+  color: var(--amber-glow, #F59E0B);
+  font-weight: 500;
+}
+
+/* Mode sombre déjà intégré car conçu pour un thème sombre */
+
+/* Responsive */
+@media (max-width: 640px) {
+  .tech-spec-row {
+    flex-direction: column;
+    padding: 0.75rem 0;
+  }
+  
+  .tech-spec-label {
+    margin-bottom: 0.25rem;
+  }
+}
