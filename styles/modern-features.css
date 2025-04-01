@@ -1,0 +1,267 @@
+/**
+ * Fonctionnalités modernes - Auto Pièces Équipements
+ * Inspirées des designs immersifs pour les passionnés d'automobile
+ */
+
+/* Animation de phare pour les sections importante */
+.header-animated {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-animated::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+  animation: halo-phare 8s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes halo-phare {
+  0% { transform: translate(-30%, -30%) scale(1); opacity: 0; }
+  30% { opacity: 0.4; }
+  70% { opacity: 0.2; }
+  100% { transform: translate(30%, 30%) scale(1.2); opacity: 0; }
+}
+
+/* Barre de recherche diagnostique avancée */
+.diagnostic-search {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.diagnostic-search input {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 1rem;
+}
+
+.diagnostic-search input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(194, 31, 31, 0.1);
+  outline: none;
+}
+
+.diagnostic-search .icon-wrench {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  animation: wrench-rotate 3s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes wrench-rotate {
+  0%, 100% { transform: translateY(-50%) rotate(0deg); }
+  25% { transform: translateY(-50%) rotate(-15deg); }
+  75% { transform: translateY(-50%) rotate(15deg); }
+}
+
+/* Badge dynamique du véhicule */
+.vehicle-badge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(90deg, #10b981, #059669);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.vehicle-badge.pulse {
+  animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Jauge de technicité */
+.technicality-gauge {
+  width: 100%;
+  max-width: 300px;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.technicality-gauge .dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #B87333;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.technicality-gauge .dot.active {
+  background-color: #B87333;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.technicality-gauge .label {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* Boutons de segment d'expertise */
+.expertise-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.btn-diy {
+  background-color: #00CC66;
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-diy:hover {
+  background-color: #00b359;
+  transform: translateY(-2px);
+}
+
+.btn-pro {
+  background-color: #001B4D;
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pro:hover {
+  background-color: #002a78;
+  transform: translateY(-2px);
+}
+
+/* CTA avancé avec animation */
+.cta-workshop {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(194, 31, 31, 0.3);
+}
+
+.cta-workshop:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(194, 31, 31, 0.4);
+}
+
+.cta-workshop::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+  transform: translate(-100%, -100%);
+  transition: transform 0.5s ease-out;
+}
+
+.cta-workshop:hover::after {
+  transform: translate(0, 0);
+}
+
+/* Dropdown pour la recherche diagnostique */
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 10;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.search-dropdown.active {
+  max-height: 300px;
+  padding: 0.5rem 0;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.search-option {
+  padding: 0.625rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-option:hover {
+  background-color: #f3f4f6;
+}
+
+.search-option .icon {
+  font-size: 1.25rem;
+}
+
+/* Mode sombre */
+.dark .diagnostic-search input {
+  background-color: #1f2937;
+  border-color: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.dark .diagnostic-search .icon-wrench {
+  color: #9ca3af;
+}
+
+.dark .search-dropdown {
+  background-color: #1f2937;
+  border-color: rgba(255,255,255,0.1);
+}
+
+.dark .search-option:hover {
+  background-color: #111827;
+}
+
+.dark .technicality-gauge .label {
+  color: #d1d5db;
+}

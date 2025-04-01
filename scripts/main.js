@@ -7,6 +7,7 @@
 import { initializeReviews } from './modules/reviews.js';
 import { initCoreFeatures } from './modules/core-features.js';
 import { initContactForm } from './modules/contact-form.js';
+import { initInteractiveFeatures } from './modules/interactive-features.js'; // Nouveau module
 
 // Créer les icônes Lucide
 function createIcons() {
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCoreFeatures();
   initializeReviews();
   initContactForm();
+  initInteractiveFeatures(); // Nouvelles fonctionnalités interactives
   
   // Mesure des performances Web Vitals
   measureWebVitals();
