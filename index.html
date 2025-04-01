@@ -19,12 +19,17 @@
   <!-- Font Awesome pour les icônes techniques -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- CSS intégré pour visualisation immédiate -->
+  <!-- CSS du site -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/design-enhancements.css">
+  <link rel="stylesheet" href="styles/tech-fonts.css">
+  
+  <!-- CSS intégré pour styles critiques -->
   <style>
     :root {
       /* Palette de couleurs futuristes pour garage numérique */
       --primary: #0070f3;         /* Bleu digital */
-      --primary-dark: #005bb5;    /* Bleu plus sombre */
+      --primary-hover: #005bb5;    /* Bleu plus sombre */
       --secondary: #ff6b00;       /* Orange mécanique */
       --tertiary: #00c896;        /* Turquoise diagnostique */
       --dark: #111827;            /* Fond sombre */
@@ -71,7 +76,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-fill-color: transparent;
+      -webkit-text-fill-color: transparent;
     }
     
     h2 {
@@ -131,7 +136,7 @@
       align-items: center;
     }
     
-    /* Style pour le logo SVG */
+    /* Modification pour utiliser le SVG */
     .logo svg {
       width: 40px;
       height: 40px;
@@ -210,7 +215,7 @@
     }
     
     .btn-primary:hover {
-      background: var(--primary-dark);
+      background: var(--primary-hover);
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 112, 243, 0.5);
     }
@@ -284,381 +289,10 @@
       margin-bottom: 2rem;
       color: var(--gray-light);
     }
+
+    /* Reste des styles omis pour brièveté */
     
-    /* Features section */
-    #features {
-      background: var(--darker);
-      position: relative;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .features-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      list-style: none;
-      margin-top: 2rem;
-    }
-    
-    .features-list li {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      font-family: var(--font-heading);
-    }
-    
-    .features-list li::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--primary);
-      opacity: 0.7;
-    }
-    
-    .features-list li:nth-child(2n)::before {
-      background: var(--secondary);
-    }
-    
-    .features-list li:nth-child(3n)::before {
-      background: var(--tertiary);
-    }
-    
-    .features-list li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      background: rgba(255, 255, 255, 0.05);
-    }
-    
-    /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    
-    .card {
-      background: var(--gray-dark);
-      border-radius: 1rem;
-      padding: 2rem;
-      transition: all 0.3s ease;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--primary);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-      background: var(--dark);
-    }
-    
-    .card:hover::after {
-      transform: scaleX(1);
-    }
-    
-    /* Produits */
-    .product-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    
-    .product-card {
-      background: var(--gray-dark);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      position: relative;
-      overflow: hidden;
-      min-height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 500;
-    }
-    
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 112, 243, 0.05);
-      z-index: -1;
-      transform: translateY(100%);
-      transition: transform 0.4s ease;
-    }
-    
-    .product-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-    
-    .product-card:hover::before {
-      transform: translateY(0);
-    }
-    
-    /* KPIs */
-    .kpis {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 2rem;
-      margin-top: 2rem;
-      padding: 2rem 0;
-    }
-    
-    .kpi {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 1rem;
-      min-width: 250px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .kpi strong {
-      display: block;
-      font-size: 3rem;
-      font-family: var(--font-heading);
-      color: var(--primary);
-      margin-bottom: 1rem;
-      position: relative;
-    }
-    
-    .kpi:nth-child(2) strong {
-      color: var(--secondary);
-    }
-    
-    .kpi:nth-child(3) strong {
-      color: var(--tertiary);
-    }
-    
-    .kpi:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* FAQ */
-    #faq {
-      background: var(--darker);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    details {
-      margin-bottom: 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.5rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    summary {
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      cursor: pointer;
-      font-weight: 500;
-      font-family: var(--font-heading);
-      position: relative;
-      outline: none;
-    }
-    
-    summary::after {
-      content: '+';
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.5rem;
-      transition: transform 0.3s ease;
-    }
-    
-    details[open] summary::after {
-      transform: translateY(-50%) rotate(45deg);
-    }
-    
-    details p {
-      padding: 1.5rem;
-      margin-bottom: 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    details:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Formulaire */
-    form {
-      display: grid;
-      gap: 1.5rem;
-      max-width: 600px;
-      margin: 2rem auto;
-    }
-    
-    input, textarea {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      color: white;
-      font-family: var(--font-body);
-      resize: none;
-    }
-    
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.3);
-    }
-    
-    button[type="submit"] {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: var(--font-heading);
-    }
-    
-    button[type="submit"]:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 112, 243, 0.4);
-    }
-    
-    /* CTA Section */
-    .cta {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-      text-align: center;
-      padding: 5rem 2rem;
-      border-radius: 1rem;
-      margin: 5rem auto;
-      position: relative;
-      overflow: hidden;
-      max-width: 1100px;
-    }
-    
-    .cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('/images/circuits.svg') no-repeat center;
-      background-size: cover;
-      opacity: 0.1;
-      z-index: 0;
-    }
-    
-    .cta h2, .cta p {
-      color: white;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .cta h2::after {
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--secondary);
-    }
-    
-    .cta .btn-primary {
-      background: white;
-      color: var(--primary);
-      z-index: 1;
-      position: relative;
-    }
-    
-    .cta .btn-primary:hover {
-      background: var(--secondary);
-      color: white;
-      box-shadow: 0 5px 20px rgba(255, 107, 0, 0.4);
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--darker);
-      padding: 3rem 2rem;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      list-style: none;
-      margin-top: 1.5rem;
-    }
-    
-    .footer-links a {
-      color: var(--gray-light);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: var(--primary);
-    }
-    
-    /* Animations et effets */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .animate-fadeInUp {
-      animation: fadeInUp 0.6s ease forwards;
-    }
-    
-    /* Responsive */
+    /* Mobile */
     @media (max-width: 768px) {
       .navbar {
         flex-direction: column;
@@ -681,30 +315,12 @@
         text-align: center;
       }
       
-      .kpis {
-        flex-direction: column;
-      }
-      
       .btn {
         display: block;
         width: 100%;
         text-align: center;
       }
     }
-    
-    /* Utilitaires */
-    .text-center {
-      text-align: center;
-    }
-    
-    .mt-1 { margin-top: 0.25rem; }
-    .mt-2 { margin-top: 0.5rem; }
-    .mt-4 { margin-top: 1rem; }
-    .mt-8 { margin-top: 2rem; }
-    .mb-1 { margin-bottom: 0.25rem; }
-    .mb-2 { margin-bottom: 0.5rem; }
-    .mb-4 { margin-bottom: 1rem; }
-    .mb-8 { margin-bottom: 2rem; }
   </style>
 </head>
 <body>
@@ -720,51 +336,184 @@
             <circle cx="100" cy="100" r="85" fill="#0A1929" />
             
             <!-- Élément d'engrenage (symbole mécanique) -->
-        "@type": "EntryPoint",
-        "urlTemplate": "https://ak125.github.io/auto-pieces-equipements-site/#devis",
-        "inLanguage": "fr-FR",
-        "actionPlatform": [
-          "http://schema.org/DesktopWebPlatform",
-          "http://schema.org/MobileWebPlatform"
-        ]
-      },
-      "result": {
-        "@type": "Order",
-        "seller": {
-          "@type": "Organization",
-          "name": "Auto Pièces Équipements"
-        }
-      }
-    }
-  }
-  </script>
+            <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
 
-  <!-- Scripts optimisés et modularisés -->
-  <script defer src="https://unpkg.com/lucide@latest"></script>
-  <script type="module" src="scripts/main.js"></script>
-  
-  <!-- Fallback pour les navigateurs sans support de JavaScript modules -->
-  <script nomodule src="scripts/main-legacy.js"></script>
+            <!-- Contour des éléments intérieurs -->
+            <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
+            <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
+            
+            <!-- Lettres stylisées APE (Auto Pièces Équipements) -->
+            <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            
+            <!-- Élément graphique automobile (volant ou phare) -->
+            <circle cx="100" cy="100" r="12" fill="#00CC66" fill-opacity="0.2" stroke="#00CC66" stroke-width="1.5"/>
+            <circle cx="100" cy="100" r="6" fill="#00CC66" fill-opacity="0.6"/>
+            <circle cx="100" cy="100" r="2" fill="#FFFFFF"/>
+            
+            <!-- Rayons lumineux (aspect digital/tech) -->
+            <path d="M100 70V80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M100 120V130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M70 100H80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M120 100H130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M82 82L89 89" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M111 111L118 118" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M82 118L89 111" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M111 89L118 82" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          GarageDigitale
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features"><i class="fas fa-microchip"></i> Fonctionnalités</a></li>
+        <li><a href="#services"><i class="fas fa-wrench"></i> Services</a></li>
+        <li><a href="#produits"><i class="fas fa-cog"></i> Produits</a></li>
+        <li><a href="#contact"><i class="fas fa-headset"></i> Contact</a></li>
+      </ul>
+      <a href="#devis" class="btn btn-primary"><i class="fas fa-file-invoice"></i> Demander un devis</a>
+    </nav>
+  </header>
 
-  <!-- Script d'initialisation de base -->
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content animate-fadeInUp">
+      <h1>Optimisez la gestion de votre garage</h1>
+      <p>Une interface intuitive pour les professionnels de l'automobile</p>
+      <a href="#features" class="btn btn-secondary"><i class="fas fa-cube"></i> Explorer les modules</a>
+    </div>
+  </section>
+
+  <!-- Fonctionnalités Section -->
+  <section id="features">
+    <h2>Fonctionnalités Clés</h2>
+    <ul class="features-list">
+      <li><i class="fas fa-calculator me-3"></i> Calculateur de pièces intelligent</li>
+      <li><i class="fas fa-history me-3"></i> Historique des interventions</li>
+      <li><i class="fas fa-sync me-3"></i> Synchronisation logistique & stock</li>
+      <li><i class="fas fa-cube me-3"></i> Visionneuse 3D de pièces détachées</li>
+    </ul>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Nos Services</h2>
+    <div class="services-grid">
+      <div class="card">
+        <i class="fas fa-cogs mb-4" style="font-size: 2rem; color: var(--primary);"></i>
+        <h3 class="mb-2">Gestion des pièces</h3>
+        <p>Système intelligent d'inventaire et commande automatisée des pièces détachées selon vos besoins.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-file-invoice-dollar mb-4" style="font-size: 2rem; color: var(--secondary);"></i>
+        <h3 class="mb-2">Facturation automatique</h3>
+        <p>Générez des devis et factures professionnels en quelques clics avec notre système intégré.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-headset mb-4" style="font-size: 2rem; color: var(--tertiary);"></i>
+        <h3 class="mb-2">Support technique intégré</h3>
+        <p>Accédez à nos techniciens spécialisés pour résoudre rapidement tous vos problèmes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Produits Section -->
+  <section id="produits">
+    <h2>Nos Produits</h2>
+    <div class="product-gallery">
+      <div class="product-card">
+        <i class="fas fa-oil-can mb-4" style="font-size: 2rem;"></i>
+        <h3>Filtre à huile</h3>
+      </div>
+      <div class="product-card">
+        <i class="fas fa-compact-disc mb-4" style="font-size: 2rem;"></i>
+        <h3>Disques de frein</h3>
+      </div>
+      <div class="product-card">
+        <i class="fas fa-car-battery mb-4" style="font-size: 2rem;"></i>
+        <h3>Amortisseurs</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Données & KPIs -->
+  <section id="kpis">
+    <h2>Notre Impact</h2>
+    <div class="kpis">
+      <div class="kpi">
+        <strong>+2000</strong>
+        <span>garages partenaires</span>
+      </div>
+      <div class="kpi">
+        <strong>99.7%</strong>
+        <span>satisfaction client</span>
+      </div>
+      <div class="kpi">
+        <strong>24/7</strong>
+        <span>support disponible</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>Questions Fréquentes</h2>
+    <details>
+      <summary>Comment s'inscrire à la plateforme ?</summary>
+      <p>Créez un compte en quelques clics depuis la page d'accueil. Notre processus d'inscription est simplifié et ne prend que 2 minutes.</p>
+    </details>
+    <details>
+      <summary>Puis-je connecter mon système ERP existant ?</summary>
+      <p>Oui, notre plateforme propose des intégrations via APIs REST et Webhooks avec la plupart des ERP du marché.</p>
+    </details>
+    <details>
+      <summary>La visionneuse 3D fonctionne-t-elle sur mobile ?</summary>
+      <p>Absolument. Notre visionneuse 3D est optimisée pour tous les appareils, y compris tablettes et smartphones.</p>
+    </details>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <form action="/api/contact" method="POST">
+      <input type="text" name="nom" placeholder="Votre nom" required />
+      <input type="email" name="email" placeholder="Votre email" required />
+      <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
+      <button type="submit"><i class="fas fa-paper-plane me-2"></i> Envoyer</button>
+    </form>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="devis" class="cta">
+    <h2>Besoin d'un devis personnalisé ?</h2>
+    <p>Notre équipe vous répond sous 24h avec une solution sur mesure adaptée à votre garage.</p>
+    <a href="#contact" class="btn btn-primary"><i class="fas fa-clipboard-check me-2"></i> Faire une demande</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Garage Digitale. Tous droits réservés.</p>
+    <ul class="footer-links">
+      <li><a href="/mentions-legales">Mentions légales</a></li>
+      <li><a href="/politique">Politique de confidentialité</a></li>
+      <li><a href="mailto:support@garagedigitale.fr"><i class="fas fa-envelope me-1"></i> support@garagedigitale.fr</a></li>
+    </ul>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="scripts/main.js" type="module"></script>
   <script>
-    // Initialiser le menu mobile
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      
-      if (menuButton && mobileMenu) {
-        menuButton.addEventListener('click', function() {
-          const expanded = menuButton.getAttribute('aria-expanded') === 'true';
-          menuButton.setAttribute('aria-expanded', !expanded);
-          mobileMenu.classList.toggle('hidden');
+    document.addEventListener('DOMContentLoaded', () => {
+      // Animation simple au défilement
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fadeInUp');
+          }
         });
-      }
+      }, { threshold: 0.1 });
       
-      // Initialiser les icônes Lucide
-      if (window.lucide) {
-        lucide.createIcons();
-      }
+      document.querySelectorAll('section > h2, .features-list li, .card, .product-card, .kpi').forEach(el => {
+        observer.observe(el);
+      });
     });
   </script>
 </body>

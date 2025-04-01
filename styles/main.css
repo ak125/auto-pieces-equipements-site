@@ -1,439 +1,155 @@
 /**
- * Styles non critiques - Auto Pièces Équipements
- * Ces styles sont chargés de manière asynchrone après les styles critiques
+ * Styles principaux du site
+ * Auto Pièces Équipements
  */
 
-/* Styles pour l'animation staggered */
-.staggered-animation > * {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s var(--animation-curve) forwards;
+:root {
+  /* Palette de couleurs */
+  --primary: #0070f3;         /* Bleu digital */
+  --primary-hover: #005bb5;   /* Bleu plus sombre */
+  --secondary: #ff6b00;       /* Orange mécanique */
+  --tertiary: #00c896;        /* Turquoise diagnostique */
+  --dark: #111827;            /* Fond sombre */
+  --darker: #0a101f;          /* Fond très sombre */
+  --gray-light: #94a3b8;      /* Gris clair */
+  --gray-dark: #334155;       /* Gris foncé */
+  --success: #10b981;         /* Vert pour validation */
+  --error: #ef4444;           /* Rouge pour erreurs */
+  --warning: #f59e0b;         /* Jaune pour avertissements */
+  
+  /* Variables spécialisées pour l'interface technique */
+  --neon-blue: #4361EE;
+  --neon-teal: #4CC9F0;
+  --amber-glow: #F59E0B;
+  --digital-red: #EF4444;
+  --mecha-green: #10B981;
+  
+  /* Typographie */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.6;
+  
+  /* Effets et animations */
+  --animation-curve: cubic-bezier(0.4, 0, 0.2, 1);
+  --focus-ring: 0 0 0 3px rgba(0, 112, 243, 0.5);
 }
 
-.animate-delay-100 { animation-delay: 100ms; }
-.animate-delay-200 { animation-delay: 200ms; }
-.animate-delay-300 { animation-delay: 300ms; }
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
+/* Styles de base */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  line-height: var(--line-height-normal);
+  color: #1a202c;
+  background-color: #f7fafc;
 }
 
-/* Animations et transitions */
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+.dark body {
+  color: #e2e8f0;
+  background-color: #1a202c;
 }
 
-.progress-bar { transition: width 0.5s ease; }
-.ar-button { background: var(--primary); color: white; padding: 8px 16px; border-radius: 8px; }
-.ugc-overlay { 
-  position: absolute; 
-  bottom: 0; 
-  left: 0; 
-  right: 0; 
-  padding: 12px; 
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
-  color: white;
-  border-radius: 0 0 8px 8px;
-}
-.animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
-
-.reward-card {
-  background: rgba(255,255,255,0.2);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  text-align: center;
+/* Utilitaires et classes communes */
+.max-w-6xl {
+  max-width: 72rem;
 }
 
-.color-option {
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  background-color: white;
-  transition: transform 0.2s;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.color-option:hover {
-  transform: scale(1.05);
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-/* Styles pour les étapes */
-.step {
-  position: relative;
-  font-weight: 500;
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.step.active {
-  color: var(--primary);
-  font-weight: 700;
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
-/* Styles pour le chat */
-.chat-messages {
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+.flex {
   display: flex;
-  flex-direction: column;
 }
 
-.message {
-  max-width: 80%;
-  margin-bottom: 10px;
-  padding: 8px 12px;
-  border-radius: 18px;
-  line-height: 1.4;
+.items-center {
+  align-items: center;
 }
 
-.message.bot {
-  align-self: flex-start;
-  background-color: #f1f1f1;
-  border-bottom-left-radius: 4px;
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
 }
 
-.message.user {
-  align-self: flex-end;
-  background-color: var(--primary);
-  color: white;
-  border-bottom-right-radius: 4px;
+.text-gray-500 {
+  color: #6b7280;
 }
 
-/* Styles pour les services */
-.service-card {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.hover\:text-primary:hover {
+  color: var(--primary);
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
+.text-sm {
+  font-size: 0.875rem;
 }
 
-@keyframes ping {
-  75%, 100% {
-    transform: scale(2);
-    opacity: 0;
-  }
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
-.availability-ping {
-  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-/* Styles pour les services avancés */
-.availability-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--primary);
-}
-
-.comparator-card {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: move;
-}
-
-.comparator-card:hover { 
-  transform: scale(1.02); 
-}
-
-.comparator-card.dragging { 
-  opacity: 0.5; 
-}
-
-.booking-widget {
-  width: 350px;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.booking-widget.active { 
-  transform: translateY(0); 
-}
-
-.tracker-timeline {
+/* Grilles */
+.grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  position: relative;
 }
 
-.tracker-timeline::before {
-  content: '';
-  position: absolute;
-  top: 25%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #e5e7eb;
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-/* Styles pour les reviews Google */
-.review-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.gap-8 {
+  gap: 2rem;
 }
 
-.review-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.skeleton-review {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-/* Améliorations pour les cartes Value Proposition */
-.value-card {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s var(--animation-curve), 
-              box-shadow 0.3s var(--animation-curve),
-              background-color 0.3s var(--animation-curve);
-}
-
-.value-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
-}
-
-.value-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s var(--animation-curve);
-}
-
-.value-card:hover::before {
-  transform: scaleX(1);
-}
-
-.value-card:active {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-}
-
-.warranty-timeline::before {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background-color: #d1d5db;
-  z-index: 1;
-}
-
-.trust-banner {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  transform: translateY(0);
-  transition: transform 0.3s var(--animation-curve);
-}
-
-.trust-banner:hover {
-  transform: translateY(-5px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .value-card, .value-card::before, .value-icon, .warranty-dot, .day-block, .trust-banner {
-    transition: none !important;
-    transform: none !important;
-    animation: none !important;
+/* Animation fade-in */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-}
-
-/* Styles pour les produits */
-.product-badge {
-  transform: translateY(0);
-  transition: transform 0.3s ease;
-}
-
-.product-card:hover .product-badge {
-  transform: translateY(-3px);
-}
-
-.filter-btn.active {
-  font-weight: 600;
-  position: relative;
-}
-
-.filter-btn.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 25%;
-  width: 50%;
-  height: 2px;
-  background-color: var(--primary);
-  border-radius: 1px;
-}
-
-.product-card {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  position: relative;
-  border: 2px solid transparent;
-}
-
-/* Animation du conteneur d'image */
-.product-image-container {
-  transform-origin: center;
-}
-
-/* Styles pour les produits améliorés */
-#meilleures-pieces article:hover .product-badge {
-  transform: translateY(-3px);
-}
-
-#meilleures-pieces article .quick-view-btn,
-#meilleures-pieces article .compare-btn {
-  transition: all 0.2s ease;
-}
-
-#meilleures-pieces article .quick-view-btn:hover,
-#meilleures-pieces article .compare-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* Amélioration des cartes produits existantes */
-#meilleures-pieces article {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#meilleures-pieces article:hover .product-image-container {
-  transform: scale(1.05);
-}
-
-#meilleures-pieces article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-}
-
-/* Animation pour les éléments filtrés */
-.filter-product {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Styles pour les boutons d'action rapide */
-.quick-view-btn, .compare-btn {
-  transition: all 0.2s ease;
-}
-
-.quick-view-btn:hover, .compare-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* Responsive pour mobile */
-@media (max-width: 640px) {
-  .products-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  
-  .product-card .quick-view-btn,
-  .product-card .compare-btn {
+  to {
     opacity: 1;
-    bottom: 4px;
+    transform: translateY(0);
   }
 }
 
-/* Media queries */
-@media (max-width: 768px) {
-  .service-comparator { 
-    grid-template-columns: 1fr; 
-  }
-  .booking-widget { 
-    width: 100%; 
-  }
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Classes d'accessibilité supplémentaires */
-.focus-visible:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
-/* Styles pour le mode contraste élevé */
-@media (forced-colors: active) {
-  .primary-button {
-    background-color: ButtonText;
-    color: ButtonFace;
-    border: 1px solid ButtonText;
-  }
-  
-  .card {
-    border: 1px solid CanvasText;
+/* Support pour mode sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #3b82f6;
   }
 }
 
-/* Réduction des animations pour les utilisateurs qui préfèrent */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/* Responsive */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  .animation-sensitive {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* Classes utilitaires de design */
-.title-gradient {
-  background: linear-gradient(90deg, var(--primary) 0%, #ff5757 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent; /* Fallback pour les navigateurs qui ne supportent pas -webkit-text-fill-color */
-}
-
-.section-divider {
-  height: 4px;
-  width: 80px;
-  background: var(--primary);
-  margin: 1.5rem auto;
-  border-radius: 2px;
-}
-
-.section-divider.left {
-  margin-left: 0;
-}
-
-.card-shadow {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.card-shadow:hover {
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
-}
-
-/* Support de nouveaux éléments UI */
-.floating-badge {
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  background: var(--primary);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  z-index: 10;
-}
-
-.hover-raise {
-  transition: transform 0.3s var(--animation-curve);
-}
-
-.hover-raise:hover {
-  transform: translateY(-5px);
 }
