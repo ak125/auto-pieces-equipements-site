@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <!-- Fond circulaire -->
+  <circle cx="100" cy="100" r="90" fill="#001B4D" />
+  <circle cx="100" cy="100" r="85" fill="#0A1929" />
+  
+  <!-- Élément d'engrenage (symbole mécanique) -->
+  <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
+
+  <!-- Contour des éléments intérieurs -->
+  <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
+  <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
+  
+  <!-- Lettres stylisées APE (Auto Pièces Équipements) -->
+  <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Élément graphique automobile (volant ou phare) -->
+  <circle cx="100" cy="100" r="12" fill="#00CC66" fill-opacity="0.2" stroke="#00CC66" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="6" fill="#00CC66" fill-opacity="0.6"/>
+  <circle cx="100" cy="100" r="2" fill="#FFFFFF"/>
+  
+  <!-- Rayons lumineux (aspect digital/tech) -->
+  <path d="M100 70V80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M100 120V130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M70 100H80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M120 100H130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M82 82L89 89" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M111 111L118 118" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M82 118L89 111" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M111 89L118 82" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
