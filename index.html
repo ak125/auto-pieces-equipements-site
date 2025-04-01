@@ -237,23 +237,57 @@
     </div>
   </header>
 
-  <!-- Hero Section avec effet de phare -->
-  <section class="hero-gradient header-animated text-white py-20 px-4" role="banner">
-    <div class="max-w-6xl mx-auto text-center staggered-animation">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-delay-100">
-        Votre expert en pièces auto<br>
-        <span class="text-secondary">à Pavillons-sous-Bois</span>
-      </h1>
-      <p class="text-xl mb-8 max-w-2xl mx-auto animate-delay-200">
-        Pièces neuves originales • Livraison express 24h • Garantie 2 ans
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-delay-300">
-        <a href="#devis" class="bg-secondary text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition">
-          📞 Demander un devis gratuit
-        </a>
-        <a href="#meilleures-pieces" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
-          🔍 Voir le catalogue
-        </a>
+  <!-- Hero Section avec design moderne -->
+  <section class="relative overflow-hidden pt-24 pb-20 px-4" role="banner">
+    <!-- Arrière-plan optimisé -->
+    <div class="absolute inset-0 -z-10">
+      <picture>
+        <source srcset="images/garage-bg.avif" type="image/avif">
+        <source srcset="images/garage-bg.webp" type="image/webp">
+        <img 
+          src="images/garage-bg.jpg" 
+          alt="Atelier automobile" 
+          class="w-full h-full object-cover"
+        >
+      </picture>
+      <!-- Overlay avec gradient -->
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-neutral-900/80"></div>
+    </div>
+
+    <!-- Badge promo flottant -->
+    <div class="absolute top-6 right-6 md:top-10 md:right-10 floating-badge">
+      <div class="bg-secondary text-neutral-900 rounded-full px-4 py-2 font-bold flex items-center gap-2 shadow-lg pulse-animation">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1z" clip-rule="evenodd" />
+          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+        </svg>
+        <span>-20% nouveaux clients</span>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto text-white relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-slide-up">
+          Votre expert en pièces auto<br>
+          <span class="text-secondary">à Pavillons-sous-Bois</span>
+        </h1>
+        <p class="text-xl mb-8 max-w-2xl animate-slide-up" style="animation-delay: 0.2s">
+          Pièces neuves originales • Livraison express 24h • Garantie 2 ans
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 animate-slide-up" style="animation-delay: 0.4s">
+          <a href="#devis" class="btn btn-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            Demander un devis gratuit
+          </a>
+          <a href="#meilleures-pieces" class="btn border-2 border-white bg-transparent hover:bg-white/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+            Voir le catalogue
+          </a>
+        </div>
       </div>
     </div>
   </section>
