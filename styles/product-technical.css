@@ -1,0 +1,284 @@
+/**
+ * Styles pour la présentation technique des fiches produits
+ * Auto Pièces Équipements
+ */
+
+/* Conteneur principal */
+.tech-product-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(107, 114, 128, 0.3);
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+/* Accent lumineux */
+.tech-product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--amber-glow), var(--neon-blue));
+}
+
+/* Affichage du prix */
+.tech-price-display {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+.tech-price-current {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--amber-glow);
+  display: flex;
+  align-items: baseline;
+}
+
+.tech-price-current .currency {
+  font-size: 1.25rem;
+  margin-right: 0.25rem;
+}
+
+.tech-price-original {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.tech-discount-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+/* Navigation par onglets */
+.tech-tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(107, 114, 128, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.tech-tab-button {
+  padding: 0.75rem 1rem;
+  color: #9ca3af;
+  background-color: transparent;
+  border: none;
+  font-family: var(--font-tech);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tech-tab-button:hover {
+  color: white;
+}
+
+.tech-tab-button.active {
+  color: white;
+}
+
+.tech-tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--amber-glow);
+}
+
+/* Contenu des onglets */
+.tech-tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.tech-tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Spécifications techniques */
+.tech-specs-table {
+  width: 100%;
+  border-spacing: 0;
+  margin-bottom: 1.5rem;
+}
+
+.tech-specs-table tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tech-specs-table td, .tech-specs-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.tech-specs-table th {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  width: 40%;
+}
+
+.tech-specs-table td {
+  font-family: var(--font-mono);
+  font-weight: 400;
+}
+
+/* Véhicules compatibles */
+.compatibility-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.compatibility-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.compatibility-item-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Documents et notices */
+.document-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  color: white;
+}
+
+.document-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.document-icon {
+  color: var(--amber-glow);
+}
+
+.document-name {
+  flex: 1;
+}
+
+.document-size {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* Actions produit */
+.tech-product-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.tech-btn-primary {
+  background-color: var(--amber-glow);
+  color: black;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-family: var(--font-tech);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tech-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.tech-btn-secondary {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-family: var(--font-tech);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tech-btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .tech-tabs {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  
+  .compatibility-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .tech-product-actions {
+    flex-direction: column;
+  }
+  
+  .tech-btn-primary, .tech-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Animation réduite */
+@media (prefers-reduced-motion: reduce) {
+  .tech-tab-content {
+    animation: none;
+  }
+  
+  .tech-btn-primary:hover,
+  .tech-btn-secondary:hover {
+    transform: none;
+  }
+}
