@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond du favicon -->
+  <circle cx="32" cy="32" r="30" fill="#1A3A5E"/>
+  
+  <!-- Silhouette de voiture simplifiée -->
+  <path d="M18 38 L22 24 L42 24 L46 38 L48 40 L48 46 L44 46 L44 44 L20 44 L20 46 L16 46 L16 40 Z" 
+        fill="#A0AAB4" stroke="#A0AAB4" stroke-width="1"/>
+  
+  <!-- Phares -->
+  <rect x="22" y="32" width="4" height="2" fill="#F57C00" rx="1"/> 
+  <rect x="38" y="32" width="4" height="2" fill="#F57C00" rx="1"/>
+  
+  <!-- Roues simplifiées -->
+  <circle cx="24" cy="44" r="3" fill="#1A3A5E" stroke="#A0AAB4" stroke-width="1"/>
+  <circle cx="40" cy="44" r="3" fill="#1A3A5E" stroke="#A0AAB4" stroke-width="1"/>
+  
+  <!-- Engrenage simplifié -->
+  <path d="M32 16 L34 20 L39 18 L37 24 L42 26 L37 30 L42 34 L37 36 L39 42 L34 40 L32 44 L30 40 L25 42 L27 36 L22 34 L27 30 L22 26 L27 24 L25 18 L30 20 Z" 
+        fill="#F57C00" stroke="#1A3A5E" stroke-width="0.75"/>
+  <circle cx="32" cy="30" r="6" fill="#1A3A5E" stroke="#F57C00" stroke-width="0.75"/>
+  <circle cx="32" cy="30" r="3" fill="#A0AAB4"/>
+  
+  <!-- Initiales "APE" stylisées au centre de l'engrenage (optionnel) -->
+  <text x="32" y="31" font-family="Arial, sans-serif" font-size="3" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">APE</text>
+</svg>

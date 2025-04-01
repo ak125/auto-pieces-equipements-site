@@ -1,0 +1,98 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Version verticale du logo -->
+  <g id="logo-vertical" transform="translate(50, 50)">
+    <!-- Fond de l'icône - cercle bleu marine -->
+    <circle cx="150" cy="70" r="65" fill="#1A3A5E"/>
+    
+    <!-- Silhouette de voiture stylisée -->
+    <path d="M110 85 L120 55 L180 55 L190 85 L195 90 L195 105 L185 105 L185 100 L115 100 L115 105 L105 105 L105 90 Z" 
+          fill="#A0AAB4" stroke="#A0AAB4" stroke-width="2"/>
+    
+    <!-- Phares et détails de la voiture -->
+    <rect x="120" y="70" width="10" height="5" fill="#F57C00" rx="2"/> 
+    <rect x="170" y="70" width="10" height="5" fill="#F57C00" rx="2"/>
+    <rect x="130" y="90" width="40" height="3" fill="#1A3A5E"/>
+    
+    <!-- Roues -->
+    <circle cx="125" cy="100" r="8" fill="#1A3A5E" stroke="#A0AAB4" stroke-width="2"/>
+    <circle cx="175" cy="100" r="8" fill="#1A3A5E" stroke="#A0AAB4" stroke-width="2"/>
+    
+    <!-- Engrenage principal avec effet "A" stylisé -->
+    <path d="M150 35 L155 45 L170 40 L165 55 L180 60 L165 70 L180 80 L165 85 L170 100 L155 95 L150 105 L145 95 L130 100 L135 85 L120 80 L135 70 L120 60 L135 55 L130 40 L145 45 Z" 
+          fill="#F57C00" stroke="#1A3A5E" stroke-width="1.5"/>
+    <circle cx="150" cy="70" r="15" fill="#1A3A5E" stroke="#F57C00" stroke-width="1.5"/>
+    <circle cx="150" cy="70" r="8" fill="#A0AAB4"/>
+    
+    <!-- Texte du logo vertical -->
+    <text x="150" y="150" font-family="Montserrat, Roboto, sans-serif" font-size="24" font-weight="bold" fill="#1A3A5E" text-anchor="middle">AUTO PIÈCES</text>
+    <text x="150" y="180" font-family="Montserrat, Roboto, sans-serif" font-size="24" font-weight="bold" fill="#1A3A5E" text-anchor="middle">ÉQUIPEMENTS</text>
+  </g>
+  
+  <!-- Version horizontale du logo (plus petite, sur la droite) -->
+  <g id="logo-horizontal" transform="translate(280, 230) scale(0.3)">
+    <!-- Cercle de fond -->
+    <circle cx="150" cy="70" r="65" fill="#1A3A5E"/>
+    
+    <!-- Silhouette de voiture -->
+    <path d="M110 85 L120 55 L180 55 L190 85 L195 90 L195 105 L185 105 L185 100 L115 100 L115 105 L105 105 L105 90 Z" 
+          fill="#A0AAB4" stroke="#A0AAB4" stroke-width="2"/>
+    
+    <!-- Phares et détails -->
+    <rect x="120" y="70" width="10" height="5" fill="#F57C00" rx="2"/> 
+    <rect x="170" y="70" width="10" height="5" fill="#F57C00" rx="2"/>
+    <rect x="130" y="90" width="40" height="3" fill="#1A3A5E"/>
+    
+    <!-- Roues -->
+    <circle cx="125" cy="100" r="8" fill="#1A3A5E" stroke="#A0AAB4" stroke-width="2"/>
+    <circle cx="175" cy="100" r="8" fill="#1A3A5E" stroke="#A0AAB4" stroke-width="2"/>
+    
+    <!-- Engrenage principal -->
+    <path d="M150 35 L155 45 L170 40 L165 55 L180 60 L165 70 L180 80 L165 85 L170 100 L155 95 L150 105 L145 95 L130 100 L135 85 L120 80 L135 70 L120 60 L135 55 L130 40 L145 45 Z" 
+          fill="#F57C00" stroke="#1A3A5E" stroke-width="1.5"/>
+    <circle cx="150" cy="70" r="15" fill="#1A3A5E" stroke="#F57C00" stroke-width="1.5"/>
+    <circle cx="150" cy="70" r="8" fill="#A0AAB4"/>
+    
+    <!-- Texte horizontal -->
+    <text x="280" y="80" font-family="Montserrat, Roboto, sans-serif" font-size="24" font-weight="bold" fill="#1A3A5E">AUTO PIÈCES ÉQUIPEMENTS</text>
+  </g>
+  
+  <!-- Version monochrome pour impression (en bas à gauche) -->
+  <g id="logo-monochrome" transform="translate(80, 230) scale(0.3)">
+    <circle cx="150" cy="70" r="65" fill="#333333"/>
+    
+    <path d="M110 85 L120 55 L180 55 L190 85 L195 90 L195 105 L185 105 L185 100 L115 100 L115 105 L105 105 L105 90 Z" 
+          fill="#777777" stroke="#777777" stroke-width="2"/>
+    
+    <rect x="120" y="70" width="10" height="5" fill="#FFFFFF" rx="2"/> 
+    <rect x="170" y="70" width="10" height="5" fill="#FFFFFF" rx="2"/>
+    <rect x="130" y="90" width="40" height="3" fill="#333333"/>
+    
+    <circle cx="125" cy="100" r="8" fill="#333333" stroke="#777777" stroke-width="2"/>
+    <circle cx="175" cy="100" r="8" fill="#333333" stroke="#777777" stroke-width="2"/>
+    
+    <path d="M150 35 L155 45 L170 40 L165 55 L180 60 L165 70 L180 80 L165 85 L170 100 L155 95 L150 105 L145 95 L130 100 L135 85 L120 80 L135 70 L120 60 L135 55 L130 40 L145 45 Z" 
+          fill="#FFFFFF" stroke="#333333" stroke-width="1.5"/>
+    <circle cx="150" cy="70" r="15" fill="#333333" stroke="#FFFFFF" stroke-width="1.5"/>
+    <circle cx="150" cy="70" r="8" fill="#777777"/>
+    
+    <text x="150" y="150" font-family="Montserrat, Roboto, sans-serif" font-size="24" font-weight="bold" fill="#333333" text-anchor="middle">AUTO PIÈCES</text>
+    <text x="150" y="180" font-family="Montserrat, Roboto, sans-serif" font-size="24" font-weight="bold" fill="#333333" text-anchor="middle">ÉQUIPEMENTS</text>
+  </g>
+  
+  <!-- Légendes pour indiquer les variantes -->
+  <text x="150" y="20" font-family="Arial, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Version principale (verticale)</text>
+  <text x="335" y="200" font-family="Arial, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Version horizontale</text>
+  <text x="120" y="200" font-family="Arial, sans-serif" font-size="12" fill="#555555" text-anchor="middle">Version monochrome</text>
+  
+  <!-- Palette de couleurs pour référence -->
+  <g transform="translate(20, 280)">
+    <rect x="0" y="0" width="60" height="15" fill="#1A3A5E" />
+    <text x="65" y="12" font-family="Arial, sans-serif" font-size="10" fill="#555555">#1A3A5E - Bleu marine</text>
+    
+    <rect x="160" y="0" width="60" height="15" fill="#A0AAB4" />
+    <text x="225" y="12" font-family="Arial, sans-serif" font-size="10" fill="#555555">#A0AAB4 - Gris argenté</text>
+    
+    <rect x="320" y="0" width="60" height="15" fill="#F57C00" />
+    <text x="385" y="12" font-family="Arial, sans-serif" font-size="10" fill="#555555">#F57C00 - Orange</text>
+  </g>
+</svg>
