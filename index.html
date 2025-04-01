@@ -37,6 +37,12 @@
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   
+  <!-- Ajout des polices techniques -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  
   <!-- Ressources -->
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="icon" href="logo.png" type="image/png">
@@ -157,6 +163,10 @@
   <link rel="stylesheet" href="styles/modern-features.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="styles/modern-features.css"></noscript>
   
+  <!-- Styles techniques -->
+  <link rel="stylesheet" href="styles/tech-fonts.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles/tech-fonts.css"></noscript>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -175,7 +185,9 @@
           fontFamily: {
             sans: ['Source Sans 3', 'system-ui', 'sans-serif'],
             heading: ['Oswald', 'Impact', 'sans-serif'],
-            display: ['Playfair Display', 'serif']
+            display: ['Playfair Display', 'serif'],
+            tech: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
           },
           boxShadow: {
             'soft': '0 4px 6px rgba(0, 0, 0, 0.05)',
@@ -210,7 +222,7 @@
         <a href="/" class="flex items-center gap-3" aria-label="Accueil Auto Pièces Équipements">
           <img src="logo.webp" srcset="logo.webp 1x, logo@2x.webp 2x" alt="Logo Auto Pièces Équipements" width="40" height="40" 
                onerror="this.onerror=null; this.src='logo.png'; this.srcset='logo.png 1x, logo@2x.png 2x';">
-          <span class="font-bold text-lg hidden sm:inline">Auto Pièces Équipements</span>
+          <span class="font-bold text-lg hidden sm:inline font-tech tracking-wider">GARAGE DIGITALE</span>
         </a>
         
         <ul class="hidden md:flex space-x-6">
@@ -343,8 +355,16 @@
   <!-- Section Produits -->
   <section id="meilleures-pieces" class="py-16 bg-gray-50 dark:bg-gray-800 px-4">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-12 title-accent centered">Nos meilleures pièces</h2>
+      <h2 class="text-3xl font-bold mb-12 title-accent centered font-tech">Nos meilleures pièces</h2>
       <!-- Contenu des produits à ajouter ici -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- ... existing product cards ... -->
+        <!-- Ajouter pour chaque produit: -->
+        <span class="font-mono text-sm tracking-wider text-gray-600 dark:text-gray-400">
+          Réf: KTD-5591-XR
+        </span>
+        <!-- ... existing code ... -->
+      </div>
     </div>
   </section>
 

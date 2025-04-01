@@ -1,0 +1,78 @@
+/**
+ * Styles des polices techniques
+ * Auto Pièces Équipements - Version futuriste
+ */
+
+/* Variables pour les polices techniques */
+:root {
+  --font-tech: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Classe pour la police technique principale */
+.font-tech {
+  font-family: var(--font-tech);
+  letter-spacing: 0.02em;
+}
+
+/* Classe pour la police monospace technique */
+.font-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+/* Améliorations spécifiques pour les éléments techniques */
+.tech-heading {
+  font-family: var(--font-tech);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.tech-data {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  background-color: rgba(194, 31, 31, 0.05);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  display: inline-block;
+}
+
+/* Surcharges pour les références de produits */
+.product-card .product-ref {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Style technique pour les badges */
+.tech-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-left: 2px solid var(--primary);
+}
+
+/* Support du mode sombre */
+.dark .tech-data {
+  background-color: rgba(194, 31, 31, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .tech-heading {
+    font-size: 1.5rem;
+  }
+}
