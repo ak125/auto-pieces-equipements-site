@@ -331,3 +331,99 @@ select:focus-visible {
     transform: none !important;
   }
 }
+
+/* Cartes */
+.card {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--neutral-900);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* Champ formulaire amélioré */
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: var(--neutral-700);
+  transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+  pointer-events: none;
+  transform-origin: left top;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+  transform: translateY(-1.25rem) scale(0.85);
+  color: var(--primary);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--neutral-300);
+  border-radius: 0.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--focus-ring);
+}
