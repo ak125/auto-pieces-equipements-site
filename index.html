@@ -122,6 +122,10 @@
   <link rel="stylesheet" href="styles/avis.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="styles/avis.css"></noscript>
   
+  <!-- Fonctionnalités modernes -->
+  <link rel="stylesheet" href="styles/modern-features.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles/modern-features.css"></noscript>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -202,7 +206,7 @@
   </header>
 
   <!-- Hero Section avec H1 unique -->
-  <section class="hero-gradient text-white py-20 px-4" role="banner">
+  <section class="hero-gradient header-animated text-white py-20 px-4" role="banner">
     <div class="max-w-6xl mx-auto text-center staggered-animation">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-delay-100">
         Votre expert en pièces auto<br>
@@ -219,6 +223,46 @@
           🔍 Voir le catalogue
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- Section de recherche diagnostique -->
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <div class="diagnostic-search">
+      <input type="text" placeholder="Diagnostic rapide : moteur, freinage, électronique..." aria-label="Recherche de diagnostic">
+      <span class="icon-wrench">
+        <i data-lucide="wrench" class="w-5 h-5"></i>
+      </span>
+      <div class="search-dropdown"></div>
+    </div>
+    
+    <!-- Badge véhicule dynamique -->
+    <div class="text-center my-6">
+      <span class="vehicle-badge" style="display: none;">
+        <i data-lucide="check" class="w-4 h-4 mr-1"></i>
+        <span>Adapté à votre <span class="vehicle-name">véhicule</span></span>
+      </span>
+    </div>
+  </section>
+
+  <!-- Ajouter avant la section des produits -->
+  <section class="max-w-7xl mx-auto px-4 py-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm mb-6">
+    <h2 class="text-2xl font-bold mb-4 text-center">Trouvez les pièces adaptées à vos compétences</h2>
+    
+    <!-- Jauge de technicité -->
+    <div class="technicality-gauge" data-level="3">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="label">Technicité : Chargement...</div>
+    </div>
+    
+    <!-- Boutons d'expertise -->
+    <div class="expertise-buttons">
+      <button class="btn-diy active">DIY Friendly</button>
+      <button class="btn-pro">Pro Only</button>
     </div>
   </section>
 
@@ -321,6 +365,23 @@
       </div>
     </div>
   </footer>
+
+  <!-- Modifier votre CTA final pour inclure les nouvelles fonctionnalités -->
+  <section class="py-16 bg-dark text-white text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4">Prêt à monter en compétences ?</h2>
+      <p class="mb-8 text-xl">Nos experts vous accompagnent à chaque étape</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="cta-workshop">
+          📦 Composer mon kit atelier
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+        <a href="#devis" class="border-2 border-white px-8 py-4 rounded-full hover:bg-white/10 transition">
+          ✉️ Nous écrire
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Navigation mobile -->
   <nav class="md:hidden fixed bottom-0 w-full bg-white dark:bg-gray-800 shadow-lg z-50">
