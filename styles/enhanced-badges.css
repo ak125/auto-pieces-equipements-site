@@ -1,0 +1,99 @@
+/**
+ * Styles pour badges améliorés
+ * Auto Pièces Équipements
+ */
+
+/* Badge de base */
+.enhanced-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  color: white;
+  transition: transform 0.3s var(--animation-curve, cubic-bezier(0.4, 0, 0.2, 1)), 
+              opacity 0.3s var(--animation-curve, cubic-bezier(0.4, 0, 0.2, 1)),
+              box-shadow 0.3s var(--animation-curve, cubic-bezier(0.4, 0, 0.2, 1));
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Animation d'entrée au chargement */
+.enhanced-badge.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Animation de pulsation */
+.enhanced-badge.pulse {
+  animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Icône du badge */
+.enhanced-badge .badge-icon {
+  font-size: 1.25rem;
+}
+
+/* Texte du badge */
+.enhanced-badge .badge-text {
+  font-family: var(--font-tech, 'Space Grotesk', sans-serif);
+}
+
+/* Variantes de couleurs */
+.enhanced-badge.primary {
+  background-color: var(--primary, #c21f1f);
+  box-shadow: 0 0 10px rgba(194, 31, 31, 0.25);
+}
+
+.enhanced-badge.blue {
+  background-color: var(--neon-blue, #4361EE);
+  box-shadow: 0 0 10px rgba(67, 97, 238, 0.25);
+}
+
+.enhanced-badge.teal {
+  background-color: var(--neon-teal, #4CC9F0);
+  box-shadow: 0 0 10px rgba(76, 201, 240, 0.25);
+}
+
+.enhanced-badge.amber {
+  background-color: var(--amber-glow, #F59E0B);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.enhanced-badge.red {
+  background-color: var(--digital-red, #EF4444);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+}
+
+.enhanced-badge.green {
+  background-color: var(--mecha-green, #10B981);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+}
+
+/* Effet au survol */
+.enhanced-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Support mode réduit de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .enhanced-badge {
+    transition: none;
+  }
+  
+  .enhanced-badge.pulse {
+    animation: none;
+  }
+  
+  .enhanced-badge:hover {
+    transform: none;
+  }
+}
