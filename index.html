@@ -32,6 +32,8 @@
   <!-- Préconnexion et préchargement optimisés -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Source+Sans+3:wght@400;500;600&display=swap">
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   
@@ -62,11 +64,48 @@
       --danger: #ef4444;
       --focus-ring: 0 0 0 3px rgba(194, 31, 31, 0.4);
       --animation-curve: cubic-bezier(0.4, 0, 0.2, 1);
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+      --font-heading: 'Oswald', Impact, sans-serif;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
     }
 
     [data-theme="dark"] {
       --primary-light: #2c0a0a;
       --secondary-light: #3a3000;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      line-height: var(--line-height-normal);
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      line-height: var(--line-height-tight);
+      letter-spacing: -0.02em;
+    }
+    
+    .title-accent {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .title-accent::after {
+      content: "";
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 3rem;
+      height: 0.25rem;
+      background-color: var(--primary);
+      border-radius: 0.125rem;
+    }
+    
+    .title-accent.centered::after {
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0 }
@@ -88,33 +127,6 @@
     /* Autres styles critiques pour le premier affichage */
     .card-hover {
       transition: transform 0.3s var(--animation-curve), box-shadow 0.3s var(--animation-curve);
-    }
-  </style>
-  
-  <!-- Polices avec fallback local -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-  </noscript>
-  <style>
-    /* Fallback de police si Inter ne se charge pas */
-    @font-face {
-      font-family: 'Inter Fallback';
-      src: local('Segoe UI'), local('Helvetica'), local('Arial'), local('sans-serif');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Inter Fallback';
-      src: local('Segoe UI Bold'), local('Helvetica Bold'), local('Arial Bold'), local('sans-serif');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-    body {
-      font-family: 'Inter', 'Inter Fallback', sans-serif;
     }
   </style>
   
@@ -161,7 +173,8 @@
             error: '#ef4444'
           },
           fontFamily: {
-            sans: ['"Segoe UI"', 'Inter', 'sans-serif'],
+            sans: ['Source Sans 3', 'system-ui', 'sans-serif'],
+            heading: ['Oswald', 'Impact', 'sans-serif'],
             display: ['Playfair Display', 'serif']
           },
           boxShadow: {
@@ -170,7 +183,7 @@
           }
         }
       }
-    }
+    };
   </script>
   
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" defer></script>
