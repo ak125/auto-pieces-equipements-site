@@ -545,8 +545,14 @@
                 </div>
             </div>
             
+            <!-- Indicateur de chargement -->
+            <div id="reviews-loading" class="text-center py-8">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                <p class="text-gray-500 mt-2">Chargement des avis...</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Avis 1 -->
+                <!-- Avis existants -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
@@ -578,7 +584,6 @@
                     </div>
                 </div>
                 
-                <!-- Avis 2 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
@@ -610,7 +615,6 @@
                     </div>
                 </div>
                 
-                <!-- Avis 3 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
@@ -642,7 +646,6 @@
                     </div>
                 </div>
 
-                <!-- Avis 4 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
@@ -664,7 +667,6 @@
                     </div>
                 </div>
                 
-                <!-- Avis 5 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
@@ -686,7 +688,6 @@
                     </div>
                 </div>
                 
-                <!-- Avis 6 -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
@@ -873,6 +874,7 @@
     <script type="module">
         import { initTechScan } from './scripts/modules/scan-effect.js';
         import { initBadges } from './scripts/modules/badges.js';
+        import { initReviewsCarousel } from './scripts/modules/reviews-carousel.js';
         
         document.addEventListener('DOMContentLoaded', () => {
             // Initialiser les badges
@@ -927,6 +929,22 @@
                         alert('Veuillez remplir tous les champs du formulaire pour accéder à l\'assistance technique.');
                     }
                 });
+            }
+            
+            // Lazy-loading pour le carrousel d'avis
+            const reviewsSection = document.getElementById('avis');
+            if (reviewsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            initReviewsCarousel();
+                            // Arrêter d'observer une fois chargé
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 }); // Charge quand 10% de la section est visible
+                
+                observer.observe(reviewsSection);
             }
         });
     </script>
