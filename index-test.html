@@ -851,6 +851,15 @@
         </div>
     </section>
 
+    <!-- WhatsApp Button -->
+    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50 hidden opacity-0 scale-90 transform transition-all duration-300">
+      <a href="https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto" target="_blank"
+         class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full shadow-lg flex items-center space-x-2 transition">
+        <i class="fab fa-whatsapp text-xl"></i>
+        <span>Discuter sur WhatsApp</span>
+      </a>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-dark text-white pt-12 pb-6">
         <div class="container mx-auto px-4">
@@ -866,22 +875,18 @@
                             <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
                             <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <h3 class="text-xl font-bold">Auto Pièces <span class="text-blue-500">Équipements</span></h3>
+                        <span class="text-xl font-bold">Auto Pièces <span class="text-blue-500">Équipements</span></span>
                     </div>
-                    <p class="text-gray-400 mb-4">Votre partenaire technologique pour toutes vos pièces automobiles depuis 2016.</p>
+                    <p class="text-gray-400">Partenaire technologique pour toutes vos pièces automobiles depuis 2016.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-twitter"></i>
                         </a>
                         <a href="#" class="text-gray-400 hover:text-white transition">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
-                
                 <div>
                     <h4 class="font-bold text-lg mb-4">Plateforme digitale</h4>
                     <ul class="space-y-2">
@@ -892,7 +897,6 @@
                         <li><a href="/dashboard.html" class="text-gray-400 hover:text-white transition">Espace client</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h4 class="font-bold text-lg mb-4">Technologies</h4>
                     <ul class="space-y-2">
@@ -903,7 +907,6 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Application mobile</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h4 class="font-bold text-lg mb-4">Informations légales</h4>
                     <ul class="space-y-2">
@@ -915,7 +918,6 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 text-sm mb-4 md:mb-0 font-mono">&copy; 2023 Auto Pièces Équipements. Tous droits réservés.</p>
                 <div class="flex space-x-6">
@@ -950,7 +952,7 @@
                 const menu = document.getElementById('mobile-menu');
                 menu.classList.toggle('hidden');
             });
-    
+            
             // Défilement fluide pour les ancres
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -967,13 +969,12 @@
                     }
                 });
             });
-    
+            
             // Validation simple du formulaire
             const contactForm = document.querySelector('form');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    
                     const name = document.getElementById('name').value;
                     const email = document.getElementById('email').value;
                     const vehicle = document.getElementById('vehicle').value;
@@ -1003,7 +1004,7 @@
                 
                 observer.observe(reviewsSection);
             }
-
+            
             // Validation du formulaire de RDV
             const rdvForm = document.getElementById('rdv-form');
             if (rdvForm) {
@@ -1020,7 +1021,7 @@
                         this.value = '';
                     }
                 });
-
+                
                 // Définir les plages horaires acceptables (9h-18h)
                 const timeInput = document.getElementById('rdv-time');
                 timeInput.setAttribute('min', '09:00');
@@ -1034,7 +1035,7 @@
                     
                     // Reformater selon le format français (XX XX XX XX XX)
                     if (phoneNumber.length > 0) {
-                        phoneNumber = phoneNumber.match(new RegExp('.{1,2}', 'g')).join(' ');
+                        phoneNumber = phoneNumber.match(new RegExp('.{1,2}', 'g'))?.join(' ') || '';
                     }
                     
                     // Mettre à jour la valeur avec le format
@@ -1044,7 +1045,7 @@
                 // Gestion de la soumission du formulaire avec async/await
                 rdvForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
-
+                    
                     const data = {
                         name: document.getElementById('rdv-name').value,
                         phone: document.getElementById('rdv-phone').value,
@@ -1052,16 +1053,16 @@
                         time: document.getElementById('rdv-time').value,
                         message: document.getElementById('rdv-msg').value,
                     };
-
+                    
                     if (data.name && data.phone && data.date && data.time) {
                         // Afficher confirmation et réinitialiser formulaire
                         alert("✅ Merci ! Un conseiller vous rappellera à l'horaire souhaité.");
                         rdvForm.reset();
-
+                        
                         // Afficher message de confirmation visuel
                         document.getElementById('rdv-confirmation').classList.remove('hidden');
                         rdvForm.classList.add('hidden');
-
+                        
                         // Optionnel : envoyer vers n8n / NestJS :
                         // await fetch('https://n8n.example.com/webhook/prise-rdv', {
                         //   method: 'POST',
@@ -1074,6 +1075,57 @@
                         alert('Veuillez remplir tous les champs obligatoires.');
                     }
                 });
+            }
+            
+            // Gestion du bouton WhatsApp
+            const whatsappButton = document.getElementById('whatsapp-button');
+            if (whatsappButton) {
+                // Vérification des horaires d'ouverture
+                const now = new Date();
+                const day = now.getDay(); // 0 = dimanche, 6 = samedi
+                const hour = now.getHours();
+                const minute = now.getMinutes();
+                
+                const isOpen = (
+                    day >= 1 && day <= 6 && // Lundi à Samedi
+                    (
+                        (hour === 9 && minute >= 0) ||
+                        (hour > 9 && hour < 18) ||
+                        (hour === 18 && minute <= 30)
+                    )
+                );
+                
+                if (isOpen) {
+                    // Afficher le bouton avec animation
+                    whatsappButton.classList.remove('hidden');
+                    // Petit délai pour que la transition fonctionne
+                    setTimeout(() => {
+                        whatsappButton.classList.remove('opacity-0', 'scale-90');
+                    }, 50);
+                } else {
+                    // En dehors des heures d'ouverture, on peut personnaliser le message
+                    const whatsappLink = whatsappButton.querySelector('a');
+                    if (whatsappLink) {
+                        whatsappLink.setAttribute('href', 
+                            'https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto.%20Merci%20de%20me%20recontacter%20pendant%20vos%20horaires%20d%27ouverture.');
+                        
+                        // Optionnel: indiquer que c'est fermé dans le texte du bouton
+                        const buttonText = whatsappLink.querySelector('span');
+                        if (buttonText) {
+                            buttonText.textContent = 'Laisser un message';
+                        }
+                    }
+                    
+                    // On peut aussi décider d'afficher quand même le bouton
+                    // Si vous souhaitez que le bouton reste totalement invisible en dehors des heures d'ouverture,
+                    // supprimez ou commentez les lignes ci-dessous
+                    setTimeout(() => {
+                        whatsappButton.classList.remove('hidden');
+                        setTimeout(() => {
+                            whatsappButton.classList.remove('opacity-0', 'scale-90');
+                        }, 50);
+                    }, 5000);
+                }
             }
         });
     </script>
