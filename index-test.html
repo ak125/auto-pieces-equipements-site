@@ -248,79 +248,203 @@
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4">Nos produits phares</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">Découvrez notre catalogue connecté de pièces automobiles haute performance.</p>
+                
+                <!-- Filtres de produits -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8 mb-10">
+                    <button class="bg-primary text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-600 transition active-filter">Tous</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Freinage</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Moteur</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Électricité</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Suspension</button>
+                </div>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Product 1 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <!-- Product 1 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1470&q=80" alt="Plaquettes de frein" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1470&q=80" alt="Plaquettes de frein" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
                         <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded font-mono">NOUVEAU</span>
+                        
+                        <!-- Actions rapides superposées (nouveau) -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Plaquettes de frein carbone</h3>
                         <p class="text-gray-400 text-sm mb-3 font-mono">Réf: BRK-2023-C</p>
+                        
+                        <!-- Indicateur de compatibilité (nouveau) -->
+                        <div class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-check mr-1"></i> Compatible avec votre véhicule
+                        </div>
+                        
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">49,99 €</span>
-                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded text-sm transition">Visualiser en 3D</button>
+                            <div>
+                                <span class="font-bold text-lg">49,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <!-- Product 2 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=1528&q=80" alt="Batterie" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=1528&q=80" alt="Batterie" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
+                        
+                        <!-- Badge populaire -->
+                        <span class="absolute top-2 right-2 bg-purple-600 text-white text-xs px-2 py-1 rounded font-mono">TOP VENTES</span>
+                        
+                        <!-- Actions rapides superposées -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Batterie connectée 12V</h3>
                         <p class="text-gray-400 text-sm mb-3 font-mono">Réf: BAT-IOT-70</p>
+                        
+                        <!-- Indicateur de compatibilité -->
+                        <div class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-check mr-1"></i> Compatible avec votre véhicule
+                        </div>
+                        
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">89,99 €</span>
-                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded text-sm transition">Visualiser en 3D</button>
+                            <div>
+                                <span class="font-bold text-lg">89,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 3 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <!-- Product 3 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?auto=format&fit=crop&w=1470&q=80" alt="Filtre à air" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?auto=format&fit=crop&w=1470&q=80" alt="Filtre à air" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
                         <span class="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded font-mono">PROMO</span>
+                        
+                        <!-- Actions rapides superposées -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Filtre à air haute perf</h3>
                         <p class="text-gray-400 text-sm mb-3 font-mono">Réf: AIR-COMP-X3</p>
+                        
+                        <!-- Indicateur de compatibilité -->
+                        <div class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-check mr-1"></i> Compatible avec votre véhicule
+                        </div>
+                        
                         <div class="flex justify-between items-center">
                             <div>
                                 <span class="text-gray-400 line-through mr-2">24,99 €</span>
                                 <span class="font-bold text-lg text-blue-500">19,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
                             </div>
-                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded text-sm transition">Visualiser en 3D</button>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 4 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <!-- Product 4 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1554744512-d6c603f27c54?auto=format&fit=crop&w=1470&q=80" alt="Ampoules" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1554744512-d6c603f27c54?auto=format&fit=crop&w=1470&q=80" alt="Ampoules" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
+                        
+                        <!-- Badge stock limité -->
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded font-mono">STOCK LIMITÉ</span>
+                        
+                        <!-- Actions rapides superposées -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Kit LED Ultra H7</h3>
                         <p class="text-gray-400 text-sm mb-3 font-mono">Réf: LED-9000K-H7</p>
+                        
+                        <!-- Indicateur de compatibilité différent (alerte) -->
+                        <div class="bg-yellow-900/30 text-yellow-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-exclamation-triangle mr-1"></i> Vérification de compatibilité nécessaire
+                        </div>
+                        
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">34,99 €</span>
-                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded text-sm transition">Visualiser en 3D</button>
+                            <div>
+                                <span class="font-bold text-lg">34,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-10">
-                <button class="border-2 border-blue-500 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-medium transition">
-                    Explorer le catalogue digital
+            <!-- Voir plus de produits -->
+            <div class="text-center mt-10 space-y-4">
+                <button class="border-2 border-blue-500 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-medium transition flex items-center justify-center mx-auto">
+                    <i class="fas fa-th-large mr-2"></i> Explorer le catalogue digital
                 </button>
+                
+                <!-- Pagination simple -->
+                <div class="flex justify-center items-center space-x-2 text-sm">
+                    <span class="text-blue-400">Page 1</span>
+                    <span class="text-gray-500">sur 8</span>
+                    <div class="flex space-x-1 ml-4">
+                        <button class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded hover:bg-gray-700 transition disabled opacity-50">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded hover:bg-gray-700 transition">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
