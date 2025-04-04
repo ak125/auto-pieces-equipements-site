@@ -1,229 +1,345 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place ID Finder - Administration Auto Pièces Équipements</title>
+    <title>Outil de recherche Place ID - Auto Pièces Équipements</title>
     <link rel="icon" href="../logo.png" type="image/png">
+    <!-- Préchargement des ressources critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0070f3',
+                        'primary-hover': '#005bb5',
+                        secondary: '#ff6b00',
+                        tertiary: '#00c896',
+                        dark: '#111827',
+                        darker: '#0a101f',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    }
+                }
+            }
+        }
+    </script>
     
-    <!-- Styles -->
+    <!-- Polices Google optimisées pour le thème technique -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome pour les icônes techniques -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: "Segoe UI", Inter, sans-serif;
-            background-color: #f9fafb;
+        .font-tech {
+            font-family: 'Space Grotesk', sans-serif;
         }
-
-        header {
-            background-color: #c21f1f;
-            color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        header a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .container {
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
         #map {
             height: 600px;
-            width: 100%;
             border-radius: 8px;
             margin-top: 1rem;
         }
-
-        .controls {
-            background-color: #fff;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
-            margin: 10px;
-            width: 300px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            position: absolute;
-            z-index: 1;
-            top: 80px;
-            left: 10px;
-        }
-
-        #infowindow-content {
-            padding: 10px;
-            background: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
-
-        .title {
-            font-weight: bold;
-            color: #c21f1f;
-        }
-
-        .instruction {
-            margin-bottom: 1rem;
-        }
-
-        .result-card {
-            display: none;
-            margin-top: 1rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 1rem;
-            background-color: #f0f4f8;
+        }
+        body {
+            margin: 0;
+        }
+        .result-card {
+            background-color: white;
             border-radius: 8px;
-            border-left: 4px solid #c21f1f;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            display: none;
         }
-
-        #copy-button {
-            background-color: #c21f1f;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 0.5rem;
-        }
-
-        #copy-button:hover {
-            background-color: #9e1919;
-        }
-
         .copy-success {
             color: #059669;
             margin-left: 10px;
             display: none;
         }
+        .instruction {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
     </style>
+    <!-- Données structurées pour SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoPartsStore",
+      "name": "Auto Pièces Équipements",
+      "image": "https://autopieces-equipements.fr/logo.svg",
+      "url": "https://autopieces-equipements.fr",
+      "telephone": "+33148479627",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "184 Av. Aristide Briand",
+        "addressLocality": "Les Pavillons-sous-Bois",
+        "postalCode": "93320",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.9069,
+        "longitude": 2.5059
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "18:30"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "4924"
+      }
+    }
+    </script>
 </head>
-<body>
-    <header>
-        <h1>Administration - Auto Pièces Équipements</h1>
-        <a href="../index.html">Retour au site</a>
+<body class="font-tech bg-gray-100 dark:bg-darker dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-darker dark:bg-black text-white sticky top-0 z-40 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Logo SVG -->
+                <a href="/" class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 200 200" fill="none" class="mr-3">
+                        <!-- Fond circulaire -->
+                        <circle cx="100" cy="100" r="90" fill="#001B4D" />
+                        <circle cx="100" cy="100" r="85" fill="#0A1929" />
+                        
+                        <!-- Élément d'engrenage -->
+                        <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
+                        <!-- Contour des éléments intérieurs -->
+                        <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
+                        
+                        <!-- Lettres stylisées APE -->
+                        <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Élément graphique automobile -->
+                        <circle cx="100" cy="100" r="12" fill="#00CC66" fill-opacity="0.2" stroke="#00CC66" stroke-width="1.5"/>
+                        <circle cx="100" cy="100" r="6" fill="#00CC66" fill-opacity="0.6"/>
+                        <circle cx="100" cy="100" r="2" fill="#FFFFFF"/>
+                        
+                        <!-- Rayons lumineux -->
+                        <path d="M100 70V80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M100 120V130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M70 100H80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M120 100H130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M82 82L89 89" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M111 111L118 118" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M82 118L89 111" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M111 89L118 82" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="text-xl font-bold">Auto Pièces <span class="text-blue-500">Équipements</span></span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="card">
-            <h2>Outil de recherche de Place ID</h2>
-            <p class="instruction">
-                Cet outil vous permet de trouver facilement l'identifiant Google Place ID d'un emplacement. 
-                Utilisez le champ de recherche sur la carte pour trouver un lieu, puis copiez le Place ID affiché.
-            </p>
-            <p class="instruction">
-                <strong>Place ID actuel:</strong> ChIJVVXZlqAT5kcRICTpgHlqx9A (Auto Pièces Équipements)
-            </p>
-        </div>
-
+    <!-- Contenu principal -->
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-4">Outil de recherche de Place ID</h2>
+        <p class="instruction">
+            Cet outil vous permet de trouver facilement l'identifiant Google Place ID d'un emplacement. 
+            Entrez une adresse ou le nom d'un établissement, cherchez sur la carte pour trouver un lieu, puis copiez le Place ID affiché.
+        </p>
+        
+        <p class="mb-4"><strong>Place ID actuel:</strong> ChIJVVXZlqAT5kcRICTpgHlqx9A (Auto Pièces Équipements)</p>
+        
         <!-- Champ de recherche -->
-        <input
-            id="pac-input"
-            class="controls"
-            type="text"
-            placeholder="Entrez une adresse ou un nom d'établissement"
-        />
+        <div class="mb-4">
+            <input id="pac-input" class="shadow border rounded py-2 px-3 w-full md:w-1/2 text-gray-700" 
+                   type="text" placeholder="Saisissez une adresse ou un nom d'établissement">
+        </div>
         
         <!-- Conteneur de la carte -->
         <div id="map"></div>
-
-        <!-- Résultat -->
+        
+        <!-- Résultats -->
         <div class="result-card" id="result-container">
-            <h3>Informations du lieu</h3>
+            <h3 class="text-xl font-bold mb-2">Résultat de la recherche</h3>
             <p><strong>Nom:</strong> <span id="result-name"></span></p>
             <p><strong>Adresse:</strong> <span id="result-address"></span></p>
             <p><strong>Place ID:</strong> <span id="result-placeid"></span></p>
-            <button id="copy-button">Copier le Place ID</button>
-            <span class="copy-success" id="copy-message">✓ Copié!</span>
+            <div class="mt-4 flex items-center">
+                <button id="copy-button" class="bg-primary hover:bg-primary-hover text-white font-bold py-2 px-4 rounded">
+                    Copier le Place ID
+                </button>
+                <span class="copy-success" id="copy-message">✓ Copié!</span>
+            </div>
         </div>
-    </div>
-
-    <!-- Template pour l'infobulle -->
-    <div id="infowindow-content">
-        <span id="place-name" class="title"></span><br />
-        <strong>Place ID:</strong> <span id="place-id"></span><br />
-        <span id="place-address"></span>
+        
+        <!-- Contenu de la bulle -->
+        <div class="hidden" id="infowindow-content">
+            <span id="place-name" class="title"></span><br />
+            <strong>Place ID:</strong> <span id="place-id"></span><br />
+            <span id="place-address"></span>
+        </div>
+        
+        <!-- Section d'aide -->
+        <div class="mt-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+            <h3 class="text-xl font-bold mb-4">Comment utiliser l'identifiant Place ID</h3>
+            <p class="mb-4">Une fois que vous avez trouvé le Place ID d'un emplacement, vous pouvez l'utiliser pour :</p>
+            <ul class="list-disc ml-5 mb-4 space-y-2">
+                <li>Mettre à jour le lien vers les avis Google dans <code>index.html</code></li>
+                <li>Configurer <code>google-reviews.js</code> pour afficher les avis</li>
+                <li>Mettre à jour le Schema.org pour le SEO</li>
+            </ul>
+            <p class="text-sm font-mono bg-gray-100 dark:bg-gray-900 p-3 rounded">
+                Exemple: https://search.google.com/local/reviews?placeid=VOTRE_PLACE_ID
+            </p>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        // Initialisation de la carte
+        // Variables globales
+        let map;
+        let marker;
+        let infowindow;
+        let placesService;
+        
+        // Initialiser la carte Google Maps
         function initMap() {
-            const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 48.9061, lng: 2.5053 }, // Coordonnées des Pavillons-sous-Bois
-                zoom: 15,
+            const defaultLocation = { lat: 48.9069, lng: 2.5059 }; // Coordonnées des Pavillons-sous-Bois
+            
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: defaultLocation,
+                zoom: 13,
+                mapTypeControl: true,
             });
-
-            const input = document.getElementById("pac-input");
-            const autocomplete = new google.maps.places.Autocomplete(input);
             
-            autocomplete.bindTo("bounds", map);
-            
-            const infowindow = new google.maps.InfoWindow();
+            // Initialiser l'infowindow
+            infowindow = new google.maps.InfoWindow();
             const infowindowContent = document.getElementById("infowindow-content");
             infowindow.setContent(infowindowContent);
             
-            const resultContainer = document.getElementById("result-container");
-            const resultName = document.getElementById("result-name");
-            const resultAddress = document.getElementById("result-address");
-            const resultPlaceid = document.getElementById("result-placeid");
+            // Créer un marqueur initial
+            marker = new google.maps.Marker({
+                map: map,
+                position: defaultLocation,
+                draggable: true,
+                animation: google.maps.Animation.DROP
+            });
             
-            autocomplete.addListener("place_changed", () => {
-                infowindow.close();
-                const place = autocomplete.getPlace();
-
-                if (!place.place_id) {
-                    alert("Aucun lieu trouvé pour cette adresse");
+            // Ajouter un écouteur de clic sur le marqueur
+            marker.addListener("click", () => {
+                getPlaceInfo(marker.getPosition());
+            });
+            
+            // Créer le service Places
+            placesService = new google.maps.places.PlacesService(map);
+            
+            // Configurer la recherche
+            const input = document.getElementById("pac-input");
+            const searchBox = new google.maps.places.SearchBox(input);
+            
+            // Restreindre les résultats à la vue actuelle de la carte
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+            
+            // Écouteur pour la recherche
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+                
+                if (places.length === 0) {
                     return;
                 }
-
-                // Affichage des détails
-                document.getElementById("place-name").textContent = place.name;
-                document.getElementById("place-id").textContent = place.place_id;
-                document.getElementById("place-address").textContent = place.formatted_address;
-
-                // Mise à jour du panneau de résultats
-                resultName.textContent = place.name;
-                resultAddress.textContent = place.formatted_address;
-                resultPlaceid.textContent = place.place_id;
-                resultContainer.style.display = "block";
-
-                // Positionnement de la carte
+                
+                // Pour le premier résultat
+                const place = places[0];
+                
+                // Si aucune géométrie, sortir
+                if (!place.geometry || !place.geometry.location) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                
+                // Ajuster la vue de la carte
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
                 } else {
                     map.setCenter(place.geometry.location);
                     map.setZoom(17);
                 }
-
-                // Affichage du marqueur
-                new google.maps.Marker({
-                    map,
-                    position: place.geometry.location,
-                });
-
-                infowindow.open(map);
+                
+                // Mettre à jour le marqueur
+                marker.setPosition(place.geometry.location);
+                
+                // Afficher les informations du lieu
+                displayPlaceInfo(place);
             });
-
-            // Fonction pour copier le Place ID
+            
+            // Permettre la recherche par clic sur la carte
+            map.addListener("click", (event) => {
+                marker.setPosition(event.latLng);
+                getPlaceInfo(event.latLng);
+            });
+        }
+        
+        // Obtenir des informations sur le lieu via l'API Places
+        function getPlaceInfo(location) {
+            const request = {
+                location: location,
+                radius: '50',
+                fields: ['name', 'place_id', 'formatted_address', 'geometry']
+            };
+            
+            placesService.nearbySearch(request, (results, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+                    const place = results[0];
+                    
+                    placesService.getDetails({
+                        placeId: place.place_id,
+                        fields: ['name', 'place_id', 'formatted_address', 'geometry']
+                    }, (placeDetails, detailsStatus) => {
+                        if (detailsStatus === google.maps.places.PlacesServiceStatus.OK) {
+                            displayPlaceInfo(placeDetails);
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Afficher les informations du lieu
+        function displayPlaceInfo(place) {
+            document.getElementById("place-name").textContent = place.name;
+            document.getElementById("place-id").textContent = place.place_id;
+            document.getElementById("place-address").textContent = place.formatted_address;
+            
+            // Mettre à jour également la carte de résultat
+            document.getElementById("result-container").style.display = "block";
+            document.getElementById("result-name").textContent = place.name;
+            document.getElementById("result-address").textContent = place.formatted_address;
+            document.getElementById("result-placeid").textContent = place.place_id;
+            
+            // Afficher l'infowindow
+            infowindow.open({
+                anchor: marker,
+                map,
+            });
+        }
+        
+        // Fonction pour copier le Place ID
+        document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("copy-button").addEventListener("click", function() {
                 const placeid = document.getElementById("result-placeid").textContent;
                 navigator.clipboard.writeText(placeid).then(function() {
@@ -234,27 +350,10 @@
                     }, 2000);
                 });
             });
-        }
+        });
     </script>
-
+    
     <!-- Remplacez YOUR_API_KEY par votre propre clé Google Maps API -->
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
-        defer
-    ></script>
-
-    <div class="container">
-        <div class="card">
-            <h3>Comment utiliser l'identifiant Place ID</h3>
-            <p>Une fois que vous avez trouvé le Place ID d'un emplacement, vous pouvez l'utiliser pour :</p>
-            <ul>
-                <li>Mettre à jour le lien vers les avis Google dans <code>index.html</code></li>
-                <li>Mettre à jour le script <code>google-reviews.js</code> pour afficher les avis</li>
-                <li>Mettre à jour les données structurées Schema.org pour le SEO</li>
-            </ul>
-            <p>Exemple de lien vers les avis Google :</p>
-            <pre>https://search.google.com/local/reviews?placeid=VOTRE_PLACE_ID</pre>
-        </div>
-    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_lT8RkN6RS55EF6G9I5nEFkw7J7Y40O8&callback=initMap&libraries=places&v=weekly" defer></script>
 </body>
 </html>

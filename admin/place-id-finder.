@@ -1,0 +1,445 @@
+html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outil de recherche Place ID Google</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_lT8RkN6RS55EF6G9I5nEFkw7J7Y40O8&libraries=places"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --darker: #111827;
+            --dark: #1f2937;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--darker);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--darker);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f9ff;
+            border-left: 4px solid var(--primary);
+            border-radius: 4px;
+        }
+        
+        .map-container {
+            height: 400px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        
+        .place-card {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .place-card:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .place-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .place-address {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .place-id {
+            font-family: monospace;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+        
+        .copy-button {
+            padding: 5px 10px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .alert-info {
+            background-color: #e3f2fd;
+            color: #0c63e4;
+            border-left: 4px solid #0c63e4;
+        }
+        
+        .alert-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #2e7d32;
+        }
+        
+        .alert-error {
+            background-color: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #c62828;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-map-marker-alt"></i> Outil de recherche Place ID Google</h1>
+            <p>Trouvez facilement l'identifiant Google Places de votre établissement</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Rechercher votre établissement</h2>
+            <div class="alert alert-info">
+                <p>Le Place ID est nécessaire pour récupérer les avis Google de votre établissement.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="search-input">Nom de l'établissement ou adresse:</label>
+                <input type="text" id="search-input" placeholder="Ex: Auto Pièces Équipements Paris">
+            </div>
+            
+            <button id="search-button" type="button">
+                <i class="fas fa-search"></i> Rechercher
+            </button>
+        </div>
+        
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+        
+        <div class="card" id="results-container" style="display: none;">
+            <h2>Résultats de recherche</h2>
+            <div id="places-list"></div>
+        </div>
+        
+        <div class="card" id="place-info" style="display: none;">
+            <h2>Informations de l'établissement</h2>
+            <div id="place-details"></div>
+            
+            <div class="result" id="place-id-result">
+                <h3>Place ID:</h3>
+                <div class="place-id" id="place-id-value"></div>
+                <button class="copy-button" id="copy-button">
+                    <i class="fas fa-copy"></i> Copier le Place ID
+                </button>
+                <div id="copy-message" class="alert alert-success" style="display: none;">
+                    Place ID copié dans le presse-papier!
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Variables globales
+        let map;
+        let placesService;
+        let searchInput;
+        let searchButton;
+        let geocoder;
+        
+        // Initialisation après le chargement du DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les éléments du DOM
+            searchInput = document.getElementById('search-input');
+            searchButton = document.getElementById('search-button');
+            
+            // Initialiser la carte Google Maps
+            initMap();
+            
+            // Ajouter les écouteurs d'événements
+            searchButton.addEventListener('click', searchPlaces);
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    searchPlaces();
+                }
+            });
+            
+            document.getElementById('copy-button').addEventListener('click', copyPlaceId);
+        });
+        
+        // Initialiser la carte Google Maps
+        function initMap() {
+            // Centrer initialement sur la France
+            const defaultLocation = { lat: 46.603354, lng: 1.888334 };
+            
+            // Créer la carte
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultLocation,
+                zoom: 6
+            });
+            
+            // Initialiser le service Places
+            placesService = new google.maps.places.PlacesService(map);
+            
+            // Initialiser le Geocoder
+            geocoder = new google.maps.Geocoder();
+        }
+        
+        // Rechercher des lieux en fonction de l'entrée
+        function searchPlaces() {
+            const query = searchInput.value.trim();
+            
+            if (!query) {
+                alert('Veuillez entrer un nom d\'établissement ou une adresse');
+                return;
+            }
+            
+            // Effectuer une recherche textuelle
+            placesService.textSearch({
+                query: query,
+                region: 'fr'
+            }, handleSearchResults);
+        }
+        
+        // Gérer les résultats de recherche
+        function handleSearchResults(results, status) {
+            const resultsContainer = document.getElementById('results-container');
+            const placesList = document.getElementById('places-list');
+            
+            // Vider la liste des résultats précédents
+            placesList.innerHTML = '';
+            
+            if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+                // Afficher le conteneur de résultats
+                resultsContainer.style.display = 'block';
+                
+                // Ajouter des marqueurs et centrer la carte
+                const bounds = new google.maps.LatLngBounds();
+                
+                results.forEach((place, index) => {
+                    // Ajouter un marqueur
+                    const marker = new google.maps.Marker({
+                        position: place.geometry.location,
+                        map: map,
+                        title: place.name,
+                        animation: google.maps.Animation.DROP
+                    });
+                    
+                    // Étendre les limites pour inclure ce marqueur
+                    bounds.extend(place.geometry.location);
+                    
+                    // Créer une carte pour ce lieu
+                    const placeCard = document.createElement('div');
+                    placeCard.className = 'place-card';
+                    placeCard.innerHTML = `
+                        <div class="place-name">${place.name}</div>
+                        <div class="place-address">${place.formatted_address}</div>
+                    `;
+                    
+                    // Ajouter un écouteur de clic pour sélectionner ce lieu
+                    placeCard.addEventListener('click', function() {
+                        // Récupérer plus de détails sur ce lieu pour obtenir le Place ID
+                        placesService.getDetails({
+                            placeId: place.place_id,
+                            fields: ['name', 'formatted_address', 'place_id', 'geometry']
+                        }, displayPlaceDetails);
+                        
+                        // Animer le marqueur
+                        marker.setAnimation(google.maps.Animation.BOUNCE);
+                        setTimeout(() => marker.setAnimation(null), 1500);
+                    });
+                    
+                    placesList.appendChild(placeCard);
+                });
+                
+                // Ajuster la carte pour montrer tous les marqueurs
+                map.fitBounds(bounds);
+                
+                // Si un seul résultat, zoomer un peu moins
+                if (results.length === 1) {
+                    map.setZoom(15);
+                }
+            } else {
+                // Aucun résultat ou erreur
+                placesList.innerHTML = '<div class="alert alert-error">Aucun résultat trouvé. Essayez avec d\'autres termes de recherche.</div>';
+                resultsContainer.style.display = 'block';
+            }
+            
+            // Masquer les détails du lieu précédent
+            document.getElementById('place-info').style.display = 'none';
+        }
+        
+        // Afficher les détails d'un lieu sélectionné
+        function displayPlaceDetails(place, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                alert('Impossible de récupérer les détails du lieu');
+                return;
+            }
+            
+            const placeInfo = document.getElementById('place-info');
+            const placeDetails = document.getElementById('place-details');
+            const placeIdValue = document.getElementById('place-id-value');
+            
+            // Afficher les détails
+            placeDetails.innerHTML = `
+                <div class="place-name">${place.name}</div>
+                <div class="place-address">${place.formatted_address}</div>
+            `;
+            
+            // Afficher le Place ID
+            placeIdValue.textContent = place.place_id;
+            
+            // Afficher le conteneur
+            placeInfo.style.display = 'block';
+            
+            // Masquer le message de copie s'il était visible
+            document.getElementById('copy-message').style.display = 'none';
+            
+            // Mettre à jour le titre de la page
+            document.title = `Place ID pour ${place.name}`;
+        }
+        
+        // Copier le Place ID dans le presse-papier
+        function copyPlaceId() {
+            const placeId = document.getElementById('place-id-value').textContent;
+            
+            if (!placeId) {
+                return;
+            }
+            
+            // Utiliser l'API Clipboard
+            navigator.clipboard.writeText(placeId)
+                .then(() => {
+                    // Afficher un message de confirmation
+                    const copyMessage = document.getElementById('copy-message');
+                    copyMessage.style.display = 'block';
+                    
+                    // Cacher le message après 3 secondes
+                    setTimeout(() => {
+                        copyMessage.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Impossible de copier le texte:', err);
+                    alert('Impossible de copier le Place ID. Veuillez le sélectionner et le copier manuellement.');
+                });
+        }
+    </script>
+</body>
+</html>
