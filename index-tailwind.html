@@ -591,6 +591,50 @@
                 <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
             </div>
             
+            <!-- Nouvelle section MCP Diagnostic -->
+            <div id="mcp-diagnostic" class="bg-darker text-white p-6 rounded-lg shadow-lg mb-10">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-microchip text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Diagnostic via protocole MCP</h3>
+                </div>
+                
+                <p class="text-gray-300 mb-4">Utilisez notre système de diagnostic avancé compatible avec le protocole MCP (Motor Control Protocol) pour analyser votre véhicule avec précision.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-plug text-green-400 mr-2"></i>
+                            <span class="font-medium">Connectivité OBD-II MCP</span>
+                        </div>
+                        <p class="text-gray-400 text-sm">Connectez notre appareil à votre port OBD-II pour un diagnostic MCP complet des systèmes moteur</p>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-chart-line text-blue-400 mr-2"></i>
+                            <span class="font-medium">Analyse des performances</span>
+                        </div>
+                        <p class="text-gray-400 text-sm">Mesurez les performances réelles de votre moteur avec précision grâce au protocole MCP</p>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-tools text-orange-400 mr-2"></i>
+                            <span class="font-medium">Recommandations précises</span>
+                        </div>
+                        <p class="text-gray-400 text-sm">Obtenez des recommandations de pièces basées sur les données MCP de votre véhicule</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center">
+                    <button id="test-mcp-connection" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium transition flex items-center">
+                        <i class="fas fa-bolt mr-2"></i> Tester la connexion MCP
+                    </button>
+                </div>
+            </div>
+            
             <!-- Conteneur pour les avis Google -->
             <div id="google-reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Les avis seront chargés dynamiquement ici -->
@@ -982,5 +1026,137 @@
     
     <!-- Script pour les avis Google -->
     <script src="scripts/google-reviews.js"></script>
+
+    <!-- Script pour le protocole MCP -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialisation du protocole MCP
+            initMCPProtocol();
+        });
+        
+        function initMCPProtocol() {
+            const testMCPButton = document.getElementById('test-mcp-connection');
+            if (!testMCPButton) return;
+            
+            testMCPButton.addEventListener('click', async () => {
+                // Simuler une connexion MCP
+                testMCPButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Connexion en cours...';
+                testMCPButton.disabled = true;
+                
+                // Simulation d'une connexion MCP (à remplacer par une vraie implémentation)
+                setTimeout(() => {
+                    // Afficher modal avec les résultats de diagnostic
+                    showMCPDiagnosticResults();
+                    
+                    // Réinitialiser le bouton
+                    testMCPButton.innerHTML = '<i class="fas fa-bolt mr-2"></i> Tester la connexion MCP';
+                    testMCPButton.disabled = false;
+                }, 2500);
+            });
+        }
+        
+        function showMCPDiagnosticResults() {
+            // Créer un modal pour afficher les résultats
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75';
+            modal.innerHTML = `
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-white">Résultats du diagnostic MCP</h3>
+                        <button class="text-gray-400 hover:text-white" id="close-mcp-modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="mb-4 p-4 bg-green-900/30 text-green-400 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span class="font-bold">Connexion MCP établie avec succès</span>
+                        </div>
+                        <p class="text-sm">Protocole: MCP v3.2 | Interface: OBD-II | Débit: 500kbps</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 text-blue-400">Paramètres moteur</h4>
+                            <div class="grid grid-cols-2 gap-2 text-white">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Régime:</span>
+                                    <span class="font-mono">820 tr/min</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Température:</span>
+                                    <span class="font-mono">87°C</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Pression MAP:</span>
+                                    <span class="font-mono">98 kPa</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Position accélérateur:</span>
+                                    <span class="font-mono">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 text-yellow-400">Codes d'erreur détectés</h4>
+                            <div class="space-y-2 text-white">
+                                <div class="p-2 bg-yellow-900/30 rounded flex justify-between">
+                                    <span>P0301</span>
+                                    <span class="text-gray-300">Ratés d'allumage cylindre 1</span>
+                                </div>
+                                <div class="p-2 bg-red-900/30 rounded flex justify-between">
+                                    <span>P0420</span>
+                                    <span class="text-gray-300">Rendement catalyseur insuffisant</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 text-green-400">Pièces recommandées</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-2 bg-gray-700 rounded">
+                                    <div>
+                                        <span class="text-white">Bobine d'allumage cylindre 1</span>
+                                        <p class="text-xs text-gray-300">Réf: IGN-2023-C1</p>
+                                    </div>
+                                    <span class="text-white font-bold">84,99 €</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2 bg-gray-700 rounded">
+                                    <div>
+                                        <span class="text-white">Catalyseur haute performance</span>
+                                        <p class="text-xs text-gray-300">Réf: CAT-HP-420</p>
+                                    </div>
+                                    <span class="text-white font-bold">299,99 €</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 flex justify-end gap-3">
+                        <button class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition" id="download-mcp-report">
+                            <i class="fas fa-download mr-1"></i> Télécharger rapport
+                        </button>
+                        <button class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-hover transition">
+                            <i class="fas fa-cart-plus mr-1"></i> Commander pièces recommandées
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Gérer la fermeture du modal
+            document.getElementById('close-mcp-modal').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+            
+            // Gérer le téléchargement du rapport
+            document.getElementById('download-mcp-report').addEventListener('click', () => {
+                alert('Téléchargement du rapport MCP en cours...');
+            });
+        }
+    </script>
 </body>
 </html>
