@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Pièces Équipements - Spécialiste pièces auto aux Pavillons-sous-Bois</title>
     
+    <!-- Préchargement des ressources critiques -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -18,6 +25,10 @@
                         tertiary: '#00c896',
                         dark: '#111827',
                         darker: '#0a101f',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
                     }
                 }
             }
@@ -25,8 +36,6 @@
     </script>
     
     <!-- Polices Google optimisées pour le thème technique -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Font Awesome pour les icônes techniques -->
@@ -63,11 +72,105 @@
         .rating-stars {
             color: #f59e0b;
         }
+        
+        /* Ajout d'animations fluides au défilement */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Animation pour les carte produits */
+        .product-card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Styles pour le chatbot */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-window {
+            height: 0;
+            width: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-window.open {
+            height: 400px;
+            width: 320px;
+            opacity: 1;
+        }
+        
+        /* Styles pour le sélecteur de véhicules */
+        .vehicle-selector {
+            background: linear-gradient(to right, rgba(10, 25, 41, 0.9), rgba(17, 24, 39, 0.95));
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+        }
     </style>
+    
+    <!-- Données structurées pour SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoPartsStore",
+      "name": "Auto Pièces Équipements",
+      "image": "https://autopieces-equipements.fr/logo.svg",
+      "url": "https://autopieces-equipements.fr",
+      "telephone": "+33148479627",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "184 Av. Aristide Briand",
+        "addressLocality": "Les Pavillons-sous-Bois",
+        "postalCode": "93320",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.9069,
+        "longitude": 2.5059
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "18:30"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "4924"
+      }
+    }
+    </script>
 </head>
-<body class="font-tech bg-gray-100">
+<body class="font-tech bg-gray-100 dark:bg-darker dark:text-gray-100 transition-colors duration-300">
+    <!-- Nouveau - Bouton de mode sombre -->
+    <button id="theme-toggle" class="fixed right-4 top-4 z-50 bg-gray-800 dark:bg-white text-white dark:text-gray-800 p-2 rounded-full shadow-lg">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:inline"></i>
+        <span class="sr-only">Changer de thème</span>
+    </button>
+
     <!-- Header -->
-    <header class="bg-darker text-white sticky top-0 z-50 shadow-lg">
+    <header class="bg-darker dark:bg-black text-white sticky top-0 z-40 shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <!-- Logo SVG -->
@@ -143,6 +246,47 @@
         </div>
     </header>
 
+    <!-- NOUVEAU: Sélecteur de véhicule -->
+    <div class="vehicle-selector py-3 sticky top-16 z-30">
+        <div class="container mx-auto px-4">
+            <form class="flex flex-col md:flex-row gap-3 items-center">
+                <div class="text-white font-medium">
+                    <i class="fas fa-car-side text-blue-400 mr-2"></i> Trouvez les pièces pour votre véhicule:
+                </div>
+                <div class="flex-grow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                    <select class="bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:outline-none">
+                        <option value="">Marque</option>
+                        <option>Renault</option>
+                        <option>Peugeot</option>
+                        <option>Citroën</option>
+                        <option>Volkswagen</option>
+                    </select>
+                    <select class="bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:outline-none">
+                        <option value="">Modèle</option>
+                        <option>Clio</option>
+                        <option>Mégane</option>
+                        <option>Captur</option>
+                    </select>
+                    <select class="bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:outline-none">
+                        <option value="">Année</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                    </select>
+                    <select class="bg-gray-800 text-white px-3 py-2 rounded border border-gray-700 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 focus:outline-none">
+                        <option value="">Motorisation</option>
+                        <option>1.5 dCi 85ch</option>
+                        <option>1.0 TCe 90ch</option>
+                        <option>1.3 TCe 130ch</option>
+                    </select>
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded text-white font-medium flex items-center whitespace-nowrap">
+                    <i class="fas fa-search mr-2"></i> Rechercher
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero text-white py-20 md:py-32 flex items-center" id="accueil">
         <div class="container mx-auto px-4">
@@ -176,13 +320,13 @@
     </section>
 
     <!-- About -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center">
                 <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
-                    <h2 class="text-3xl font-bold mb-6 text-darker">Votre spécialiste en Seine-Saint-Denis</h2>
-                    <p class="text-gray-600 mb-6">Auto Pièces Équipements est votre partenaire technologique pour les pièces automobiles aux Pavillons-sous-Bois, au service des particuliers comme des professionnels depuis 2016.</p>
-                    <p class="text-gray-600 mb-6">Notre interface digitale connectée vous permet de trouver facilement les pièces compatibles avec votre véhicule grâce à un système de reconnaissance automatique.</p>
+                    <h2 class="text-3xl font-bold mb-6 text-darker dark:text-white fade-in-up">Votre spécialiste en Seine-Saint-Denis</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 fade-in-up">Auto Pièces Équipements est votre partenaire technologique pour les pièces automobiles aux Pavillons-sous-Bois, au service des particuliers comme des professionnels depuis 2016.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 fade-in-up">Notre interface digitale connectée vous permet de trouver facilement les pièces compatibles avec votre véhicule grâce à un système de reconnaissance automatique.</p>
                     
                     <!-- Badges améliorés -->
                     <div class="flex flex-wrap gap-4 mt-8 mb-8">
@@ -206,71 +350,104 @@
     </section>
 
     <!-- Features -->
-    <section class="bg-gray-100 py-12">
+    <section class="bg-gray-100 dark:bg-gray-800 py-12 transition-colors duration-300">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm flex items-start space-x-4">
                     <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
                         <i class="fas fa-truck text-xl"></i>
                     </div>
                     <div>
                         <h3 class="font-bold text-lg mb-2">Livraison express</h3>
-                        <p class="text-gray-600">Retrait en magasin ou livraison 24h dans toute la Seine-Saint-Denis.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Retrait en magasin ou livraison 24h dans toute la Seine-Saint-Denis.</p>
                     </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm flex items-start space-x-4">
                     <div class="bg-green-100 text-green-600 p-3 rounded-full">
                         <i class="fas fa-shield-alt text-xl"></i>
                     </div>
                     <div>
                         <h3 class="font-bold text-lg mb-2">Garantie numérique</h3>
-                        <p class="text-gray-600">Suivi en ligne de vos garanties et notifications de rappel automatiques.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Suivi en ligne de vos garanties et notifications de rappel automatiques.</p>
                     </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm flex items-start space-x-4">
                     <div class="bg-orange-100 text-orange-600 p-3 rounded-full">
                         <i class="fas fa-headset text-xl"></i>
                     </div>
                     <div>
                         <h3 class="font-bold text-lg mb-2">Diagnostic technique</h3>
-                        <p class="text-gray-600">Notre interface intelligente identifie les pièces compatibles avec votre véhicule.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Notre interface intelligente identifie les pièces compatibles avec votre véhicule.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products -->
+    <!-- AMÉLIORATION: Section produits avec plus d'interactivité -->
     <section class="py-16 bg-darker text-white" id="produits">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4">Nos produits phares</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Découvrez notre catalogue connecté de pièces automobiles haute performance.</p>
+                <h2 class="text-3xl font-bold mb-4 fade-in-up">Nos produits phares</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto fade-in-up">Découvrez notre catalogue connecté de pièces automobiles haute performance.</p>
+                
+                <!-- Filtres de produits -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8 mb-10">
+                    <button class="product-filter bg-dark border-2 border-blue-500 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-500 transition active">Tous</button>
+                    <button class="product-filter bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-500 hover:border-blue-500 transition">Freinage</button>
+                    <button class="product-filter bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-500 hover:border-blue-500 transition">Moteur</button>
+                    <button class="product-filter bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-500 hover:border-blue-500 transition">Électricité</button>
+                    <button class="product-filter bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-500 hover:border-blue-500 transition">Suspension</button>
+                </div>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Product 1 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card product-card-hover transition duration-300 border border-gray-800 group">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1470&q=80" alt="Plaquettes de frein" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1470&q=80" alt="Plaquettes de frein" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110" loading="lazy">
                         <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded font-mono">NOUVEAU</span>
+                        
+                        <!-- Actions rapides superposées (nouveau) -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Plaquettes de frein carbone</h3>
                         <p class="text-gray-400 text-sm mb-3 font-mono">Réf: BRK-2023-C</p>
+                        
+                        <!-- Indicateur de compatibilité (nouveau) -->
+                        <div class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-check mr-1"></i> Compatible avec votre véhicule
+                        </div>
+                        
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">49,99 €</span>
-                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded text-sm transition">Visualiser en 3D</button>
+                            <div>
+                                <span class="font-bold text-lg">49,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <!-- Product 2, 3, 4 similaires avec variations... -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card product-card-hover transition duration-300 border border-gray-800 group">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=1528&q=80" alt="Batterie" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=1528&q=80" alt="Batterie" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110" loading="lazy">
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Batterie connectée 12V</h3>
@@ -282,10 +459,9 @@
                     </div>
                 </div>
                 
-                <!-- Product 3 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card product-card-hover transition duration-300 border border-gray-800 group">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?auto=format&fit=crop&w=1470&q=80" alt="Filtre à air" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?auto=format&fit=crop&w=1470&q=80" alt="Filtre à air" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110" loading="lazy">
                         <span class="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded font-mono">PROMO</span>
                     </div>
                     <div class="p-4">
@@ -301,10 +477,9 @@
                     </div>
                 </div>
                 
-                <!-- Product 4 -->
-                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800">
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card product-card-hover transition duration-300 border border-gray-800 group">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1554744512-d6c603f27c54?auto=format&fit=crop&w=1470&q=80" alt="Ampoules" class="w-full h-48 object-cover">
+                        <img src="https://images.unsplash.com/photo-1554744512-d6c603f27c54?auto=format&fit=crop&w=1470&q=80" alt="Ampoules" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110" loading="lazy">
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg mb-1">Kit LED Ultra H7</h3>
@@ -326,75 +501,75 @@
     </section>
 
     <!-- Services -->
-    <section class="py-16 bg-white" id="services">
+    <section class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300" id="services">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-darker">Nos services connectés</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Une expérience entièrement digitalisée pour l'entretien de votre véhicule.</p>
+                <h2 class="text-3xl font-bold mb-4 text-darker dark:text-white">Nos services connectés</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Une expérience entièrement digitalisée pour l'entretien de votre véhicule.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                     <div class="bg-blue-100 text-blue-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                         <i class="fas fa-tools text-xl"></i>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Diagnostic électronique</h3>
-                    <p class="text-gray-600 mb-4">Analyse complète avec rapport numérique détaillé envoyé dans votre espace client.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Analyse complète avec rapport numérique détaillé envoyé dans votre espace client.</p>
                     <a href="#" class="text-primary font-medium flex items-center">
                         En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
                 </div>
                 
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                     <div class="bg-green-100 text-green-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                         <i class="fas fa-oil-can text-xl"></i>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Vidange connectée</h3>
-                    <p class="text-gray-600 mb-4">Rappels automatiques et suivi de la qualité d'huile via notre application mobile.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Rappels automatiques et suivi de la qualité d'huile via notre application mobile.</p>
                     <a href="#" class="text-primary font-medium flex items-center">
                         En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
                 </div>
                 
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                     <div class="bg-orange-100 text-orange-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                         <i class="fas fa-car-battery text-xl"></i>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Batterie intelligente</h3>
-                    <p class="text-gray-600 mb-4">Surveillance à distance de l'état de votre batterie avec alertes préventives.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Surveillance à distance de l'état de votre batterie avec alertes préventives.</p>
                     <a href="#" class="text-primary font-medium flex items-center">
                         En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
                 </div>
                 
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                     <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                         <i class="fas fa-tachometer-alt text-xl"></i>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Performances numériques</h3>
-                    <p class="text-gray-600 mb-4">Test et optimisation de la puissance et de la consommation avec rapport détaillé.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Test et optimisation de la puissance et de la consommation avec rapport détaillé.</p>
                     <a href="#" class="text-primary font-medium flex items-center">
                         En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
                 </div>
                 
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                     <div class="bg-purple-100 text-purple-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                         <i class="fas fa-tablet-alt text-xl"></i>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Visualisation 3D</h3>
-                    <p class="text-gray-600 mb-4">Explorez chaque pièce en 3D avant achat pour garantir la compatibilité parfaite.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Explorez chaque pièce en 3D avant achat pour garantir la compatibilité parfaite.</p>
                     <a href="#" class="text-primary font-medium flex items-center">
                         En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
                 </div>
                 
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
                     <div class="bg-red-100 text-red-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                         <i class="fas fa-key text-xl"></i>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Assistance digitale</h3>
-                    <p class="text-gray-600 mb-4">Support technique par vidéo et chat 24/7 directement dans notre application.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Support technique par vidéo et chat 24/7 directement dans notre application.</p>
                     <a href="#" class="text-primary font-medium flex items-center">
                         En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </a>
@@ -404,15 +579,15 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-16 bg-gray-100" id="avis">
+    <section class="py-16 bg-gray-100 dark:bg-gray-800 transition-colors duration-300" id="avis">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-darker">Nos clients témoignent</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Découvrez l'expérience digitale de nos clients.</p>
+                <h2 class="text-3xl font-bold mb-4 text-darker dark:text-white">Nos clients témoignent</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Découvrez l'expérience digitale de nos clients.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
                             <i class="fas fa-star"></i>
@@ -422,7 +597,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6">"L'application de diagnostic a parfaitement identifié la pièce dont j'avais besoin. J'ai pu la visualiser en 3D avant achat et elle était parfaitement compatible!"</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">"L'application de diagnostic a parfaitement identifié la pièce dont j'avais besoin. J'ai pu la visualiser en 3D avant achat et elle était parfaitement compatible!"</p>
                     <div class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-10 h-10 rounded-full mr-3">
                         <div>
@@ -432,7 +607,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
                             <i class="fas fa-star"></i>
@@ -442,7 +617,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6">"Le système de suivi de ma batterie m'a envoyé une alerte avant qu'elle ne tombe en panne. J'ai pu la remplacer à temps sans rester bloquée. Excellent service préventif!"</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">"Le système de suivi de ma batterie m'a envoyé une alerte avant qu'elle ne tombe en panne. J'ai pu la remplacer à temps sans rester bloquée. Excellent service préventif!"</p>
                     <div class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-10 h-10 rounded-full mr-3">
                         <div>
@@ -452,7 +627,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
                     <div class="flex items-center mb-4">
                         <div class="rating-stars text-xl mr-2">
                             <i class="fas fa-star"></i>
@@ -462,7 +637,7 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6">"La vidéo de montage en réalité augmentée m'a guidé étape par étape pour installer moi-même mes plaquettes de frein. J'ai économisé 30% sur le coût total de la réparation."</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">"La vidéo de montage en réalité augmentée m'a guidé étape par étape pour installer moi-même mes plaquettes de frein. J'ai économisé 30% sur le coût total de la réparation."</p>
                     <div class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-10 h-10 rounded-full mr-3">
                         <div>
@@ -481,13 +656,38 @@
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- AMÉLIORATION: Contact avec vue en 3D du magasin -->
     <section class="py-16 bg-darker text-white" id="contact">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl font-bold mb-6">Contactez-nous</h2>
-                    <p class="text-gray-400 mb-8">Accédez à notre support technique avancé pour toute question sur nos produits ou services.</p>
+                    <h2 class="text-3xl font-bold mb-6 fade-in-up">Contactez-nous</h2>
+                    <p class="text-gray-400 mb-8 fade-in-up">Accédez à notre support technique avancé pour toute question sur nos produits ou services.</p>
+                    
+                    <!-- Nouvelle section horaires -->
+                    <div class="mb-8 p-4 bg-gray-800 rounded-lg border border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-clock text-blue-400 mr-2"></i> Nos horaires
+                        </h3>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Lundi - Vendredi:</span>
+                                <span class="text-blue-300">9h00 - 18h30</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Samedi:</span>
+                                <span class="text-blue-300">9h00 - 17h00</span>
+                            </div>
+                            <div class="flex justify-between col-span-2">
+                                <span>Dimanche:</span>
+                                <span class="text-gray-400">Fermé</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center text-green-400">
+                            <div class="w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse"></div>
+                            <span>Actuellement ouvert</span>
+                        </div>
+                    </div>
                     
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
@@ -558,7 +758,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-12 pb-6">
+    <footer class="bg-dark dark:bg-black text-white pt-12 pb-6 transition-colors duration-300">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <div>
@@ -633,14 +833,54 @@
         </div>
     </footer>
 
+    <!-- NOUVEAU: Chatbot -->
+    <div class="chatbot-widget">
+        <button id="chatbot-toggle" class="bg-primary hover:bg-primary-hover text-white p-4 rounded-full shadow-lg flex items-center justify-center">
+            <i class="fas fa-comment-dots text-xl"></i>
+        </button>
+        
+        <div id="chatbot-window" class="chatbot-window bg-white dark:bg-gray-900 rounded-lg shadow-xl overflow-hidden absolute bottom-16 right-0 mb-2">
+            <div class="bg-primary px-4 py-3 text-white flex justify-between items-center">
+                <h3 class="font-bold">Assistant Technique</h3>
+                <button id="close-chatbot" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="p-4 h-80 overflow-y-auto bg-gray-50 dark:bg-gray-800" id="chat-messages">
+                <div class="chat-message bot flex mb-4">
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="max-w-xs bg-primary text-white p-3 rounded-lg rounded-tl-none">
+                        Bonjour ! Je suis l'assistant technique Auto Pièces Équipements. Comment puis-je vous aider aujourd'hui?
+                    </div>
+                </div>
+                <!-- Les messages s'afficheront ici dynamiquement -->
+            </div>
+            
+            <div class="p-3 border-t border-gray-200 dark:border-gray-700">
+                <form id="chat-form" class="flex">
+                    <input type="text" id="chat-input" class="flex-grow px-3 py-2 bg-gray-100 dark:bg-gray-700 dark:text-white rounded-l-lg focus:outline-none" placeholder="Posez votre question...">
+                    <button type="submit" class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-primary-hover">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script type="module">
         import { initTechScan } from './scripts/modules/scan-effect.js';
         import { initBadges } from './scripts/modules/badges.js';
         
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialiser les badges
+            // Initialiser les badges et animations
             initBadges();
+            initFadeEffects();
+            initChatbot();
+            initDarkMode();
             
             // Initialiser l'animation de scan dans le hero
             initTechScan('tech-scan-hero', {
@@ -649,6 +889,9 @@
                 yAxisLabel: 'Compatibilité',
                 analysisText: 'RECHERCHE DE PIÈCES COMPATIBLES...'
             });
+            
+            // Gestion produits et menu mobile
+            initProductFilters();
             
             // Toggle du menu mobile
             document.getElementById('menu-toggle')?.addEventListener('click', function() {
@@ -673,9 +916,9 @@
                 });
             });
     
-            // Validation simple du formulaire
+            // Formulaire de contact
             const contactForm = document.querySelector('form');
-            if (contactForm) {
+            if (contactForm && contactForm.id !== 'chat-form') {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
@@ -693,6 +936,117 @@
                 });
             }
         });
+        
+        // Nouvelles fonctions
+        function initFadeEffects() {
+            // Animation au défilement
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        function initProductFilters() {
+            const filters = document.querySelectorAll('.product-filter');
+            filters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    // Retirer la classe active de tous les filtres
+                    filters.forEach(f => f.classList.remove('active', 'bg-blue-500', 'border-blue-500'));
+                    f.classList.add('bg-dark', 'border-gray-600');
+                    
+                    // Ajouter la classe active au filtre cliqué
+                    filter.classList.add('active', 'bg-blue-500', 'border-blue-500');
+                    filter.classList.remove('bg-dark', 'border-gray-600');
+                    
+                    // Logique de filtrage des produits (à implémenter selon les besoins)
+                    console.log(`Filtrage par: ${filter.textContent}`);
+                });
+            });
+        }
+        
+        function initChatbot() {
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const closeChatbot = document.getElementById('close-chatbot');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            chatbotToggle?.addEventListener('click', () => {
+                chatbotWindow.classList.toggle('open');
+            });
+            
+            closeChatbot?.addEventListener('click', () => {
+                chatbotWindow.classList.remove('open');
+            });
+            
+            chatForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const message = chatInput.value.trim();
+                if (!message) return;
+                
+                // Ajouter le message utilisateur
+                chatMessages.innerHTML += `
+                    <div class="chat-message user flex mb-4 justify-end">
+                        <div class="max-w-xs bg-blue-100 dark:bg-blue-900 p-3 rounded-lg rounded-tr-none">
+                            ${message}
+                        </div>
+                    </div>
+                `;
+                
+                // Simuler une réponse (dans une vraie application, appelez votre API)
+                setTimeout(() => {
+                    chatMessages.innerHTML += `
+                        <div class="chat-message bot flex mb-4">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-2">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="max-w-xs bg-primary text-white p-3 rounded-lg rounded-tl-none">
+                                Je vous aide à trouver les pièces compatibles avec votre véhicule. Pouvez-vous me préciser le modèle exact?
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Scroll vers le bas
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+                
+                // Effacer l'input
+                chatInput.value = '';
+                
+                // Scroll vers le bas
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        }
+        
+        function initDarkMode() {
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            // Vérifier la préférence de l'utilisateur
+            if (localStorage.getItem('color-theme') === 'dark' || 
+                (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+            
+            themeToggle?.addEventListener('click', () => {
+                // Toggle dark mode
+                document.documentElement.classList.toggle('dark');
+                
+                // Mettre à jour la préférence
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    localStorage.setItem('color-theme', 'light');
+                }
+            });
+        }
     </script>
 </body>
 </html>
