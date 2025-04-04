@@ -1,0 +1,22 @@
+[
+  {
+    "manufacturer": "Renault",
+    "models": ["Clio", "Megane", "Captur", "Kadjar", "Talisman"],
+    "keywords": ["renault", "french", "diagnostic", "entretien", "dacia"]
+  },
+  {
+    "manufacturer": "Peugeot",
+    "models": ["208", "308", "3008", "508", "5008"],
+    "keywords": ["peugeot", "french", "psa", "citroen", "entretien"]
+  },
+  {
+    "manufacturer": "Citroen",
+    "models": ["C3", "C4", "C5", "DS3", "DS4"],
+    "keywords": ["citroen", "french", "psa", "peugeot", "entretien"]
+  },
+  {
+    "manufacturer": "Volkswagen",
+    "models": ["Golf", "Passat", "Polo", "Tiguan", "T-Roc"],
+    "keywords": ["vw", "german", "audi", "seat", "skoda"]
+  }
+]

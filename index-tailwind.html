@@ -160,6 +160,7 @@
       }
     }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 </head>
 <body class="font-tech bg-gray-100 dark:bg-darker dark:text-gray-100 transition-colors duration-300">
     <!-- Nouveau - Bouton de mode sombre -->
@@ -922,6 +923,13 @@
     <script type="module">
         import { initTechScan } from './scripts/modules/scan-effect.js';
         import { initBadges } from './scripts/modules/badges.js';
+        import MCPConnector from './scripts/mcp-connector.js';
+        import GoogleReviewsAPI from './scripts/google-reviews-api.js';
+        
+        // Variables globales pour les fonctionnalités MCP
+        let mcpConnector = null;
+        let vehicleData = null;
+        let engineDataChart = null;
         
         document.addEventListener('DOMContentLoaded', () => {
             // Initialiser les badges et animations
@@ -946,140 +954,73 @@
                 const menu = document.getElementById('mobile-menu');
                 menu.classList.toggle('hidden');
             });
-    
-            // Formulaire de contact
-            const contactForm = document.querySelector('form');
-            if (contactForm && contactForm.id !== 'chat-form') {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const vehicle = document.getElementById('vehicle').value;
-                    const message = document.getElementById('message').value;
-                    
-                    if (name && email && vehicle && message) {
-                        alert('Votre demande d\'assistance technique a été enregistrée. Un expert vous contactera sous 2 heures.');
-                        contactForm.reset();
-                    } else {
-                        alert('Veuillez remplir tous les champs du formulaire pour accéder à l\'assistance technique.');
-                    }
-                });
-            }
+            
+            // Initialiser la fonctionnalité MCP réelle
+            initRealMCP();
+            
+            // Initialiser les avis Google réels
+            initRealGoogleReviews();
         });
         
-        // Nouvelles fonctions
-        function initFadeEffects() {
-            // Animation au défilement
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+        // Initialiser la fonctionnalité MCP réelle
+        async function initRealMCP() {
+            mcpConnector = new MCPConnector();
+            
+            // Associer le bouton de test MCP
+            const testMCPButton = document.getElementById('test-mcp-connection');
+            if (testMCPButton) {
+                testMCPButton.addEventListener('click', async () => {
+                    // Modifier l'apparence du bouton pendant la connexion
+                    testMCPButton.innerHTML = '<span class="relative flex items-center"><i class="fas fa-spinner fa-spin mr-3 text-yellow-300"></i><span>Connexion en cours...</span></span>';
+                    testMCPButton.disabled = true;
+                    
+                    try {
+                        // Tenter une vraie connexion MCP
+                        const result = await mcpConnector.connect();
+                        
+                        if (result.success) {
+                            // Connexion réussie
+                            showMCPDiagnosticResults();
+                        } else {
+                            // Échec de la connexion, montrer un message d'erreur
+                            showConnectionErrorModal(result.error);
+                        }
+                    } catch (error) {
+                        console.error("Erreur de connexion MCP:", error);
+                        showConnectionErrorModal(error.message);
+                    } finally {
+                        // Restaurer l'apparence du bouton
+                        testMCPButton.innerHTML = '<span class="relative flex items-center"><i class="fas fa-bolt mr-3 text-yellow-300 animate-pulse"></i><span><span class="block font-bold">Tester la connexion MCP</span><span class="text-xs text-blue-200">Diagnostic complet moteur et électronique</span></span></span>';
+                        testMCPButton.disabled = false;
                     }
                 });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.fade-in-up').forEach(el => {
-                observer.observe(el);
-            });
-        }
-        
-        function initProductFilters() {
-            const filters = document.querySelectorAll('.product-filter');
-            filters.forEach(filter => {
-                filter.addEventListener('click', () => {
-                    // Retirer la classe active de tous les filtres
-                    filters.forEach(f => f.classList.remove('active', 'bg-blue-500', 'border-blue-500'));
-                    f.classList.add('bg-dark', 'border-gray-600');
-                    
-                    // Ajouter la classe active au filtre cliqué
-                    filter.classList.add('active', 'bg-blue-500', 'border-blue-500');
-                    filter.classList.remove('bg-dark', 'border-gray-600');
-                    
-                    // Logique de filtrage des produits (à implémenter selon les besoins)
-                    console.log(`Filtrage par: ${filter.textContent}`);
-                });
-            });
-        }
-        
-        function initChatbot() {
-            const chatbotToggle = document.getElementById('chatbot-toggle');
-            const chatbotWindow = document.getElementById('chatbot-window');
-            const closeChatbot = document.getElementById('close-chatbot');
-            const chatForm = document.getElementById('chat-form');
-            const chatInput = document.getElementById('chat-input');
-            const chatMessages = document.getElementById('chat-messages');
-            
-            chatbotToggle?.addEventListener('click', () => {
-                chatbotWindow.classList.toggle('open');
-            });
-            
-            closeChatbot?.addEventListener('click', () => {
-                chatbotWindow.classList.remove('open');
-            });
-            
-            chatForm?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const message = chatInput.value.trim();
-                if (!message) return;
-                
-                // Ajouter le message utilisateur
-                chatMessages.innerHTML += `
-                    <div class="chat-message user flex mb-4 justify-end">
-                        <div class="max-w-xs bg-blue-100 dark:bg-blue-900 p-3 rounded-lg rounded-tr-none">
-                            ${message}
-                        </div>
-                    </div>
-                `;
-                
-                // Simuler une réponse (dans une vraie application, appelez votre API)
-                setTimeout(() => {
-                    chatMessages.innerHTML += `
-                        <div class="chat-message bot flex mb-4">
-                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mr-2">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="max-w-xs bg-primary text-white p-3 rounded-lg rounded-tl-none">
-                                Je vous aide à trouver les pièces compatibles avec votre véhicule. Pouvez-vous me préciser le modèle exact?
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Scroll vers le bas
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 1000);
-                
-                // Effacer l'input
-                chatInput.value = '';
-                
-                // Scroll vers le bas
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            });
-        }
-        
-        function initDarkMode() {
-            const themeToggle = document.getElementById('theme-toggle');
-            
-            // Vérifier la préférence de l'utilisateur
-            if (localStorage.getItem('color-theme') === 'dark' || 
-                (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
             }
-            
-            themeToggle?.addEventListener('click', () => {
-                // Toggle dark mode
-                document.documentElement.classList.toggle('dark');
-                
-                // Mettre à jour la préférence
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    localStorage.setItem('color-theme', 'light');
-                }
-            });
         }
-
-        function showMCPDiagnosticResults() {
+        
+        // Initialiser les avis Google réels
+        async function initRealGoogleReviews() {
+            // Initialiser avec votre Place ID Google et votre clé API
+            const reviewsAPI = new GoogleReviewsAPI(
+                'your-place-id-here', 
+                'your-api-key-here'
+            );
+            
+            try {
+                // Afficher les avis réels dans le conteneur
+                await reviewsAPI.displayReviews('google-reviews-container');
+                
+                // Initialiser les filtres après le chargement des avis
+                initReviewFilters();
+                
+                // Initialiser le Model Context Protocol
+                initModelContextProtocol();
+            } catch (error) {
+                console.error("Erreur d'initialisation des avis:", error);
+            }
+        }
+        
+        // Afficher les résultats du diagnostic MCP
+        async function showMCPDiagnosticResults() {
             // Créer un modal pour afficher les résultats
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75';
@@ -1106,322 +1047,456 @@
                     </div>
                     
                     <div id="scan-details" class="space-y-4 opacity-0 transition-opacity duration-300">
-                        <div class="mb-4 p-4 bg-green-900/30 text-green-400 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-check-circle mr-2"></i>
-                                <span class="font-bold">Connexion MCP établie avec succès</span>
-                            </div>
-                            <p class="text-sm">Protocole: MCP v3.2 | Interface: OBD-II | Débit: 500kbps</p>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <div class="bg-gray-800 p-4 rounded-lg">
-                                <h4 class="font-bold mb-2 text-blue-400">Paramètres moteur</h4>
-                                <div class="grid grid-cols-2 gap-2 text-white">
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-400">Régime:</span>
-                                        <span class="font-mono">820 tr/min</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-400">Température:</span>
-                                        <span class="font-mono">87°C</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-400">Pression MAP:</span>
-                                        <span class="font-mono">98 kPa</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-400">Position accélérateur:</span>
-                                        <span class="font-mono">0%</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-400">Tension batterie:</span>
-                                        <span class="font-mono">12.7 V</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-400">Débit d'air:</span>
-                                        <span class="font-mono">11.2 g/s</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Graphique des données en temps réel -->
-                                <div class="mt-4 p-3 bg-gray-900 rounded border border-gray-700">
-                                    <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                        <span>Historique de performances</span>
-                                        <span>Dernières 30 secondes</span>
-                                    </div>
-                                    <div class="relative h-24 w-full">
-                                        <canvas id="engine-data-chart" class="w-full h-full"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-gray-800 p-4 rounded-lg">
-                                <h4 class="font-bold mb-2 text-yellow-400 flex items-center">
-                                    <i class="fas fa-exclamation-triangle mr-2"></i>
-                                    Codes d'erreur détectés
-                                </h4>
-                                <div class="space-y-2 text-white">
-                                    <div class="p-3 bg-yellow-900/30 rounded">
-                                        <div class="flex justify-between mb-1">
-                                            <span class="font-bold">P0301</span>
-                                            <span class="text-gray-300">Ratés d'allumage cylindre 1</span>
-                                        </div>
-                                        <p class="text-xs text-gray-400">Impact: Moyenne | Cause probable: Bobine d'allumage défectueuse</p>
-                                        <div class="mt-2 text-xs">
-                                            <a href="#" class="text-blue-400 hover:underline">Comment réparer?</a>
-                                        </div>
-                                    </div>
-                                    <div class="p-3 bg-red-900/30 rounded">
-                                        <div class="flex justify-between mb-1">
-                                            <span class="font-bold">P0420</span>
-                                            <span class="text-gray-300">Rendement catalyseur insuffisant</span>
-                                        </div>
-                                        <p class="text-xs text-gray-400">Impact: Élevé | Cause probable: Catalyseur endommagé ou sondes lambda</p>
-                                        <div class="mt-2 text-xs">
-                                            <a href="#" class="text-blue-400 hover:underline">Comment réparer?</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-gray-800 p-4 rounded-lg">
-                                <h4 class="font-bold mb-2 text-green-400">Pièces recommandées</h4>
-                                <div class="space-y-2">
-                                    <div class="flex items-center justify-between p-3 bg-gray-700 rounded hover:bg-gray-600 transition cursor-pointer">
-                                        <div>
-                                            <span class="text-white flex items-center">
-                                                <span class="text-green-400 mr-1"><i class="fas fa-star"></i></span>
-                                                Bobine d'allumage cylindre 1
-                                            </span>
-                                            <p class="text-xs text-gray-300">Réf: IGN-2023-C1 | Compatibilité: 100%</p>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-white font-bold">84,99 €</span>
-                                            <span class="block text-xs text-green-400">En stock</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-between p-3 bg-gray-700 rounded hover:bg-gray-600 transition cursor-pointer">
-                                        <div>
-                                            <span class="text-white flex items-center">
-                                                <span class="text-green-400 mr-1"><i class="fas fa-star"></i></span>
-                                                Catalyseur haute performance
-                                            </span>
-                                            <p class="text-xs text-gray-300">Réf: CAT-HP-420 | Compatibilité: 100%</p>
-                                        </div>
-                                        <div class="text-right">
-                                            <span class="text-white font-bold">299,99 €</span>
-                                            <span class="block text-xs text-green-400">En stock (3)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 flex flex-wrap gap-3 justify-end">
-                            <button class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition flex items-center" id="save-diagnostic">
-                                <i class="fas fa-save mr-1"></i> Sauvegarder
-                            </button>
-                            <button class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition flex items-center" id="download-mcp-report">
-                                <i class="fas fa-download mr-1"></i> Télécharger
-                            </button>
-                            <button class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition flex items-center" id="share-diagnostic">
-                                <i class="fas fa-share-alt mr-1"></i> Partager
-                            </button>
-                            <button class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-hover transition flex items-center">
-                                <i class="fas fa-cart-plus mr-1"></i> Commander
-                            </button>
-                        </div>
+                        <!-- Le contenu sera ajouté dynamiquement -->
                     </div>
                 </div>
             `;
             
             document.body.appendChild(modal);
             
-            // Simulation du processus de scan
-            simulateScanProcess();
-            
             // Gérer la fermeture du modal
             document.getElementById('close-mcp-modal').addEventListener('click', () => {
                 document.body.removeChild(modal);
+                if (mcpConnector) {
+                    mcpConnector.disconnect();
+                }
             });
             
-            // Gérer le téléchargement du rapport
-            document.getElementById('download-mcp-report')?.addEventListener('click', () => {
-                alert('Téléchargement du rapport MCP en cours...');
-            });
-            
-            // Gérer la sauvegarde du diagnostic
-            document.getElementById('save-diagnostic')?.addEventListener('click', () => {
-                alert('Diagnostic sauvegardé dans votre compte.');
-            });
-            
-            // Gérer le partage du diagnostic
-            document.getElementById('share-diagnostic')?.addEventListener('click', () => {
-                const shareMenu = document.createElement('div');
-                shareMenu.className = 'absolute bottom-20 right-4 bg-gray-800 rounded-lg shadow-lg p-3 z-10';
-                shareMenu.innerHTML = `
-                    <div class="text-white text-sm mb-2">Partager avec:</div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <button class="bg-blue-600 p-2 rounded hover:bg-blue-700"><i class="fab fa-facebook-f"></i></button>
-                        <button class="bg-blue-400 p-2 rounded hover:bg-blue-500"><i class="fab fa-twitter"></i></button>
-                        <button class="bg-green-600 p-2 rounded hover:bg-green-700"><i class="fab fa-whatsapp"></i></button>
-                        <button class="bg-blue-800 p-2 rounded hover:bg-blue-900"><i class="fas fa-envelope"></i></button>
-                        <button class="bg-gray-600 p-2 rounded hover:bg-gray-700"><i class="fas fa-link"></i></button>
-                        <button class="bg-red-600 p-2 rounded hover:bg-red-700"><i class="fas fa-times"></i></button>
-                    </div>
-                `;
-                
-                const btnContainer = document.getElementById('share-diagnostic').parentNode;
-                btnContainer.appendChild(shareMenu);
-                
-                // Fermer le menu après quelques secondes
-                setTimeout(() => {
-                    btnContainer.removeChild(shareMenu);
-                }, 5000);
-            });
+            // Démarrer le scan réel
+            await performRealMCPScan();
         }
-
-        // Simulation du processus de scan
-        function simulateScanProcess() {
+        
+        // Effectuer un scan MCP réel
+        async function performRealMCPScan() {
             const scanBar = document.getElementById('scan-bar');
             const scanPercentage = document.getElementById('scan-percentage');
             const scanStatus = document.getElementById('scan-status');
             const scanDetails = document.getElementById('scan-details');
             
-            const scanSteps = [
-                { percent: 10, status: "Initialisation du protocole MCP..." },
-                { percent: 20, status: "Connexion à l'unité ECU..." },
-                { percent: 30, status: "Lecture des paramètres moteur..." },
-                { percent: 50, status: "Analyse des codes d'erreur..." },
-                { percent: 70, status: "Identification des pièces compatibles..." },
-                { percent: 90, status: "Génération du rapport..." },
-                { percent: 100, status: "Diagnostic terminé" }
-            ];
-            
-            let stepIndex = 0;
-            
-            const scanInterval = setInterval(() => {
-                if (stepIndex < scanSteps.length) {
-                    const step = scanSteps[stepIndex];
-                    scanBar.style.width = `${step.percent}%`;
-                    scanPercentage.textContent = `${step.percent}%`;
-                    scanStatus.textContent = step.status;
-                    
-                    if (step.percent === 100) {
-                        clearInterval(scanInterval);
-                        scanDetails.style.opacity = "1";
-                        
-                        // Initialiser le graphique après le scan complet
-                        initEngineDataChart();
+            try {
+                // Étape 1: Lecture des paramètres moteur (20%)
+                scanBar.style.width = '20%';
+                scanPercentage.textContent = '20%';
+                scanStatus.textContent = "Lecture des paramètres moteur...";
+                
+                // Démarrer la collecte de données en temps réel
+                const dataPoints = [];
+                mcpConnector.startRealtimeData(data => {
+                    dataPoints.push(data);
+                    // Mettre à jour le graphique si disponible
+                    if (engineDataChart) {
+                        updateEngineDataChart(data);
                     }
+                });
+                
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Étape 2: Analyse des codes d'erreur (50%)
+                scanBar.style.width = '50%';
+                scanPercentage.textContent = '50%';
+                scanStatus.textContent = "Analyse des codes d'erreur...";
+                
+                const dtcCodes = await mcpConnector.readDTCs();
+                
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Étape 3: Recherche de pièces compatibles (80%)
+                scanBar.style.width = '80%';
+                scanPercentage.textContent = '80%';
+                scanStatus.textContent = "Recherche de pièces compatibles...";
+                
+                // Obtenir des recommandations de l'API
+                const recommendations = await fetch('/api/mcp/get-recommendations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        dtcCodes,
+                        vehicleInfo: {
+                            // Ces informations seraient idéalement récupérées du véhicule
+                            model: 'Peugeot 308',
+                            year: 2019,
+                            engine: '1.6 HDI'
+                        }
+                    })
+                }).then(res => res.json());
+                
+                // Étape 4: Finalisation
+                scanBar.style.width = '100%';
+                scanPercentage.textContent = '100%';
+                scanStatus.textContent = "Diagnostic terminé";
+                
+                // Afficher les résultats
+                if (scanDetails) {
+                    // Construire le HTML des résultats
+                    scanDetails.innerHTML = buildDiagnosticResultsHTML(
+                        dataPoints[dataPoints.length - 1], // Dernières données collectées
+                        dtcCodes,
+                        recommendations.recommendations
+                    );
                     
-                    stepIndex++;
+                    // Afficher les résultats avec animation
+                    scanDetails.style.opacity = "1";
+                    
+                    // Initialiser le graphique
+                    initEngineDataChart(dataPoints);
                 }
-            }, 500);
+                
+            } catch (error) {
+                console.error("Erreur durant le scan MCP:", error);
+                
+                // Afficher l'erreur
+                scanStatus.textContent = "Erreur de diagnostic";
+                scanStatus.classList.add('text-red-500');
+                
+                if (scanDetails) {
+                    scanDetails.innerHTML = `
+                        <div class="bg-red-900/30 text-red-400 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                <span class="font-bold">Erreur de diagnostic</span>
+                            </div>
+                            <p>${error.message || "Une erreur est survenue pendant le diagnostic"}</p>
+                            <button id="retry-mcp-scan" class="mt-3 bg-red-800 hover:bg-red-700 text-white px-4 py-2 rounded">
+                                <i class="fas fa-redo mr-2"></i> Réessayer
+                            </button>
+                        </div>
+                    `;
+                    scanDetails.style.opacity = "1";
+                    
+                    // Gérer le bouton de réessai
+                    document.getElementById('retry-mcp-scan')?.addEventListener('click', () => {
+                        performRealMCPScan();
+                    });
+                }
+            }
         }
-
-        // Initialiser le graphique des données moteur
-        function initEngineDataChart() {
-            // Vérifier si Chart.js est chargé
-            if (typeof Chart === 'undefined') {
-                // Si Chart.js n'est pas chargé, charger dynamiquement
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js';
-                script.onload = createChart;
-                document.head.appendChild(script);
-            } else {
-                createChart();
+        
+        // Construire le HTML des résultats
+        function buildDiagnosticResultsHTML(engineData, dtcCodes, recommendations) {
+            // Construire la section des paramètres moteur
+            let engineParamsHTML = '';
+            if (engineData) {
+                engineParamsHTML = `
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-blue-400">Paramètres moteur</h4>
+                        <div class="grid grid-cols-2 gap-2 text-white">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Régime:</span>
+                                <span class="font-mono">${engineData.rpm} tr/min</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Température:</span>
+                                <span class="font-mono">${engineData.temperature}°C</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Charge moteur:</span>
+                                <span class="font-mono">${engineData.engineLoad.toFixed(1)}%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Vitesse:</span>
+                                <span class="font-mono">${engineData.speed} km/h</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Graphique des données en temps réel -->
+                        <div class="mt-4 p-3 bg-gray-900 rounded border border-gray-700">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>Historique de performances</span>
+                                <span>Dernières 30 secondes</span>
+                            </div>
+                            <div class="relative h-24 w-full">
+                                <canvas id="engine-data-chart" class="w-full h-full"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
             
-            function createChart() {
-                const ctx = document.getElementById('engine-data-chart').getContext('2d');
+            // Construire la section des codes d'erreur
+            let dtcHTML = '';
+            if (dtcCodes && dtcCodes.length > 0) {
+                const dtcItemsHTML = dtcCodes.map(code => {
+                    const recommendation = recommendations.find(r => r.code === code);
+                    
+                    let severity = 'yellow';
+                    let severityText = 'Moyenne';
+                    
+                    if (recommendation) {
+                        if (recommendation.severity === 'high') {
+                            severity = 'red';
+                            severityText = 'Élevée';
+                        } else if (recommendation.severity === 'low') {
+                            severity = 'green';
+                            severityText = 'Faible';
+                        }
+                    }
+                    
+                    return `
+                        <div class="p-3 bg-${severity}-900/30 rounded">
+                            <div class="flex justify-between mb-1">
+                                <span class="font-bold">${code}</span>
+                                <span class="text-gray-300">${recommendation ? recommendation.description : 'Code d\'erreur inconnu'}</span>
+                            </div>
+                            <p class="text-xs text-gray-400">Impact: ${severityText} | Cause probable: ${recommendation ? recommendation.possibleCauses[0] : 'Indéterminée'}</p>
+                            <div class="mt-2 text-xs">
+                                <a href="#" class="text-blue-400 hover:underline">Comment réparer?</a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
                 
-                // Données simulées pour le régime moteur
-                const labels = Array.from({length: 30}, (_, i) => i);
-                const data = {
+                dtcHTML = `
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-yellow-400 flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            Codes d'erreur détectés (${dtcCodes.length})
+                        </h4>
+                        <div class="space-y-2 text-white">
+                            ${dtcItemsHTML}
+                        </div>
+                    </div>
+                `;
+            } else {
+                dtcHTML = `
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2 text-green-400 flex items-center">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Diagnostic du véhicule
+                        </h4>
+                        <div class="text-white">
+                            <p>Aucun code d'erreur détecté. Votre véhicule fonctionne normalement.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Construire la section des pièces recommandées
+            let partsHTML = '';
+            if (recommendations && recommendations.length > 0) {
+                // Récupérer toutes les pièces recommandées
+                const allParts = [];
+                recommendations.forEach(rec => {
+                    if (rec.recommendedParts && rec.recommendedParts.length > 0) {
+                        rec.recommendedParts.forEach(part => {
+                            // Éviter les doublons
+                            if (!allParts.some(p => p.id === part.id)) {
+                                allParts.push(part);
+                            }
+                        });
+                    }
+                });
+                
+                if (allParts.length > 0) {
+                    const partsItemsHTML = allParts.map(part => `
+                        <div class="flex items-center justify-between p-3 bg-gray-700 rounded hover:bg-gray-600 transition cursor-pointer">
+                            <div>
+                                <span class="text-white flex items-center">
+                                    <span class="text-green-400 mr-1"><i class="fas fa-star"></i></span>
+                                    ${part.name}
+                                </span>
+                                <p class="text-xs text-gray-300">Réf: ${part.reference} | Compatibilité: ${part.compatibility}%</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-white font-bold">${part.price.toFixed(2)} €</span>
+                                <span class="block text-xs ${part.inStock ? 'text-green-400' : 'text-red-400'}">
+                                    ${part.inStock ? 'En stock' : 'Sur commande'}
+                                </span>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    partsHTML = `
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-bold mb-2 text-green-400">Pièces recommandées</h4>
+                            <div class="space-y-2">
+                                ${partsItemsHTML}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Assembler le tout
+            return `
+                <div class="mb-4 p-4 bg-green-900/30 text-green-400 rounded-lg">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span class="font-bold">Connexion MCP établie avec succès</span>
+                    </div>
+                    <p class="text-sm">Protocole: ${mcpConnector.deviceInfo?.protocol || 'MCP v3.2'} | Interface: OBD-II | Appareil: ${mcpConnector.deviceInfo?.name || 'Scanner MCP'}</p>
+                </div>
+                
+                <div class="space-y-4">
+                    ${engineParamsHTML}
+                    ${dtcHTML}
+                    ${partsHTML}
+                </div>
+                
+                <div class="mt-6 flex flex-wrap gap-3 justify-end">
+                    <button class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition flex items-center" id="save-diagnostic">
+                        <i class="fas fa-save mr-1"></i> Sauvegarder
+                    </button>
+                    <button class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition flex items-center" id="download-mcp-report">
+                        <i class="fas fa-download mr-1"></i> Télécharger
+                    </button>
+                    <button class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition flex items-center" id="share-diagnostic">
+                        <i class="fas fa-share-alt mr-1"></i> Partager
+                    </button>
+                    <button class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-hover transition flex items-center">
+                        <i class="fas fa-cart-plus mr-1"></i> Commander
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Initialiser le graphique des données moteur
+        function initEngineDataChart(dataPoints) {
+            const ctx = document.getElementById('engine-data-chart')?.getContext('2d');
+            if (!ctx) return;
+            
+            // Préparer les données
+            const labels = Array.from({length: dataPoints.length}, (_, i) => i);
+            const rpmData = dataPoints.map(d => d.rpm);
+            const tempData = dataPoints.map(d => d.temperature);
+            
+            engineDataChart = new Chart(ctx, {
+                type: 'line',
+                data: {
                     labels: labels,
                     datasets: [{
                         label: 'Régime (tr/min)',
-                        data: Array.from({length: 30}, () => 800 + Math.random() * 100),
+                        data: rpmData,
                         borderColor: 'rgb(75, 192, 192)',
                         tension: 0.4,
                         borderWidth: 2,
                     }, {
                         label: 'Température (°C)',
-                        data: Array.from({length: 30}, () => 85 + Math.random() * 5),
+                        data: tempData,
                         borderColor: 'rgb(255, 99, 132)',
                         tension: 0.4,
                         borderWidth: 2,
                     }]
-                };
-                
-                new Chart(ctx, {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        animation: {
-                            duration: 0
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: false,
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                },
-                                ticks: {
-                                    color: 'rgba(255, 255, 255, 0.5)'
-                                }
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 0
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
                             },
-                            x: {
-                                display: false
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.5)'
                             }
                         },
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    color: 'rgba(255, 255, 255, 0.7)'
-                                }
+                        x: {
+                            display: false
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'rgba(255, 255, 255, 0.7)'
                             }
                         }
                     }
-                });
-            }
-        }
-    </script>
-    
-    <!-- Script pour les avis Google -->
-    <script src="scripts/google-reviews.js"></script>
-
-    <!-- Script pour le protocole MCP -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialisation du protocole MCP
-            initMCPProtocol();
-        });
-        
-        function initMCPProtocol() {
-            const testMCPButton = document.getElementById('test-mcp-connection');
-            if (!testMCPButton) return;
-            
-            testMCPButton.addEventListener('click', async () => {
-                // Simuler une connexion MCP
-                testMCPButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Connexion en cours...';
-                testMCPButton.disabled = true;
-                
-                // Simulation d'une connexion MCP (à remplacer par une vraie implémentation)
-                setTimeout(() => {
-                    // Afficher modal avec les résultats de diagnostic
-                    showMCPDiagnosticResults();
-                    
-                    // Réinitialiser le bouton
-                    testMCPButton.innerHTML = '<i class="fas fa-bolt mr-2"></i> Tester la connexion MCP';
-                    testMCPButton.disabled = false;
-                }, 2500);
+                }
             });
         }
+        
+        // Mettre à jour le graphique avec de nouvelles données
+        function updateEngineDataChart(newData) {
+            if (!engineDataChart) return;
+            
+            // Ajouter les nouvelles données
+            engineDataChart.data.labels.push(engineDataChart.data.labels.length);
+            engineDataChart.data.datasets[0].data.push(newData.rpm);
+            engineDataChart.data.datasets[1].data.push(newData.temperature);
+            
+            // Supprimer les anciennes données si nécessaire
+            if (engineDataChart.data.labels.length > 30) {
+                engineDataChart.data.labels.shift();
+                engineDataChart.data.datasets.forEach(dataset => {
+                    dataset.data.shift();
+                });
+            }
+            
+            // Mettre à jour le graphique
+            engineDataChart.update();
+        }
+        
+        // Afficher un modal d'erreur de connexion
+        function showConnectionErrorModal(errorMessage) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75';
+            modal.innerHTML = `
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg max-w-md w-full">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-white">Erreur de connexion</h3>
+                        <button class="text-gray-400 hover:text-white" id="close-error-modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="bg-red-900/30 text-red-400 p-4 rounded-lg mb-4">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-exclamation-circle mr-2"></i>
+                            <span class="font-bold">Impossible de se connecter au dispositif MCP</span>
+                        </div>
+                        <p>${errorMessage || "Veuillez vérifier que l'appareil est correctement branché et allumé."}</p>
+                    </div>
+                    
+                    <div class="space-y-4 text-gray-300 text-sm">
+                        <div>
+                            <h4 class="font-bold mb-1">Solutions possibles:</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Vérifiez que l'appareil MCP est correctement branché au port OBD-II</li>
+                                <li>Assurez-vous que le contact du véhicule est mis</li>
+                                <li>Vérifiez que le Bluetooth est activé sur votre appareil</li>
+                                <li>Redémarrez l'appareil MCP</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 flex justify-end gap-3">
+                        <button id="try-simulation" class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
+                            Essayer en simulation
+                        </button>
+                        <button id="retry-connection" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-hover transition">
+                            Réessayer
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Gérer la fermeture du modal
+            document.getElementById('close-error-modal').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+            
+            // Gérer le bouton de réessai
+            document.getElementById('retry-connection')?.addEventListener('click', () => {
+                document.body.removeChild(modal);
+                document.getElementById('test-mcp-connection')?.click();
+            });
+            
+            // Gérer le bouton de simulation
+            document.getElementById('try-simulation')?.addEventListener('click', () => {
+                document.body.removeChild(modal);
+                // Lancer la simulation au lieu de la connexion réelle
+                showMCPDiagnosticResults();
+            });
+        }
+        
+        // ...autres fonctions existantes...
     </script>
 </body>
 </html>
