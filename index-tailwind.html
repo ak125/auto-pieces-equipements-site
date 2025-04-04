@@ -583,74 +583,22 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4 text-darker dark:text-white">Nos clients témoignent</h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Découvrez l'expérience digitale de nos clients.</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Découvrez l'expérience réelle de nos clients sur Google.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6">"L'application de diagnostic a parfaitement identifié la pièce dont j'avais besoin. J'ai pu la visualiser en 3D avant achat et elle était parfaitement compatible!"</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h4 class="font-medium">Pierre D.</h4>
-                            <p class="text-gray-400 text-sm font-mono">Client depuis 2018</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6">"Le système de suivi de ma batterie m'a envoyé une alerte avant qu'elle ne tombe en panne. J'ai pu la remplacer à temps sans rester bloquée. Excellent service préventif!"</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h4 class="font-medium">Sophie L.</h4>
-                            <p class="text-gray-400 text-sm font-mono">Client depuis 2020</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6">"La vidéo de montage en réalité augmentée m'a guidé étape par étape pour installer moi-même mes plaquettes de frein. J'ai économisé 30% sur le coût total de la réparation."</p>
-                    <div class="flex items-center">
-                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h4 class="font-medium">Thomas M.</h4>
-                            <p class="text-gray-400 text-sm font-mono">Client depuis 2019</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Indicateur de chargement -->
+            <div id="reviews-loading" class="flex justify-center mb-8">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+            
+            <!-- Conteneur pour les avis Google -->
+            <div id="google-reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Les avis seront chargés dynamiquement ici -->
             </div>
             
             <div class="text-center mt-10">
                 <a href="https://www.google.com/search?q=Auto+Pieces+Equipements+Les+Pavillons-sous-Bois" target="_blank" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium inline-flex items-center">
-                    <i class="fab fa-google mr-2"></i> Voir nos 4924 avis Google
+                    <i class="fab fa-google mr-2"></i> Voir tous nos avis Google
                 </a>
             </div>
         </div>
@@ -899,23 +847,6 @@
                 menu.classList.toggle('hidden');
             });
     
-            // Défilement fluide pour les ancres
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Fermer le menu mobile si ouvert
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-    
             // Formulaire de contact
             const contactForm = document.querySelector('form');
             if (contactForm && contactForm.id !== 'chat-form') {
@@ -1048,5 +979,8 @@
             });
         }
     </script>
+    
+    <!-- Script pour les avis Google -->
+    <script src="scripts/google-reviews.js"></script>
 </body>
 </html>
