@@ -1,553 +1,1222 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Garage Digitale - Interface Auto Immersive</title>
-  <meta name="description" content="Solution immersive pour les garagistes : logistique, facturation, pièces détachées, visionneuse 360°." />
-  <meta name="keywords" content="garage digital, pieces auto, devis en ligne, visionneuse 3D, logistique garage" />
-  <meta property="og:title" content="Garage Digitale" />
-  <meta property="og:image" content="/images/garage-preview.jpg" />
-  <meta property="og:description" content="La plateforme intelligente pour garages connectés." />
-  <link rel="icon" href="logo.svg" type="image/svg+xml" />
-  
-  <!-- Polices Google optimisées pour le thème technique -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome pour les icônes techniques -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Feuilles de style -->
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/design-enhancements.css">
-  <link rel="stylesheet" href="styles/tech-fonts.css">
-  <link rel="stylesheet" href="styles/enhanced-badges.css">
-  <link rel="stylesheet" href="styles/scan-animations.css">
-  <link rel="stylesheet" href="styles/innovations.css">
-  
-  <!-- CSS intégré pour styles critiques -->
-  <style>
-    :root {
-      /* Palette de couleurs futuristes pour garage numérique */
-      --primary: #0070f3;         /* Bleu digital */
-      --primary-hover: #005bb5;    /* Bleu plus sombre */
-      --secondary: #ff6b00;       /* Orange mécanique */
-      --tertiary: #00c896;        /* Turquoise diagnostique */
-      --dark: #111827;            /* Fond sombre */
-      --darker: #0a101f;          /* Fond très sombre */
-      --gray-light: #94a3b8;      /* Gris clair */
-      --gray-dark: #334155;       /* Gris foncé */
-      --success: #10b981;         /* Vert pour validation */
-      --error: #ef4444;           /* Rouge pour erreurs */
-      --warning: #f59e0b;         /* Jaune pour avertissements */
-      
-      /* Typographie */
-      --font-heading: 'Space Grotesk', system-ui, sans-serif;
-      --font-body: system-ui, -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Pièces Équipements - Spécialiste pièces auto aux Pavillons-sous-Bois</title>
     
-    /* Reset et fondamentaux */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0070f3',
+                        'primary-hover': '#005bb5',
+                        secondary: '#ff6b00',
+                        tertiary: '#00c896',
+                        dark: '#111827',
+                        darker: '#0a101f',
+                    }
+                }
+            }
+        }
+    </script>
     
-    body {
-      font-family: var(--font-body);
-      background: var(--dark);
-      color: white;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    <!-- Polices Google optimisées pour le thème technique -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    /* Typographie */
-    h1, h2, h3, h4 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
+    <!-- Font Awesome pour les icônes techniques -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      background: linear-gradient(90deg, var(--primary) 0%, var(--tertiary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    <!-- Modules CSS personnalisés -->
+    <link rel="stylesheet" href="styles/enhanced-badges.css">
+    <link rel="stylesheet" href="styles/scan-animations.css">
     
-    h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      color: white;
-      position: relative;
-      display: inline-block;
-      margin-bottom: 2.5rem;
-    }
-    
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 0;
-      width: 80px;
-      height: 4px;
-      background: var(--secondary);
-      border-radius: 2px;
-    }
-    
-    p {
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-      color: var(--gray-light);
-    }
-    
-    /* Layout */
-    section {
-      padding: 5rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    /* Navigation */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      background: rgba(10, 16, 31, 0.8);
-      backdrop-filter: blur(10px);
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .logo a {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-    }
-    
-    .logo svg {
-      width: 40px;
-      height: 40px;
-      margin-right: 10px;
-      filter: drop-shadow(0 0 8px var(--secondary));
-    }
-    
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-    
-    .nav-links a {
-      color: var(--gray-light);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      padding: 0.5rem 0;
-      position: relative;
-    }
-    
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.3s ease;
-    }
-    
-    .nav-links a:hover {
-      color: white;
-    }
-    
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-    
-    /* Boutons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-family: var(--font-heading);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.6s;
-    }
-    
-    .btn:hover::before {
-      left: 100%;
-    }
-    
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 5px 15px rgba(0, 112, 243, 0.4);
-    }
-    
-    .btn-primary:hover {
-      background: var(--primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 112, 243, 0.5);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      color: white;
-      border: 2px solid var(--secondary);
-      box-shadow: 0 0 0 0 var(--secondary);
-      transition: all 0.3s ease;
-    }
-    
-    .btn-secondary:hover {
-      background: var(--secondary);
-      color: white;
-      box-shadow: 0 0 10px 0 var(--secondary);
-      transform: translateY(-2px);
-    }
-    
-    /* Hero section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding-top: 70px;
-      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 60%;
-      background: url('/images/circuit-pattern.svg') no-repeat;
-      background-size: cover;
-      opacity: 0.1;
-      z-index: 0;
-    }
-    
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 20%;
-      right: 15%;
-      width: 30vw;
-      height: 30vw;
-      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-      filter: blur(60px);
-      opacity: 0.15;
-      animation: pulse 8s infinite alternate;
-    }
-    
-    @keyframes pulse {
-      0% { opacity: 0.1; }
-      100% { opacity: 0.2; }
-    }
-    
-    .hero-content {
-      max-width: 800px;
-      position: relative;
-      z-index: 1;
-      padding: 0 2rem;
-    }
-    
-    .hero-content p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-      color: var(--gray-light);
-    }
+    <style>
+        .font-tech {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(10, 16, 31, 0.85), rgba(17, 24, 39, 0.9)), url('https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=1473&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .part-card {
+            transition: all 0.3s ease;
+        }
+        
+        .part-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rating-stars {
+            color: #f59e0b;
+        }
 
-    /* Reste des styles omis pour brièveté */
-    
-    /* Mobile */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        padding: 1rem;
-      }
-      
-      .logo {
-        margin-bottom: 1rem;
-      }
-      
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        width: 100%;
-        text-align: center;
-      }
-      
-      .hero {
-        text-align: center;
-      }
-      
-      .btn {
-        display: block;
-        width: 100%;
-        text-align: center;
-      }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+
+    <!-- Données structurées pour SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoPartsStore",
+      "name": "Auto Pièces Équipements",
+      "image": "https://tonsite.fr/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "184 Avenue Aristide Briand",
+        "addressLocality": "Les Pavillons-sous-Bois",
+        "postalCode": "93320",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "48.91012",
+        "longitude": "2.51387"
+      },
+      "telephone": "+33148479627",
+      "openingHours": "Mo-Sa 09:00-18:30",
+      "url": "https://tonsite.fr",
+      "priceRange": "€€",
+      "paymentAccepted": "Cash, Credit Card",
+      "currenciesAccepted": "EUR"
     }
-  </style>
+    </script>
 </head>
-<body>
-  <!-- Header & Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">
-        <a href="/">
-          <!-- Logo SVG -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 200 200" fill="none">
-            <!-- Fond circulaire -->
-            <circle cx="100" cy="100" r="90" fill="#001B4D" />
-            <circle cx="100" cy="100" r="85" fill="#0A1929" />
+<body class="font-tech bg-gray-100">
+    <!-- Header -->
+    <header class="bg-darker text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Logo SVG -->
+                <a href="/" class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 200 200" fill="none" class="mr-3">
+                        <!-- Fond circulaire -->
+                        <circle cx="100" cy="100" r="90" fill="#001B4D" />
+                        <circle cx="100" cy="100" r="85" fill="#0A1929" />
+                        
+                        <!-- Élément d'engrenage -->
+                        <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
+
+                        <!-- Contour des éléments intérieurs -->
+                        <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
+                        
+                        <!-- Lettres stylisées APE -->
+                        <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Élément graphique automobile -->
+                        <circle cx="100" cy="100" r="12" fill="#00CC66" fill-opacity="0.2" stroke="#00CC66" stroke-width="1.5"/>
+                        <circle cx="100" cy="100" r="6" fill="#00CC66" fill-opacity="0.6"/>
+                        <circle cx="100" cy="100" r="2" fill="#FFFFFF"/>
+                        
+                        <!-- Rayons lumineux -->
+                        <path d="M100 70V80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M100 120V130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M70 100H80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M120 100H130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M82 82L89 89" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M111 111L118 118" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M82 118L89 111" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M111 89L118 82" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="text-xl font-bold">Auto Pièces <span class="text-blue-500">Équipements</span></span>
+                </a>
+            </div>
             
-            <!-- Élément d'engrenage (symbole mécanique) -->
-            <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
-
-            <!-- Contour des éléments intérieurs -->
-            <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
-            <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#accueil" class="hover:text-blue-400 transition">Accueil</a>
+                <a href="#produits" class="hover:text-blue-400 transition">Produits</a>
+                <a href="#services" class="hover:text-blue-400 transition">Services</a>
+                <a href="#avis" class="hover:text-blue-400 transition">Avis</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+                <a href="#rdv" class="hover:text-blue-400 transition">Rendez-vous</a>
+            </nav>
             
-            <!-- Lettres stylisées APE (Auto Pièces Équipements) -->
-            <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <div class="flex items-center space-x-4">
+                <button class="hover:text-blue-400 transition">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+                <button class="hover:text-blue-400 transition">
+                    <i class="fas fa-user text-lg"></i>
+                </button>
+                <button class="hover:text-blue-400 transition relative">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+                <button class="md:hidden" id="menu-toggle">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden bg-gray-800 hidden" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#accueil" class="hover:text-blue-400 transition py-2">Accueil</a>
+                <a href="#produits" class="hover:text-blue-400 transition py-2">Produits</a>
+                <a href="#services" class="hover:text-blue-400 transition py-2">Services</a>
+                <a href="#avis" class="hover:text-blue-400 transition py-2">Avis</a>
+                <a href="#contact" class="hover:text-blue-400 transition py-2">Contact</a>
+                <a href="#rdv" class="hover:text-blue-400 transition py-2">Rendez-vous</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Alerte de disponibilité -->
+    <div id="alert-open" class="hidden bg-green-600 text-white text-center px-4 py-3 text-sm md:text-base font-semibold flex items-center justify-center gap-2 shadow-md animate-fade-in relative">
+      <span class="text-lg">📞</span>
+      <span>
+        Disponible maintenant – Un conseiller vous répond au
+        <a href="tel:+33148479627" class="underline hover:text-white/80 transition">01 48 47 96 27</a>
+        ou sur
+        <a href="https://wa.me/33612345678" class="underline hover:text-white/80 transition">WhatsApp</a>
+      </span>
+      <button id="close-alert" class="absolute right-2 text-white hover:text-white/80">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero text-white py-20 md:py-32 flex items-center" id="accueil">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl">
+                <div class="flex items-center mb-4">
+                    <div class="rating-stars text-xl mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-sm bg-white text-gray-800 px-2 py-1 rounded font-mono">4.9/5 (4924 avis)</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Votre spécialiste en pièces auto aux Pavillons-sous-Bois</h1>
+                <p class="text-lg mb-8 opacity-90">Technologie de pointe et expertise pour tous vos besoins en pièces automobiles.</p>
+                
+                <!-- Animation de scan technique -->
+                <div id="tech-scan-hero" class="mb-8 h-24"></div>
+                
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                    <a href="#produits" class="bg-primary hover:bg-primary-hover px-6 py-3 rounded-lg font-medium transition text-center">
+                        Voir les produits
+                    </a>
+                    <a href="tel:+33148479627" class="bg-dark hover:bg-gray-800 border border-gray-700 text-white px-6 py-3 rounded-lg font-medium transition text-center flex items-center justify-center">
+                        <i class="fas fa-phone mr-2"></i> 01 48 47 96 27
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
+                    <h2 class="text-3xl font-bold mb-6 text-darker">Votre spécialiste en Seine-Saint-Denis</h2>
+                    <p class="text-gray-600 mb-6">Auto Pièces Équipements est votre partenaire technologique pour les pièces automobiles aux Pavillons-sous-Bois, au service des particuliers comme des professionnels depuis 2016.</p>
+                    <p class="text-gray-600 mb-6">Notre interface digitale connectée vous permet de trouver facilement les pièces compatibles avec votre véhicule grâce à un système de reconnaissance automatique.</p>
+                    
+                    <!-- Badges améliorés -->
+                    <div class="flex flex-wrap gap-4 mt-8 mb-8">
+                        <span data-badge data-badge-color="blue" data-badge-icon="🔍" data-badge-text="Diagnostic précis"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="bg-gray-100 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
+                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
+                        <i class="fas fa-truck text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Livraison express</h3>
+                        <p class="text-gray-600">Retrait en magasin ou livraison 24h dans toute la Seine-Saint-Denis.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
+                    <div class="bg-green-100 text-green-600 p-3 rounded-full">
+                        <i class="fas fa-shield-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Garantie numérique</h3>
+                        <p class="text-gray-600">Suivi en ligne de vos garanties et notifications de rappel automatiques.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
+                    <div class="bg-orange-100 text-orange-600 p-3 rounded-full">
+                        <i class="fas fa-headset text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-2">Diagnostic technique</h3>
+                        <p class="text-gray-600">Notre interface intelligente identifie les pièces compatibles avec votre véhicule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="py-16 bg-darker text-white" id="produits">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Nos produits phares</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Découvrez notre catalogue connecté de pièces automobiles haute performance.</p>
+                
+                <!-- Filtres de produits -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8 mb-10">
+                    <button class="bg-primary text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-600 transition active-filter">Tous</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Freinage</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Moteur</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Électricité</button>
+                    <button class="bg-dark border-2 border-gray-600 text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary hover:border-primary transition">Suspension</button>
+                </div>
+            </div>
             
-            <!-- Élément graphique automobile (volant ou phare) -->
-            <circle cx="100" cy="100" r="12" fill="#00CC66" fill-opacity="0.2" stroke="#00CC66" stroke-width="1.5"/>
-            <circle cx="100" cy="100" r="6" fill="#00CC66" fill-opacity="0.6"/>
-            <circle cx="100" cy="100" r="2" fill="#FFFFFF"/>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product 1 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1470&q=80" alt="Plaquettes de frein" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
+                        <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded font-mono">NOUVEAU</span>
+                        
+                        <!-- Actions rapides superposées (nouveau) -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Plaquettes de frein carbone</h3>
+                        <p class="text-gray-400 text-sm mb-3 font-mono">Réf: BRK-2023-C</p>
+                        
+                        <!-- Indicateur de compatibilité (nouveau) -->
+                        <div class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-check mr-1"></i> Compatible avec votre véhicule
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-lg">49,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=1528&q=80" alt="Batterie" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
+                        
+                        <!-- Badge populaire -->
+                        <span class="absolute top-2 right-2 bg-purple-600 text-white text-xs px-2 py-1 rounded font-mono">TOP VENTES</span>
+                        
+                        <!-- Actions rapides superposées -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Batterie connectée 12V</h3>
+                        <p class="text-gray-400 text-sm mb-3 font-mono">Réf: BAT-IOT-70</p>
+                        
+                        <!-- Indicateur de compatibilité -->
+                        <div class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-check mr-1"></i> Compatible avec votre véhicule
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-lg">89,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?auto=format&fit=crop&w=1470&q=80" alt="Filtre à air" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
+                        <span class="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded font-mono">PROMO</span>
+                        
+                        <!-- Actions rapides superposées -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Filtre à air haute perf</h3>
+                        <p class="text-gray-400 text-sm mb-3 font-mono">Réf: AIR-COMP-X3</p>
+                        
+                        <!-- Indicateur de compatibilité -->
+                        <div class="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-check mr-1"></i> Compatible avec votre véhicule
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-gray-400 line-through mr-2">24,99 €</span>
+                                <span class="font-bold text-lg text-blue-500">19,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 - Amélioré -->
+                <div class="bg-dark rounded-lg overflow-hidden shadow-md part-card transition duration-300 border border-gray-800 group hover:shadow-xl hover:border-gray-700">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1554744512-d6c603f27c54?auto=format&fit=crop&w=1470&q=80" alt="Ampoules" class="w-full h-48 object-cover transition duration-300 group-hover:brightness-110">
+                        
+                        <!-- Badge stock limité -->
+                        <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded font-mono">STOCK LIMITÉ</span>
+                        
+                        <!-- Actions rapides superposées -->
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir en 3D">
+                                <i class="fas fa-cube"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Voir compatibilité">
+                                <i class="fas fa-car"></i>
+                            </button>
+                            <button class="bg-white text-gray-900 p-2 rounded-full hover:bg-blue-500 hover:text-white transition" title="Ajouter au panier">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Kit LED Ultra H7</h3>
+                        <p class="text-gray-400 text-sm mb-3 font-mono">Réf: LED-9000K-H7</p>
+                        
+                        <!-- Indicateur de compatibilité différent (alerte) -->
+                        <div class="bg-yellow-900/30 text-yellow-400 text-xs px-2 py-1 rounded-full inline-flex items-center mb-3">
+                            <i class="fas fa-exclamation-triangle mr-1"></i> Vérification de compatibilité nécessaire
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-lg">34,99 €</span>
+                                <span class="text-gray-400 text-xs ml-1">TTC</span>
+                            </div>
+                            <button class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded font-medium transition flex items-center">
+                                <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Rayons lumineux (aspect digital/tech) -->
-            <path d="M100 70V80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M100 120V130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M70 100H80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M120 100H130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M82 82L89 89" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M111 111L118 118" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M82 118L89 111" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M111 89L118 82" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          GarageDigitale
-        </a>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#features"><i class="fas fa-microchip"></i> Fonctionnalités</a></li>
-        <li><a href="#services"><i class="fas fa-wrench"></i> Services</a></li>
-        <li><a href="#produits"><i class="fas fa-cog"></i> Produits</a></li>
-        <li><a href="#contact"><i class="fas fa-headset"></i> Contact</a></li>
-      </ul>
-      <a href="#devis" class="btn btn-primary"><i class="fas fa-file-invoice"></i> Demander un devis</a>
-    </nav>
-  </header>
+            <!-- Voir plus de produits -->
+            <div class="text-center mt-10 space-y-4">
+                <button class="border-2 border-blue-500 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-medium transition flex items-center justify-center mx-auto">
+                    <i class="fas fa-th-large mr-2"></i> Explorer le catalogue digital
+                </button>
+                
+                <!-- Pagination simple -->
+                <div class="flex justify-center items-center space-x-2 text-sm">
+                    <span class="text-blue-400">Page 1</span>
+                    <span class="text-gray-500">sur 8</span>
+                    <div class="flex space-x-1 ml-4">
+                        <button class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded hover:bg-gray-700 transition disabled opacity-50">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded hover:bg-gray-700 transition">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content animate-fadeInUp">
-      <h1>Optimisez la gestion de votre garage</h1>
-      <p>Une interface intuitive pour les professionnels de l'automobile</p>
-      <a href="#features" class="btn btn-secondary"><i class="fas fa-cube"></i> Explorer les modules</a>
+    <!-- Services -->
+    <section class="py-16 bg-white" id="services">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-darker">Nos services connectés</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Une expérience entièrement digitalisée pour l'entretien de votre véhicule.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-tools text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Diagnostic électronique</h3>
+                    <p class="text-gray-600 mb-4">Analyse complète avec rapport numérique détaillé envoyé dans votre espace client.</p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="bg-green-100 text-green-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-oil-can text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Vidange connectée</h3>
+                    <p class="text-gray-600 mb-4">Rappels automatiques et suivi de la qualité d'huile via notre application mobile.</p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="bg-orange-100 text-orange-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-car-battery text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Batterie intelligente</h3>
+                    <p class="text-gray-600 mb-4">Surveillance à distance de l'état de votre batterie avec alertes préventives.</p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-tachometer-alt text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Performances numériques</h3>
+                    <p class="text-gray-600 mb-4">Test et optimisation de la puissance et de la consommation avec rapport détaillé.</p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="bg-purple-100 text-purple-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-tablet-alt text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Visualisation 3D</h3>
+                    <p class="text-gray-600 mb-4">Explorez chaque pièce en 3D avant achat pour garantir la compatibilité parfaite.</p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="bg-red-100 text-red-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                        <i class="fas fa-key text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Assistance digitale</h3>
+                    <p class="text-gray-600 mb-4">Support technique par vidéo et chat 24/7 directement dans notre application.</p>
+                    <a href="#" class="text-primary font-medium flex items-center">
+                        En savoir plus <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#rdv" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium inline-flex items-center">
+                    <i class="fas fa-calendar-alt mr-2"></i> Prendre rendez-vous
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-100" id="avis">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-darker">Nos clients témoignent</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Découvrez les expériences réelles de nos clients sur Google.</p>
+                <div class="flex items-center justify-center mt-4">
+                    <div class="rating-stars text-2xl mr-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-lg font-bold">4,9/5 (24 avis)</span>
+                </div>
+            </div>
+            
+            <!-- Indicateur de chargement -->
+            <div id="reviews-loading" class="text-center py-8">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                <p class="text-gray-500 mt-2">Chargement des avis...</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Avis existants -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="rating-stars text-xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Il y a 2 jours</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Super équipe j'ai commandé le matin récupérer après midi"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Bruno Firnadch" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Bruno Firnadch</h4>
+                            <p class="text-gray-400 text-sm font-mono">Visité en avril</p>
+                        </div>
+                    </div>
+                    <!-- Réponse du propriétaire -->
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <div class="flex items-start">
+                            <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Propriétaire" class="w-8 h-8 rounded-full mr-2">
+                            <div>
+                                <h5 class="text-sm font-medium text-blue-600">Auto Pieces Equipements</h5>
+                                <p class="text-gray-500 text-sm">A votre service</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="rating-stars text-xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Il y a 1 semaine</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Excellent service, j'ai trouvé exactement la pièce qu'il me fallait en quelques minutes."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Automecanik" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Automecanik</h4>
+                            <p class="text-gray-400 text-sm font-mono">Visité en mars</p>
+                        </div>
+                    </div>
+                    <!-- Réponse du propriétaire -->
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <div class="flex items-start">
+                            <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Propriétaire" class="w-8 h-8 rounded-full mr-2">
+                            <div>
+                                <h5 class="text-sm font-medium text-blue-600">Auto Pieces Equipements</h5>
+                                <p class="text-gray-500 text-sm">A votre service</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="rating-stars text-xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">1 déc. 2023</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Vendeur sérieux...bonne disponibilité pour les pièces..."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Christophe Guilbert" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Christophe Guilbert</h4>
+                            <p class="text-gray-400 text-sm font-mono">Visité en décembre 2023</p>
+                        </div>
+                    </div>
+                    <!-- Réponse du propriétaire -->
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <div class="flex items-start">
+                            <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Propriétaire" class="w-8 h-8 rounded-full mr-2">
+                            <div>
+                                <h5 class="text-sm font-medium text-blue-600">Auto Pieces Equipements</h5>
+                                <p class="text-gray-500 text-sm">Merci à vous</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="rating-stars text-xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">18 avr. 2023</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Super sympa. Prix très sympathique et abordable"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Jack Sparrow" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Jack Sparrow</h4>
+                            <p class="text-gray-400 text-sm font-mono">Visité en avril 2023</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="rating-stars text-xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">26 mars 2022</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Fournisseur pour nos pièces auto depuis plus de 6 ans très efficace et pas cher. Nous vous le recommandons"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/18.jpg" alt="NC AUTO" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">NC AUTO</h4>
+                            <p class="text-gray-400 text-sm font-mono">Visité en mars 2022</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="rating-stars text-xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">13 janv. 2017</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Super équipe à l'écoute et très réactif. J'ai appelé le matin à 10h30 et à 13h30 j'avais les pièces. En plus j'étais vraiment dans l'urgence. MERCI. Je recommande bien sur."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laëtitia B" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium">Laëtitia B</h4>
+                            <p class="text-gray-400 text-sm font-mono">Local Guide • 145 avis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium inline-flex items-center">
+                    <i class="fab fa-google mr-2"></i> Voir tous nos avis Google
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-16 bg-darker text-white" id="contact">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Contactez-nous</h2>
+                    <p class="text-gray-400 mb-8">Accédez à notre support technique avancé pour toute question sur nos produits ou services.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-blue-900 text-blue-300 p-3 rounded-full">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Adresse</h4>
+                                <p class="text-gray-400">184 Av. Aristide Briand<br>93320 Les Pavillons-sous-Bois, France</p>
+                                <a href="https://goo.gl/maps/xyz" target="_blank" class="text-blue-400 text-sm mt-1 inline-block">Voir sur la carte</a>
+                                <div class="mt-4">
+                                    <a href="https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320" 
+                                       target="_blank" 
+                                       class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded inline-flex items-center">
+                                        <i class="fas fa-map-marker-alt mr-2"></i> Itinéraire GPS
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-green-900 text-green-300 p-3 rounded-full">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Téléphone</h4>
+                                <p class="text-gray-400">01 48 47 96 27<br>Lun-Sam : 9h-18h30</p>
+                                <a href="tel:+33148479627" class="text-blue-400 text-sm mt-1 inline-block">Appeler maintenant</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-orange-900 text-orange-300 p-3 rounded-full">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Email</h4>
+                                <p class="text-gray-400">contact@autopieces-equipements.fr<br>Support technique 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-dark p-8 rounded-lg shadow-lg border border-gray-800">
+                    <h3 class="text-xl font-bold mb-6">Accès à l'assistance technique</h3>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-300 font-medium mb-2">Nom complet</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-300 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="vehicle" class="block text-gray-300 font-medium mb-2">Modèle du véhicule</label>
+                            <input type="text" id="vehicle" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 font-medium mb-2">Description technique</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white font-mono"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-lg font-medium transition">
+                            Demander une assistance
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prise de RDV -->
+    <section id="rdv" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-darker mb-6">Prendre un rendez-vous</h2>
+                <p class="text-gray-600 mb-8">Un technicien vous rappellera pour confirmer votre demande.</p>
+
+                <form id="rdv-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="rdv-name" class="block text-gray-700 font-medium mb-1">Nom complet</label>
+                            <input type="text" id="rdv-name" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div>
+                            <label for="rdv-phone" class="block text-gray-700 font-medium mb-1">Téléphone</label>
+                            <input type="tel" id="rdv-phone" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="rdv-date" class="block text-gray-700 font-medium mb-1">Date souhaitée</label>
+                            <input type="date" id="rdv-date" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div>
+                            <label for="rdv-time" class="block text-gray-700 font-medium mb-1">Heure souhaitée</label>
+                            <input type="time" id="rdv-time" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="rdv-msg" class="block text-gray-700 font-medium mb-1">Message (facultatif)</label>
+                        <textarea id="rdv-msg" rows="4" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white font-medium py-3 rounded transition flex items-center justify-center">
+                        <i class="fas fa-phone-alt mr-2"></i> Demander un rappel
+                    </button>
+                </form>
+
+                <!-- Message de confirmation (caché par défaut) -->
+                <div id="rdv-confirmation" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-lg text-center">
+                    <i class="fas fa-check-circle text-2xl mb-2"></i>
+                    <p class="font-medium">Votre demande a bien été enregistrée !</p>
+                    <p class="text-sm">Nous vous contacterons rapidement pour confirmer votre rendez-vous.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Button - Version optimisée -->
+    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50" style="display: block; opacity: 1; transform: scale(1);">
+      <a href="https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto" target="_blank"
+         class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full shadow-lg flex items-center space-x-2 transition">
+        <i class="fab fa-whatsapp text-xl"></i>
+        <span>Discuter sur WhatsApp</span>
+      </a>
     </div>
-  </section>
 
-  <!-- Fonctionnalités Section avec animation de scan -->
-  <section id="features">
-    <h2>Fonctionnalités Clés</h2>
-    
-    <!-- Animation de scan technique -->
-    <div id="tech-scan-demo" class="mb-8"></div>
-    
-    <ul class="features-list">
-      <li><i class="fas fa-calculator me-3"></i> Calculateur de pièces intelligent</li>
-      <li><i class="fas fa-history me-3"></i> Historique des interventions</li>
-      <li><i class="fas fa-sync me-3"></i> Synchronisation logistique & stock</li>
-      <li><i class="fas fa-cube me-3"></i> Visionneuse 3D de pièces détachées</li>
-    </ul>
-    
-    <!-- Badges améliorés -->
-    <div class="flex flex-wrap gap-4 mt-8 justify-center">
-      <span data-badge data-badge-color="blue" data-badge-icon="🔍" data-badge-text="Diagnostic précis"></span>
-      <span data-badge data-badge-color="amber" data-badge-icon="⚡" data-badge-text="Livraison Express" data-badge-pulse="true"></span>
-      <span data-badge data-badge-color="green" data-badge-icon="✓" data-badge-text="Compatible multi-marques"></span>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <!-- Mini logo SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 200 200" fill="none">
+                            <circle cx="100" cy="100" r="90" fill="#001B4D" />
+                            <circle cx="100" cy="100" r="85" fill="#0A1929" />
+                            <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
+                            <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
+                            <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
+                            <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-xl font-bold">Auto Pièces <span class="text-blue-500">Équipements</span></span>
+                    </div>
+                    <p class="text-gray-400">Partenaire technologique pour toutes vos pièces automobiles depuis 2016.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Plateforme digitale</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition">Accueil</a></li>
+                        <li><a href="#produits" class="text-gray-400 hover:text-white transition">Catalogue 3D</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services connectés</a></li>
+                        <li><a href="#avis" class="text-gray-400 hover:text-white transition">Expériences clients</a></li>
+                        <li><a href="/dashboard.html" class="text-gray-400 hover:text-white transition">Espace client</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Technologies</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Visualisation 3D</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Diagnostic OBD</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Suivi IoT</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Réalité augmentée</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Application mobile</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Informations légales</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mentions légales</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">CGV</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a></li>
+                        <li><a href="/admin/place-id-finder.html" class="text-gray-400 hover:text-white transition">Administration</a></li>
+                        <li><a href="/roadmap-innovation-technique.md" class="text-gray-400 hover:text-white transition">Roadmap technique</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0 font-mono">&copy; 2023 Auto Pièces Équipements. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="Mastercard" class="h-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" class="h-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/PayPal.svg/1200px-PayPal.svg.png" alt="Paypal" class="h-8">
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Services Section -->
-  <section id="services">
-    <h2>Nos Services</h2>
-    <div class="services-grid">
-      <div class="card">
-        <i class="fas fa-cogs mb-4" style="font-size: 2rem; color: var(--primary);"></i>
-        <h3 class="mb-2">Gestion des pièces</h3>
-        <p>Système intelligent d'inventaire et commande automatisée des pièces détachées selon vos besoins.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-file-invoice-dollar mb-4" style="font-size: 2rem; color: var(--secondary);"></i>
-        <h3 class="mb-2">Facturation automatique</h3>
-        <p>Générez des devis et factures professionnels en quelques clics avec notre système intégré.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-headset mb-4" style="font-size: 2rem; color: var(--tertiary);"></i>
-        <h3 class="mb-2">Support technique intégré</h3>
-        <p>Accédez à nos techniciens spécialisés pour résoudre rapidement tous vos problèmes.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Scripts -->
+    <script type="module">
+        // Commentez ces lignes si les fichiers n'existent pas
+        // import { initTechScan } from './scripts/modules/scan-effect.js';
+        // import { initBadges } from './scripts/modules/badges.js';
+        // import { initReviewsCarousel } from './scripts/modules/reviews-carousel.js';
 
-  <!-- Produits Section -->
-  <section id="produits">
-    <h2>Nos Produits</h2>
-    <div class="product-gallery">
-      <div class="product-card">
-        <i class="fas fa-oil-can mb-4" style="font-size: 2rem;"></i>
-        <h3>Filtre à huile</h3>
-      </div>
-      <div class="product-card">
-        <i class="fas fa-compact-disc mb-4" style="font-size: 2rem;"></i>
-        <h3>Disques de frein</h3>
-      </div>
-      <div class="product-card">
-        <i class="fas fa-car-battery mb-4" style="font-size: 2rem;"></i>
-        <h3>Amortisseurs</h3>
-      </div>
-    </div>
-  </section>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Vérification des horaires d'ouverture
+            const now = new Date();
+            const day = now.getDay(); // 0 = dimanche, 6 = samedi
+            const hour = now.getHours();
+            const minute = now.getMinutes();
 
-  <!-- Données & KPIs -->
-  <section id="kpis">
-    <h2>Notre Impact</h2>
-    <div class="kpis">
-      <div class="kpi">
-        <strong>+2000</strong>
-        <span>garages partenaires</span>
-      </div>
-      <div class="kpi">
-        <strong>99.7%</strong>
-        <span>satisfaction client</span>
-      </div>
-      <div class="kpi">
-        <strong>24/7</strong>
-        <span>support disponible</span>
-      </div>
-    </div>
-  </section>
+            const isOpen = (
+                day >= 1 && day <= 6 && // Lundi à Samedi
+                (
+                    (hour === 9 && minute >= 0) ||
+                    (hour > 9 && hour < 18) ||
+                    (hour === 18 && minute <= 30)
+                )
+            );
 
-  <!-- FAQ -->
-  <section id="faq">
-    <h2>Questions Fréquentes</h2>
-    <details>
-      <summary>Comment s'inscrire à la plateforme ?</summary>
-      <p>Créez un compte en quelques clics depuis la page d'accueil. Notre processus d'inscription est simplifié et ne prend que 2 minutes.</p>
-    </details>
-    <details>
-      <summary>Puis-je connecter mon système ERP existant ?</summary>
-      <p>Oui, notre plateforme propose des intégrations via APIs REST et Webhooks avec la plupart des ERP du marché.</p>
-    </details>
-    <details>
-      <summary>La visionneuse 3D fonctionne-t-elle sur mobile ?</summary>
-      <p>Absolument. Notre visionneuse 3D est optimisée pour tous les appareils, y compris tablettes et smartphones.</p>
-    </details>
-  </section>
+            // 2. Gestion de l'alerte de disponibilité (une seule fois)
+            const alertOpen = document.getElementById('alert-open');
+            if (alertOpen) {
+                if (isOpen) {
+                    // Le magasin est ouvert
+                    alertOpen.classList.remove('hidden');
+                    alertOpen.classList.add('bg-green-600');
+                    alertOpen.querySelector('span:nth-child(2)').innerHTML = `
+                        Disponible maintenant – Un conseiller vous répond au
+                        <a href="tel:+33148479627" class="underline hover:text-white/80 transition">01 48 47 96 27</a>
+                        ou sur
+                        <a href="https://wa.me/33612345678" class="underline hover:text-white/80 transition">WhatsApp</a>
+                    `;
+                } else {
+                    // Le magasin est fermé
+                    alertOpen.classList.remove('hidden');
+                    alertOpen.classList.add('bg-orange-600');
+                    alertOpen.querySelector('span:nth-child(2)').innerHTML = `
+                        Actuellement fermé – Nous ouvrons demain à 9h00. Laissez un message sur 
+                        <a href="https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations" class="underline hover:text-white/80 transition">WhatsApp</a>
+                    `;
+                }
+                
+                // Bouton de fermeture
+                document.getElementById('close-alert')?.addEventListener('click', function() {
+                    alertOpen.classList.add('hidden');
+                });
+            }
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <form action="/api/contact" method="POST">
-      <input type="text" name="nom" placeholder="Votre nom" required />
-      <input type="email" name="email" placeholder="Votre email" required />
-      <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
-      <button type="submit"><i class="fas fa-paper-plane me-2"></i> Envoyer</button>
-    </form>
-  </section>
+            // Pour garantir que l'alerte s'affiche
+            setTimeout(() => {
+                const alertOpen = document.getElementById('alert-open');
+                if (alertOpen) {
+                    alertOpen.classList.remove('hidden');
+                    console.log('Alerte affichée par force');
+                }
+            }, 1000);
 
-  <!-- CTA Section -->
-  <section id="devis" class="cta">
-    <h2>Besoin d'un devis personnalisé ?</h2>
-    <p>Notre équipe vous répond sous 24h avec une solution sur mesure adaptée à votre garage.</p>
-    <a href="#contact" class="btn btn-primary"><i class="fas fa-clipboard-check me-2"></i> Faire une demande</a>
-  </section>
+            // 3. Affichage du bouton WhatsApp - Version corrigée
+            const whatsappButton = document.getElementById('whatsapp-button');
+            if (whatsappButton) {
+                // Définir directement les styles pour garantir la visibilité
+                whatsappButton.style.display = "block";
+                whatsappButton.style.opacity = "1";
+                whatsappButton.style.transform = "scale(1)";
+                
+                console.log("Bouton WhatsApp configuré avec style direct");
+                
+                // Adapter le message selon les horaires
+                if (!isOpen) {
+                    const whatsappLink = whatsappButton.querySelector('a');
+                    if (whatsappLink) {
+                        whatsappLink.setAttribute('href', 
+                            'https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto.%20Merci%20de%20me%20recontacter%20pendant%20vos%20horaires%20d%27ouverture.');
+                        
+                        const buttonText = whatsappLink.querySelector('span');
+                        if (buttonText) {
+                            buttonText.textContent = 'Laisser un message';
+                        }
+                    }
+                }
+            }
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Garage Digitale. Tous droits réservés.</p>
-    <ul class="footer-links">
-      <li><a href="/mentions-legales">Mentions légales</a></li>
-      <li><a href="/politique">Politique de confidentialité</a></li>
-      <li><a href="mailto:support@garagedigitale.fr"><i class="fas fa-envelope me-1"></i> support@garagedigitale.fr</a></li>
-    </ul>
-  </footer>
+            // 4. Sur mobile, proposer d'ouvrir le GPS après un délai - Version corrigée
+            if (window.innerWidth < 768) {
+                // Réduire le délai et garantir l'exécution
+                setTimeout(function() {
+                    try {
+                        if (confirm("Souhaitez-vous ouvrir le GPS pour venir au magasin ?")) {
+                            window.open("https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320", "_blank");
+                            console.log("GPS ouvert avec succès");
+                        } else {
+                            console.log("Utilisateur a refusé d'ouvrir le GPS");
+                        }
+                    } catch (e) {
+                        console.error("Erreur lors de l'ouverture du GPS:", e);
+                    }
+                }, 15000); // Réduit à 15 secondes pour un meilleur taux de conversion
+            }
 
-  <!-- Scripts -->
-  <script type="module" src="scripts/main.js"></script>
-  <script type="module">
-    import { initTechScan } from './scripts/modules/scan-effect.js';
-    import { initBadges } from './scripts/modules/badges.js';
-    import { enhanceProductSection } from './scripts/modules/products-enhanced.js';
-    import { initCoreFeatures } from './scripts/modules/core-features.js';
-    import { initInteractiveFeatures } from './scripts/modules/interactive-features.js';
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      // Initialiser les modules
-      initBadges();
-      enhanceProductSection();
-      initCoreFeatures();
-      initInteractiveFeatures();
-      
-      // Initialiser l'animation de scan
-      initTechScan('tech-scan-demo', {
-        dataPoints: 25,
-        xAxisLabel: 'Cycle moteur',
-        yAxisLabel: 'Performance',
-        analysisText: 'DIAGNOSTIC EN COURS...'
-      });
-      
-      // Animation simple au défilement
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fadeInUp');
-          }
+            // 5. Initialiser les modules
+            // initBadges();
+            // initTechScan('tech-scan-hero', {
+            //     dataPoints: 20,
+            //     xAxisLabel: 'Performance',
+            //     yAxisLabel: 'Compatibilité',
+            //     analysisText: 'RECHERCHE DE PIÈCES COMPATIBLES...'
+            // });
+            
+            // 6. Menu mobile
+            document.getElementById('menu-toggle')?.addEventListener('click', function() {
+                const menu = document.getElementById('mobile-menu');
+                menu?.classList.toggle('hidden');
+            });
+            
+            // 7. Navigation fluide
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Fermer menu mobile
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+            
+            // 8. Formulaire de contact (utiliser un ID spécifique)
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const vehicle = document.getElementById('vehicle').value;
+                    const message = document.getElementById('message').value;
+                            
+                    if (name && email && vehicle && message) {
+                        alert('Votre demande d\'assistance technique a été enregistrée. Un expert vous contactera sous 2 heures.');
+                        contactForm.reset();
+                    } else {
+                        alert('Veuillez remplir tous les champs du formulaire.');
+                    }
+                });
+            }
+            
+            // 9. Formulaire de RDV
+            const rdvForm = document.getElementById('rdv-form');
+            if (rdvForm) {
+                // Définir la date minimale (aujourd'hui)
+                const dateInput = document.getElementById('rdv-date');
+                if (dateInput) {
+                    const today = new Date().toISOString().split('T')[0];
+                    dateInput.setAttribute('min', today);
+                    
+                    // Désactiver les dimanches
+                    dateInput.addEventListener('input', function() {
+                        const selectedDate = new Date(this.value);
+                        if (selectedDate.getDay() === 0) { // 0 = Dimanche
+                            alert('Nous sommes fermés le dimanche. Veuillez choisir un autre jour.');
+                            this.value = '';
+                        }
+                    });
+                }
+                
+                // Définir les plages horaires acceptables
+                const timeInput = document.getElementById('rdv-time');
+                if (timeInput) {
+                    timeInput.setAttribute('min', '09:00');
+                    timeInput.setAttribute('max', '18:00');
+                }
+                
+                // Formatter le numéro de téléphone
+                const phoneInput = document.getElementById('rdv-phone');
+                if (phoneInput) {
+                    phoneInput.addEventListener('input', function() {
+                        let phoneNumber = this.value.replace(/\D/g, '');
+                        if (phoneNumber.length > 0) {
+                            phoneNumber = phoneNumber.match(new RegExp('.{1,2}', 'g'))?.join(' ') || '';
+                        }
+                        this.value = phoneNumber;
+                    });
+                }
+                
+                // Soumission du formulaire
+                rdvForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const data = {
+                        name: document.getElementById('rdv-name')?.value || '',
+                        phone: document.getElementById('rdv-phone')?.value || '',
+                        date: document.getElementById('rdv-date')?.value || '',
+                        time: document.getElementById('rdv-time')?.value || '',
+                        message: document.getElementById('rdv-msg')?.value || '',
+                    };
+                    
+                    if (data.name && data.phone && data.date && data.time) {
+                        alert("✅ Merci ! Un conseiller vous rappellera à l'horaire souhaité.");
+                        rdvForm.reset();
+                        
+                        const confirmation = document.getElementById('rdv-confirmation');
+                        if (confirmation) {
+                            confirmation.classList.remove('hidden');
+                            rdvForm.classList.add('hidden');
+                        }
+                        
+                        console.log('Demande de RDV envoyée:', data);
+                    } else {
+                        alert('Veuillez remplir tous les champs obligatoires.');
+                    }
+                });
+            }
+
+            // Vérification finale des éléments critiques
+            setTimeout(() => {
+                // Vérifier le bouton WhatsApp
+                const whatsappBtn = document.getElementById('whatsapp-button');
+                if (whatsappBtn) {
+                    console.log("WhatsApp button trouvé, style actuel:", 
+                        "display:", whatsappBtn.style.display,
+                        "opacity:", whatsappBtn.style.opacity,
+                        "transform:", whatsappBtn.style.transform
+                    );
+                    // Forcer l'affichage en cas de problème
+                    whatsappBtn.style.display = "block";
+                    whatsappBtn.style.opacity = "1";
+                    whatsappBtn.style.transform = "scale(1)";
+                } else {
+                    console.error("WhatsApp button non trouvé dans le DOM");
+                }
+            }, 5000);
         });
-      }, { threshold: 0.1 });
-      
-      document.querySelectorAll('section > h2, .features-list li, .card, .product-card, .kpi').forEach(el => {
-        observer.observe(el);
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
