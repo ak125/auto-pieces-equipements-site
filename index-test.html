@@ -63,7 +63,44 @@
         .rating-stars {
             color: #f59e0b;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
     </style>
+
+    <!-- Données structurées pour SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoPartsStore",
+      "name": "Auto Pièces Équipements",
+      "image": "https://tonsite.fr/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "184 Avenue Aristide Briand",
+        "addressLocality": "Les Pavillons-sous-Bois",
+        "postalCode": "93320",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "48.91012",
+        "longitude": "2.51387"
+      },
+      "telephone": "+33148479627",
+      "openingHours": "Mo-Sa 09:00-18:30",
+      "url": "https://tonsite.fr",
+      "priceRange": "€€",
+      "paymentAccepted": "Cash, Credit Card",
+      "currenciesAccepted": "EUR"
+    }
+    </script>
 </head>
 <body class="font-tech bg-gray-100">
     <!-- Header -->
@@ -145,6 +182,20 @@
         </div>
     </header>
 
+    <!-- Alerte de disponibilité -->
+    <div id="alert-open" class="hidden bg-green-600 text-white text-center px-4 py-3 text-sm md:text-base font-semibold flex items-center justify-center gap-2 shadow-md animate-fade-in relative">
+      <span class="text-lg">📞</span>
+      <span>
+        Disponible maintenant – Un conseiller vous répond au
+        <a href="tel:+33148479627" class="underline hover:text-white/80 transition">01 48 47 96 27</a>
+        ou sur
+        <a href="https://wa.me/33612345678" class="underline hover:text-white/80 transition">WhatsApp</a>
+      </span>
+      <button id="close-alert" class="absolute right-2 text-white hover:text-white/80">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero text-white py-20 md:py-32 flex items-center" id="accueil">
         <div class="container mx-auto px-4">
@@ -189,20 +240,6 @@
                     <!-- Badges améliorés -->
                     <div class="flex flex-wrap gap-4 mt-8 mb-8">
                         <span data-badge data-badge-color="blue" data-badge-icon="🔍" data-badge-text="Diagnostic précis"></span>
-                        <span data-badge data-badge-color="amber" data-badge-icon="⚡" data-badge-text="Livraison Express" data-badge-pulse="true"></span>
-                        <span data-badge data-badge-color="green" data-badge-icon="✓" data-badge-text="Compatible multi-marques"></span>
-                    </div>
-                    
-                    <div class="flex space-x-4">
-                        <a href="#services" class="bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg font-medium transition">Nos services</a>
-                        <a href="#contact" class="border-2 border-darker hover:bg-darker hover:text-white px-6 py-2 rounded-lg font-medium transition">Nous trouver</a>
-                    </div>
-                </div>
-                <div class="lg:w-1/2">
-                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2621.234456789012!2d2.505876315676127!3d48.90691117929388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6125a4d2a8a3f%3A0x1a5d5c2e2a2b2c3d!2s184%20Av.%20Aristide%20Briand%2C%2093320%20Les%20Pavillons-sous-Bois%2C%20France!5e0!3m2!1sfr!2sus!4v1620000000000!5m2!1sfr!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -936,6 +973,69 @@
         import { initReviewsCarousel } from './scripts/modules/reviews-carousel.js';
         
         document.addEventListener('DOMContentLoaded', () => {
+            // Vérification des horaires d'ouverture et affichage conditionnel
+            const now = new Date();
+            const day = now.getDay(); // 0 = dimanche, 6 = samedi
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+
+            // Vérifier si le magasin est ouvert (Lun-Sam, 9h-18h30)
+            const isOpen = (
+                day >= 1 && day <= 6 && // Lundi à Samedi
+                (
+                    (hour === 9 && minute >= 0) ||
+                    (hour > 9 && hour < 18) ||
+                    (hour === 18 && minute <= 30)
+                )
+            );
+
+            // Version améliorée pour la bannière d'ouverture/fermeture
+            const alertOpen = document.getElementById('alert-open');
+            if (alertOpen) {
+                if (isOpen) {
+                    // Le magasin est ouvert
+                    alertOpen.classList.remove('hidden');
+                    alertOpen.classList.add('bg-green-600');
+                    alertOpen.querySelector('span:nth-child(2)').innerHTML = `
+                        Disponible maintenant – Un conseiller vous répond au
+                        <a href="tel:+33148479627" class="underline hover:text-white/80 transition">01 48 47 96 27</a>
+                        ou sur
+                        <a href="https://wa.me/33612345678" class="underline hover:text-white/80 transition">WhatsApp</a>
+                    `;
+                } else {
+                    // Le magasin est fermé
+                    alertOpen.classList.remove('hidden');
+                    alertOpen.classList.add('bg-orange-600');
+                    alertOpen.querySelector('span:nth-child(2)').innerHTML = `
+                        Actuellement fermé – Nous ouvrons demain à 9h00. Laissez un message sur 
+                        <a href="https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations" class="underline hover:text-white/80 transition">WhatsApp</a>
+                    `;
+                }
+            }
+
+            // Sur mobile, proposer d'ouvrir le GPS après un délai
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    if (confirm("Souhaitez-vous ouvrir le GPS pour venir au magasin ?")) {
+                        window.open("https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320", "_blank");
+                    }
+                }, 30000); // Délai augmenté à 30 secondes pour ne pas gêner la navigation immédiate
+            }
+
+            // Afficher l'alerte de disponibilité après 3 secondes
+            setTimeout(() => {
+                const alertOpen = document.getElementById('alert-open');
+                if (alertOpen) {
+                    alertOpen.classList.remove('hidden');
+                    console.log('Alerte de disponibilité affichée');
+                }
+            }, 3000);
+
+            // Permettre la fermeture de l'alerte
+            document.getElementById('close-alert')?.addEventListener('click', function() {
+                document.getElementById('alert-open').classList.add('hidden');
+            });
+
             // Initialiser les badges
             initBadges();
             
@@ -979,151 +1079,15 @@
                     const email = document.getElementById('email').value;
                     const vehicle = document.getElementById('vehicle').value;
                     const message = document.getElementById('message').value;
-                    
+                            
                     if (name && email && vehicle && message) {
                         alert('Votre demande d\'assistance technique a été enregistrée. Un expert vous contactera sous 2 heures.');
                         contactForm.reset();
                     } else {
-                        alert('Veuillez remplir tous les champs du formulaire pour accéder à l\'assistance technique.');
+                        alert('Veuillez remplir tous les champs du formulaire.');
                     }
                 });
             }
-            
-            // Lazy-loading pour le carrousel d'avis
-            const reviewsSection = document.getElementById('avis');
-            if (reviewsSection) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            initReviewsCarousel();
-                            // Arrêter d'observer une fois chargé
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 }); // Charge quand 10% de la section est visible
-                
-                observer.observe(reviewsSection);
-            }
-            
-            // Validation du formulaire de RDV
-            const rdvForm = document.getElementById('rdv-form');
-            if (rdvForm) {
-                // Définir la date minimale (aujourd'hui)
-                const dateInput = document.getElementById('rdv-date');
-                const today = new Date().toISOString().split('T')[0];
-                dateInput.setAttribute('min', today);
-                
-                // Désactiver les dimanches
-                dateInput.addEventListener('input', function() {
-                    const selectedDate = new Date(this.value);
-                    if (selectedDate.getDay() === 0) { // 0 = Dimanche
-                        alert('Nous sommes fermés le dimanche. Veuillez choisir un autre jour.');
-                        this.value = '';
-                    }
-                });
-                
-                // Définir les plages horaires acceptables (9h-18h)
-                const timeInput = document.getElementById('rdv-time');
-                timeInput.setAttribute('min', '09:00');
-                timeInput.setAttribute('max', '18:00');
-                
-                // Formatter le numéro de téléphone pendant la saisie
-                const phoneInput = document.getElementById('rdv-phone');
-                phoneInput.addEventListener('input', function() {
-                    // Enlever tous les caractères non numériques
-                    let phoneNumber = this.value.replace(/\D/g, '');
-                    
-                    // Reformater selon le format français (XX XX XX XX XX)
-                    if (phoneNumber.length > 0) {
-                        phoneNumber = phoneNumber.match(new RegExp('.{1,2}', 'g'))?.join(' ') || '';
-                    }
-                    
-                    // Mettre à jour la valeur avec le format
-                    this.value = phoneNumber;
-                });
-                
-                // Gestion de la soumission du formulaire avec async/await
-                rdvForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    const data = {
-                        name: document.getElementById('rdv-name').value,
-                        phone: document.getElementById('rdv-phone').value,
-                        date: document.getElementById('rdv-date').value,
-                        time: document.getElementById('rdv-time').value,
-                        message: document.getElementById('rdv-msg').value,
-                    };
-                    
-                    if (data.name && data.phone && data.date && data.time) {
-                        // Afficher confirmation et réinitialiser formulaire
-                        alert("✅ Merci ! Un conseiller vous rappellera à l'horaire souhaité.");
-                        rdvForm.reset();
-                        
-                        // Afficher message de confirmation visuel
-                        document.getElementById('rdv-confirmation').classList.remove('hidden');
-                        rdvForm.classList.add('hidden');
-                        
-                        // Optionnel : envoyer vers n8n / NestJS :
-                        // await fetch('https://n8n.example.com/webhook/prise-rdv', {
-                        //   method: 'POST',
-                        //   headers: { 'Content-Type': 'application/json' },
-                        //   body: JSON.stringify(data)
-                        // });
-                        
-                        console.log('Demande de RDV envoyée:', data);
-                    } else {
-                        alert('Veuillez remplir tous les champs obligatoires.');
-                    }
-                });
-            }
-            
-            // Gestion du bouton WhatsApp
-            const whatsappButton = document.getElementById('whatsapp-button');
-            if (whatsappButton) {
-                console.log("Bouton WhatsApp trouvé dans le DOM");
-                
-                // Simplification pour s'assurer que le bouton s'affiche toujours
-                setTimeout(() => {
-                    whatsappButton.style.display = "block";
-                    whatsappButton.classList.remove('opacity-0', 'scale-90');
-                    console.log("Bouton WhatsApp affiché");
-                }, 2000);
-                
-                // La vérification des horaires peut rester, mais ne bloque plus l'affichage
-                const now = new Date();
-                const day = now.getDay(); 
-                const hour = now.getHours();
-                const minute = now.getMinutes();
-                
-                const isOpen = (
-                    day >= 1 && day <= 6 && 
-                    (
-                        (hour === 9 && minute >= 0) ||
-                        (hour > 9 && hour < 18) ||
-                        (hour === 18 && minute <= 30)
-                    )
-                );
-                
-                // Adapter le message selon les horaires
-                const whatsappLink = whatsappButton.querySelector('a');
-                const buttonText = whatsappLink?.querySelector('span');
-                
-                if (!isOpen && buttonText) {
-                    whatsappLink.setAttribute('href', 
-                        'https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto.%20Merci%20de%20me%20recontacter%20pendant%20vos%20horaires%20d%27ouverture.');
-                    buttonText.textContent = 'Laisser un message';
-                }
-            }
-
-            // Force l'affichage du bouton WhatsApp après tout le reste
-            setTimeout(() => {
-                const whatsappBtn = document.getElementById('whatsapp-button');
-                if (whatsappBtn) {
-                    whatsappBtn.style.display = "block";
-                    whatsappBtn.classList.remove('hidden', 'opacity-0', 'scale-90');
-                    console.log("Affichage forcé du bouton WhatsApp");
-                }
-            }, 5000);
         });
     </script>
 </body>
