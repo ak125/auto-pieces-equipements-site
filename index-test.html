@@ -240,6 +240,8 @@
                     <!-- Badges améliorés -->
                     <div class="flex flex-wrap gap-4 mt-8 mb-8">
                         <span data-badge data-badge-color="blue" data-badge-icon="🔍" data-badge-text="Diagnostic précis"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -779,6 +781,13 @@
                                 <h4 class="font-bold mb-1">Adresse</h4>
                                 <p class="text-gray-400">184 Av. Aristide Briand<br>93320 Les Pavillons-sous-Bois, France</p>
                                 <a href="https://goo.gl/maps/xyz" target="_blank" class="text-blue-400 text-sm mt-1 inline-block">Voir sur la carte</a>
+                                <div class="mt-4">
+                                    <a href="https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320" 
+                                       target="_blank" 
+                                       class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded inline-flex items-center">
+                                        <i class="fas fa-map-marker-alt mr-2"></i> Itinéraire GPS
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         
@@ -888,8 +897,8 @@
         </div>
     </section>
 
-    <!-- WhatsApp Button - Version corrigée -->
-    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50" style="opacity: 0; transform: scale(0.9); transition: all 0.3s ease;">
+    <!-- WhatsApp Button - Version optimisée -->
+    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50" style="display: block; opacity: 1; transform: scale(1);">
       <a href="https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto" target="_blank"
          class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full shadow-lg flex items-center space-x-2 transition">
         <i class="fab fa-whatsapp text-xl"></i>
@@ -1027,25 +1036,24 @@
                 }
             }, 1000);
 
-            // 3. Affichage du bouton WhatsApp
+            // 3. Affichage du bouton WhatsApp - Version corrigée
             const whatsappButton = document.getElementById('whatsapp-button');
             if (whatsappButton) {
-                // Utiliser setTimeout pour s'assurer que le DOM est complètement chargé
-                setTimeout(() => {
-                    // Définir directement le style plutôt que d'utiliser des classes
-                    whatsappButton.style.opacity = "1";
-                    whatsappButton.style.transform = "scale(1)";
-                    console.log("Bouton WhatsApp affiché avec style direct");
-                }, 2000);
+                // Définir directement les styles pour garantir la visibilité
+                whatsappButton.style.display = "block";
+                whatsappButton.style.opacity = "1";
+                whatsappButton.style.transform = "scale(1)";
+                
+                console.log("Bouton WhatsApp configuré avec style direct");
                 
                 // Adapter le message selon les horaires
                 if (!isOpen) {
                     const whatsappLink = whatsappButton.querySelector('a');
-                    const buttonText = whatsappLink?.querySelector('span');
-                    
                     if (whatsappLink) {
                         whatsappLink.setAttribute('href', 
                             'https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto.%20Merci%20de%20me%20recontacter%20pendant%20vos%20horaires%20d%27ouverture.');
+                        
+                        const buttonText = whatsappLink.querySelector('span');
                         if (buttonText) {
                             buttonText.textContent = 'Laisser un message';
                         }
@@ -1053,13 +1061,21 @@
                 }
             }
 
-            // 4. Sur mobile, proposer d'ouvrir le GPS après un délai
+            // 4. Sur mobile, proposer d'ouvrir le GPS après un délai - Version corrigée
             if (window.innerWidth < 768) {
-                setTimeout(() => {
-                    if (confirm("Souhaitez-vous ouvrir le GPS pour venir au magasin ?")) {
-                        window.open("https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320", "_blank");
+                // Réduire le délai et garantir l'exécution
+                setTimeout(function() {
+                    try {
+                        if (confirm("Souhaitez-vous ouvrir le GPS pour venir au magasin ?")) {
+                            window.open("https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320", "_blank");
+                            console.log("GPS ouvert avec succès");
+                        } else {
+                            console.log("Utilisateur a refusé d'ouvrir le GPS");
+                        }
+                    } catch (e) {
+                        console.error("Erreur lors de l'ouverture du GPS:", e);
                     }
-                }, 30000);
+                }, 15000); // Réduit à 15 secondes pour un meilleur taux de conversion
             }
 
             // 5. Initialiser les modules
@@ -1181,6 +1197,25 @@
                     }
                 });
             }
+
+            // Vérification finale des éléments critiques
+            setTimeout(() => {
+                // Vérifier le bouton WhatsApp
+                const whatsappBtn = document.getElementById('whatsapp-button');
+                if (whatsappBtn) {
+                    console.log("WhatsApp button trouvé, style actuel:", 
+                        "display:", whatsappBtn.style.display,
+                        "opacity:", whatsappBtn.style.opacity,
+                        "transform:", whatsappBtn.style.transform
+                    );
+                    // Forcer l'affichage en cas de problème
+                    whatsappBtn.style.display = "block";
+                    whatsappBtn.style.opacity = "1";
+                    whatsappBtn.style.transform = "scale(1)";
+                } else {
+                    console.error("WhatsApp button non trouvé dans le DOM");
+                }
+            }, 5000);
         });
     </script>
 </body>
