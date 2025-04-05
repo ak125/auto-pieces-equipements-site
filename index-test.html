@@ -852,7 +852,7 @@
     </section>
 
     <!-- WhatsApp Button -->
-    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50 hidden opacity-0 scale-90 transform transition-all duration-300">
+    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50 opacity-0 scale-90 transform transition-all duration-300">
       <a href="https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto" target="_blank"
          class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full shadow-lg flex items-center space-x-2 transition">
         <i class="fab fa-whatsapp text-xl"></i>
@@ -1080,14 +1080,23 @@
             // Gestion du bouton WhatsApp
             const whatsappButton = document.getElementById('whatsapp-button');
             if (whatsappButton) {
-                // Vérification des horaires d'ouverture
+                console.log("Bouton WhatsApp trouvé dans le DOM");
+                
+                // Simplification pour s'assurer que le bouton s'affiche toujours
+                setTimeout(() => {
+                    whatsappButton.style.display = "block";
+                    whatsappButton.classList.remove('opacity-0', 'scale-90');
+                    console.log("Bouton WhatsApp affiché");
+                }, 2000);
+                
+                // La vérification des horaires peut rester, mais ne bloque plus l'affichage
                 const now = new Date();
-                const day = now.getDay(); // 0 = dimanche, 6 = samedi
+                const day = now.getDay(); 
                 const hour = now.getHours();
                 const minute = now.getMinutes();
                 
                 const isOpen = (
-                    day >= 1 && day <= 6 && // Lundi à Samedi
+                    day >= 1 && day <= 6 && 
                     (
                         (hour === 9 && minute >= 0) ||
                         (hour > 9 && hour < 18) ||
@@ -1095,38 +1104,26 @@
                     )
                 );
                 
-                if (isOpen) {
-                    // Afficher le bouton avec animation
-                    whatsappButton.classList.remove('hidden');
-                    // Petit délai pour que la transition fonctionne
-                    setTimeout(() => {
-                        whatsappButton.classList.remove('opacity-0', 'scale-90');
-                    }, 50);
-                } else {
-                    // En dehors des heures d'ouverture, on peut personnaliser le message
-                    const whatsappLink = whatsappButton.querySelector('a');
-                    if (whatsappLink) {
-                        whatsappLink.setAttribute('href', 
-                            'https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto.%20Merci%20de%20me%20recontacter%20pendant%20vos%20horaires%20d%27ouverture.');
-                        
-                        // Optionnel: indiquer que c'est fermé dans le texte du bouton
-                        const buttonText = whatsappLink.querySelector('span');
-                        if (buttonText) {
-                            buttonText.textContent = 'Laisser un message';
-                        }
-                    }
-                    
-                    // On peut aussi décider d'afficher quand même le bouton
-                    // Si vous souhaitez que le bouton reste totalement invisible en dehors des heures d'ouverture,
-                    // supprimez ou commentez les lignes ci-dessous
-                    setTimeout(() => {
-                        whatsappButton.classList.remove('hidden');
-                        setTimeout(() => {
-                            whatsappButton.classList.remove('opacity-0', 'scale-90');
-                        }, 50);
-                    }, 5000);
+                // Adapter le message selon les horaires
+                const whatsappLink = whatsappButton.querySelector('a');
+                const buttonText = whatsappLink?.querySelector('span');
+                
+                if (!isOpen && buttonText) {
+                    whatsappLink.setAttribute('href', 
+                        'https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto.%20Merci%20de%20me%20recontacter%20pendant%20vos%20horaires%20d%27ouverture.');
+                    buttonText.textContent = 'Laisser un message';
                 }
             }
+
+            // Force l'affichage du bouton WhatsApp après tout le reste
+            setTimeout(() => {
+                const whatsappBtn = document.getElementById('whatsapp-button');
+                if (whatsappBtn) {
+                    whatsappBtn.style.display = "block";
+                    whatsappBtn.classList.remove('hidden', 'opacity-0', 'scale-90');
+                    console.log("Affichage forcé du bouton WhatsApp");
+                }
+            }, 5000);
         });
     </script>
 </body>
