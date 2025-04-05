@@ -888,8 +888,8 @@
         </div>
     </section>
 
-    <!-- WhatsApp Button -->
-    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50 opacity-0 scale-90 transform transition-all duration-300">
+    <!-- WhatsApp Button - Version corrigée -->
+    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50" style="opacity: 0; transform: scale(0.9); transition: all 0.3s ease;">
       <a href="https://wa.me/33612345678?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto" target="_blank"
          class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full shadow-lg flex items-center space-x-2 transition">
         <i class="fab fa-whatsapp text-xl"></i>
@@ -968,9 +968,10 @@
 
     <!-- Scripts -->
     <script type="module">
-        import { initTechScan } from './scripts/modules/scan-effect.js';
-        import { initBadges } from './scripts/modules/badges.js';
-        import { initReviewsCarousel } from './scripts/modules/reviews-carousel.js';
+        // Commentez ces lignes si les fichiers n'existent pas
+        // import { initTechScan } from './scripts/modules/scan-effect.js';
+        // import { initBadges } from './scripts/modules/badges.js';
+        // import { initReviewsCarousel } from './scripts/modules/reviews-carousel.js';
 
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Vérification des horaires d'ouverture
@@ -1017,13 +1018,24 @@
                 });
             }
 
+            // Pour garantir que l'alerte s'affiche
+            setTimeout(() => {
+                const alertOpen = document.getElementById('alert-open');
+                if (alertOpen) {
+                    alertOpen.classList.remove('hidden');
+                    console.log('Alerte affichée par force');
+                }
+            }, 1000);
+
             // 3. Affichage du bouton WhatsApp
             const whatsappButton = document.getElementById('whatsapp-button');
             if (whatsappButton) {
-                // Force l'affichage après 2 secondes
+                // Utiliser setTimeout pour s'assurer que le DOM est complètement chargé
                 setTimeout(() => {
-                    whatsappButton.classList.remove('opacity-0', 'scale-90');
-                    console.log("Bouton WhatsApp affiché");
+                    // Définir directement le style plutôt que d'utiliser des classes
+                    whatsappButton.style.opacity = "1";
+                    whatsappButton.style.transform = "scale(1)";
+                    console.log("Bouton WhatsApp affiché avec style direct");
                 }, 2000);
                 
                 // Adapter le message selon les horaires
@@ -1051,13 +1063,13 @@
             }
 
             // 5. Initialiser les modules
-            initBadges();
-            initTechScan('tech-scan-hero', {
-                dataPoints: 20,
-                xAxisLabel: 'Performance',
-                yAxisLabel: 'Compatibilité',
-                analysisText: 'RECHERCHE DE PIÈCES COMPATIBLES...'
-            });
+            // initBadges();
+            // initTechScan('tech-scan-hero', {
+            //     dataPoints: 20,
+            //     xAxisLabel: 'Performance',
+            //     yAxisLabel: 'Compatibilité',
+            //     analysisText: 'RECHERCHE DE PIÈCES COMPATIBLES...'
+            // });
             
             // 6. Menu mobile
             document.getElementById('menu-toggle')?.addEventListener('click', function() {
