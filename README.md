@@ -8,24 +8,25 @@ Ce projet utilise un **monorepo NestJS + Remix** pour une application full-stack
 
 ```
 auto-pieces-equipements-site/
-├── nestjs-remix-monorepo/     # 🚀 Nouveau site (actif)
-│   ├── backend/                # API NestJS
-│   │   ├── src/
-│   │   │   ├── google-business/  # Module Google Business API
-│   │   │   ├── auth/             # Authentification
-│   │   │   ├── supabase/         # Intégration Supabase
-│   │   │   └── ...
-│   │   └── package.json
-│   │
-│   ├── frontend/               # Interface Remix
-│   │   ├── app/
-│   │   │   ├── routes/         # Pages
-│   │   │   └── components/     # Composants React
-│   │   └── package.json
-│   │
-│   └── packages/               # Code partagé
+├── backend/                    # 🚀 API NestJS
+│   ├── src/
+│   │   ├── google-business/    # Module Google Business API
+│   │   ├── auth/               # Authentification
+│   │   ├── supabase/           # Intégration Supabase
+│   │   └── ...
+│   └── package.json
 │
-└── legacy/                     # 📦 Ancien site (archivé)
+├── frontend/                   # 🎨 Interface Remix
+│   ├── app/
+│   │   ├── routes/             # Pages
+│   │   └── components/         # Composants React
+│   └── package.json
+│
+├── packages/                   # 📦 Code partagé
+│   ├── eslint-config/
+│   └── typescript-config/
+│
+└── legacy/                     # � Ancien site (archivé)
     ├── index.html
     ├── produits/               # Pages produits Google Business
     ├── styles/
@@ -43,18 +44,23 @@ auto-pieces-equipements-site/
 ### Installation
 
 ```bash
-# 1. Installer les dépendances
-cd nestjs-remix-monorepo
+# 1. Installer les dépendances (monorepo)
 npm install
 
 # 2. Configurer les variables d'environnement
-cp ../.env backend/.env
+cp .env backend/.env
 
 # 3. Démarrer Redis
 docker run -d --name redis -p 6379:6379 redis:alpine
+# OU
+npm run docker:redis
 
-# 4. Démarrer le serveur
+# 4. Démarrer le serveur (backend + frontend)
 npm run dev
+
+# OU séparément :
+npm run dev:backend   # API sur http://localhost:3000
+npm run dev:frontend  # Frontend sur http://localhost:5173
 ```
 
 Le serveur démarre sur **http://localhost:3000**
@@ -121,8 +127,8 @@ NODE_ENV=development
 ## 📝 Documentation
 
 - [`/legacy/docs/`](legacy/docs/) - Documentation complète (Google Business, sécurité, etc.)
-- [`/nestjs-remix-monorepo/backend/`](nestjs-remix-monorepo/backend/) - Documentation API
-- [`/nestjs-remix-monorepo/frontend/`](nestjs-remix-monorepo/frontend/) - Documentation frontend
+- [`/backend/`](backend/) - Documentation API NestJS
+- [`/frontend/`](frontend/) - Documentation frontend Remix
 
 ## 🔐 Sécurité
 
