@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Google Business - Auto Pièces Équipements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-card.green {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .stat-card.orange {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .stat-card.blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fab fa-google text-4xl text-blue-600"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Dashboard Google Business</h1>
+                        <p class="text-sm text-gray-600">Auto Pièces Équipements</p>
+                    </div>
+                </div>
+                <a href="https://business.google.com" target="_blank" 
+                   class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Ouvrir GBP
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Reviews -->
+            <div class="stat-card text-white rounded-xl p-6 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <i class="fas fa-star text-3xl opacity-80"></i>
+                    <span class="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">Total</span>
+                </div>
+                <h3 class="text-4xl font-bold mb-2">4,928</h3>
+                <p class="text-sm opacity-90">Avis Google</p>
+                <div class="mt-4 flex items-center text-sm">
+                    <i class="fas fa-arrow-up mr-1"></i>
+                    <span>+72 ce mois</span>
+                </div>
+            </div>
+
+            <!-- Average Rating -->
+            <div class="stat-card green text-white rounded-xl p-6 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <i class="fas fa-chart-line text-3xl opacity-80"></i>
+                    <span class="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">Note</span>
+                </div>
+                <h3 class="text-4xl font-bold mb-2">4.6/5</h3>
+                <p class="text-sm opacity-90">Note moyenne</p>
+                <div class="mt-4 flex items-center text-sm">
+                    <i class="fas fa-check mr-1"></i>
+                    <span>Excellent</span>
+                </div>
+            </div>
+
+            <!-- Response Rate -->
+            <div class="stat-card orange text-white rounded-xl p-6 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <i class="fas fa-reply text-3xl opacity-80"></i>
+                    <span class="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">Réponse</span>
+                </div>
+                <h3 class="text-4xl font-bold mb-2">87%</h3>
+                <p class="text-sm opacity-90">Taux de réponse</p>
+                <div class="mt-4 flex items-center text-sm">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                    <span>À améliorer</span>
+                </div>
+            </div>
+
+            <!-- Profile Views -->
+            <div class="stat-card blue text-white rounded-xl p-6 shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <i class="fas fa-eye text-3xl opacity-80"></i>
+                    <span class="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">Vues</span>
+                </div>
+                <h3 class="text-4xl font-bold mb-2">12.5K</h3>
+                <p class="text-sm opacity-90">Vues ce mois</p>
+                <div class="mt-4 flex items-center text-sm">
+                    <i class="fas fa-arrow-up mr-1"></i>
+                    <span>+18% vs. mois dernier</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <!-- Reviews Distribution -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-900">
+                    <i class="fas fa-chart-pie text-blue-600 mr-2"></i>
+                    Distribution des Avis
+                </h3>
+                <canvas id="reviewsDistribution"></canvas>
+            </div>
+
+            <!-- Monthly Trend -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-900">
+                    <i class="fas fa-chart-area text-green-600 mr-2"></i>
+                    Évolution Mensuelle
+                </h3>
+                <canvas id="monthlyTrend"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Reviews -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-900">
+                    <i class="fas fa-comments text-purple-600 mr-2"></i>
+                    Avis Récents Non Répondus
+                </h3>
+                <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">
+                    13 en attente
+                </span>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Review 1 -->
+                <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4 rounded-r-lg">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <img src="https://ui-avatars.com/api/?name=Jean+Martin&background=random" 
+                                     alt="Avatar" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <p class="font-semibold text-gray-900">Jean Martin</p>
+                                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                                        <span class="flex items-center">
+                                            ⭐⭐⭐⭐⭐
+                                        </span>
+                                        <span>•</span>
+                                        <span>Il y a 2 jours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-3">
+                                Excellent service ! J'ai trouvé toutes les pièces nécessaires pour ma Renault Clio. 
+                                Le personnel est très compétent et les prix sont corrects.
+                            </p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-reply mr-2"></i>
+                                Répondre
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="border-l-4 border-red-400 bg-red-50 p-4 rounded-r-lg">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <img src="https://ui-avatars.com/api/?name=Sophie+Dubois&background=random" 
+                                     alt="Avatar" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <p class="font-semibold text-gray-900">Sophie Dubois</p>
+                                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                                        <span class="flex items-center">
+                                            ⭐⭐
+                                        </span>
+                                        <span>•</span>
+                                        <span>Il y a 5 jours</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-3">
+                                Attente trop longue à la caisse (plus de 30 minutes). Le produit était bien mais 
+                                l'organisation pourrait être améliorée.
+                            </p>
+                            <button class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                Répondre en Priorité
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="border-l-4 border-green-400 bg-green-50 p-4 rounded-r-lg">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <img src="https://ui-avatars.com/api/?name=Marc+Leroy&background=random" 
+                                     alt="Avatar" class="w-10 h-10 rounded-full">
+                                <div>
+                                    <p class="font-semibold text-gray-900">Marc Leroy</p>
+                                    <div class="flex items-center space-x-2 text-sm text-gray-600">
+                                        <span class="flex items-center">
+                                            ⭐⭐⭐⭐⭐
+                                        </span>
+                                        <span>•</span>
+                                        <span>Il y a 1 semaine</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-3">
+                                Très pro ! Commande en ligne livrée en 24h. Pièce parfaitement conforme. 
+                                Je recommande vivement pour tous vos besoins auto.
+                            </p>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">
+                                <i class="fas fa-reply mr-2"></i>
+                                Répondre
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="https://business.google.com/reviews" target="_blank"
+                   class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold">
+                    Voir tous les avis sur Google Business
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <a href="https://business.google.com/posts" target="_blank"
+               class="bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                <i class="fas fa-bullhorn text-3xl mb-4"></i>
+                <h4 class="text-xl font-bold mb-2">Créer un Post</h4>
+                <p class="text-sm opacity-90">Partagez des nouvelles, offres ou événements</p>
+            </a>
+
+            <a href="https://business.google.com/photos" target="_blank"
+               class="bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                <i class="fas fa-camera text-3xl mb-4"></i>
+                <h4 class="text-xl font-bold mb-2">Ajouter des Photos</h4>
+                <p class="text-sm opacity-90">Montrez votre magasin et vos produits</p>
+            </a>
+
+            <a href="https://business.google.com/questions" target="_blank"
+               class="bg-gradient-to-br from-green-500 to-teal-500 text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                <i class="fas fa-question-circle text-3xl mb-4"></i>
+                <h4 class="text-xl font-bold mb-2">Gérer les Q&A</h4>
+                <p class="text-sm opacity-90">Répondez aux questions fréquentes</p>
+            </a>
+        </div>
+
+        <!-- Google Business Info -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-4 text-gray-900">
+                <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                Informations de Votre Fiche
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Détails de l'Établissement</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-building mr-2 text-blue-500"></i> <strong>Nom:</strong> Auto Pièces Équipements</li>
+                        <li><i class="fas fa-map-marker-alt mr-2 text-red-500"></i> <strong>Adresse:</strong> 184 Av. Aristide Briand, 93320 Les Pavillons-sous-Bois</li>
+                        <li><i class="fas fa-phone mr-2 text-green-500"></i> <strong>Téléphone:</strong> +33 1 48 47 96 27</li>
+                        <li><i class="fas fa-tag mr-2 text-purple-500"></i> <strong>Catégorie:</strong> Magasin de pièces de rechange automobiles</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-700 mb-2">Place ID & Configuration</h4>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm text-gray-600 mb-2">Place ID Google:</p>
+                        <code class="block bg-white p-2 rounded border border-gray-200 text-xs font-mono break-all">
+                            ChIJVVXZlqAT5kcRICTpgHlqx9A
+                        </code>
+                        <button onclick="copyPlaceId()" 
+                                class="mt-2 text-sm text-blue-600 hover:text-blue-700">
+                            <i class="fas fa-copy mr-1"></i>
+                            Copier le Place ID
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Copy Place ID function
+        function copyPlaceId() {
+            const placeId = 'ChIJVVXZlqAT5kcRICTpgHlqx9A';
+            navigator.clipboard.writeText(placeId).then(() => {
+                alert('Place ID copié dans le presse-papier !');
+            });
+        }
+
+        // Reviews Distribution Chart
+        const ctxDistribution = document.getElementById('reviewsDistribution').getContext('2d');
+        new Chart(ctxDistribution, {
+            type: 'doughnut',
+            data: {
+                labels: ['5 étoiles', '4 étoiles', '3 étoiles', '2 étoiles', '1 étoile'],
+                datasets: [{
+                    data: [3850, 820, 150, 68, 40],
+                    backgroundColor: [
+                        '#10b981',
+                        '#3b82f6',
+                        '#f59e0b',
+                        '#f97316',
+                        '#ef4444'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Monthly Trend Chart
+        const ctxTrend = document.getElementById('monthlyTrend').getContext('2d');
+        new Chart(ctxTrend, {
+            type: 'line',
+            data: {
+                labels: ['Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre'],
+                datasets: [{
+                    label: 'Nouveaux avis',
+                    data: [58, 65, 72, 68, 75, 70, 72],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

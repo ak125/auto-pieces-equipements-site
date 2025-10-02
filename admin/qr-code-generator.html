@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de QR Code Avis Google - Auto Pièces Équipements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                        <i class="fas fa-qrcode text-blue-600 mr-3"></i>
+                        Générateur de QR Code Avis Google
+                    </h1>
+                    <p class="text-gray-600">Auto Pièces Équipements - Collecte d'avis simplifiée</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-4xl font-bold text-yellow-500">★ 4.9/5</div>
+                    <div class="text-sm text-gray-600">28 avis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Left Column - QR Code Generator -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900">
+                    <i class="fas fa-magic text-purple-600 mr-2"></i>
+                    Générer un QR Code
+                </h2>
+
+                <!-- Place ID Info -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                    <h3 class="font-semibold text-blue-900 mb-2">Place ID Configuré</h3>
+                    <code class="text-sm text-blue-700 break-all">ChIJVVXZlqAT5kcRICTpgHlqx9A</code>
+                </div>
+
+                <!-- QR Code Display -->
+                <div class="text-center mb-6">
+                    <div id="qrcode" class="inline-block p-4 bg-white border-4 border-blue-500 rounded-xl shadow-lg"></div>
+                </div>
+
+                <!-- Actions -->
+                <div class="space-y-3">
+                    <button onclick="downloadQRCode()" 
+                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition font-semibold">
+                        <i class="fas fa-download mr-2"></i>
+                        Télécharger le QR Code (PNG)
+                    </button>
+                    
+                    <button onclick="printQRCode()" 
+                            class="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition font-semibold">
+                        <i class="fas fa-print mr-2"></i>
+                        Imprimer le QR Code
+                    </button>
+
+                    <button onclick="copyLink()" 
+                            class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition font-semibold">
+                        <i class="fas fa-link mr-2"></i>
+                        Copier le Lien Direct
+                    </button>
+                </div>
+
+                <!-- URL Display -->
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-2">Lien direct pour laisser un avis :</p>
+                    <input type="text" 
+                           id="reviewUrl" 
+                           readonly
+                           value="https://search.google.com/local/writereview?placeid=ChIJVVXZlqAT5kcRICTpgHlqx9A"
+                           class="w-full p-2 text-xs border border-gray-300 rounded bg-white">
+                </div>
+            </div>
+
+            <!-- Right Column - Posters Templates -->
+            <div class="space-y-6">
+                <!-- Template 1 - Simple -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">
+                        <i class="fas fa-image text-orange-600 mr-2"></i>
+                        Modèles d'Affichage
+                    </h3>
+
+                    <!-- Template Preview 1 -->
+                    <div id="poster1" class="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-8 rounded-lg mb-4">
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">⭐⭐⭐⭐⭐</div>
+                            <h2 class="text-3xl font-bold mb-2">Satisfait de votre achat ?</h2>
+                            <p class="text-xl mb-6">Partagez votre expérience !</p>
+                            
+                            <div class="bg-white p-4 rounded-lg inline-block mb-4">
+                                <div id="qrcode-poster1" style="width: 200px; height: 200px;"></div>
+                            </div>
+                            
+                            <p class="text-lg">Scannez pour laisser un avis</p>
+                            <p class="text-sm mt-2 opacity-90">Auto Pièces Équipements</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="downloadPoster('poster1', 'affiche-avis-1.png')" 
+                            class="w-full bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition">
+                        <i class="fas fa-download mr-2"></i>
+                        Télécharger Modèle 1
+                    </button>
+                </div>
+
+                <!-- Template 2 - Professional -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div id="poster2" class="bg-gradient-to-br from-purple-600 to-pink-600 text-white p-8 rounded-lg mb-4">
+                        <div class="text-center">
+                            <h2 class="text-4xl font-bold mb-3">Votre Avis Compte !</h2>
+                            <div class="flex items-center justify-center space-x-2 mb-4">
+                                <span class="text-6xl">4.9</span>
+                                <div class="text-left">
+                                    <div class="text-2xl">⭐⭐⭐⭐⭐</div>
+                                    <div class="text-sm">28 avis Google</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg inline-block mb-4">
+                                <div id="qrcode-poster2" style="width: 180px; height: 180px;"></div>
+                            </div>
+                            
+                            <div class="text-lg font-semibold mb-2">
+                                Aidez-nous à aider d'autres clients
+                            </div>
+                            <p class="text-sm">Scannez et partagez votre expérience</p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="downloadPoster('poster2', 'affiche-avis-2.png')" 
+                            class="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition">
+                        <i class="fas fa-download mr-2"></i>
+                        Télécharger Modèle 2
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">
+                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                Comment Utiliser ces Outils
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center p-4">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-print text-3xl text-blue-600"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">1. Imprimer</h4>
+                    <p class="text-sm text-gray-600">Imprimez les affiches A4 ou le QR code seul</p>
+                </div>
+
+                <div class="text-center p-4">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-store text-3xl text-green-600"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">2. Afficher</h4>
+                    <p class="text-sm text-gray-600">Placez à la caisse, en vitrine, sur le comptoir</p>
+                </div>
+
+                <div class="text-center p-4">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-chart-line text-3xl text-purple-600"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">3. Collecter</h4>
+                    <p class="text-sm text-gray-600">Recevez plus d'avis automatiquement</p>
+                </div>
+            </div>
+
+            <!-- Best Practices -->
+            <div class="mt-6 bg-green-50 border-l-4 border-green-500 p-4">
+                <h4 class="font-bold text-green-900 mb-2">💡 Bonnes Pratiques</h4>
+                <ul class="text-sm text-green-800 space-y-1">
+                    <li>✅ Placer le QR code bien visible à la caisse</li>
+                    <li>✅ Mentionner verbalement : "N'hésitez pas à laisser un avis Google !"</li>
+                    <li>✅ Offrir un petit cadeau (autocollant, porte-clés) pour encourager</li>
+                    <li>✅ Inclure le lien dans les emails de confirmation</li>
+                    <li>✅ Ajouter le QR code sur les factures</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Stats Goal -->
+        <div class="mt-8 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-xl shadow-lg p-8 text-center">
+            <h3 class="text-3xl font-bold mb-2">🎯 Objectif 2025</h3>
+            <p class="text-xl mb-4">Passer de 28 à 100+ avis Google</p>
+            <div class="flex justify-center items-center space-x-4">
+                <div class="bg-white/20 px-6 py-3 rounded-lg">
+                    <div class="text-2xl font-bold">28</div>
+                    <div class="text-sm">Actuel</div>
+                </div>
+                <div class="text-4xl">→</div>
+                <div class="bg-white/20 px-6 py-3 rounded-lg">
+                    <div class="text-2xl font-bold">100+</div>
+                    <div class="text-sm">Objectif</div>
+                </div>
+            </div>
+            <p class="mt-4 text-sm">Maintenir la note de 4.9/5 ⭐</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const PLACE_ID = 'ChIJVVXZlqAT5kcRICTpgHlqx9A';
+        const REVIEW_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
+
+        // Generate main QR code
+        new QRCode(document.getElementById("qrcode"), {
+            text: REVIEW_URL,
+            width: 256,
+            height: 256,
+            colorDark: "#1e40af",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // Generate QR codes for posters
+        new QRCode(document.getElementById("qrcode-poster1"), {
+            text: REVIEW_URL,
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        new QRCode(document.getElementById("qrcode-poster2"), {
+            text: REVIEW_URL,
+            width: 180,
+            height: 180,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // Download QR Code
+        function downloadQRCode() {
+            const canvas = document.querySelector('#qrcode canvas');
+            const url = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'qr-code-avis-google-auto-pieces.png';
+            link.href = url;
+            link.click();
+        }
+
+        // Print QR Code
+        function printQRCode() {
+            const printWindow = window.open('', '', 'width=600,height=600');
+            const canvas = document.querySelector('#qrcode canvas');
+            const imgData = canvas.toDataURL('image/png');
+            
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>QR Code - Auto Pièces Équipements</title>
+                    <style>
+                        body {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            min-height: 100vh;
+                            font-family: Arial, sans-serif;
+                            padding: 20px;
+                        }
+                        h1 { color: #1e40af; margin-bottom: 10px; }
+                        h2 { color: #666; font-weight: normal; margin-bottom: 30px; }
+                        img { border: 4px solid #1e40af; padding: 20px; }
+                        p { margin-top: 20px; text-align: center; color: #666; }
+                        .stars { font-size: 24px; color: #fbbf24; }
+                    </style>
+                </head>
+                <body>
+                    <h1>⭐ Laissez-nous un avis Google ⭐</h1>
+                    <h2>Auto Pièces Équipements</h2>
+                    <img src="${imgData}" alt="QR Code" />
+                    <div class="stars">★★★★★ 4.9/5 - 28 avis</div>
+                    <p>Scannez ce QR code avec votre téléphone<br>pour partager votre expérience</p>
+                    <p style="margin-top: 40px; font-size: 12px;">
+                        184 Av. Aristide Briand, 93320 Les Pavillons-sous-Bois<br>
+                        Tél: 01 48 47 96 27
+                    </p>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            setTimeout(() => printWindow.print(), 250);
+        }
+
+        // Copy link
+        function copyLink() {
+            const url = document.getElementById('reviewUrl');
+            url.select();
+            document.execCommand('copy');
+            
+            alert('✅ Lien copié dans le presse-papier !\n\nVous pouvez maintenant le coller dans vos emails, SMS ou messages.');
+        }
+
+        // Download poster
+        function downloadPoster(posterId, filename) {
+            const poster = document.getElementById(posterId);
+            
+            // Use html2canvas library (you'll need to include it)
+            alert('💡 Pour télécharger les affiches complètes, faites un clic droit > "Enregistrer l\'image sous..."');
+        }
+    </script>
+
+    <!-- Optional: Add html2canvas for better poster export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
