@@ -12,11 +12,12 @@
 2. [Configuration Google My Business](#configuration-google-my-business)
 3. [Récupération du Place ID](#récupération-du-place-id)
 4. [Configuration de l'API Google Places](#configuration-de-lapi-google-places)
-5. [Intégration dans le Site](#intégration-dans-le-site)
-6. [Optimisation du Profil](#optimisation-du-profil)
-7. [Gestion des Avis](#gestion-des-avis)
-8. [Analytics et Suivi](#analytics-et-suivi)
-9. [Dépannage](#dépannage)
+5. [💳 Tarification et Coûts Réels](#tarification-et-coûts-réels)
+6. [Intégration dans le Site](#intégration-dans-le-site)
+7. [Optimisation du Profil](#optimisation-du-profil)
+8. [Gestion des Avis](#gestion-des-avis)
+9. [Analytics et Suivi](#analytics-et-suivi)
+10. [Dépannage](#dépannage)
 
 ---
 
@@ -160,17 +161,32 @@ curl "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Au
 ### Étape 1 : Créer un Projet Google Cloud
 
 1. Aller sur : https://console.cloud.google.com
-2. Créer un nouveau projet : **"auto-pieces-equipements-api"**
-3. Activer la facturation (obligatoire pour l'API)
+2. ✅ **Projet existant : "auto-pieces-equipements"** (déjà créé)
+3. **Activer la facturation** (obligatoire même avec crédit gratuit)
+   - 👉 **IMPORTANT : Carte bancaire requise MAIS :**
+   - 🎁 **200 $ USD/mois GRATUITS** (crédit Google)
+   - ⚠️ **Pas de débit automatique** (vous devez activer manuellement les paiements au-delà)
+   - 💡 Votre site restera probablement **TOUJOURS gratuit** avec le cache
 
 ### Étape 2 : Activer les APIs Nécessaires
 
 ```bash
 # APIs à activer dans GCP Console
-✅ Places API (New)
-✅ Maps JavaScript API
-✅ Geocoding API
-✅ Places API (Legacy) - pour compatibilité
+✅ Places API (New)        # 0,017$/requête après crédit
+✅ Maps JavaScript API     # 0,007$/chargement après crédit
+✅ Geocoding API          # 0,005$/requête après crédit
+```
+
+**💰 Coût Réel pour Votre Site :**
+```yaml
+Crédit gratuit: 200 $ USD/mois (Google offre)
+Requêtes possibles: ~11,700/mois (Places API)
+
+Avec cache optimisé:
+  Estimation: 720 requêtes/mois (1,000 visiteurs)
+  Coût: 0,00 $ (12 $ de crédit utilisé sur 200 $ disponibles)
+  
+Conclusion: 🎉 GRATUIT en pratique !
 ```
 
 **Navigation :**
@@ -230,7 +246,109 @@ GOOGLE_API_FIELDS=reviews,rating,user_ratings_total,name,formatted_address,photo
 
 ---
 
-## 🚀 Intégration dans le Site
+## � Tarification et Coûts Réels
+
+### Crédit Gratuit Google
+
+Google offre **200 $ USD de crédit GRATUIT chaque mois** pour tous les nouveaux projets :
+
+```yaml
+Crédit mensuel gratuit: 200 $ USD
+Renouvellement: Automatique le 1er de chaque mois
+Carte bancaire: Requise (mais pas de débit automatique)
+Dépassement: Requiert activation manuelle des paiements
+```
+
+### Tarification par API
+
+| API | Coût par requête | Requêtes avec 200$ | Usage prévu |
+|-----|------------------|-------------------|-------------|
+| **Places API (New)** | 0,017 $ | 11,700/mois | Avis Google |
+| **Maps JavaScript API** | 0,007 $ | 28,500/mois | Carte interactive |
+| **Geocoding API** | 0,005 $ | 40,000/mois | Adresses |
+
+### Estimation pour Auto Pièces Équipements
+
+**Scénario Réaliste (avec optimisations) :**
+
+```javascript
+// Configuration du cache
+const CACHE_DURATION = 3600; // 1 heure
+
+// Trafic estimé
+const VISITORS_PER_MONTH = 1000;
+const PAGE_VIEWS_PER_VISITOR = 3;
+
+// Calcul avec cache (1 requête API par heure)
+const API_CALLS_PER_DAY = 24;
+const API_CALLS_PER_MONTH = 24 * 30; // = 720 requêtes
+
+// Coût
+const COST_PER_REQUEST = 0.017;
+const MONTHLY_COST = 720 * 0.017; // = 12,24 $
+
+// Crédit disponible
+const FREE_CREDIT = 200;
+const REMAINING_CREDIT = 200 - 12.24; // = 187,76 $
+
+console.log('💰 Coût mensuel : 12,24 $ sur 200 $ gratuits');
+console.log('✅ GRATUIT à 100% !');
+```
+
+**Résultat : Votre site restera GRATUIT indéfiniment !** 🎉
+
+### Optimisations pour Rester Gratuit
+
+Le **Cloudflare Worker** (déjà configuré) réduit drastiquement les coûts :
+
+```typescript
+// google-places-proxy/src/index.ts
+const CACHE_TTL = 3600; // 1h de cache
+
+// Avec 1,000 visiteurs/mois :
+// Sans cache : 3,000 requêtes API = 51 $
+// Avec cache : 720 requêtes API = 12,24 $ ✅
+```
+
+**Économie : 76% de réduction grâce au cache !**
+
+### Alertes de Facturation (Sécurité)
+
+Configurer des alertes pour être prévenu :
+
+```yaml
+Budget Alert 1: 50 $ (25% du crédit)
+Budget Alert 2: 100 $ (50% du crédit)
+Budget Alert 3: 150 $ (75% du crédit)
+Budget Alert 4: 190 $ (95% du crédit - ALERTE CRITIQUE)
+```
+
+**Configuration :**
+```
+Console GCP > Billing > Budgets & alerts
+> Create Budget > Set alerts at 25%, 50%, 75%, 95%
+```
+
+### Questions Fréquentes sur les Coûts
+
+**Q: Vais-je payer quelque chose ?**
+R: Non ! Avec le cache optimisé, vous utiliserez ~12$/mois sur 200$ gratuits.
+
+**Q: Google va-t-il débiter ma carte automatiquement ?**
+R: Non ! Vous devez activer manuellement les paiements au-delà du crédit gratuit.
+
+**Q: Que se passe-t-il si je dépasse 200$ ?**
+R: Les APIs s'arrêtent automatiquement. Aucun débit sans votre accord.
+
+**Q: Le cache est-il obligatoire ?**
+R: Fortement recommandé ! Sans cache, vous pourriez dépasser le crédit gratuit.
+
+**Q: Les 200$ sont-ils renouvelés chaque mois ?**
+R: Oui ! Chaque 1er du mois, vous avez à nouveau 200$ gratuits.
+
+---
+
+## �🚀 Intégration dans le Site
 
 ### Configuration Cloudflare Worker (Recommandé)
 
