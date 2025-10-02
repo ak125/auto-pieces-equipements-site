@@ -37,6 +37,15 @@ jobs:
           GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
           GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
+      - name: Copy product pages to dist
+        run: |
+          mkdir -p dist/produits
+          cp -r produits/* dist/produits/
+          cp *.html dist/ 2>/dev/null || true
+          cp -r assets dist/ 2>/dev/null || true
+          cp -r styles dist/ 2>/dev/null || true
+          cp -r scripts dist/ 2>/dev/null || true
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
