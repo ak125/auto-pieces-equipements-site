@@ -1,7 +1,7 @@
 // Configuration des variables d'environnement pour Vite
 export const config = {
   GOOGLE_PLACE_ID: 'ChIJVVXZlqAT5kcRICTpgHlqx9A',
-  GOOGLE_API_KEY: 'AIzaSyBuwRyhi7erxNsoXzc8XlX0cK9oC8g--MI',
+    GOOGLE_API_KEY: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
   API_BASE_URL: 'https://maps.googleapis.com/maps/api/place/details/json'
 };
 
