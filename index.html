@@ -95,7 +95,7 @@
         "longitude": "2.51387"
       },
       "telephone": "+33148479627",
-      "openingHours": "Mo-Sa 09:00-18:30",
+      "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"09:30","closes":"18:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:30","closes":"13:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"14:30","closes":"18:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:30","closes":"16:00"}],
       "url": "https://auto-pieces-equipements.fr",
       "priceRange": "€€",
       "paymentAccepted": "Cash, Credit Card",
@@ -654,7 +654,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold mb-1">Téléphone</h4>
-                                <p class="text-gray-400">01 48 47 96 27<br>Lun-Sam : 9h-18h30</p>
+                                <p class="text-gray-400">01 48 47 96 27<br>Lun–Jeu : 9h30–18h30<br>Ven : 9h30–13h30 et 14h30–18h30<br>Sam : 9h30–16h00</p>
                                 <a href="tel:+33148479627" class="text-blue-400 text-sm mt-1 inline-block">Appeler maintenant</a>
                             </div>
                         </div>
@@ -846,14 +846,11 @@
             const hour = now.getHours();
             const minute = now.getMinutes();
 
-            const isOpen = (
-                day >= 1 && day <= 6 && // Lundi à Samedi
-                (
-                    (hour === 9 && minute >= 0) ||
-                    (hour > 9 && hour < 18) ||
-                    (hour === 18 && minute <= 30)
-                )
-            );
+            const t = hour * 60 + minute;
+            let isOpen = false;
+            if (day >= 1 && day <= 4) isOpen = (t >= 570 && t <= 1110);
+            else if (day === 5) isOpen = (t >= 570 && t <= 810) || (t >= 870 && t <= 1110);
+            else if (day === 6) isOpen = (t >= 570 && t <= 960);
 
             // 2. Gestion de l'alerte de disponibilité (une seule fois)
             const alertOpen = document.getElementById('alert-open');
@@ -1010,8 +1007,8 @@
                 // Définir les plages horaires acceptables
                 const timeInput = document.getElementById('rdv-time');
                 if (timeInput) {
-                    timeInput.setAttribute('min', '09:00');
-                    timeInput.setAttribute('max', '18:00');
+                    timeInput.setAttribute('min', '09:30');
+                    timeInput.setAttribute('max', '18:30');
                 }
                 
                 // Formatter le numéro de téléphone
