@@ -50,12 +50,12 @@ Vérifier le même NAP sur PagesJaunes, Apple Plans, Bing Places et Waze. Corrig
 
 La fiche publique auditée le 15 juillet 2026 est : https://www.pagesjaunes.fr/pros/57393891
 
-Avant toute modification, confirmer avec le propriétaire que le numéro secondaire n’est plus utilisé. Puis demander les corrections suivantes depuis le compte Solocal/PagesJaunes ou via le dispositif de signalement :
+Le propriétaire a confirmé le 16 juillet 2026 que le seul numéro officiel à publier est `01 48 47 96 27`. Demander les corrections suivantes depuis le compte Solocal/PagesJaunes ou via le dispositif de signalement :
 
 - remplacer le site `automecanik.com` par `https://auto-pieces-equipements.fr/` ;
 - remplacer les horaires affichés par lundi à jeudi 9 h 30–18 h 30, vendredi 9 h 30–13 h 30 et 14 h 30–18 h 30, samedi 9 h 30–16 h, dimanche fermé ;
 - conserver le numéro principal `01 48 47 96 27` ;
-- vérifier le numéro secondaire `06 22 60 34 18` et le retirer s’il est obsolète ;
+- retirer le numéro secondaire `06 22 60 34 18` ;
 - harmoniser le nom public en `Auto Pièces Équipements` ;
 - relire la description et supprimer toute prestation ou promesse qui ne correspond pas à l’activité réelle.
 
