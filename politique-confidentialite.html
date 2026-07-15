@@ -7,35 +7,17 @@
     <meta name="description" content="Politique de confidentialité du site Auto Pièces Équipements.">
     <meta name="robots" content="noindex,follow">
     <link rel="canonical" href="https://auto-pieces-equipements.fr/politique-confidentialite.html">
-    <style>
-        :root { color-scheme: light; --ink: #111827; --muted: #4b5563; --line: #e5e7eb; }
-        * { box-sizing: border-box; }
-        body { margin: 0; background: #f9fafb; color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; }
-        header, footer { background: #0a101f; color: white; }
-        header div, footer div, main { width: min(100% - 2rem, 820px); margin: 0 auto; }
-        header div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; }
-        header a, footer a { color: white; }
-        main { padding: 3rem 0 4rem; }
-        article { background: white; border: 1px solid var(--line); border-radius: 1rem; padding: clamp(1.25rem, 4vw, 2.5rem); }
-        h1 { margin-top: 0; font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; }
-        h2 { margin-top: 2rem; font-size: 1.35rem; }
-        p, li { color: var(--muted); }
-        a { color: #005bb5; }
-        .brand { font-weight: 750; text-decoration: none; }
-        .back { font-size: .95rem; }
-        .updated { margin-top: -.5rem; font-size: .9rem; }
-        footer div { padding: 1.5rem 0; text-align: center; font-size: .9rem; }
-    </style>
+    <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-    <header>
-        <div>
+    <header class="site-header">
+        <div class="container header-row">
             <a class="brand" href="/">Auto Pièces Équipements</a>
-            <a class="back" href="/">Retour à l'accueil</a>
+            <a class="button button-light" href="/">Retour à l'accueil</a>
         </div>
     </header>
-    <main>
-        <article>
+    <main class="legal-page">
+        <article class="narrow info-card">
             <h1>Politique de confidentialité</h1>
             <p class="updated">Dernière mise à jour : 15 juillet 2026</p>
 
@@ -81,29 +63,27 @@
 
             <h2>Ressources et liens de tiers</h2>
             <p>
-                Certaines pages chargent des ressources d'affichage depuis Tailwind CSS, Google Fonts, Font Awesome
-                via cdnjs et Unsplash. Lors de ce chargement, ces opérateurs peuvent recevoir des données techniques
-                telles que l'adresse IP et le navigateur utilisé, selon leurs propres politiques.
+                Les feuilles de style, le script d'interface et les visuels du site sont servis depuis le même domaine.
+                Le chargement d'une page ne déclenche pas de carte Google intégrée, de lecteur vidéo ou de police distante.
             </p>
             <p>
                 Les liens vers Google Maps, la fiche Google, WhatsApp ou d'autres sites ne transmettent des informations
-                à ces services qu'au moment où vous utilisez le lien, sous réserve des ressources externes déjà chargées
-                pour afficher la page. Le service tiers choisi devient alors responsable de ses propres traitements.
+                à ces services qu'au moment où vous choisissez de les ouvrir. Le service tiers choisi devient alors
+                responsable de ses propres traitements.
             </p>
 
             <h2>Cookies et mesure d'audience</h2>
             <p>
                 Le code publié par AUTO PIECES EQUIPEMENTS ne configure actuellement aucun outil de mesure d'audience,
-                cookie publicitaire ou profilage. Les services externes mentionnés ci-dessus peuvent appliquer leurs
-                propres mécanismes lorsqu'ils sont chargés ou ouverts. Vous pouvez gérer les cookies dans les réglages
-                de votre navigateur.
+                cookie publicitaire ou profilage. Le script d'interface calcule uniquement le statut d'ouverture et
+                gère le menu mobile dans le navigateur, sans enregistrer de donnée personnelle.
             </p>
 
             <h2>Transferts hors de l'Union européenne</h2>
             <p>
-                Certains prestataires, notamment GitHub, Google, Meta, Tailwind Labs, Cloudflare ou Unsplash, peuvent
-                traiter des données aux États-Unis ou dans d'autres pays. Les garanties et mécanismes de transfert
-                applicables sont décrits dans les politiques de chaque prestataire.
+                L'hébergement GitHub Pages peut impliquer des traitements hors de l'Union européenne selon les modalités
+                décrites par GitHub. Si vous ouvrez un lien Google ou WhatsApp, ces services peuvent également traiter
+                des données hors de l'Union européenne selon leurs propres politiques.
             </p>
 
             <h2>Vos droits</h2>
@@ -126,10 +106,10 @@
             </p>
         </article>
     </main>
-    <footer>
-        <div>
-            <a href="/">Accueil</a> ·
-            <a href="/mentions-legales.html">Mentions légales</a>
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <span>Auto Pièces Équipements</span>
+            <nav class="footer-links" aria-label="Liens légaux"><a href="/">Accueil</a><a href="/mentions-legales.html">Mentions légales</a></nav>
         </div>
     </footer>
 </body>
