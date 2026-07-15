@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "node scripts/build-static.mjs",
+    "generate:catalog": "node scripts/render-catalog-pages.mjs",
+    "build": "npm run generate:catalog && node scripts/build-static.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "test": "npm run build && node scripts/validate-site.mjs",
     "start": "node server-simple.js"
