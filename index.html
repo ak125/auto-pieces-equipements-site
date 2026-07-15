@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="6k0Pw8cm5Wp7hUf45EapKXu3rWRzssYmCIL23syQ7XA" />
-    <title>Auto Pièces Équipements - Spécialiste pièces auto aux Pavillons-sous-Bois</title>
-    
-    <!-- TailwindCSS -->
+    <meta name="google-site-verification" content="6k0Pw8cm5Wp7hUf45EapKXu3rWRzssYmCIL23syQ7XA">
+    <title>Auto Pièces Équipements — Pièces auto aux Pavillons-sous-Bois</title>
+    <meta name="description" content="Magasin de pièces auto aux Pavillons-sous-Bois : batteries, freinage, filtres, alternateurs, démarreurs et entretien. Vérification par plaque, retrait ou livraison locale.">
+    <link rel="canonical" href="https://auto-pieces-equipements.fr/">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -15,73 +15,36 @@
                     colors: {
                         primary: '#0070f3',
                         'primary-hover': '#005bb5',
-                        secondary: '#ff6b00',
-                        tertiary: '#00c896',
                         dark: '#111827',
-                        darker: '#0a101f',
+                        darker: '#0a101f'
                     }
                 }
             }
-        }
+        };
     </script>
-    
-    <!-- Polices Google optimisées pour le thème technique -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome pour les icônes techniques -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Modules CSS personnalisés -->
-    <link rel="stylesheet" href="styles/enhanced-badges.css">
-    <link rel="stylesheet" href="styles/scan-animations.css">
-    
     <style>
-        .font-tech {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
+        body { font-family: 'Space Grotesk', sans-serif; }
         .hero {
-            background: linear-gradient(rgba(10, 16, 31, 0.85), rgba(17, 24, 39, 0.9)), url('https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=1473&q=80');
-            background-size: cover;
+            background:
+                linear-gradient(rgba(10, 16, 31, 0.88), rgba(17, 24, 39, 0.92)),
+                url('https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=1600&q=80');
             background-position: center;
-        }
-        
-        .part-card {
-            transition: all 0.3s ease;
-        }
-        
-        .part-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .rating-stars {
-            color: #f59e0b;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-in-out;
+            background-size: cover;
         }
     </style>
-
-    <!-- Données structurées pour SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "AutoPartsStore",
       "name": "Auto Pièces Équipements",
       "image": "https://auto-pieces-equipements.fr/logo.svg",
+      "url": "https://auto-pieces-equipements.fr/",
+      "telephone": "+33148479627",
+      "email": "contact@auto-pieces-equipements.fr",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "184 Avenue Aristide Briand",
@@ -94,984 +57,313 @@
         "latitude": "48.91012",
         "longitude": "2.51387"
       },
-      "telephone": "+33148479627",
-      "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"09:30","closes":"18:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"09:30","closes":"13:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"14:30","closes":"18:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:30","closes":"16:00"}],
-      "url": "https://auto-pieces-equipements.fr",
-      "priceRange": "€€",
-      "paymentAccepted": "Cash, Credit Card",
-      "currenciesAccepted": "EUR"
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "09:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "09:30",
+          "closes": "13:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "14:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:30",
+          "closes": "16:00"
+        }
+      ]
     }
     </script>
 </head>
-<body class="font-tech bg-gray-100">
-    <!-- Header -->
-    <header class="bg-darker text-white sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <!-- Logo SVG -->
-                <a href="/" class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 200 200" fill="none" class="mr-3">
-                        <!-- Fond circulaire -->
-                        <circle cx="100" cy="100" r="90" fill="#001B4D" />
-                        <circle cx="100" cy="100" r="85" fill="#0A1929" />
-                        
-                        <!-- Élément d'engrenage -->
-                        <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
-
-                        <!-- Contour des éléments intérieurs -->
-                        <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
-                        <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
-                        
-                        <!-- Lettres stylisées APE -->
-                        <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        
-                        <!-- Élément graphique automobile -->
-                        <circle cx="100" cy="100" r="12" fill="#00CC66" fill-opacity="0.2" stroke="#00CC66" stroke-width="1.5"/>
-                        <circle cx="100" cy="100" r="6" fill="#00CC66" fill-opacity="0.6"/>
-                        <circle cx="100" cy="100" r="2" fill="#FFFFFF"/>
-                        
-                        <!-- Rayons lumineux -->
-                        <path d="M100 70V80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M100 120V130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M70 100H80" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M120 100H130" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M82 82L89 89" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M111 111L118 118" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M82 118L89 111" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M111 89L118 82" stroke="#4CC9F0" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                    <span class="text-xl font-bold">Auto Pièces <span class="text-blue-500">Équipements</span></span>
-                </a>
-            </div>
-            
-            <nav class="hidden md:flex space-x-6 text-sm">
-                <a href="#accueil" class="hover:text-blue-400 transition">Accueil</a>
-                <a href="/pieces-auto-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition">Pièces auto</a>
-                <a href="/batterie-voiture-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition">Batterie</a>
-                <a href="/plaquettes-disques-frein-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition">Freinage</a>
-                <a href="/filtres-vidange-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition">Filtres &amp; vidange</a>
-                <a href="#avis" class="hover:text-blue-400 transition">Avis</a>
-                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+<body class="bg-gray-100 text-gray-900">
+    <header class="sticky top-0 z-40 bg-darker text-white shadow-lg">
+        <div class="container mx-auto flex items-center justify-between px-4 py-3">
+            <a href="/" class="flex items-center gap-3" aria-label="Auto Pièces Équipements — accueil">
+                <img src="/logo.svg" alt="" width="42" height="42">
+                <span class="text-lg font-bold sm:text-xl">Auto Pièces <span class="text-blue-400">Équipements</span></span>
+            </a>
+            <nav class="hidden items-center gap-6 text-sm md:flex" aria-label="Navigation principale">
+                <a href="#pieces" class="transition hover:text-blue-400">Pièces auto</a>
+                <a href="#services" class="transition hover:text-blue-400">Services</a>
+                <a href="#avis" class="transition hover:text-blue-400">Avis</a>
+                <a href="#contact" class="transition hover:text-blue-400">Contact</a>
             </nav>
-            
-            <div class="flex items-center space-x-4">
-                <button class="hover:text-blue-400 transition">
-                    <i class="fas fa-search text-lg"></i>
-                </button>
-                <button class="hover:text-blue-400 transition">
-                    <i class="fas fa-user text-lg"></i>
-                </button>
-                <button class="hover:text-blue-400 transition relative">
-                    <i class="fas fa-shopping-cart text-lg"></i>
-                    <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                </button>
-                <button class="md:hidden" id="menu-toggle">
-                    <i class="fas fa-bars text-xl"></i>
+            <div class="flex items-center gap-3">
+                <a href="tel:+33148479627" class="hidden rounded-lg bg-primary px-4 py-2 text-sm font-medium transition hover:bg-primary-hover sm:inline-flex">
+                    <i class="fas fa-phone mr-2" aria-hidden="true"></i> 01 48 47 96 27
+                </a>
+                <button id="menu-toggle" type="button" class="p-2 md:hidden" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
-        
-        <!-- Mobile menu -->
-        <div class="md:hidden bg-gray-800 hidden" id="mobile-menu">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="#accueil" class="hover:text-blue-400 transition py-2">Accueil</a>
-                <a href="/pieces-auto-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition py-2">Pièces auto</a>
-                <a href="/batterie-voiture-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition py-2">Batterie</a>
-                <a href="/plaquettes-disques-frein-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition py-2">Freinage</a>
-                <a href="/filtres-vidange-les-pavillons-sous-bois.html" class="hover:text-blue-400 transition py-2">Filtres &amp; vidange</a>
-                <a href="#avis" class="hover:text-blue-400 transition py-2">Avis</a>
-                <a href="#contact" class="hover:text-blue-400 transition py-2">Contact</a>
+        <nav id="mobile-menu" class="hidden border-t border-gray-700 bg-gray-800 px-4 py-3 md:hidden" aria-label="Navigation mobile">
+            <div class="container mx-auto flex flex-col gap-3">
+                <a href="#pieces" class="py-1 hover:text-blue-400">Pièces auto</a>
+                <a href="#services" class="py-1 hover:text-blue-400">Services</a>
+                <a href="#avis" class="py-1 hover:text-blue-400">Avis</a>
+                <a href="#contact" class="py-1 hover:text-blue-400">Contact</a>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Alerte de disponibilité -->
-    <div id="alert-open" class="hidden bg-green-600 text-white text-center px-4 py-3 text-sm md:text-base font-semibold flex items-center justify-center gap-2 shadow-md animate-fade-in relative">
-      <span class="text-lg">📞</span>
-      <span>
-        Disponible maintenant – Un conseiller vous répond au
-        <a href="tel:+33148479627" class="underline hover:text-white/80 transition">01 48 47 96 27</a>
-        ou sur
-        <a href="https://wa.me/33148479627" class="underline hover:text-white/80 transition">WhatsApp</a>
-      </span>
-      <button id="close-alert" class="absolute right-2 text-white hover:text-white/80">
-        <i class="fas fa-times"></i>
-      </button>
+    <div id="opening-status" class="relative bg-orange-600 px-10 py-3 text-center text-sm font-semibold text-white" role="status">
+        <span>Consultez nos horaires avant de vous déplacer.</span>
+        <button id="close-status" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 p-2" aria-label="Fermer l'information sur les horaires">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero text-white py-20 md:py-32 flex items-center" id="accueil">
-        <div class="container mx-auto px-4">
-            <div class="max-w-2xl">
-                <div class="flex items-center mb-4">
-                    <div class="rating-stars text-xl mr-2">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span class="text-sm bg-white text-gray-800 px-2 py-1 rounded font-mono">4,9/5 (24 avis Google)</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Pièces auto à Les Pavillons-sous-Bois</h1>
-                <p class="text-lg mb-8 opacity-90">Auto Pièces Équipements vous aide à trouver rapidement la bonne pièce pour votre véhicule : batteries, freinage, filtres, embrayage, alternateur, démarreur, suspension, huiles et accessoires. Envoyez votre plaque, carte grise ou ancienne référence : nous vérifions la compatibilité avant commande. Retrait au magasin ou livraison locale selon disponibilité.</p>
-
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <a href="tel:+33148479627" class="bg-primary hover:bg-primary-hover px-6 py-3 rounded-lg font-medium transition text-center flex items-center justify-center">
-                        <i class="fas fa-phone mr-2"></i> Appeler le magasin
-                    </a>
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois" target="_blank" rel="noopener" class="bg-dark hover:bg-gray-800 border border-gray-700 text-white px-6 py-3 rounded-lg font-medium transition text-center flex items-center justify-center">
-                        <i class="fas fa-location-arrow mr-2"></i> Obtenir l'itinéraire
-                    </a>
-                    <a href="https://wa.me/33148479627?text=Bonjour,%20je%20cherche%20une%20pi%C3%A8ce%20auto" target="_blank" rel="noopener" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg font-medium transition text-center flex items-center justify-center">
-                        <i class="fab fa-whatsapp mr-2"></i> Demander une pièce
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-8 lg:mb-0 lg:pr-12">
-                    <h2 class="text-3xl font-bold mb-6 text-darker">Votre spécialiste en Seine-Saint-Denis</h2>
-                    <p class="text-gray-600 mb-6">Auto Pièces Équipements est votre magasin de pièces automobiles aux Pavillons-sous-Bois, au service des particuliers, des garages et des revendeurs depuis 2016.</p>
-                    <p class="text-gray-600 mb-6">Pour éviter les erreurs de référence, envoyez-nous votre plaque d'immatriculation, votre carte grise ou votre ancienne pièce : nous vérifions la compatibilité avant de commander. Retrait au comptoir ou livraison locale en Seine-Saint-Denis selon disponibilité.</p>
-
-                    <div class="flex flex-wrap gap-3 mt-8 mb-8">
-                        <span class="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-sm font-medium">✔ Compatibilité vérifiée</span>
-                        <span class="inline-flex items-center bg-green-100 text-green-700 px-3 py-1.5 rounded-full text-sm font-medium">🏪 Retrait &amp; livraison</span>
-                        <span class="inline-flex items-center bg-orange-100 text-orange-700 px-3 py-1.5 rounded-full text-sm font-medium">🔧 Particuliers, garages &amp; revendeurs</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="bg-gray-100 py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
-                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
-                        <i class="fas fa-truck text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Retrait &amp; livraison</h3>
-                        <p class="text-gray-600">Retrait immédiat au magasin ou livraison locale en Seine-Saint-Denis selon disponibilité.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
-                    <div class="bg-green-100 text-green-600 p-3 rounded-full">
-                        <i class="fas fa-shield-alt text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Compatibilité vérifiée</h3>
-                        <p class="text-gray-600">Envoyez votre plaque ou carte grise : nous confirmons la bonne référence avant l'achat.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
-                    <div class="bg-orange-100 text-orange-600 p-3 rounded-full">
-                        <i class="fas fa-headset text-xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Conseil au comptoir</h3>
-                        <p class="text-gray-600">Une équipe qui connaît les pièces et vous oriente vers le bon montage pour votre véhicule.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products -->
-    <section class="py-16 bg-darker text-white" id="produits">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4">Nos familles de pièces</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Pièces auto pour l'entretien et la réparation, pour particuliers, garages et revendeurs. Pour éviter toute erreur de référence, envoyez-nous votre plaque, votre carte grise ou votre ancienne pièce.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-dark rounded-lg p-6 shadow-md border border-gray-800 hover:border-gray-700 transition">
-                    <div class="bg-green-100 text-green-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-car-battery text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Batteries</h3>
-                    <p class="text-gray-400 text-sm mb-4">Standard REBORN et Start &amp; Stop EFB Auto Parts. Garantie 1 an.</p>
-                    <a href="/batterie-voiture-les-pavillons-sous-bois.html" class="text-blue-400 font-medium inline-flex items-center">Voir les batteries <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
-                </div>
-
-                <div class="bg-dark rounded-lg p-6 shadow-md border border-gray-800 hover:border-gray-700 transition">
-                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-compact-disc text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Freinage</h3>
-                    <p class="text-gray-400 text-sm mb-4">Plaquettes, disques, mâchoires et capteurs d'usure.</p>
-                    <a href="/plaquettes-disques-frein-les-pavillons-sous-bois.html" class="text-blue-400 font-medium inline-flex items-center">Voir le freinage <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
-                </div>
-
-                <div class="bg-dark rounded-lg p-6 shadow-md border border-gray-800 hover:border-gray-700 transition">
-                    <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-filter text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Filtration</h3>
-                    <p class="text-gray-400 text-sm mb-4">Filtres à huile, à air, d'habitacle et à carburant.</p>
-                    <a href="/filtres-vidange-les-pavillons-sous-bois.html" class="text-blue-400 font-medium inline-flex items-center">Voir la filtration <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
-                </div>
-
-                <div class="bg-dark rounded-lg p-6 shadow-md border border-gray-800 hover:border-gray-700 transition">
-                    <div class="bg-purple-100 text-purple-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-bolt text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Démarrage &amp; charge</h3>
-                    <p class="text-gray-400 text-sm mb-4">Alternateurs et démarreurs pour la plupart des modèles.</p>
-                    <a href="/alternateur-demarreur-les-pavillons-sous-bois.html" class="text-blue-400 font-medium inline-flex items-center">Voir alternateurs & démarreurs <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
-                </div>
-
-                <div class="bg-dark rounded-lg p-6 shadow-md border border-gray-800 hover:border-gray-700 transition">
-                    <div class="bg-orange-100 text-orange-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-oil-can text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Entretien</h3>
-                    <p class="text-gray-400 text-sm mb-4">Huiles, liquides, essuie-glaces et ampoules.</p>
-                    <a href="/filtres-vidange-les-pavillons-sous-bois.html" class="text-blue-400 font-medium inline-flex items-center">Voir l'entretien <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
-                </div>
-
-                <div class="bg-dark rounded-lg p-6 shadow-md border border-gray-800 hover:border-gray-700 transition">
-                    <div class="bg-red-100 text-red-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-cogs text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Suspension &amp; embrayage</h3>
-                    <p class="text-gray-400 text-sm mb-4">Amortisseurs, triangles, rotules et kits d'embrayage.</p>
-                    <a href="/pieces-auto-les-pavillons-sous-bois.html" class="text-blue-400 font-medium inline-flex items-center">Voir suspension & embrayage <i class="fas fa-arrow-right ml-2 text-sm"></i></a>
-                </div>
-            </div>
-
-            <!-- CTA demande de pièce -->
-            <div class="text-center mt-12 bg-dark border border-gray-800 rounded-lg p-8 max-w-3xl mx-auto">
-                <h3 class="text-2xl font-bold mb-2">Vous ne trouvez pas votre pièce ?</h3>
-                <p class="text-gray-400 mb-6">Envoyez-nous votre plaque d'immatriculation, votre carte grise ou votre ancienne référence : nous vérifions la compatibilité et la disponibilité avant toute commande.</p>
-                <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                    <a href="tel:+33148479627" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium transition inline-flex items-center justify-center">
-                        <i class="fas fa-phone mr-2"></i> Appeler le magasin
-                    </a>
-                    <a href="https://wa.me/33148479627?text=Bonjour,%20je%20cherche%20une%20pi%C3%A8ce%20auto%20:%20" target="_blank" rel="noopener" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition inline-flex items-center justify-center">
-                        <i class="fab fa-whatsapp mr-2"></i> Demander sur WhatsApp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="py-16 bg-white" id="services">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-darker">Nos services</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Un magasin de pièces auto au service des particuliers, des garages et des revendeurs aux Pavillons-sous-Bois.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-id-card text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3">Compatibilité par plaque / carte grise</h3>
-                    <p class="text-gray-600">Envoyez votre plaque, carte grise ou ancienne référence : nous confirmons la bonne pièce avant commande.</p>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="bg-green-100 text-green-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-store text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3">Retrait au magasin</h3>
-                    <p class="text-gray-600">Réservez par téléphone ou WhatsApp et récupérez votre pièce au comptoir aux Pavillons-sous-Bois.</p>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="bg-orange-100 text-orange-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-dolly text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3">Commande de pièces sur demande</h3>
-                    <p class="text-gray-600">Pièce non disponible en stock ? Nous la commandons rapidement selon les arrivages.</p>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="bg-purple-100 text-purple-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-handshake text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3">Garages &amp; revendeurs</h3>
-                    <p class="text-gray-600">Tarifs et disponibilités pour les professionnels de l'automobile en Seine-Saint-Denis.</p>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="bg-red-100 text-red-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-truck text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3">Livraison locale</h3>
-                    <p class="text-gray-600">Livraison de vos pièces autour des Pavillons-sous-Bois selon disponibilité.</p>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="bg-yellow-100 text-yellow-600 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                        <i class="fas fa-comments text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-3">Conseil au comptoir</h3>
-                    <p class="text-gray-600">Une équipe qui connaît les pièces et vous oriente vers le bon montage.</p>
-                </div>
-            </div>
-            <div class="text-center mt-10">
-                <a href="#rdv" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium inline-flex items-center">
-                    <i class="fas fa-calendar-alt mr-2"></i> Prendre rendez-vous
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-16 bg-gray-100" id="avis">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-darker">Nos clients témoignent</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Découvrez les expériences réelles de nos clients sur Google.</p>
-                <div class="flex items-center justify-center mt-4">
-                    <div class="rating-stars text-2xl mr-2">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <span class="text-lg font-bold">4,9/5 (24 avis)</span>
-                </div>
-            </div>
-            
-            <!-- Indicateur de chargement -->
-            <div id="reviews-loading" class="text-center py-8">
-                <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
-                <p class="text-gray-500 mt-2">Chargement des avis...</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Avis existants -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500">Il y a 2 jours</span>
-                    </div>
-                    <p class="text-gray-600 mb-6">"Super équipe j'ai commandé le matin récupérer après midi"</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full mr-3 bg-primary text-white flex items-center justify-center font-semibold text-sm" aria-label="Bruno Firnadch">BF</div>
-                        <div>
-                            <h4 class="font-medium">Bruno Firnadch</h4>
-                            <p class="text-gray-400 text-sm font-mono">Visité en avril</p>
-                        </div>
-                    </div>
-                    <!-- Réponse du propriétaire -->
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full mr-2 bg-blue-600 text-white flex items-center justify-center font-semibold text-xs" aria-label="Auto Pièces Équipements">APE</div>
-                            <div>
-                                <h5 class="text-sm font-medium text-blue-600">Auto Pieces Equipements</h5>
-                                <p class="text-gray-500 text-sm">A votre service</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500">Il y a 1 semaine</span>
-                    </div>
-                    <p class="text-gray-600 mb-6">"Excellent service, j'ai trouvé exactement la pièce qu'il me fallait en quelques minutes."</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full mr-3 bg-primary text-white flex items-center justify-center font-semibold text-sm" aria-label="Automecanik">A</div>
-                        <div>
-                            <h4 class="font-medium">Automecanik</h4>
-                            <p class="text-gray-400 text-sm font-mono">Visité en mars</p>
-                        </div>
-                    </div>
-                    <!-- Réponse du propriétaire -->
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full mr-2 bg-blue-600 text-white flex items-center justify-center font-semibold text-xs" aria-label="Auto Pièces Équipements">APE</div>
-                            <div>
-                                <h5 class="text-sm font-medium text-blue-600">Auto Pieces Equipements</h5>
-                                <p class="text-gray-500 text-sm">A votre service</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500">1 déc. 2023</span>
-                    </div>
-                    <p class="text-gray-600 mb-6">"Vendeur sérieux...bonne disponibilité pour les pièces..."</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full mr-3 bg-primary text-white flex items-center justify-center font-semibold text-sm" aria-label="Christophe Guilbert">CG</div>
-                        <div>
-                            <h4 class="font-medium">Christophe Guilbert</h4>
-                            <p class="text-gray-400 text-sm font-mono">Visité en décembre 2023</p>
-                        </div>
-                    </div>
-                    <!-- Réponse du propriétaire -->
-                    <div class="mt-4 pt-4 border-t border-gray-200">
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full mr-2 bg-blue-600 text-white flex items-center justify-center font-semibold text-xs" aria-label="Auto Pièces Équipements">APE</div>
-                            <div>
-                                <h5 class="text-sm font-medium text-blue-600">Auto Pieces Equipements</h5>
-                                <p class="text-gray-500 text-sm">Merci à vous</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500">18 avr. 2023</span>
-                    </div>
-                    <p class="text-gray-600 mb-6">"Super sympa. Prix très sympathique et abordable"</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full mr-3 bg-primary text-white flex items-center justify-center font-semibold text-sm" aria-label="Client">JS</div>
-                        <div>
-                            <h4 class="font-medium">Jack Sparrow</h4>
-                            <p class="text-gray-400 text-sm font-mono">Visité en avril 2023</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500">26 mars 2022</span>
-                    </div>
-                    <p class="text-gray-600 mb-6">"Fournisseur pour nos pièces auto depuis plus de 6 ans très efficace et pas cher. Nous vous le recommandons"</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full mr-3 bg-primary text-white flex items-center justify-center font-semibold text-sm" aria-label="NC AUTO">NC</div>
-                        <div>
-                            <h4 class="font-medium">NC AUTO</h4>
-                            <p class="text-gray-400 text-sm font-mono">Visité en mars 2022</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="rating-stars text-xl mr-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="text-sm text-gray-500">13 janv. 2017</span>
-                    </div>
-                    <p class="text-gray-600 mb-6">"Super équipe à l'écoute et très réactif. J'ai appelé le matin à 10h30 et à 13h30 j'avais les pièces. En plus j'étais vraiment dans l'urgence. MERCI. Je recommande bien sur."</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full mr-3 bg-primary text-white flex items-center justify-center font-semibold text-sm" aria-label="Laëtitia B">LB</div>
-                        <div>
-                            <h4 class="font-medium">Laëtitia B</h4>
-                            <p class="text-gray-400 text-sm font-mono">Local Guide • 145 avis</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-10">
-                <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-lg font-medium inline-flex items-center">
-                    <i class="fab fa-google mr-2"></i> Voir tous nos avis Google
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="py-16 bg-darker text-white" id="contact">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold mb-6">Contactez-nous</h2>
-                    <p class="text-gray-400 mb-8">Accédez à notre support technique avancé pour toute question sur nos produits ou services.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-blue-900 text-blue-300 p-3 rounded-full">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Adresse</h4>
-                                <p class="text-gray-400">184 Av. Aristide Briand<br>93320 Les Pavillons-sous-Bois, France</p>
-                                <a href="https://www.google.com/maps/search/?api=1&query=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois" target="_blank" rel="noopener" class="text-blue-400 text-sm mt-1 inline-block">Voir sur la carte</a>
-                                <div class="mt-4">
-                                    <a href="https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320" 
-                                       target="_blank" 
-                                       class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded inline-flex items-center">
-                                        <i class="fas fa-map-marker-alt mr-2"></i> Itinéraire GPS
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-green-900 text-green-300 p-3 rounded-full">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Téléphone</h4>
-                                <p class="text-gray-400">01 48 47 96 27<br>Lun–Jeu : 9h30–18h30<br>Ven : 9h30–13h30 et 14h30–18h30<br>Sam : 9h30–16h00</p>
-                                <a href="tel:+33148479627" class="text-blue-400 text-sm mt-1 inline-block">Appeler maintenant</a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-orange-900 text-orange-300 p-3 rounded-full">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold mb-1">Email</h4>
-                                <p class="text-gray-400">contact@auto-pieces-equipements.fr<br>Réponse sous 24h ouvrées</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-dark p-8 rounded-lg shadow-lg border border-gray-800">
-                    <h3 class="text-xl font-bold mb-6">Accès à l'assistance technique</h3>
-                    <form>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="name" class="block text-gray-300 font-medium mb-2">Nom complet</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-300 font-medium mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="vehicle" class="block text-gray-300 font-medium mb-2">Modèle du véhicule</label>
-                            <input type="text" id="vehicle" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-300 font-medium mb-2">Description technique</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white font-mono"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-lg font-medium transition">
-                            Demander une assistance
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Prise de RDV -->
-    <section id="rdv" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg shadow-md">
-                <h2 class="text-3xl font-bold text-darker mb-6">Prendre un rendez-vous</h2>
-                <p class="text-gray-600 mb-8">Un technicien vous rappellera pour confirmer votre demande.</p>
-
-                <form id="rdv-form">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="rdv-name" class="block text-gray-700 font-medium mb-1">Nom complet</label>
-                            <input type="text" id="rdv-name" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="rdv-phone" class="block text-gray-700 font-medium mb-1">Téléphone</label>
-                            <input type="tel" id="rdv-phone" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="rdv-date" class="block text-gray-700 font-medium mb-1">Date souhaitée</label>
-                            <input type="date" id="rdv-date" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="rdv-time" class="block text-gray-700 font-medium mb-1">Heure souhaitée</label>
-                            <input type="time" id="rdv-time" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                    </div>
-
-                    <div class="mb-6">
-                        <label for="rdv-msg" class="block text-gray-700 font-medium mb-1">Message (facultatif)</label>
-                        <textarea id="rdv-msg" rows="4" class="w-full px-4 py-2 rounded bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full bg-primary hover:bg-primary-hover text-white font-medium py-3 rounded transition flex items-center justify-center">
-                        <i class="fas fa-phone-alt mr-2"></i> Demander un rappel
-                    </button>
-                </form>
-
-                <!-- Message de confirmation (caché par défaut) -->
-                <div id="rdv-confirmation" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-lg text-center">
-                    <i class="fas fa-check-circle text-2xl mb-2"></i>
-                    <p class="font-medium">Votre demande a bien été enregistrée !</p>
-                    <p class="text-sm">Nous vous contacterons rapidement pour confirmer votre rendez-vous.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WhatsApp Button - Version optimisée -->
-    <div id="whatsapp-button" class="fixed bottom-6 right-6 z-50" style="display: block; opacity: 1; transform: scale(1);">
-      <a href="https://wa.me/33148479627?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto" target="_blank"
-         class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-full shadow-lg flex items-center space-x-2 transition">
-        <i class="fab fa-whatsapp text-xl"></i>
-        <span>Discuter sur WhatsApp</span>
-      </a>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white pt-12 pb-6">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <!-- Mini logo SVG -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 200 200" fill="none">
-                            <circle cx="100" cy="100" r="90" fill="#001B4D" />
-                            <circle cx="100" cy="100" r="85" fill="#0A1929" />
-                            <path d="M100 50C97.2 50 94.5 50.2 91.8 50.7L88.9 38.2C85.1 39 81.4 40.2 77.9 41.7L82.4 53.6C77.5 56 73.1 59.2 69.3 63L59.3 55.1C56.6 57.7 54.2 60.6 52.1 63.7L63.9 70.1C61.5 74.4 59.7 79.1 58.8 84.1L46.3 82.3C45.5 85.4 45 88.6 45 91.9L57.7 92.5C57.9 97.8 59 102.9 60.9 107.7L49.3 112.5C50.6 115.4 52.2 118.2 54 120.8L64.8 114.9C68.2 119.1 72.3 122.7 77 125.5L72.1 137.2C75.3 138.9 78.7 140.2 82.2 141.2L85.8 128.9C90.4 130.3 95.2 131 100.2 131L101.7 143.7C105 143.5 108.2 142.9 111.2 142L108.5 129.6C113.2 127.8 117.5 125.3 121.2 122.1L131.5 129.7C134.1 127 136.5 124.1 138.5 120.9L127.3 114.7C129.5 110.3 131 105.5 131.7 100.5L144.2 102C144.9 98.9 145.3 95.7 145.3 92.4L132.6 92C132.2 86.8 130.9 81.9 128.9 77.3L140.4 72.3C139 69.5 137.3 66.7 135.4 64.2L124.7 70.2C121.2 66.1 117 62.7 112.2 60L116.9 48.3C113.6 46.7 110.1 45.5 106.6 44.6L103.2 56.9C102.1 56.7 101.1 56.6 100 56.6V50Z" fill="#B87333"/>
-                            <circle cx="100" cy="100" r="35" fill="#001B4D" stroke="#4CC9F0" stroke-width="2"/>
-                            <circle cx="100" cy="100" r="28" fill="#0A1929" stroke="#4CC9F0" stroke-width="1"/>
-                            <path d="M92 90L85 110M85 110H95M92 90H102M102 90L109 110" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span class="text-xl font-bold">Auto Pièces <span class="text-blue-500">Équipements</span></span>
-                    </div>
-                    <p class="text-gray-400">Magasin de pièces auto aux Pavillons-sous-Bois depuis 2016. Particuliers, garages et revendeurs. 184 Avenue Aristide Briand, 93320.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-facebook-f"></i>
+    <main>
+        <section class="hero py-20 text-white md:py-28">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl">
+                    <p class="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm">
+                        Magasin local depuis 2016
+                    </p>
+                    <h1 class="mb-5 text-4xl font-bold leading-tight md:text-5xl">Pièces auto aux Pavillons-sous-Bois</h1>
+                    <p class="mb-8 max-w-2xl text-lg text-gray-200">
+                        Batteries, freinage, filtres, embrayage, alternateurs, démarreurs, suspension, huiles et accessoires.
+                        Envoyez votre plaque, votre carte grise ou votre ancienne référence : nous vérifions la compatibilité avant commande.
+                    </p>
+                    <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                        <a href="tel:+33148479627" class="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-medium transition hover:bg-primary-hover">
+                            <i class="fas fa-phone mr-2" aria-hidden="true"></i> Appeler le magasin
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://wa.me/33148479627?text=Bonjour,%20je%20cherche%20une%20pi%C3%A8ce%20auto" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-lg bg-green-600 px-6 py-3 font-medium transition hover:bg-green-700">
+                            <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i> Demander une pièce
+                        </a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-lg border border-gray-600 bg-dark px-6 py-3 font-medium transition hover:bg-gray-800">
+                            <i class="fas fa-location-arrow mr-2" aria-hidden="true"></i> Itinéraire
                         </a>
                     </div>
                 </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Le magasin</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#accueil" class="text-gray-400 hover:text-white transition">Accueil</a></li>
-                        <li><a href="/pieces-auto-les-pavillons-sous-bois.html" class="text-gray-400 hover:text-white transition">Pièces auto Les Pavillons-sous-Bois</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Nos services</a></li>
-                        <li><a href="#avis" class="text-gray-400 hover:text-white transition">Avis clients</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact &amp; horaires</a></li>
-                        <li><a href="/livraison-pieces-auto-93.html" class="text-gray-400 hover:text-white transition">Livraison pièces auto 93</a></li>
-                        <li><a href="/pieces-auto-garages-professionnels-93.html" class="text-gray-400 hover:text-white transition">Garages &amp; revendeurs 93</a></li>
-                    </ul>
+            </div>
+        </section>
+
+        <section class="bg-white py-12">
+            <div class="container mx-auto grid gap-6 px-4 md:grid-cols-3">
+                <article class="rounded-xl border border-gray-200 p-6">
+                    <i class="fas fa-clipboard-check mb-4 text-3xl text-primary" aria-hidden="true"></i>
+                    <h2 class="mb-2 text-xl font-bold">Compatibilité vérifiée</h2>
+                    <p class="text-gray-600">Plaque, carte grise ou ancienne pièce : nous cherchons la référence adaptée à votre véhicule.</p>
+                </article>
+                <article class="rounded-xl border border-gray-200 p-6">
+                    <i class="fas fa-store mb-4 text-3xl text-primary" aria-hidden="true"></i>
+                    <h2 class="mb-2 text-xl font-bold">Retrait au magasin</h2>
+                    <p class="text-gray-600">Vérifiez la disponibilité par téléphone ou WhatsApp avant votre déplacement.</p>
+                </article>
+                <article class="rounded-xl border border-gray-200 p-6">
+                    <i class="fas fa-truck mb-4 text-3xl text-primary" aria-hidden="true"></i>
+                    <h2 class="mb-2 text-xl font-bold">Livraison locale</h2>
+                    <p class="text-gray-600">Livraison autour des Pavillons-sous-Bois selon la pièce, la zone et la disponibilité.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="pieces" class="bg-darker py-16 text-white">
+            <div class="container mx-auto px-4">
+                <div class="mb-10 text-center">
+                    <h2 class="mb-3 text-3xl font-bold">Nos familles de pièces</h2>
+                    <p class="mx-auto max-w-2xl text-gray-400">Pour particuliers, garages et revendeurs en Seine-Saint-Denis.</p>
                 </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Familles de pièces</h4>
-                    <ul class="space-y-2">
-                        <li><a href="/batterie-voiture-les-pavillons-sous-bois.html" class="text-gray-400 hover:text-white transition">Batteries</a></li>
-                        <li><a href="/plaquettes-disques-frein-les-pavillons-sous-bois.html" class="text-gray-400 hover:text-white transition">Freinage</a></li>
-                        <li><a href="/filtres-vidange-les-pavillons-sous-bois.html" class="text-gray-400 hover:text-white transition">Filtration</a></li>
-                        <li><a href="/alternateur-demarreur-les-pavillons-sous-bois.html" class="text-gray-400 hover:text-white transition">Alternateurs &amp; démarreurs</a></li>
-                        <li><a href="#produits" class="text-gray-400 hover:text-white transition">Suspension &amp; embrayage</a></li>
-                    </ul>
+                <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                    <a href="/batterie-voiture-les-pavillons-sous-bois.html" class="rounded-xl border border-gray-700 bg-dark p-6 transition hover:border-blue-500">
+                        <i class="fas fa-car-battery mb-4 text-3xl text-green-400" aria-hidden="true"></i>
+                        <h3 class="mb-2 text-xl font-bold">Batteries</h3>
+                        <p class="text-sm text-gray-400">Standard et Start &amp; Stop selon votre véhicule.</p>
+                    </a>
+                    <a href="/plaquettes-disques-frein-les-pavillons-sous-bois.html" class="rounded-xl border border-gray-700 bg-dark p-6 transition hover:border-blue-500">
+                        <i class="fas fa-compact-disc mb-4 text-3xl text-blue-400" aria-hidden="true"></i>
+                        <h3 class="mb-2 text-xl font-bold">Freinage</h3>
+                        <p class="text-sm text-gray-400">Plaquettes, disques, mâchoires et capteurs.</p>
+                    </a>
+                    <a href="/filtres-vidange-les-pavillons-sous-bois.html" class="rounded-xl border border-gray-700 bg-dark p-6 transition hover:border-blue-500">
+                        <i class="fas fa-filter mb-4 text-3xl text-yellow-400" aria-hidden="true"></i>
+                        <h3 class="mb-2 text-xl font-bold">Filtres &amp; vidange</h3>
+                        <p class="text-sm text-gray-400">Filtres, huiles et produits d'entretien.</p>
+                    </a>
+                    <a href="/alternateur-demarreur-les-pavillons-sous-bois.html" class="rounded-xl border border-gray-700 bg-dark p-6 transition hover:border-blue-500">
+                        <i class="fas fa-bolt mb-4 text-3xl text-purple-400" aria-hidden="true"></i>
+                        <h3 class="mb-2 text-xl font-bold">Démarrage &amp; charge</h3>
+                        <p class="text-sm text-gray-400">Alternateurs et démarreurs.</p>
+                    </a>
                 </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Informations légales</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mentions légales</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">CGV</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a></li>
-                    </ul>
+                <div class="mt-8 text-center">
+                    <a href="/pieces-auto-les-pavillons-sous-bois.html" class="inline-flex items-center rounded-lg bg-primary px-6 py-3 font-medium transition hover:bg-primary-hover">
+                        Voir toutes les pièces <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0 font-mono">&copy; 2026 Auto Pièces Équipements. Tous droits réservés.</p>
-                <div class="flex space-x-6">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="Mastercard" class="h-8">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" class="h-8">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/PayPal.svg/1200px-PayPal.svg.png" alt="Paypal" class="h-8">
+        </section>
+
+        <section id="services" class="bg-white py-16">
+            <div class="container mx-auto px-4">
+                <div class="mb-10 text-center">
+                    <h2 class="mb-3 text-3xl font-bold">Services du magasin</h2>
+                    <p class="mx-auto max-w-2xl text-gray-600">Des informations simples et vérifiables avant votre achat.</p>
+                </div>
+                <div class="grid gap-6 md:grid-cols-3">
+                    <article class="rounded-xl bg-gray-50 p-6">
+                        <h3 class="mb-2 text-xl font-bold">Commande sur demande</h3>
+                        <p class="text-gray-600">Si la pièce n'est pas en stock, nous vérifions les possibilités et délais de commande.</p>
+                    </article>
+                    <article class="rounded-xl bg-gray-50 p-6">
+                        <h3 class="mb-2 text-xl font-bold">Garages &amp; revendeurs</h3>
+                        <p class="text-gray-600">Disponibilités et conditions pour les professionnels de l'automobile du 93.</p>
+                    </article>
+                    <article class="rounded-xl bg-gray-50 p-6">
+                        <h3 class="mb-2 text-xl font-bold">Conseil au comptoir</h3>
+                        <p class="text-gray-600">Nous vous aidons à identifier la référence ; le montage n'est pas proposé sur ce site.</p>
+                    </article>
+                </div>
+                <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                    <a href="/livraison-pieces-auto-93.html" class="rounded-lg border border-gray-300 px-5 py-3 text-center font-medium hover:border-primary hover:text-primary">Livraison dans le 93</a>
+                    <a href="/pieces-auto-garages-professionnels-93.html" class="rounded-lg border border-gray-300 px-5 py-3 text-center font-medium hover:border-primary hover:text-primary">Espace professionnels</a>
                 </div>
             </div>
+        </section>
+
+        <section id="avis" class="bg-gray-100 py-16">
+            <div class="container mx-auto max-w-3xl px-4 text-center">
+                <i class="fab fa-google mb-5 text-5xl text-primary" aria-hidden="true"></i>
+                <h2 class="mb-4 text-3xl font-bold">Avis clients</h2>
+                <p class="mb-7 text-gray-600">
+                    La note et le nombre d'avis évoluent. Consultez la fiche Google pour voir les informations publiées directement par la plateforme.
+                </p>
+                <div class="flex flex-col justify-center gap-3 sm:flex-row">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois" target="_blank" rel="noopener" class="rounded-lg bg-primary px-6 py-3 font-medium text-white transition hover:bg-primary-hover">
+                        Voir la fiche Google
+                    </a>
+                    <a href="https://g.page/r/CSAk6YB5asfQEAE/review" target="_blank" rel="noopener" class="rounded-lg border border-gray-300 bg-white px-6 py-3 font-medium transition hover:border-primary hover:text-primary">
+                        Laisser un avis
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-darker py-16 text-white">
+            <div class="container mx-auto grid gap-10 px-4 lg:grid-cols-2">
+                <div>
+                    <h2 class="mb-4 text-3xl font-bold">Contact &amp; horaires</h2>
+                    <p class="mb-8 text-gray-400">Pour une référence ou une disponibilité, appelez-nous ou envoyez votre demande sur WhatsApp.</p>
+                    <div class="space-y-5">
+                        <p class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-blue-400" aria-hidden="true"></i>
+                            <span>184 Avenue Aristide Briand<br>93320 Les Pavillons-sous-Bois</span>
+                        </p>
+                        <p class="flex items-center gap-3">
+                            <i class="fas fa-phone text-blue-400" aria-hidden="true"></i>
+                            <a href="tel:+33148479627" class="hover:text-blue-400">01 48 47 96 27</a>
+                        </p>
+                        <p class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-blue-400" aria-hidden="true"></i>
+                            <a href="mailto:contact@auto-pieces-equipements.fr" class="hover:text-blue-400">contact@auto-pieces-equipements.fr</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="rounded-xl border border-gray-700 bg-dark p-7">
+                    <h3 class="mb-4 text-xl font-bold">Horaires d'ouverture</h3>
+                    <dl class="space-y-3 text-gray-300">
+                        <div class="flex justify-between gap-4"><dt>Lundi–jeudi</dt><dd>9h30–18h30</dd></div>
+                        <div class="flex justify-between gap-4"><dt>Vendredi</dt><dd class="text-right">9h30–13h30<br>14h30–18h30</dd></div>
+                        <div class="flex justify-between gap-4"><dt>Samedi</dt><dd>9h30–16h00</dd></div>
+                        <div class="flex justify-between gap-4"><dt>Dimanche</dt><dd>Fermé</dd></div>
+                    </dl>
+                    <div class="mt-7 grid gap-3 sm:grid-cols-2">
+                        <a href="tel:+33148479627" class="rounded-lg bg-primary px-5 py-3 text-center font-medium transition hover:bg-primary-hover">Appeler</a>
+                        <a href="https://wa.me/33148479627?text=Bonjour,%20je%20cherche%20une%20pi%C3%A8ce%20auto" target="_blank" rel="noopener" class="rounded-lg bg-green-600 px-5 py-3 text-center font-medium transition hover:bg-green-700">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black py-8 text-sm text-gray-400">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2026 Auto Pièces Équipements — 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois</p>
+            <p class="mt-3">
+                <a href="/mentions-legales.html" class="hover:text-white">Mentions légales</a>
+                <span aria-hidden="true"> · </span>
+                <a href="/politique-confidentialite.html" class="hover:text-white">Politique de confidentialité</a>
+            </p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script type="module">
-        // Commentez ces lignes si les fichiers n'existent pas
-        // import { initTechScan } from './scripts/modules/scan-effect.js';
-        // import { initBadges } from './scripts/modules/badges.js';
-        // import { initReviewsCarousel } from './scripts/modules/reviews-carousel.js';
+    <a href="https://wa.me/33148479627?text=Bonjour,%20je%20cherche%20une%20pi%C3%A8ce%20auto" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-30 rounded-full bg-green-600 px-4 py-3 font-medium text-white shadow-lg transition hover:bg-green-700" aria-label="Demander une pièce sur WhatsApp">
+        <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i><span class="hidden sm:inline">WhatsApp</span>
+    </a>
 
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Vérification des horaires d'ouverture
-            const now = new Date();
-            const day = now.getDay(); // 0 = dimanche, 6 = samedi
-            const hour = now.getHours();
-            const minute = now.getMinutes();
+            const menuButton = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-            const t = hour * 60 + minute;
-            let isOpen = false;
-            if (day >= 1 && day <= 4) isOpen = (t >= 570 && t <= 1110);
-            else if (day === 5) isOpen = (t >= 570 && t <= 810) || (t >= 870 && t <= 1110);
-            else if (day === 6) isOpen = (t >= 570 && t <= 960);
-
-            // 2. Gestion de l'alerte de disponibilité (une seule fois)
-            const alertOpen = document.getElementById('alert-open');
-            if (alertOpen) {
-                if (isOpen) {
-                    // Le magasin est ouvert
-                    alertOpen.classList.remove('hidden');
-                    alertOpen.classList.add('bg-green-600');
-                    alertOpen.querySelector('span:nth-child(2)').innerHTML = `
-                        Disponible maintenant – Un conseiller vous répond au
-                        <a href="tel:+33148479627" class="underline hover:text-white/80 transition">01 48 47 96 27</a>
-                        ou sur
-                        <a href="https://wa.me/33148479627" class="underline hover:text-white/80 transition">WhatsApp</a>
-                    `;
-                } else {
-                    // Le magasin est fermé
-                    alertOpen.classList.remove('hidden');
-                    alertOpen.classList.add('bg-orange-600');
-                    alertOpen.querySelector('span:nth-child(2)').innerHTML = `
-                        Actuellement fermé – Nous ouvrons demain à 9h00. Laissez un message sur 
-                        <a href="https://wa.me/33148479627?text=Bonjour,%20je%20souhaite%20des%20informations" class="underline hover:text-white/80 transition">WhatsApp</a>
-                    `;
-                }
-                
-                // Bouton de fermeture
-                document.getElementById('close-alert')?.addEventListener('click', function() {
-                    alertOpen.classList.add('hidden');
-                });
-            }
-
-            // Pour garantir que l'alerte s'affiche
-            setTimeout(() => {
-                const alertOpen = document.getElementById('alert-open');
-                if (alertOpen) {
-                    alertOpen.classList.remove('hidden');
-                    console.log('Alerte affichée par force');
-                }
-            }, 1000);
-
-            // 3. Affichage du bouton WhatsApp - Version corrigée
-            const whatsappButton = document.getElementById('whatsapp-button');
-            if (whatsappButton) {
-                // Définir directement les styles pour garantir la visibilité
-                whatsappButton.style.display = "block";
-                whatsappButton.style.opacity = "1";
-                whatsappButton.style.transform = "scale(1)";
-                
-                console.log("Bouton WhatsApp configuré avec style direct");
-                
-                // Adapter le message selon les horaires
-                if (!isOpen) {
-                    const whatsappLink = whatsappButton.querySelector('a');
-                    if (whatsappLink) {
-                        whatsappLink.setAttribute('href', 
-                            'https://wa.me/33148479627?text=Bonjour,%20je%20souhaite%20des%20informations%20sur%20vos%20pièces%20auto.%20Merci%20de%20me%20recontacter%20pendant%20vos%20horaires%20d%27ouverture.');
-                        
-                        const buttonText = whatsappLink.querySelector('span');
-                        if (buttonText) {
-                            buttonText.textContent = 'Laisser un message';
-                        }
-                    }
-                }
-            }
-
-            // 4. Sur mobile, proposer d'ouvrir le GPS après un délai - Version corrigée
-            if (window.innerWidth < 768) {
-                // Réduire le délai et garantir l'exécution
-                setTimeout(function() {
-                    try {
-                        if (confirm("Souhaitez-vous ouvrir le GPS pour venir au magasin ?")) {
-                            window.open("https://www.google.com/maps/dir/?api=1&destination=Auto+Pièces+Équipements+93320", "_blank");
-                            console.log("GPS ouvert avec succès");
-                        } else {
-                            console.log("Utilisateur a refusé d'ouvrir le GPS");
-                        }
-                    } catch (e) {
-                        console.error("Erreur lors de l'ouverture du GPS:", e);
-                    }
-                }, 15000); // Réduit à 15 secondes pour un meilleur taux de conversion
-            }
-
-            // 5. Initialiser les modules
-            // initBadges();
-            // initTechScan('tech-scan-hero', {
-            //     dataPoints: 20,
-            //     xAxisLabel: 'Performance',
-            //     yAxisLabel: 'Compatibilité',
-            //     analysisText: 'RECHERCHE DE PIÈCES COMPATIBLES...'
-            // });
-            
-            // 6. Menu mobile
-            document.getElementById('menu-toggle')?.addEventListener('click', function() {
-                const menu = document.getElementById('mobile-menu');
-                menu?.classList.toggle('hidden');
+            menuButton?.addEventListener('click', () => {
+                const isOpen = !mobileMenu?.classList.contains('hidden');
+                mobileMenu?.classList.toggle('hidden');
+                menuButton.setAttribute('aria-expanded', String(!isOpen));
+                menuButton.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
             });
-            
-            // 7. Navigation fluide
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(this.getAttribute('href'));
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                        
-                        // Fermer menu mobile
-                        const mobileMenu = document.getElementById('mobile-menu');
-                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                        }
-                    }
+
+            mobileMenu?.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuButton?.setAttribute('aria-expanded', 'false');
+                    menuButton?.setAttribute('aria-label', 'Ouvrir le menu');
                 });
             });
-            
-            // 8. Formulaire de contact (utiliser un ID spécifique)
-            const contactForm = document.querySelector('#contact form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const vehicle = document.getElementById('vehicle').value;
-                    const message = document.getElementById('message').value;
-                            
-                    if (name && email && vehicle && message) {
-                        alert('Votre demande d\'assistance technique a été enregistrée. Un expert vous contactera sous 2 heures.');
-                        contactForm.reset();
-                    } else {
-                        alert('Veuillez remplir tous les champs du formulaire.');
-                    }
-                });
-            }
-            
-            // 9. Formulaire de RDV
-            const rdvForm = document.getElementById('rdv-form');
-            if (rdvForm) {
-                // Définir la date minimale (aujourd'hui)
-                const dateInput = document.getElementById('rdv-date');
-                if (dateInput) {
-                    const today = new Date().toISOString().split('T')[0];
-                    dateInput.setAttribute('min', today);
-                    
-                    // Désactiver les dimanches
-                    dateInput.addEventListener('input', function() {
-                        const selectedDate = new Date(this.value);
-                        if (selectedDate.getDay() === 0) { // 0 = Dimanche
-                            alert('Nous sommes fermés le dimanche. Veuillez choisir un autre jour.');
-                            this.value = '';
-                        }
-                    });
+
+            const status = document.getElementById('opening-status');
+            const statusText = status?.querySelector('span');
+
+            try {
+                const parts = Object.fromEntries(
+                    new Intl.DateTimeFormat('en-GB', {
+                        timeZone: 'Europe/Paris',
+                        weekday: 'short',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hourCycle: 'h23'
+                    })
+                        .formatToParts(new Date())
+                        .filter((part) => part.type !== 'literal')
+                        .map((part) => [part.type, part.value])
+                );
+                const day = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 0 }[parts.weekday];
+                const minutes = Number(parts.hour) * 60 + Number(parts.minute);
+                const isOpen =
+                    (day >= 1 && day <= 4 && minutes >= 570 && minutes < 1110) ||
+                    (day === 5 && ((minutes >= 570 && minutes < 810) || (minutes >= 870 && minutes < 1110))) ||
+                    (day === 6 && minutes >= 570 && minutes < 960);
+
+                if (status && statusText) {
+                    status.classList.toggle('bg-orange-600', !isOpen);
+                    status.classList.toggle('bg-green-600', isOpen);
+                    statusText.textContent = isOpen
+                        ? 'Magasin ouvert — appelez-nous pour vérifier la disponibilité de votre pièce.'
+                        : 'Magasin actuellement fermé — consultez nos horaires ou laissez un message sur WhatsApp.';
                 }
-                
-                // Définir les plages horaires acceptables
-                const timeInput = document.getElementById('rdv-time');
-                if (timeInput) {
-                    timeInput.setAttribute('min', '09:30');
-                    timeInput.setAttribute('max', '18:30');
+            } catch {
+                if (statusText) {
+                    statusText.textContent = 'Consultez nos horaires ou contactez le magasin avant de vous déplacer.';
                 }
-                
-                // Formatter le numéro de téléphone
-                const phoneInput = document.getElementById('rdv-phone');
-                if (phoneInput) {
-                    phoneInput.addEventListener('input', function() {
-                        let phoneNumber = this.value.replace(/\D/g, '');
-                        if (phoneNumber.length > 0) {
-                            phoneNumber = phoneNumber.match(new RegExp('.{1,2}', 'g'))?.join(' ') || '';
-                        }
-                        this.value = phoneNumber;
-                    });
-                }
-                
-                // Soumission du formulaire
-                rdvForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const data = {
-                        name: document.getElementById('rdv-name')?.value || '',
-                        phone: document.getElementById('rdv-phone')?.value || '',
-                        date: document.getElementById('rdv-date')?.value || '',
-                        time: document.getElementById('rdv-time')?.value || '',
-                        message: document.getElementById('rdv-msg')?.value || '',
-                    };
-                    
-                    if (data.name && data.phone && data.date && data.time) {
-                        alert("✅ Merci ! Un conseiller vous rappellera à l'horaire souhaité.");
-                        rdvForm.reset();
-                        
-                        const confirmation = document.getElementById('rdv-confirmation');
-                        if (confirmation) {
-                            confirmation.classList.remove('hidden');
-                            rdvForm.classList.add('hidden');
-                        }
-                        
-                        console.log('Demande de RDV envoyée:', data);
-                    } else {
-                        alert('Veuillez remplir tous les champs obligatoires.');
-                    }
-                });
             }
 
-            // Vérification finale des éléments critiques
-            setTimeout(() => {
-                // Vérifier le bouton WhatsApp
-                const whatsappBtn = document.getElementById('whatsapp-button');
-                if (whatsappBtn) {
-                    console.log("WhatsApp button trouvé, style actuel:", 
-                        "display:", whatsappBtn.style.display,
-                        "opacity:", whatsappBtn.style.opacity,
-                        "transform:", whatsappBtn.style.transform
-                    );
-                    // Forcer l'affichage en cas de problème
-                    whatsappBtn.style.display = "block";
-                    whatsappBtn.style.opacity = "1";
-                    whatsappBtn.style.transform = "scale(1)";
-                } else {
-                    console.error("WhatsApp button non trouvé dans le DOM");
-                }
-            }, 5000);
+            document.getElementById('close-status')?.addEventListener('click', () => {
+                status?.classList.add('hidden');
+            });
         });
     </script>
 </body>
