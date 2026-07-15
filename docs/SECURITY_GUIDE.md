@@ -203,7 +203,7 @@ ADMIN_EMAIL=autope93@gmail.com
 ```bash
 # ❌ MAUVAIS - Ne jamais faire ça !
 GOOGLE_EMAIL=autope93@gmail.com
-GOOGLE_PASSWORD=63@mg2022!
+GOOGLE_PASSWORD=VOTRE_MOT_DE_PASSE
 
 # Ces informations ne doivent JAMAIS être dans le code
 # Elles servent uniquement pour la connexion manuelle
