@@ -1,4 +1,7 @@
+export const verificationFiles = ['google0e5c21df16b1a8df.html'];
+
 export const publicFiles = [
+  ...verificationFiles,
   'index.html',
   'pieces-auto-les-pavillons-sous-bois.html',
   'batterie-voiture-les-pavillons-sous-bois.html',
@@ -29,7 +32,7 @@ export const publicFiles = [
 ];
 
 export const seoPages = publicFiles.filter(
-  (file) => file.endsWith('.html') && !file.startsWith('mentions-') && !file.startsWith('politique-')
+  (file) => file.endsWith('.html') && !verificationFiles.includes(file) && !file.startsWith('mentions-') && !file.startsWith('politique-')
 );
 
 export const retiredPages = [
