@@ -1,6 +1,6 @@
 # Plan d’optimisation Google Business Profile
 
-État du 9 septembre 2026 : site déployé, sept produits vérifiés publiquement, huit posts illustrés enregistrés (un publié et sept programmés), propriété Search Console validée, sitemap accepté et 11 demandes d’indexation acceptées. Solocal/PagesJaunes et les photos manquantes sont reportés à la demande du propriétaire. Les étapes déjà réalisées ci-dessous ne doivent pas être répétées.
+État du 9 septembre 2026 : site déployé, huit produits dans le catalogue propriétaire après ajout de Batteries, huit posts illustrés du nouveau cycle (un publié et sept programmés), propriété Search Console validée, sitemap accepté et 11 demandes d’indexation acceptées. Voir `audit-2026-09-09.md` pour les corrections de description, services, avis et anciennes offres, avec leurs statuts de validation. Solocal/PagesJaunes et les photos manquantes sont reportés à la demande du propriétaire. Les étapes déjà réalisées ci-dessous ne doivent pas être répétées.
 
 ## 1. Informations et catégories
 
@@ -12,7 +12,7 @@
 
 ## 2. Produits
 
-Les sept fiches de `fiches-produits.md` sont présentes dans le catalogue et ont été vérifiées sur la fiche publique le 9 septembre. Mettre à jour les fiches existantes lorsque nécessaire, sans doublon. Ne saisir un prix que s’il a été confirmé par le propriétaire pour la période de publication.
+Les huit fiches de `fiches-produits.md` sont présentes dans le catalogue propriétaire. Les sept premières avaient été vérifiées publiquement avant l’ajout de Batteries ; la correction de Freinage restait en attente au dernier contrôle du catalogue. Mettre à jour les fiches existantes lorsque nécessaire, sans doublon. Ne saisir un prix que s’il a été confirmé par le propriétaire pour la période de publication.
 
 ## 3. Photos réelles prioritaires
 
