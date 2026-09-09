@@ -97,6 +97,11 @@ function footer() {
         </nav>
       </div>
     </footer>
+    <nav class="mobile-contact-bar" aria-label="Contacter le magasin ou venir sur place">
+      <a class="button button-primary" href="${phoneHref}" aria-label="Appeler le magasin au ${phoneDisplay}">Appeler</a>
+      <a class="button button-light" href="${mapsHref}" target="_blank" rel="noopener">Itinéraire</a>
+      <a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
     <a class="floating-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener" aria-label="Demander une pièce sur WhatsApp">WhatsApp</a>
     <script src="/assets/site.js" defer></script>`;
 }
