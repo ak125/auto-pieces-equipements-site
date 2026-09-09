@@ -2,6 +2,8 @@
 
 Rythme proposé : mardi et vendredi. Relire chaque publication le jour de sa diffusion et mettre à jour les horaires spéciaux si nécessaire.
 
+Le contrôle du 9 septembre confirme les huit posts de ce cycle. Deux offres plus anciennes ont également été corrigées : suppression des tarifs et disponibilités non reconfirmés. Les textes Entretien et Batterie sont enregistrés avec la mention En attente. Voir `audit-2026-09-09.md` ; ne pas reprendre les anciens prix comme tarifs actuels.
+
 ## Calendrier enregistré le 9 septembre 2026
 
 Les huit posts sont enregistrés dans Google Business, avec leur texte et leur bouton « En savoir plus ». Le premier a été publié immédiatement. Les sept autres ont été programmés à 10:00 dans l'interface Google (fuseau non affiché). Vérifier les entrées existantes avant tout nouvel envoi pour éviter les doublons.

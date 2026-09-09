@@ -1,6 +1,6 @@
-# 7 fiches Produits Google Business — catalogue renseigné
+# 8 fiches Produits Google Business — catalogue renseigné
 
-Le 9 septembre 2026, les sept fiches ci-dessous sont présentes dans le catalogue propriétaire Google Business et dans le carrousel de la fiche Google après actualisation : Freinage existait déjà, les six autres ont été ajoutées pendant la reprise. Les mentions EN ATTENTE ont disparu lors du contrôle final. Vérifier les entrées existantes avant toute nouvelle publication pour éviter les doublons. Les prix restent volontairement vides. Les anciennes mentions de deux fiches Batteries n'ont pas été confirmées par l'inventaire actuel.
+Le 9 septembre 2026, les sept premières fiches ont été vérifiées dans le catalogue propriétaire et le carrousel Google. L’audit suivant a ajouté une huitième fiche Batteries, absente de cet inventaire, et corrigé le texte Freinage réellement présent dans l’interface. Au dernier contrôle du catalogue, Batteries ne portait plus de mention En attente ; la modification de Freinage était encore en attente. Les prix restent volontairement vides. Vérifier les entrées existantes avant toute nouvelle publication pour éviter les doublons. Ne pas confondre l’enregistrement propriétaire et la diffusion publique définitive.
 
 ## 1. Plaquettes et disques de frein — toutes marques
 
@@ -11,7 +11,7 @@ Le 9 septembre 2026, les sept fiches ci-dessous sont présentes dans le catalogu
 
 **Description**
 
-Freins qui grincent, vibrations au freinage ou plaquettes à contrôler ? Auto Pièces Équipements, aux Pavillons-sous-Bois, recherche plaquettes, disques, mâchoires, tambours et capteurs selon le montage avant ou arrière de votre véhicule. Un même modèle peut utiliser plusieurs dimensions : envoyez la plaque d’immatriculation, la carte grise ou la référence de l’ancienne pièce pour vérifier la compatibilité avant commande. Retrait au magasin ou livraison locale selon la pièce, la zone et la disponibilité. Particuliers, garages et revendeurs : 01 48 47 96 27.
+Auto Pièces Équipements, aux Pavillons-sous-Bois, recherche plaquettes, disques, mâchoires, tambours et capteurs selon le montage avant ou arrière de votre véhicule. Un même modèle peut utiliser plusieurs dimensions : envoyez la plaque, la carte grise ou la référence de l’ancienne pièce pour vérifier la compatibilité avant commande. En cas de bruit, de vibration ou de freinage inhabituel, faites contrôler le véhicule avant de choisir la pièce. Prix et disponibilité confirmés avant retrait au magasin ou livraison locale selon les conditions convenues. Particuliers, garages et revendeurs : 01 48 47 96 27.
 
 ## 2. Filtres auto : huile, air, habitacle, carburant
 
@@ -78,3 +78,14 @@ Embrayage qui patine, pédale anormale ou rapports difficiles à passer ? Après
 **Description**
 
 Auto Pièces Équipements recherche l’huile moteur adaptée à la viscosité et surtout à la norme constructeur de votre véhicule. Le magasin propose également des liquides automobiles, balais d’essuie-glace et ampoules selon les références demandées. Transmettez la plaque, la carte grise ou les indications du carnet d’entretien pour vérifier le produit et la quantité. Prix et disponibilité sont confirmés avant retrait. Livraison locale possible selon la pièce, la zone et les conditions convenues. 01 48 47 96 27.
+
+## 8. Batteries auto standard et Start & Stop
+
+- **Catégorie :** Batteries automobiles
+- **Prix :** laisser vide
+- **Image :** `images/batterie-auto.jpg`
+- **URL :** https://auto-pieces-equipements.fr/batterie-voiture-les-pavillons-sous-bois.html
+
+**Description**
+
+Auto Pièces Équipements recherche la batterie adaptée à votre véhicule : standard ou Start & Stop selon la technologie prévue par le constructeur. La capacité, la puissance de démarrage, les dimensions et la polarité sont vérifiées avant commande. Transmettez les informations du véhicule ou la référence de votre batterie pour confirmer la compatibilité, le prix et la disponibilité. Retrait au magasin des Pavillons-sous-Bois après confirmation. Livraison locale selon la pièce, la zone et les conditions convenues. Visuel illustratif de la famille de produits.

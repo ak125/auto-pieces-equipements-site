@@ -4,7 +4,8 @@ Ce dossier conserve les contenus et le suivi des actions réalisées depuis le c
 
 ## État au 9 septembre 2026
 
-- `fiches-produits.md` : 7 fiches Produits vérifiées sur la fiche publique, sans prix inventé.
+- `audit-2026-09-09.md` : contrôles, corrections et points restant à confirmer ; remplace les anciens états de 2025.
+- `fiches-produits.md` : 8 fiches Produits dans le catalogue propriétaire, dont Batteries ajoutée lors de l’audit ; sans prix inventé. La validation publique est distinguée de l’enregistrement.
 - `posts-4-semaines.md` : 8 publications illustrées enregistrées, dont une publiée et sept programmées jusqu’au 2 octobre.
 - `plan-optimisation.md` : ordre d’exécution, photos réelles à produire et indicateurs.
 - `images/` : visuels JPEG carrés de 1200 × 1200 px pour les fiches Produits et photo réelle de la façade, dont la provenance est documentée dans `images/SOURCES.md`.
