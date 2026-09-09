@@ -1,6 +1,6 @@
-# 7 fiches Produits Google Business — prêtes à publier
+# 7 fiches Produits Google Business — catalogue renseigné
 
-Les deux fiches Batteries indiquées comme déjà publiées dans le rapport ne sont pas dupliquées ici. Les prix restent volontairement vides pour les sept nouvelles familles.
+Le 9 septembre 2026, les sept fiches ci-dessous sont présentes dans le catalogue propriétaire Google Business et dans le carrousel de la fiche Google après actualisation : Freinage existait déjà, les six autres ont été ajoutées pendant la reprise. Les mentions EN ATTENTE ont disparu lors du contrôle final. Vérifier les entrées existantes avant toute nouvelle publication pour éviter les doublons. Les prix restent volontairement vides. Les anciennes mentions de deux fiches Batteries n'ont pas été confirmées par l'inventaire actuel.
 
 ## 1. Plaquettes et disques de frein — toutes marques
 
