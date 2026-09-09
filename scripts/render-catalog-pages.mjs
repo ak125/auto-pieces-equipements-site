@@ -6,7 +6,17 @@ const root = process.cwd();
 const baseUrl = 'https://auto-pieces-equipements.fr';
 const phoneDisplay = '01 48 47 96 27';
 const phoneHref = 'tel:+33148479627';
-const whatsappHref = 'https://wa.me/33148479627?text=Bonjour,%20je%20cherche%20une%20pi%C3%A8ce%20auto';
+function whatsappLink(page) {
+  const message = [
+    'Bonjour, je vous contacte depuis votre site.',
+    `Objet : ${page.navLabel}`,
+    'Pièce recherchée :',
+    'Véhicule (modèle, année, motorisation) :',
+    'Référence de la pièce (si connue) :',
+    'Pouvez-vous confirmer le prix et la disponibilité avant mon déplacement ?'
+  ].join('\n');
+  return `https://wa.me/33148479627?text=${encodeURIComponent(message)}`;
+}
 const mapsHref = 'https://www.google.com/maps/dir/?api=1&destination=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois';
 const googleProfileHref = 'https://www.google.com/maps/search/?api=1&query=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois';
 
@@ -55,7 +65,8 @@ function header() {
     <div class="status-strip" role="status" data-opening-status>Consultez les horaires du magasin avant votre déplacement.</div>`;
 }
 
-function footer() {
+function footer(page) {
+  const whatsappHref = whatsappLink(page);
   return `
     <section class="section section-dark" id="contact">
       <div class="container contact-panel">
@@ -74,7 +85,12 @@ function footer() {
             <a class="button button-light" href="${mapsHref}" target="_blank" rel="noopener">Itinéraire</a>
           </div>
         </div>
-        <div class="hours-card">
+        <div class="contact-visit">
+          <figure class="storefront">
+            <img src="/assets/images/facade-magasin.jpg" width="1280" height="609" loading="lazy" decoding="async" alt="Façade et entrée du magasin Auto Pièces Équipements, au 184 avenue Aristide Briand">
+            <figcaption>Repérez notre enseigne au 184 avenue Aristide Briand.</figcaption>
+          </figure>
+          <div class="hours-card">
           <h3>Horaires d’ouverture</h3>
           <dl>
             <dt>Lundi–jeudi</dt><dd>9h30–18h30</dd>
@@ -82,6 +98,7 @@ function footer() {
             <dt>Samedi</dt><dd>9h30–16h00</dd>
             <dt>Dimanche</dt><dd>Fermé</dd>
           </dl>
+          </div>
         </div>
       </div>
     </section>
@@ -188,6 +205,7 @@ function renderRelated(currentPage) {
 function renderPage(page) {
   const pageUrl = `${baseUrl}/${page.slug}`;
   const imageUrl = `${baseUrl}${page.image}`;
+  const whatsappHref = whatsappLink(page);
   return `<!doctype html>
 <html lang="fr">
 <head>
@@ -264,6 +282,7 @@ function renderPage(page) {
           <p>La finition, la date de fabrication, la motorisation ou l’équipement peuvent changer le montage d’une pièce sur un même modèle.</p>
           <p><strong>Notre méthode :</strong> identifier le véhicule, comparer les caractéristiques, puis confirmer la disponibilité avant votre déplacement.</p>
           <div class="section-actions"><a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">Envoyer les informations</a></div>
+          <p>Un message à compléter s’ouvre dans WhatsApp. Ajoutez votre véhicule et la pièce recherchée avant de l’envoyer.</p>
         </div>
       </div>
     </section>
@@ -309,7 +328,7 @@ function renderPage(page) {
       </div>
     </section>
   </main>
-  ${footer()}
+  ${footer(page)}
 </body>
 </html>
 `.replace(/[ \t]+$/gm, '');
