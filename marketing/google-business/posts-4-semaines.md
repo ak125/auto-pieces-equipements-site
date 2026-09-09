@@ -2,11 +2,30 @@
 
 Rythme proposé : mardi et vendredi. Relire chaque publication le jour de sa diffusion et mettre à jour les horaires spéciaux si nécessaire.
 
+## Calendrier enregistré le 9 septembre 2026
+
+Les huit posts sont enregistrés dans Google Business, avec leur texte et leur bouton « En savoir plus ». Le premier a été publié immédiatement. Les sept autres ont été programmés à 10:00 dans l'interface Google (fuseau non affiché). Vérifier les entrées existantes avant tout nouvel envoi pour éviter les doublons.
+
+| Sujet | Date de diffusion |
+| --- | --- |
+| Vérification de référence | 9 septembre 2026, publication immédiate |
+| Freinage | 11 septembre 2026 |
+| Filtres et vidange | 15 septembre 2026 |
+| Batterie | 18 septembre 2026 |
+| Garages et revendeurs | 22 septembre 2026 |
+| Retrait ou livraison locale | 25 septembre 2026 |
+| Suspension | 29 septembre 2026 |
+| Avis clients réels | 2 octobre 2026 |
+
+Les huit posts sont illustrés : six avec les images de pièces du pack, et les posts Retrait/livraison et Avis clients avec la photo réelle de la façade `images/facade-magasin.jpg`. Cette photo de couverture existante de la fiche Google a été récupérée en 1 280 × 609 pixels, sans bandes noires ; sa date de prise de vue n'est pas connue. Après sauvegarde, les deux formulaires ont été rouverts : photo, texte, lien et dates (25 septembre et 2 octobre, 10:00) sont conservés. Au contrôle suivant du 9 septembre, les deux posts affichent leur date de publication prévue sans la mention « En attente ». La programmation reste soumise au traitement Google et ne prouve pas une publication future effective.
+
+Ne pas inclure de numéro de téléphone dans le texte des posts : Google indique que cela peut entraîner leur refus. Le numéro officiel reste accessible sur la fiche et le site. Source : https://support.google.com/business/answer/7342169?hl=fr
+
 ## Semaine 1 — Vérification de référence
 
 **Texte**
 
-Une même voiture peut avoir plusieurs montages de pièces. Pour éviter l’erreur, envoyez-nous votre plaque d’immatriculation, votre carte grise ou la référence de l’ancienne pièce. Auto Pièces Équipements vérifie la compatibilité avant de confirmer le prix et la disponibilité. Magasin aux Pavillons-sous-Bois — 01 48 47 96 27.
+Une même voiture peut avoir plusieurs montages de pièces. Pour éviter l’erreur, envoyez-nous votre plaque d’immatriculation, votre carte grise ou la référence de l’ancienne pièce. Auto Pièces Équipements vérifie la compatibilité avant de confirmer le prix et la disponibilité. Magasin aux Pavillons-sous-Bois.
 
 - **Bouton :** En savoir plus
 - **Lien :** https://auto-pieces-equipements.fr/pieces-auto-les-pavillons-sous-bois.html
@@ -56,11 +75,11 @@ Garages et revendeurs du 93 : envoyez vos demandes avec l’immatriculation, la 
 
 **Texte**
 
-Retrait au magasin des Pavillons-sous-Bois après confirmation de la pièce. Une livraison locale peut être étudiée selon la référence, la zone et la disponibilité. Contactez-nous avant votre déplacement : 01 48 47 96 27.
+Retrait au magasin des Pavillons-sous-Bois après confirmation de la pièce. Une livraison locale peut être étudiée selon la référence, la zone et la disponibilité. Contactez-nous avant votre déplacement.
 
 - **Bouton :** En savoir plus
 - **Lien :** https://auto-pieces-equipements.fr/livraison-pieces-auto-93.html
-- **Image :** `images/filtration.jpg`
+- **Image :** `images/facade-magasin.jpg`
 
 ## Semaine 4 — Suspension
 
@@ -80,4 +99,4 @@ Vous avez acheté une pièce chez Auto Pièces Équipements ? Votre retour réel
 
 - **Bouton :** En savoir plus
 - **Lien :** https://g.page/r/CSAk6YB5asfQEAE/review
-- **Image :** utiliser une photo réelle récente du comptoir ou de la façade
+- **Image :** `images/facade-magasin.jpg` (photo réelle existante, date de prise de vue inconnue)

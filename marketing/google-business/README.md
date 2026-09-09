@@ -1,23 +1,26 @@
 # Pack Google Business Profile
 
-Ce dossier prépare les actions qui peuvent être réalisées depuis le compte propriétaire de la fiche Google Business Profile d’Auto Pièces Équipements.
+Ce dossier conserve les contenus et le suivi des actions réalisées depuis le compte propriétaire de la fiche Google Business Profile d’Auto Pièces Équipements.
 
-## Contenu prêt
+## État au 9 septembre 2026
 
-- `fiches-produits.md` : 7 fiches Produits prêtes à publier, sans prix inventé.
-- `posts-4-semaines.md` : 8 publications locales prêtes à relire et programmer.
+- `fiches-produits.md` : 7 fiches Produits vérifiées sur la fiche publique, sans prix inventé.
+- `posts-4-semaines.md` : 8 publications illustrées enregistrées, dont une publiée et sept programmées jusqu’au 2 octobre.
 - `plan-optimisation.md` : ordre d’exécution, photos réelles à produire et indicateurs.
-- `images/` : visuels JPEG carrés de 1200 × 1200 px pour les fiches Produits.
+- `images/` : visuels JPEG carrés de 1200 × 1200 px pour les fiches Produits et photo réelle de la façade, dont la provenance est documentée dans `images/SOURCES.md`.
+- `../../docs/SEARCH_CONSOLE_2026-09-09.md` : propriété validée, sitemap accepté et 11 demandes d’indexation acceptées ; le traitement des pages par Google reste distinct des soumissions.
+
+Solocal/PagesJaunes et les photos des rayons, du comptoir et de l’équipe sont reportés à la demande du propriétaire. Ne pas republier les produits ou les posts existants : utiliser leur modification pour une correction.
 
 ## Utilisation des images
 
-Les images de `images/` sont des visuels catalogue générés, sans marque ni texte. Elles servent uniquement à illustrer une famille de produits. Elles ne doivent pas être présentées comme des photos du magasin, du stock réel ou d’un produit disponible immédiatement.
+Les images de pièces de `images/` sont des visuels catalogue générés, sans marque ni texte. Elles servent uniquement à illustrer une famille de produits. Elles ne doivent pas être présentées comme des photos du magasin, du stock réel ou d’un produit disponible immédiatement. `facade-magasin.jpg` est une photo réelle existante de la fiche Google, sans retouche, dont la date de prise de vue est inconnue.
 
 Pour la façade, l’enseigne, le comptoir, l’équipe et les rayons, utiliser exclusivement des photos réelles récentes. Google recommande des photos nettes, bien éclairées, représentatives de la réalité, en JPG ou PNG, entre 10 Ko et 5 Mo, avec une résolution recommandée de 720 × 720 px ou plus.
 
-## Publication
+## Corrections et prochaines publications
 
-Chaque fiche doit être publiée et vérifiée séparément depuis le compte propriétaire. Avant de cliquer sur « Publier » :
+Chaque correction doit être vérifiée séparément depuis le compte propriétaire. Avant d’enregistrer une modification ou une nouvelle publication :
 
 1. vérifier le nom et la catégorie ;
 2. laisser le prix vide lorsque le tarif n’a pas été confirmé ;
