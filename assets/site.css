@@ -653,6 +653,28 @@ select {
   padding: 1.3rem;
 }
 
+.contact-visit {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.storefront {
+  margin: 0;
+}
+
+.storefront img {
+  width: 100%;
+  height: auto;
+  border-radius: 1.15rem;
+}
+
+.storefront figcaption {
+  margin-top: 0.65rem;
+  color: #c5d1e1;
+  font-size: 0.88rem;
+}
+
 .hours-card dl {
   display: grid;
   grid-template-columns: 1fr auto;

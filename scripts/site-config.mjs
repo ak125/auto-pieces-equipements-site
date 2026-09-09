@@ -17,6 +17,7 @@ export const publicFiles = [
   'politique-confidentialite.html',
   'assets/site.css',
   'assets/site.js',
+  'assets/images/facade-magasin.jpg',
   'assets/images/products/batterie-auto.webp',
   'assets/images/products/freinage.webp',
   'assets/images/products/filtration.webp',
