@@ -4,9 +4,9 @@ export const catalogPages = [
     navLabel: 'Toutes les pièces',
     eyebrow: 'Magasin de pièces auto · 93',
     title: 'Pièces auto aux Pavillons-sous-Bois (93) — Auto Pièces Équipements',
-    metaDescription: 'Magasin de pièces auto aux Pavillons-sous-Bois : batterie, freinage, filtres, démarrage, suspension, embrayage et entretien. Compatibilité vérifiée par plaque.',
+    metaDescription: 'Large choix de pièces auto aux Pavillons-sous-Bois : batteries, freinage, filtration, distribution et autres familles. Disponibilité dans la journée selon référence.',
     h1: 'Pièces auto aux Pavillons-sous-Bois',
-    intro: 'Pour une révision, une panne ou une réparation, nous recherchons la référence adaptée à votre véhicule avant commande. Particuliers, garages et revendeurs peuvent nous transmettre la plaque, la carte grise ou la référence de l’ancienne pièce.',
+    intro: 'Batteries, freinage, filtration, distribution, alternateurs, démarreurs, suspension, embrayage et entretien : un large choix de pièces disponibles dans la journée selon la référence. Envoyez votre plaque ou votre ancienne référence pour confirmer prix et délai. Retrait au magasin et livraison aux garages.',
     image: '/assets/images/products/freinage.webp',
     imageAlt: 'Disque et plaquettes de frein automobiles neufs',
     sectionTitle: 'Les familles de pièces recherchées au comptoir',
@@ -32,7 +32,9 @@ export const catalogPages = [
       { question: 'Comment être sûr de commander la bonne pièce ?', answer: 'Envoyez la plaque d’immatriculation, la carte grise ou la référence de l’ancienne pièce. Nous vérifions le montage et la compatibilité avant de confirmer la commande.' },
       { question: 'Le magasin fournit-il les garages et revendeurs ?', answer: 'Oui. Auto Pièces Équipements fournit également les professionnels de l’automobile en Seine-Saint-Denis. Les conditions et disponibilités sont confirmées directement avec le magasin.' },
       { question: 'Peut-on retirer une pièce au magasin ?', answer: 'Oui. Le retrait s’effectue au 184 Avenue Aristide Briand aux Pavillons-sous-Bois après confirmation de la référence et de la disponibilité.' },
-      { question: 'La livraison locale est-elle possible ?', answer: 'Une livraison locale peut être proposée selon la pièce, la zone et la disponibilité. Appelez le magasin pour obtenir une réponse adaptée à votre demande.' }
+      { question: 'La livraison locale est-elle possible ?', answer: 'Oui, nous livrons les garages du secteur. Indiquez les références, les quantités, la commune et le délai souhaité : nous confirmons disponibilité, frais et créneau. Le retrait au magasin est également possible.' },
+      { question: 'Avez-vous des kits de distribution et d’autres pièces ?', answer: 'Oui, notre gamme comprend aussi les kits de distribution et d’autres familles au-delà des guides présentés. Envoyez les informations du véhicule ou la référence recherchée pour confirmer la composition, le prix et la disponibilité.' },
+      { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, nous pouvons vous orienter vers un professionnel pour le montage de votre pièce. Précisez ce besoin lors de votre demande.' }
     ]
   },
   {
@@ -87,7 +89,7 @@ export const catalogPages = [
       { question: 'Comment trouver les bonnes plaquettes ?', answer: 'La plaque ou la carte grise permet d’identifier le véhicule, mais plusieurs montages peuvent encore exister. Une photo ou les dimensions de la pièce peuvent compléter la recherche.' },
       { question: 'Faut-il changer les disques avec les plaquettes ?', answer: 'Cela dépend de l’usure et de l’épaisseur mesurée des disques. Demandez l’avis du professionnel qui inspecte ou monte le système de freinage.' },
       { question: 'Vendez-vous des kits avant et arrière ?', answer: 'Le magasin recherche les composants nécessaires pour l’essieu concerné. La disponibilité et le délai sont confirmés avant déplacement.' },
-      { question: 'Faites-vous le montage ?', answer: 'Le site présente la fourniture de pièces. Pour le montage et le diagnostic, adressez-vous à un garage ou à un professionnel qualifié.' }
+      { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, nous pouvons vous orienter vers un professionnel pour le montage de vos pièces de freinage. Précisez ce besoin lors de votre demande au magasin.' }
     ]
   },
   {
@@ -228,17 +230,17 @@ export const catalogPages = [
   {
     slug: 'livraison-pieces-auto-93.html',
     navLabel: 'Livraison 93',
-    eyebrow: 'Retrait magasin & livraison locale',
+    eyebrow: 'Livraison aux garages & retrait magasin',
     title: 'Livraison de pièces auto en Seine-Saint-Denis (93)',
-    metaDescription: 'Retrait et livraison locale de pièces auto autour des Pavillons-sous-Bois. Référence, prix, zone et délai confirmés avant validation.',
-    h1: 'Livraison de pièces auto en Seine-Saint-Denis',
-    intro: 'Vous pouvez retirer votre pièce au magasin des Pavillons-sous-Bois. Une livraison locale peut aussi être proposée selon la pièce, la zone, la disponibilité et le délai confirmé avec l’équipe.',
+    metaDescription: 'Livraison de pièces auto aux garages du 93. Large gamme, disponibilité dans la journée selon référence. Frais et créneau confirmés avec le magasin.',
+    h1: 'Livraison de pièces auto aux garages du 93',
+    intro: 'Batteries, filtration, freinage, distribution et autres pièces : nous approvisionnons les garages autour des Pavillons-sous-Bois. Des pièces sont disponibles dans la journée selon la référence. Envoyez votre demande pour convenir du créneau de livraison ou d’un retrait au magasin.',
     image: '/assets/images/products/filtration.webp',
-    imageAlt: 'Ensemble de pièces d’entretien automobile prêtes à être retirées',
+    imageAlt: 'Illustration de filtres automobiles neufs',
     sectionTitle: 'Retrait et livraison en pratique',
-    sectionIntro: 'Aucun délai ni tarif de livraison n’est supposé en ligne : chaque demande est confirmée avant validation.',
+    sectionIntro: 'Pour organiser votre approvisionnement, nous confirmons ensemble les références, les quantités, les frais et l’heure de livraison.',
     products: [
-      { title: '1. Envoyez la demande', description: 'Transmettez les informations du véhicule et la pièce recherchée.', bullets: ['Plaque ou carte grise', 'Référence ou photo si disponible'] },
+      { title: '1. Envoyez la demande', description: 'Transmettez les références ou les informations du véhicule, les quantités et votre commune.', bullets: ['Référence ou photo si disponible', 'Jour et heure de besoin'] },
       { title: '2. Recevez la confirmation', description: 'Le magasin vérifie la compatibilité, le prix, la disponibilité et le délai.', bullets: ['Réponse adaptée à la référence', 'Aucun déplacement inutile'] },
       { title: '3. Choisissez le mode de remise', description: 'Retrait au comptoir ou livraison locale lorsque les conditions le permettent.', bullets: ['Adresse et horaire convenus', 'Zone confirmée au cas par cas'] }
     ],
@@ -247,9 +249,9 @@ export const catalogPages = [
     guideItems: ['Dimensions, poids et nature de la pièce.', 'Adresse ou commune de destination.', 'Disponibilité réelle de la référence.', 'Organisation et délai convenus avec le magasin.'],
     faq: [
       { question: 'Livrez-vous dans toute la Seine-Saint-Denis ?', answer: 'La livraison est locale et étudiée au cas par cas autour des Pavillons-sous-Bois. Indiquez votre commune et la pièce recherchée pour obtenir une réponse.' },
-      { question: 'Quels sont les délais ?', answer: 'Le délai dépend de la disponibilité de la référence et de l’organisation de la livraison. Il est communiqué avant validation.' },
+      { question: 'Quels sont les délais ?', answer: 'Des pièces sont disponibles dans la journée selon la référence. Nous confirmons séparément l’heure de disponibilité et le créneau de livraison selon votre destination et l’organisation des tournées.' },
       { question: 'Puis-je retirer au magasin ?', answer: 'Oui, après confirmation de la référence et de la disponibilité, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois.' },
-      { question: 'Livrez-vous les garages ?', answer: 'Le magasin travaille avec des professionnels du secteur. Les conditions de livraison ou de retrait sont confirmées directement avec chaque garage ou revendeur.' }
+      { question: 'Livrez-vous les garages ?', answer: 'Oui, nous livrons les garages du secteur. Envoyez références, quantités, commune et heure de besoin. Nous confirmons prix, frais et créneau avant de valider la livraison.' }
     ]
   },
   {
@@ -257,26 +259,27 @@ export const catalogPages = [
     navLabel: 'Professionnels',
     eyebrow: 'Garages & revendeurs · Seine-Saint-Denis',
     title: 'Pièces auto pour garages et revendeurs en Seine-Saint-Denis (93)',
-    metaDescription: 'Approvisionnement de garages et revendeurs en pièces auto dans le 93 : entretien, freinage, filtration, démarrage, suspension et embrayage.',
+    metaDescription: 'Pièces auto pour garages du 93 : large gamme, disponibilité dans la journée selon référence et livraison aux professionnels. Demande par téléphone ou WhatsApp.',
     h1: 'Pièces auto pour garages et revendeurs en Seine-Saint-Denis',
-    intro: 'Auto Pièces Équipements répond aux demandes des garages et revendeurs du secteur. Envoyez la plaque, la carte grise ou la référence fabricant pour vérifier la pièce, la disponibilité et le délai.',
+    intro: 'Votre approvisionnement en pièces auto : large gamme, disponibilité dans la journée selon la référence et livraison aux garages. Envoyez vos références, quantités, commune et heure de besoin ; nous confirmons les prix, les pièces disponibles et le créneau de livraison.',
     image: '/assets/images/products/alternateur.webp',
     imageAlt: 'Alternateur automobile neuf destiné à un professionnel',
     sectionTitle: 'Familles demandées par les professionnels',
-    sectionIntro: 'Les conditions commerciales, délais et modes de remise sont confirmés directement avec le magasin, sans promesse générique en ligne.',
+    sectionIntro: 'Batteries, filtration, freinage, distribution, démarrage, suspension, embrayage et entretien : regroupez vos besoins dans une même demande.',
     products: [
       { title: 'Entretien & filtration', description: 'Huiles, filtres et consommables adaptés aux références des véhicules.', bullets: ['Recherche par véhicule', 'Regroupement de la demande'] },
       { title: 'Freinage & démarrage', description: 'Plaquettes, disques, batteries, alternateurs et démarreurs.', bullets: ['Caractéristiques vérifiées', 'Délai communiqué avant commande'] },
-      { title: 'Suspension & embrayage', description: 'Pièces de liaison au sol et kits selon le montage précis.', bullets: ['Côté, essieu, moteur et boîte', 'Référence ancienne utile'] }
+      { title: 'Suspension & embrayage', description: 'Pièces de liaison au sol et kits selon le montage précis.', bullets: ['Côté, essieu, moteur et boîte', 'Référence ancienne utile'] },
+      { title: 'Distribution & autres références', description: 'Kits de distribution et recherche des autres pièces nécessaires à vos véhicules.', bullets: ['Composition du kit confirmée', 'Référence, quantité et délai souhaité'] }
     ],
     guideTitle: 'Pour accélérer une demande professionnelle',
     guideIntro: 'Une demande structurée permet de rechercher plusieurs références sans perdre les informations essentielles.',
-    guideItems: ['Immatriculation ou VIN lorsque disponible.', 'Référence fabricant ou fournisseur déjà relevée.', 'Quantité et côté concernés.', 'Délai souhaité et mode de retrait ou livraison.'],
+    guideItems: ['Immatriculation ou VIN lorsque disponible.', 'Référence fabricant ou fournisseur déjà relevée.', 'Quantité et côté concernés.', 'Commune de livraison, jour et heure de besoin.'],
     faq: [
       { question: 'Travaillez-vous avec les garages et revendeurs ?', answer: 'Oui. Contactez le magasin pour présenter votre activité et obtenir les informations adaptées sur les références, les conditions et les disponibilités.' },
       { question: 'Comment transmettre une commande ?', answer: 'Par téléphone ou WhatsApp, avec les informations du véhicule, la référence recherchée et la quantité. Le magasin confirme ensuite les éléments utiles.' },
-      { question: 'Livrez-vous les professionnels ?', answer: 'Une livraison locale peut être organisée selon la zone, la pièce et la disponibilité. Le retrait au comptoir reste également possible après confirmation.' },
-      { question: 'Quelles familles de pièces fournissez-vous ?', answer: 'Entretien, filtration, freinage, batteries, démarrage et charge, suspension, embrayage et autres références selon la demande.' }
+      { question: 'Livrez-vous les professionnels ?', answer: 'Oui, nous livrons les garages du secteur. Les pièces peuvent être disponibles dans la journée selon la référence ; le créneau de livraison et les frais sont confirmés avec le magasin. Retrait au comptoir également possible.' },
+      { question: 'Quelles familles de pièces fournissez-vous ?', answer: 'Batteries, entretien, filtration, freinage, distribution, démarrage et charge, suspension, embrayage et autres références selon la demande.' }
     ]
   }
 ];
