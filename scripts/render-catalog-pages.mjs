@@ -7,13 +7,22 @@ const baseUrl = 'https://auto-pieces-equipements.fr';
 const phoneDisplay = '01 48 47 96 27';
 const phoneHref = 'tel:+33148479627';
 function whatsappLink(page) {
+  const deliveryRequest = ['Professionnels', 'Livraison 93'].includes(page.navLabel);
   const message = [
     'Bonjour, je vous contacte depuis votre site.',
     `Objet : ${page.navLabel}`,
     'Pièce recherchée :',
     'Véhicule (modèle, année, motorisation) :',
     'Référence de la pièce (si connue) :',
-    'Pouvez-vous confirmer le prix et la disponibilité avant mon déplacement ?'
+    ...(deliveryRequest ? [
+      'Quantité :',
+      'Commune de livraison :',
+      'Jour et heure de besoin :',
+      'Pouvez-vous confirmer le prix, la disponibilité, les frais et le créneau de livraison ?'
+    ] : [
+      'Besoin d’être orienté vers un professionnel pour le montage (oui/non) :',
+      'Pouvez-vous confirmer le prix et la disponibilité dans la journée ?'
+    ])
   ].join('\n');
   return `https://wa.me/33148479627?text=${encodeURIComponent(message)}`;
 }
@@ -253,8 +262,8 @@ function renderPage(page) {
     <div class="container trust-bar" aria-label="Services essentiels">
       <div class="trust-grid">
         <div class="trust-item"><strong>Compatibilité vérifiée</strong><span>Plaque, carte grise ou ancienne référence</span></div>
-        <div class="trust-item"><strong>Retrait au magasin</strong><span>Après confirmation de la disponibilité</span></div>
-        <div class="trust-item"><strong>Livraison locale</strong><span>Selon la pièce, la zone et la disponibilité</span></div>
+        <div class="trust-item"><strong>Disponible dans la journée</strong><span>Selon la référence, à confirmer avec le magasin</span></div>
+        <div class="trust-item"><strong>Livraison aux garages</strong><span>Adresse, frais et créneau convenus ensemble</span></div>
       </div>
     </div>
 
@@ -281,6 +290,7 @@ function renderPage(page) {
           <h2>Pourquoi plusieurs références existent&nbsp;?</h2>
           <p>La finition, la date de fabrication, la motorisation ou l’équipement peuvent changer le montage d’une pièce sur un même modèle.</p>
           <p><strong>Notre méthode :</strong> identifier le véhicule, comparer les caractéristiques, puis confirmer la disponibilité avant votre déplacement.</p>
+          <p><strong>Besoin de montage ?</strong> Nous pouvons vous orienter vers un professionnel. Précisez-le dans votre demande.</p>
           <div class="section-actions"><a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">Envoyer les informations</a></div>
           <p>Un message à compléter s’ouvre dans WhatsApp. Ajoutez votre véhicule et la pièce recherchée avant de l’envoyer.</p>
         </div>
