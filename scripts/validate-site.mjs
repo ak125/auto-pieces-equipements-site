@@ -45,7 +45,8 @@ if (JSON.stringify(builtFiles) !== JSON.stringify(expectedFiles)) {
 }
 
 for (const page of seoPages) {
-  const content = await readFile(path.join(root, page), 'utf8');
+  // Validate the artifact uploaded by Pages, not its source copy.
+  const content = await readFile(path.join(outputDirectory, page), 'utf8');
   requireMatch(content, /<title>[^<]+<\/title>/i, `${page}: titre manquant`);
   requireMatch(content, /<meta\s+name="description"\s+content="[^"]+"/i, `${page}: meta description manquante`);
   requireMatch(content, /<link\s+rel="canonical"\s+href="https:\/\/auto-pieces-equipements\.fr\//i, `${page}: URL canonique manquante`);
@@ -86,12 +87,12 @@ for (const page of seoPages) {
 }
 
 for (const page of seoPages.filter((file) => file !== 'batterie-voiture-les-pavillons-sous-bois.html')) {
-  const content = await readFile(path.join(root, page), 'utf8');
+  const content = await readFile(path.join(outputDirectory, page), 'utf8');
   forbidMatch(content, /\b\d+(?:[,.]\d+)?\s*€/i, `${page}: prix non validé ajouté hors de la page batterie`);
 }
 
 for (const page of ['mentions-legales.html', 'politique-confidentialite.html']) {
-  const content = await readFile(path.join(root, page), 'utf8');
+  const content = await readFile(path.join(outputDirectory, page), 'utf8');
   requireMatch(content, /<meta\s+name="robots"\s+content="noindex,follow">/i, `${page}: protection noindex manquante`);
 }
 
@@ -117,7 +118,7 @@ for (const page of publicFiles.filter((file) => file.endsWith('.html'))) {
   }
 }
 
-const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
+const sitemap = await readFile(path.join(outputDirectory, 'sitemap.xml'), 'utf8');
 for (const page of seoPages) {
   const expectedUrl = page === 'index.html'
     ? 'https://auto-pieces-equipements.fr/'
