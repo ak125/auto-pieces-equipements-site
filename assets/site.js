@@ -35,13 +35,28 @@ function updateOpeningStatus() {
   if (!status) return;
   const now = parisNow();
   const currentWindow = (hours[now.day] || []).find(([start, end]) => now.minutes >= start && now.minutes < end);
-  if (currentWindow) {
-    status.textContent = `Magasin ouvert — fermeture à ${formatTime(currentWindow[1])}. Appelez pour vérifier la disponibilité d'une pièce.`;
-    status.classList.add('is-open');
-  } else {
-    status.textContent = 'Magasin actuellement fermé — consultez les horaires ou laissez un message sur WhatsApp.';
-    status.classList.remove('is-open');
+  const message = currentWindow
+    ? `Magasin ouvert — fermeture à ${formatTime(currentWindow[1])}. Appelez pour vérifier la disponibilité d'une pièce.`
+    : 'Magasin actuellement fermé — consultez les horaires ou laissez un message sur WhatsApp.';
+  // The status is a live region: only announce an actual change.
+  if (status.textContent !== message) status.textContent = message;
+  status.classList.toggle('is-open', Boolean(currentWindow));
+}
+
+function setupOpeningStatus() {
+  if (!document.querySelector('[data-opening-status]')) return;
+  let timer;
+  function refresh() {
+    window.clearTimeout(timer);
+    updateOpeningStatus();
+    // Avoid background polling; resume with the current Paris time when visible.
+    if (!document.hidden) {
+      timer = window.setTimeout(refresh, 60000 - (Date.now() % 60000));
+    }
   }
+  document.addEventListener('visibilitychange', refresh);
+  window.addEventListener('pageshow', refresh);
+  refresh();
 }
 
 function setupNavigation() {
@@ -66,6 +81,6 @@ function updateYear() {
   });
 }
 
-updateOpeningStatus();
+setupOpeningStatus();
 setupNavigation();
 updateYear();

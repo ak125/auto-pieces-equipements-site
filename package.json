@@ -8,7 +8,8 @@
     "generate:catalog": "node scripts/render-catalog-pages.mjs",
     "build": "npm run generate:catalog && node scripts/build-static.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "npm run build && node scripts/validate-site.mjs",
+    "test:unit": "node --test tests/*.test.mjs",
+    "test": "npm run test:unit && npm run build && node scripts/validate-site.mjs",
     "start": "node server-simple.js"
   },
   "keywords": [],
