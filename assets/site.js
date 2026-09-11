@@ -73,6 +73,15 @@ function setupNavigation() {
     button.setAttribute('aria-expanded', 'false');
     navigation.classList.remove('is-open');
   });
+  function closeOnEscape(event) {
+    if (event.key !== 'Escape' || button.getAttribute('aria-expanded') !== 'true') return;
+    event.preventDefault();
+    button.setAttribute('aria-expanded', 'false');
+    navigation.classList.remove('is-open');
+    button.focus();
+  }
+  button.addEventListener('keydown', closeOnEscape);
+  navigation.addEventListener('keydown', closeOnEscape);
 }
 
 function updateYear() {
