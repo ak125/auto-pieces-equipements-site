@@ -12,6 +12,7 @@ function whatsappLink(page) {
     'Bonjour, je vous contacte depuis votre site.',
     `Objet : ${page.navLabel}`,
     'Pièce recherchée :',
+    deliveryRequest ? 'Plaque d’immatriculation de chaque véhicule :' : 'Plaque d’immatriculation :',
     'Véhicule (modèle, année, motorisation) :',
     'Référence de la pièce (si connue) :',
     ...(deliveryRequest ? [
