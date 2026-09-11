@@ -65,6 +65,7 @@ function header() {
         <a href="/batterie-voiture-les-pavillons-sous-bois.html">Batteries</a>
         <a href="/plaquettes-disques-frein-les-pavillons-sous-bois.html">Freinage</a>
         <a href="/filtres-vidange-les-pavillons-sous-bois.html">Filtres &amp; vidange</a>
+        <a href="/kit-distribution-les-pavillons-sous-bois.html">Distribution</a>
         <a href="/alternateur-demarreur-les-pavillons-sous-bois.html">Alternateur &amp; démarreur</a>
         <a href="/suspension-amortisseurs-les-pavillons-sous-bois.html">Suspension</a>
         <a href="/embrayage-voiture-les-pavillons-sous-bois.html">Embrayage</a>

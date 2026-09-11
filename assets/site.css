@@ -316,6 +316,7 @@ select {
 .hero-media img,
 .product-media img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1;
   border-radius: 1rem;
   object-fit: cover;
@@ -453,6 +454,7 @@ select {
 
 .family-card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1.35;
   background: #eef1f5;
   object-fit: cover;
@@ -521,6 +523,7 @@ select {
 
 .product-card img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1.25;
   margin-bottom: 1rem;
   border-radius: 0.85rem;

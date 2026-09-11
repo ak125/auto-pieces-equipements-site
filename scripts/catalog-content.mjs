@@ -15,6 +15,7 @@ export const catalogPages = [
       { title: 'Batteries', description: 'Standard ou Start & Stop selon la technologie prévue par le véhicule.', image: '/assets/images/products/batterie-auto.webp', link: '/batterie-voiture-les-pavillons-sous-bois.html', bullets: ['Capacité et puissance adaptées', 'Dimensions et polarité vérifiées'] },
       { title: 'Freinage', description: 'Plaquettes, disques, tambours, mâchoires et capteurs selon le montage.', image: '/assets/images/products/freinage.webp', link: '/plaquettes-disques-frein-les-pavillons-sous-bois.html', bullets: ['Montage avant ou arrière', 'Dimensions contrôlées'] },
       { title: 'Filtres & vidange', description: 'Filtres à huile, air, habitacle et carburant avec huile aux normes adaptées.', image: '/assets/images/products/filtration.webp', link: '/filtres-vidange-les-pavillons-sous-bois.html', bullets: ['Référence du filtre', 'Viscosité et norme constructeur'] },
+      { title: 'Distribution', description: 'Kits courroie, galets et pompe à eau selon le moteur et la composition vérifiée.', image: '/assets/images/products/distribution.webp', link: '/kit-distribution-les-pavillons-sous-bois.html', bullets: ['Identification par plaque', 'Contenu, prix et délai confirmés'] },
       { title: 'Alternateur & démarreur', description: 'Pièces de charge et de démarrage identifiées selon la motorisation.', image: '/assets/images/products/alternateur.webp', link: '/alternateur-demarreur-les-pavillons-sous-bois.html', bullets: ['Fixation et connectique', 'Puissance et poulie'] },
       { title: 'Suspension', description: 'Amortisseurs, triangles, rotules et biellettes pour la liaison au sol.', image: '/assets/images/products/suspension.webp', link: '/suspension-amortisseurs-les-pavillons-sous-bois.html', bullets: ['Côté et essieu concernés', 'Montage précis du véhicule'] },
       { title: 'Embrayage', description: 'Kits embrayage et composants adaptés au moteur et à la boîte de vitesses.', image: '/assets/images/products/embrayage.webp', link: '/embrayage-voiture-les-pavillons-sous-bois.html', bullets: ['Disque, mécanisme et butée', 'Référence confirmée avant commande'] },
@@ -35,6 +36,34 @@ export const catalogPages = [
       { question: 'La livraison locale est-elle possible ?', answer: 'Oui, nous livrons les garages du secteur. Indiquez les références, les quantités, la commune et le délai souhaité : nous confirmons disponibilité, frais et créneau. Le retrait au magasin est également possible.' },
       { question: 'Avez-vous des kits de distribution et d’autres pièces ?', answer: 'Oui, notre gamme comprend aussi les kits de distribution et d’autres familles au-delà des guides présentés. Envoyez les informations du véhicule ou la référence recherchée pour confirmer la composition, le prix et la disponibilité.' },
       { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, nous pouvons vous orienter vers un professionnel pour le montage de votre pièce. Précisez ce besoin lors de votre demande.' }
+    ]
+  },
+  {
+    slug: 'kit-distribution-les-pavillons-sous-bois.html',
+    navLabel: 'Distribution',
+    eyebrow: 'Distribution · Devis par plaque',
+    title: 'Kit distribution aux Pavillons-sous-Bois (93) — Auto Pièces Équipements',
+    metaDescription: 'Kit distribution aux Pavillons-sous-Bois : courroie, galets et pompe à eau selon moteur. Devis par plaque, disponibilité selon référence et livraison aux garages.',
+    h1: 'Kit de distribution aux Pavillons-sous-Bois',
+    intro: 'Préparez votre demande de kit de distribution avec votre plaque d’immatriculation. Nous recherchons la référence adaptée au moteur et confirmons le contenu du kit, le prix et la disponibilité dans la journée selon la référence. Retrait au magasin et livraison aux garages selon les conditions convenues.',
+    image: '/assets/images/products/distribution.webp',
+    imageAlt: 'Illustration d’un kit de distribution avec courroie crantée, galets et pompe à eau, sans référence de marque',
+    sectionTitle: 'Un kit adapté à votre moteur',
+    sectionIntro: 'Le visuel illustre cette famille de pièces : le contenu exact du kit proposé dépend de votre véhicule. La présence de la pompe à eau et des accessoires est confirmée dans le devis.',
+    products: [
+      { title: 'Courroie et galets', description: 'Nous recherchons la courroie et les galets correspondant au montage du moteur.', bullets: ['Référence et composition vérifiées', 'Motorisation et date de fabrication utiles'] },
+      { title: 'Pompe à eau', description: 'Une pompe à eau peut faire partie du kit selon la référence. Nous précisons si elle est incluse dans la proposition.', bullets: ['Contenu du kit confirmé', 'Besoin à valider avec le professionnel chargé du montage'] },
+      { title: 'Retrait et livraison garages', description: 'Faites confirmer la référence et le délai avant votre déplacement ou votre intervention.', bullets: ['Disponibilité dans la journée selon référence', 'Zone, frais et créneau de livraison convenus'] }
+    ],
+    guideTitle: 'Les informations utiles pour votre devis',
+    guideIntro: 'La plaque permet de commencer la recherche. Des précisions complémentaires peuvent être nécessaires pour départager plusieurs montages.',
+    guideItems: ['Plaque d’immatriculation du véhicule.', 'Modèle, année et motorisation si vous les connaissez.', 'Référence du kit demandé par votre garage ou code moteur, si disponible.', 'Besoin d’une pompe à eau, quantité et date souhaitée.', 'Pour une livraison garage : commune et créneau de besoin.'],
+    faq: [
+      { question: 'Quel est le prix d’un kit de distribution ?', answer: 'Le prix dépend de la référence et du contenu : courroie, galets, pompe à eau ou accessoires selon le montage. Envoyez votre plaque et votre besoin pour recevoir une proposition précise avant commande.' },
+      { question: 'La pompe à eau est-elle toujours incluse ?', answer: 'Non, la composition varie selon la référence du kit. Nous confirmons les éléments inclus dans votre devis ; faites valider le besoin complet par le professionnel chargé du montage.' },
+      { question: 'La pièce peut-elle être disponible dans la journée ?', answer: 'Oui, selon la référence et sa disponibilité. Contactez-nous avant de vous déplacer : nous vous confirmons le délai de retrait ou les conditions de livraison aux garages.' },
+      { question: 'Et si mon moteur utilise une chaîne de distribution ?', answer: 'Précisez-le dans votre demande ou envoyez votre plaque pour identifier le montage. Un kit courroie ne doit pas être commandé pour un moteur à chaîne ; la référence et la disponibilité sont vérifiées avant toute proposition.' },
+      { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, nous pouvons vous orienter vers un professionnel. Indiquez ce besoin lors de la demande de devis afin de préparer les pièces adaptées à l’intervention.' }
     ]
   },
   {
