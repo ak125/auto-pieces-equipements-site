@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
+import { publicFiles } from './scripts/site-config.mjs';
 
 export default defineConfig({
-  // Scan the public entry point, not archived dashboards or temporary checkouts.
+  // Use the same public pages as the static build, excluding legacy dashboards.
   optimizeDeps: {
-    entries: ['index.html']
+    entries: publicFiles.filter((file) => file.endsWith('.html'))
   },
   server: {
     port: 3000,

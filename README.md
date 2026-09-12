@@ -25,6 +25,20 @@ Avec nvm sous Linux/macOS, `nvm install` et `nvm use` lisent `.nvmrc`. Sous Wind
 sélectionner explicitement `24.21.0` dans son gestionnaire de versions.
 Les fichiers `.npmrc` refusent les versions Node/npm hors des plages supportées.
 
+## Appels HTTP
+
+Axios est interdit dans ce dépôt. Utiliser `fetch` natif, sans dépendance HTTP
+supplémentaire. Les appels Google Places des serveurs partagent
+`server/google-places.cjs` : contrôle HTTP, décodage JSON et délai de 10 secondes.
+
+`npm run check:dependencies` vérifie les sources, les manifestes et les lockfiles
+npm, y compris les sous-projets et les dépendances indirectes. Ce contrôle est
+exécuté par `preinstall` et par `npm test`, donc aussi dans la CI du site.
+Les tests vérifient le refus des imports, CDN, alias npm et dépendances indirectes.
+
+Vite 8 utilise `vite.config.mjs`. Le scan des dépendances couvre les pages HTML
+de la liste publique partagée avec le build statique.
+
 ## Sous-projet Cloudflare
 
 `google-places-proxy/` contient actuellement le Worker de démonstration

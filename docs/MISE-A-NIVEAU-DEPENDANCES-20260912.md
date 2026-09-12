@@ -22,7 +22,7 @@ seulement les plages déclarées dans les manifestes.
 | Node CI / build Pages | 20 | 24.21.0 LTS |
 | npm | Non déclaré | 12.0.2 |
 | Vite | 7.1.8 | 8.3.0 |
-| Axios | 1.8.4 | 1.20.0 |
+| Axios | 1.8.4 | Retiré et interdit ; `fetch` natif |
 | CORS | 2.8.5 | 2.8.6 |
 | dotenv | 17.2.3 | 17.4.2 |
 | Express | 5.1.0 | 5.2.1 |
@@ -51,10 +51,37 @@ scripts nécessaires autorisés dans le Worker sont ceux d'`esbuild@0.28.1` et
 sont épinglées à ces versions, sans autorisation globale.
 
 Vite utilise maintenant `vite.config.mjs`, cohérent avec sa syntaxe ESM ; le scan
-des dépendances part d'`index.html` pour éviter les anciens dashboards et les
-copies temporaires. Le build public demeure le générateur/copieur statique.
+des dépendances utilise les 15 pages HTML de `publicFiles`, liste partagée avec
+le build, pour éviter les anciens dashboards et les copies temporaires.
+Le build public demeure le générateur/copieur statique.
 Le site JavaScript n'a pas été converti en TypeScript. Le contrôle TypeScript
 couvre les sources et les tests du Worker, en mode strict préexistant.
+
+## Transport HTTP natif et interdiction d'Axios
+
+Les trois anciens appels serveur utilisent désormais `fetchPlaceDetails`, dans
+`server/google-places.cjs`, fondé sur `fetch` natif de Node 24. Le helper encode les
+paramètres avec `URLSearchParams`, refuse les réponses HTTP non réussies, décode
+le JSON et limite à 10 secondes la requête et la lecture du corps. L'erreur HTTP
+ne contient ni URL ni clé API. L'exemple commenté navigateur utilise aussi `fetch`.
+La suppression d'Axios retire 13 paquets de l'installation racine.
+
+La règle est inscrite dans `AGENTS.md` et le README. Le script
+`scripts/check-http-policy.mjs` refuse sa présence dans les sources JS/TS/HTML,
+les workflows YAML, les manifestes et les lockfiles npm de tout le dépôt, y compris
+les alias et dépendances indirectes des sous-projets. Il ignore les fichiers
+générés, installations et répertoires temporaires. `preinstall`,
+`npm run check:dependencies` et `npm test` exécutent le contrôle ; les workflows
+existants exécutent `npm test`. Les contre-tests prouvent un code de sortie 1
+pour un alias npm, un lockfile indirect, un import et un CDN.
+
+Les tests du transport couvrent encodage, JSON invalide, erreur réseau, HTTP 503,
+expiration pendant un corps JSON bloqué et réponses de l'endpoint Express actif
+(succès, refus Google, erreur HTTP). Aucun appel réel à Google n'est nécessaire.
+`npm start` utilise `server-simple.js`, vérifié ici. Les prototypes `server.js`
+et `server/server.js` ont aussi été débarrassés de leurs appels Axios, mais ne sont
+pas validés comme applications exécutables : le premier dépend déjà de modules
+non déclarés, le second contient déjà du Java Android dans un fichier JavaScript.
 
 ## Actions GitHub
 
@@ -81,7 +108,7 @@ temporaire du worktree. Les vérifications finales utilisent ces deux versions.
 | Vérification | Résultat |
 |---|---|
 | `npm ci`, racine | Réussite |
-| `npm test`, racine | 35 tests, 0 échec ; génération de 11 pages ; validation de 12 pages SEO et 31 fichiers publics |
+| `npm test`, racine | 45 tests, 0 échec ; politique HTTP validée ; génération de 11 pages ; validation de 12 pages SEO et 31 fichiers publics |
 | `npm --prefix google-places-proxy ci` | Réussite, scripts natifs autorisés explicitement |
 | `npm --prefix google-places-proxy run typecheck` | TypeScript 7.0.2, sources et tests sans erreur |
 | `npm --prefix google-places-proxy test` | 4 tests, 0 échec, runtime local Cloudflare |
@@ -91,13 +118,20 @@ temporaire du worktree. Les vérifications finales utilisent ces deux versions.
 | `npm audit`, racine | 15 alertes initiales, dont 1 critique → 0 |
 | `npm audit`, Worker | 17 alertes initiales, dont 2 critiques → 0 |
 | Parité du build | SHA256 identiques sur les 31 fichiers, comparaison avec le build des sources de la base |
-| Vite 8.3.0, HTTP local | Accueil, module navigateur et client HMR : HTTP 200 |
+| Vite 8.3.0, HTTP local | 15 pages HTML publiques, module navigateur et client HMR : HTTP 200 ; entrées configurées vérifiées |
+| Vite 8.3.0, prévisualisation | 31 fichiers publics : HTTP 200 et SHA256 conformes au build |
 | Express 5.2.1, HTTP local | Accueil : HTTP 200 ; configuration Google absente : erreur attendue, sans appel Google |
 
 La comparaison du build utilise la même convention de fins de ligne Windows
 pour les deux checkouts et exécute la génération du catalogue dans les deux cas.
 Les fichiers de contenu du dépôt ne changent pas. Les journaux et inventaires
 bruts sont conservés localement dans `tmp/evidence/` (ignoré par Git).
+
+Après retrait d'Axios, l'installation propre, les 45 tests, le build du site,
+l'audit racine et les contrôles HTTP ont été réexécutés (`fetch-site-ci.log`,
+`fetch-site-test.log`, `fetch-site-audit.json`, `fetch-smoke.log`). Les validations
+Worker et actionlint précédentes sont réutilisées : leurs sources, dépendances,
+configurations et workflows sont inchangés depuis ces résultats verts.
 
 Ce sont des preuves locales Windows : aucune exécution CI Linux de ce candidat,
 aucune preuve navigateur interactive, aucune vérification d'un Worker ou d'un

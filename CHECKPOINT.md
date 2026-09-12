@@ -1,36 +1,28 @@
-# Checkpoint — mise à niveau Auto Pièces, 12 septembre 2026
+# Checkpoint — Auto Pièces, 12 septembre 2026
 
-Objectif : moderniser Node, Vite, TypeScript et les dépendances Auto Pièces,
-avec comparaison des autres projets. Demande reprise puis précisée par l'utilisateur.
-
-Worktree : `auto-pieces-node24-20260912`, branche
+Objectif : moderniser Node/Vite/TypeScript ; interdire Axios et utiliser fetch.
+Worktree `auto-pieces-node24-20260912`, branche
 `codex/align-node24-dependencies-20260912`, base `b1f0ede`.
-Le checkout initial et sa note non suivie sont préservés.
+Checkout initial et note utilisateur préservés. Aucun push ni déploiement.
 
-Changements : Node 24.21.0 LTS, npm 12.0.2, Vite 8.3.0 ; Worker TS 7.0.2,
-Vitest 4.1.11, plugin Cloudflare 1.1.8, Wrangler 4.131.1 ; bibliothèques serveur
-à jour, plugin legacy inutilisé retiré. Manifestes/lockfiles cohérents, engines
-bornés, `.nvmrc`, `.npmrc`, scripts natifs npm 12 autorisés par version.
-Configuration Vite en `.mjs`. Actions GitHub actualisées et job CI Worker ajouté.
+Changements : Node 24.21.0, npm 12.0.2, Vite 8.3.0 ; Worker TS 7.0.2,
+Vitest 4.1.11, plugin Cloudflare 1.1.8, Wrangler 4.131.1. Versions épinglées,
+engines bornés, actions GitHub actualisées, CI Worker ajoutée.
+Vite ESM scanne les 15 pages publiques. Axios retiré (13 paquets) ; helper
+fetch avec contrôle HTTP/JSON et timeout 10 s. Règle AGENTS/README et contrôle
+sources/manifestes/lockfiles dans preinstall et npm test, avec contre-tests.
 
-Vérifié localement sous Windows avec Node portable 24.21.0 et npm 12.0.2 :
-deux installations `npm ci`, 35 tests site, 4 tests Worker, typecheck TS7,
-build Wrangler à blanc ; audits npm 0/0 (avant 15/17), `npm ls` valide,
-31 fichiers du build identiques par SHA256 à la base reconstruite,
-HTTP Vite/Express vert, actionlint 1.7.12 vert. Journaux : `tmp/evidence/`.
-La version Node globale du poste n'a pas changé.
+Vérifié sous Windows : npm ci racine, 45 tests verts, build statique validé,
+audit 0, HTTP Vite/Express et preview verts, 31 fichiers SHA256 identiques.
+Preuves Worker réutilisées car périmètre inchangé : ci, 4 tests, typage TS7,
+build Wrangler à blanc, audit 0. Workflows inchangés depuis actionlint vert.
+Journaux locaux : tmp/evidence/fetch-* et précédents. Node global inchangé.
 
-Décision : Vitest 5 exclu car le plugin Cloudflare exige `^4.1.0`.
-TS7 concerne le Worker ; le site reste JavaScript. Aucun déploiement du Worker
-de démonstration ni modification des dates de compatibilité Cloudflare.
+Décisions : Vitest 5 incompatible avec le plugin Cloudflare. TS7 concerne
+le Worker. Serveur actif validé : server-simple.js ; anciens prototypes
+non exécutables en l'état (modules absents/Java imbriqué), hors remise en état.
+Alliance (58e9171) et AutoMecanik (0c31807) comparés en lecture seule.
+Hermes inchangé. Bilan : docs/MISE-A-NIVEAU-DEPENDANCES-20260912.md.
 
-Comparaison en lecture seule : 32 fichiers Alliance (`58e9171`), 94 AutoMecanik
-(`0c31807`). Écarts documentés : types Node26/Node24 Alliance, ancienne image
-24.19.0, versions Vite/TS/npm en retrait, Vitest2 design-tokens AutoMecanik,
-bases Node sans borne supérieure. Pas de migration de ces deux dépôts.
-
-Prochaine action : publier le candidat via une PR puis vérifier la CI Linux avant
-toute fusion ; celle-ci déclenche Pages sur main. Aucun push ni déploiement réalisé.
-Réutiliser les tests locaux seulement si code, lockfiles, configurations et données
-pertinents restent inchangés. Bilan détaillé :
-`docs/MISE-A-NIVEAU-DEPENDANCES-20260912.md`.
+Suite : publication par PR puis CI Linux avant fusion (main déclenche Pages).
+Aucune preuve CI distante ni de déploiement pour ce candidat.

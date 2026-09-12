@@ -6,7 +6,7 @@ const { createClient } = require('@google/maps');
 const natural = require('natural');
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
+const { fetchPlaceDetails } = require('./server/google-places.cjs');
 
 // Initialisation du serveur Express
 const app = express();
@@ -160,16 +160,14 @@ app.get('/api/google-reviews', async (req, res) => {
             return res.json(getMockGoogleReviews(placeId));
         }
         
-        const response = await axios.get('https://maps.googleapis.com/maps/api/place/details/json', {
-            params: {
-                place_id: placeId,
-                fields: 'name,rating,reviews',
-                key: process.env.GOOGLE_API_KEY,
-                language: 'fr'
-            }
+        const data = await fetchPlaceDetails({
+            place_id: placeId,
+            fields: 'name,rating,reviews',
+            key: process.env.GOOGLE_API_KEY,
+            language: 'fr'
         });
         
-        res.json(response.data);
+        res.json(data);
     } catch (error) {
         console.error('Erreur lors de la récupération des avis Google:', error);
         

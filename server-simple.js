@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios');
-const path = require('path');
+const { fetchPlaceDetails } = require('./server/google-places.cjs');
 require('dotenv').config();
 
 const app = express();
@@ -26,7 +25,6 @@ app.get('/api/google-reviews', async (req, res) => {
         }
 
         // Utilisation de l'API Legacy qui fonctionne
-        const url = `https://maps.googleapis.com/maps/api/place/details/json`;
         const params = {
             place_id: placeId,
             fields: 'name,rating,user_ratings_total,reviews,formatted_address,formatted_phone_number',
@@ -35,10 +33,10 @@ app.get('/api/google-reviews', async (req, res) => {
         };
 
         console.log('📡 Récupération des avis Google...');
-        const response = await axios.get(url, { params });
+        const data = await fetchPlaceDetails(params);
 
-        if (response.data.status === 'OK') {
-            const result = response.data.result;
+        if (data.status === 'OK') {
+            const result = data.result;
             console.log(`✅ Avis récupérés: ${result.reviews?.length || 0} avis sur ${result.user_ratings_total} total`);
             
             res.json({
@@ -53,11 +51,11 @@ app.get('/api/google-reviews', async (req, res) => {
                 }
             });
         } else {
-            console.error('❌ Erreur API:', response.data.status, response.data.error_message);
+            console.error('❌ Erreur API:', data.status, data.error_message);
             res.status(400).json({
                 success: false,
-                error: response.data.status,
-                message: response.data.error_message
+                error: data.status,
+                message: data.error_message
             });
         }
     } catch (error) {
@@ -285,7 +283,7 @@ app.get('/', (req, res) => {
 });
 
 // Démarrage du serveur
-app.listen(PORT, () => {
+if (require.main === module) app.listen(PORT, () => {
     console.log('');
     console.log('🚀 ============================================');
     console.log('   Auto Pièces Équipements - Serveur Démarré');
@@ -302,3 +300,5 @@ app.listen(PORT, () => {
     console.log('   ============================================');
     console.log('');
 });
+
+module.exports = app;

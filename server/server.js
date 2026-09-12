@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios');
+const { fetchPlaceDetails } = require('./google-places.cjs');
 const dotenv = require('dotenv');
 
 // Charger les variables d'environnement
@@ -23,16 +23,14 @@ app.get('/api/google-reviews', async (req, res) => {
     }
     
     try {
-        const response = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json`, {
-            params: {
-                place_id: placeId,
-                fields: 'reviews',
-                key: process.env.GOOGLE_MAPS_API_KEY,
-                language: 'fr'
-            }
+        const data = await fetchPlaceDetails({
+            place_id: placeId,
+            fields: 'reviews',
+            key: process.env.GOOGLE_MAPS_API_KEY,
+            language: 'fr'
         });
         
-        res.json(response.data);
+        res.json(data);
     } catch (error) {
         console.error('Erreur API Google Places:', error);
         res.status(500).json({ 
