@@ -10,8 +10,11 @@ const ignoredDirectories = new Set([
 ]);
 const sourceExtension = /\.(?:[cm]?[jt]sx?|html?|ya?ml)$/i;
 
+/** @param {string} root */
 export async function checkHttpPolicy(root) {
+  /** @type {string[]} */
   const failures = [];
+  /** @param {string} directory */
   async function visit(directory) {
     for (const entry of await readdir(directory, { withFileTypes: true })) {
       const fullPath = path.join(directory, entry.name);

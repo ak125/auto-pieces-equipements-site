@@ -9,7 +9,8 @@ et à la prévisualisation ; Express fournit un serveur local optionnel.
 
 - Node **24.21.0 LTS**, version de référence dans `.nvmrc`, utilisée aussi par les workflows.
 - npm **12.0.2**, déclaré dans les deux manifestes et installé explicitement en CI.
-- Vite **8.3.0** pour le site ; TypeScript **7.0.2** pour le sous-projet Worker.
+- Vite **8.3.0** pour le site ; TypeScript **7.0.2** pour le site, le serveur et le Worker.
+- Types Node **24.13.4**, alignés sur la majeure du runtime Node 24.
 - Dépendances directes épinglées et deux `package-lock.json` conservés.
 
 Sélectionner Node 24.21.0 avec son gestionnaire de versions, puis :
@@ -38,6 +39,22 @@ Les tests vérifient le refus des imports, CDN, alias npm et dépendances indire
 
 Vite 8 utilise `vite.config.mjs`. Le scan des dépendances couvre les pages HTML
 de la liste publique partagée avec le build statique.
+
+## Contrôle de types du JavaScript actif
+
+`npm run typecheck` contrôle les fichiers JavaScript actifs sans les convertir
+ni générer de fichiers supplémentaires. Il est exécuté par `npm test`, donc aussi
+par les workflows qualité et publication.
+
+- `tsconfig.browser.json` : `assets/site.js` et `server/reviews-test.js`, avec
+  les API DOM et sans les variables globales Node.
+- `tsconfig.server.json` : serveur, points d'entrée, helper fetch, politique HTTP,
+  liste publique et configuration Vite, avec les types Node 24 et sans le DOM.
+
+Les deux activent `strict`, `checkJs` et `noUncheckedIndexedAccess`, sans émission.
+Les paramètres sont documentés en JSDoc ; les données JSON externes restent
+`unknown` jusqu'aux contrôles de structure. Les anciens scripts non publiés et
+les prototypes archivés ne font pas partie de ce contrôle.
 
 ## Serveur local et diagnostic des avis
 
@@ -80,7 +97,7 @@ par version dans `allowScripts`, conformément au fonctionnement de npm 12.
 Vitest **4.1.11** est conservé car `@cloudflare/vitest-plugin@1.1.8` exige
 Vitest `^4.1.0` ; passer à Vitest 5 nécessite une version compatible de ce plugin.
 
-Le JavaScript du site reste du JavaScript : la mise à jour du compilateur concerne
-les sources TypeScript du Worker et ne constitue pas une conversion du site.
+Le Worker conserve son propre contrôle TypeScript des sources et des tests.
+Le site reste en JavaScript, désormais vérifié par TypeScript via `checkJs`.
 
 Voir [le bilan de mise à niveau et la comparaison des projets](docs/MISE-A-NIVEAU-DEPENDANCES-20260912.md).

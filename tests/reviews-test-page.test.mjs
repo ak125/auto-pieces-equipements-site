@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import test from 'node:test';
 
 const source = readFileSync(new URL('../server/reviews-test.js', import.meta.url), 'utf8');
-async function render(fetchResponse) {
+async function render(fetchResponse, { withContainers = true } = {}) {
   const nodes = [];
   function createElement(tag) {
     const node = {
@@ -19,7 +19,7 @@ async function render(fetchResponse) {
   const stats = createElement('div');
   const content = createElement('div');
   content.className = 'loading';
-  const document = { createElement, getElementById: id => ({ stats, content })[id] };
+  const document = { createElement, getElementById: id => withContainers ? ({ stats, content })[id] : null };
   await vm.runInNewContext(source, {
     document, URL, AbortSignal,
     fetch: async (url, options) => {
@@ -69,4 +69,15 @@ test('empty reviews and timeouts have explicit visible messages', async () => {
   assert.ok(timeout.text.includes('a dépassé le délai prévu'));
   assert.equal(timeout.content.className, '');
   assert.ok(!timeout.text.includes('Internal detail'));
+});
+
+test('missing containers skip the request and malformed payloads get a clear error', async () => {
+  await render(() => assert.fail('No request expected without the diagnostic containers'), { withContainers: false });
+  for (const payload of [null, [], { success: true }, { success: true, data: { reviews: {} } }]) {
+    const page = await render(() => Response.json(payload));
+    assert.ok(page.text.includes('Réponse des avis invalide'));
+    assert.equal(page.content.children[0].className, 'error');
+  }
+  const page = await render(() => { throw null; });
+  assert.ok(page.text.includes('Avis indisponibles'));
 });

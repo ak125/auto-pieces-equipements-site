@@ -94,4 +94,8 @@ test('active review endpoint preserves success, business-error and HTTP-error re
   assert.equal(response.status, 504);
   assert.deepEqual(await response.json(), { success: false, error: 'Délai Google Places dépassé' });
   assert.equal(response.headers.get('cache-control'), 'no-store');
+  mock.mock.mockImplementation(async () => { throw null; });
+  response = await nativeFetch(url);
+  assert.equal(response.status, 502);
+  assert.deepEqual(await response.json(), { success: false, error: 'Service Google Places indisponible' });
 });

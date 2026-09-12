@@ -8,6 +8,11 @@ require('dotenv').config({ path: path.join(__dirname, '.env'), quiet: true });
 const app = express();
 app.disable('x-powered-by');
 
+/** @param {unknown} value @returns {value is Record<string, unknown>} */
+function isRecord(value) {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
 app.get('/api/google-reviews', cors(), async (req, res) => {
     res.set('Cache-Control', 'no-store');
     const placeId = process.env.GOOGLE_PLACE_ID;
@@ -25,7 +30,7 @@ app.get('/api/google-reviews', cors(), async (req, res) => {
             key: apiKey,
             language: 'fr'
         });
-        if (!data || typeof data.status !== 'string') throw new Error('Invalid Google response');
+        if (!isRecord(data) || typeof data.status !== 'string') throw new Error('Invalid Google response');
         if (data.status !== 'OK') {
             return res.status(400).json({
                 success: false,
@@ -34,7 +39,7 @@ app.get('/api/google-reviews', cors(), async (req, res) => {
             });
         }
         const result = data.result;
-        if (!result || typeof result !== 'object' || Array.isArray(result) ||
+        if (!isRecord(result) ||
             (result.reviews !== undefined && !Array.isArray(result.reviews))) {
             throw new Error('Invalid Google result');
         }
@@ -47,7 +52,7 @@ app.get('/api/google-reviews', cors(), async (req, res) => {
             phone: result.formatted_phone_number
         } });
     } catch (error) {
-        const timedOut = error.name === 'TimeoutError' || error.name === 'AbortError';
+        const timedOut = error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError');
         return res.status(timedOut ? 504 : 502).json({
             success: false,
             error: timedOut ? 'Délai Google Places dépassé' : 'Service Google Places indisponible'
@@ -72,10 +77,12 @@ app.use((req, res, next) => {
     return res.sendFile(file, { root: __dirname, dotfiles: 'deny' });
 });
 app.use((req, res) => res.status(404).type('text').send('Page introuvable'));
-app.use((error, req, res, next) => {
+/** @type {import('express').ErrorRequestHandler} */
+const handleError = (error, req, res, next) => {
     if (res.headersSent) return next(error);
-    res.status(error.status === 404 ? 404 : 500).type('text').send('Ressource indisponible');
-});
+    res.status(isRecord(error) && error.status === 404 ? 404 : 500).type('text').send('Ressource indisponible');
+};
+app.use(handleError);
 
 function startServer() {
     const port = Number(process.env.PORT ?? 3000);
@@ -85,17 +92,18 @@ function startServer() {
     }
     const server = app.listen(port, host, () => {
         const address = server.address();
+        if (!address || typeof address === 'string') return;
         const hostname = address.address.includes(':') ? `[${address.address}]` : address.address;
         console.log(`Serveur Auto Pièces : http://${hostname}:${address.port}`);
         console.log('Diagnostic des avis : /test');
     });
     server.on('error', (error) => {
-        console.error(`Démarrage impossible (${error.code}). Vérifiez HOST et PORT.`);
+        const code = isRecord(error) && typeof error.code === 'string' ? error.code : 'UNKNOWN';
+        console.error(`Démarrage impossible (${code}). Vérifiez HOST et PORT.`);
         process.exitCode = 1;
     });
     return server;
 }
 
-module.exports = app;
-module.exports.startServer = startServer;
+module.exports = Object.assign(app, { startServer });
 if (require.main === module) startServer();

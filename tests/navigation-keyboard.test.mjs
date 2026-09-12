@@ -9,11 +9,14 @@ const source = readFileSync(new URL('../assets/site.js', import.meta.url), 'utf8
 // These tests assert user-visible state, without prescribing listener placement.
 function page({ withMenu = true } = {}) {
   let document;
+  class Node {}
+  class Element extends Node {}
+  class HTMLElement extends Element {}
   function element(tagName, parentNode = null) {
     const listeners = new Map();
     const attributes = new Map();
     const classes = new Set();
-    return {
+    return Object.assign(new HTMLElement(), {
       tagName, parentNode,
       getAttribute: (name) => attributes.get(name) ?? null,
       setAttribute: (name, value) => attributes.set(name, String(value)),
@@ -58,7 +61,7 @@ function page({ withMenu = true } = {}) {
       deliver(event) {
         for (const callback of listeners.get(event.type) || []) callback(event);
       }
-    };
+    });
   }
   const window = element('WINDOW');
   document = element('DOCUMENT', window);
@@ -75,7 +78,7 @@ function page({ withMenu = true } = {}) {
     ? ({ '[data-menu-button]': button, '[data-mobile-nav]': navigation }[selector] ?? null)
     : null;
   document.querySelectorAll = () => [];
-  vm.runInNewContext(source, { document, window, Date, Intl }, { filename: 'assets/site.js' });
+  vm.runInNewContext(source, { document, window, Date, Intl, Node, Element, HTMLElement }, { filename: 'assets/site.js' });
   return { document, button, navigation, link, nextLink, label, outside };
 }
 
@@ -226,5 +229,19 @@ test('returning focus to the button then clicking closes without reopening', () 
   p.button.emit('click');
   moveFocus(p, p.link, p.button);
   p.button.emit('click');
+  assertOpen(p, false);
+});
+
+test('non-element click targets do not crash navigation', () => {
+  const p = page();
+  p.button.emit('click');
+  assert.doesNotThrow(() => p.navigation.emit('click', { target: null }));
+  assertOpen(p, false);
+});
+
+test('a non-DOM related target closes navigation without calling contains on it', () => {
+  const p = page();
+  p.button.emit('click');
+  assert.doesNotThrow(() => p.link.emit('focusout', { relatedTarget: new EventTarget() }));
   assertOpen(p, false);
 });

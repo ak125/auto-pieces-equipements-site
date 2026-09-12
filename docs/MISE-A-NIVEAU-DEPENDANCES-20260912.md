@@ -27,7 +27,9 @@ seulement les plages déclarées dans les manifestes.
 | dotenv | 17.2.3 | 17.4.2 |
 | Express | 5.1.0 | 5.2.1 |
 | Plugin Vite legacy | 7.2.1, non utilisé | Retiré |
-| TypeScript du Worker | 5.8.2 | 7.0.2 |
+| TypeScript | Worker 5.8.2 ; absent du site | 7.0.2 pour Worker et JavaScript actif |
+| Types Node du site | Absents | 24.13.4, majeure alignée sur le runtime |
+| Types Express / CORS | Absents | 5.0.6 / 2.8.19 |
 | Vitest du Worker | 3.0.9 | 4.1.11 |
 | Intégration de test Cloudflare | vitest-pool-workers 0.7.8 | vitest-plugin 1.1.8 |
 | Types Workers | 4.20250327.0 | 5.20260911.1 |
@@ -54,8 +56,26 @@ Vite utilise maintenant `vite.config.mjs`, cohérent avec sa syntaxe ESM ; le sc
 des dépendances utilise les 15 pages HTML de `publicFiles`, liste partagée avec
 le build, pour éviter les anciens dashboards et les copies temporaires.
 Le build public demeure le générateur/copieur statique.
-Le site JavaScript n'a pas été converti en TypeScript. Le contrôle TypeScript
-couvre les sources et les tests du Worker, en mode strict préexistant.
+Le site JavaScript n'a pas été converti en TypeScript. Le contrôle couvre les
+sources et tests du Worker ainsi que, désormais, le JavaScript actif du site et
+du serveur avec `checkJs`.
+
+## Typage strict du JavaScript actif
+
+Deux configurations séparent les environnements : `tsconfig.browser.json`
+contrôle `assets/site.js` et le script de diagnostic ; `tsconfig.server.json`
+contrôle les trois points d'entrée serveur, le helper fetch, la politique HTTP,
+la liste publique et Vite. Les neuf fichiers d'entrée utilisent `strict`,
+`checkJs`, `noUncheckedIndexedAccess` et `noEmit`, sans `skipLibCheck`.
+Les types DOM et Node sont isolés ; les types Node restent sur la majeure 24.
+
+`npm run typecheck` est intégré dans `npm test`. Le typage a conduit à protéger
+les accès DOM, les cibles d'événements, les index des horaires et les formes de
+réponses Google. Les JSON sont traités comme `unknown` avant validation ; les
+valeurs d'erreur inattendues ont un message de secours. Aucun contournement par
+`@ts-ignore`, `@ts-nocheck` ou ajout d'`any` n'a été introduit.
+Les scripts anciens non publiés et les tests JavaScript ne sont pas inclus dans
+ce lot de typage ; les tests TypeScript du Worker restent contrôlés séparément.
 
 ## Transport HTTP natif et interdiction d'Axios
 
@@ -131,7 +151,8 @@ temporaire du worktree. Les vérifications finales utilisent ces deux versions.
 | Vérification | Résultat |
 |---|---|
 | `npm ci`, racine | Réussite |
-| `npm test`, racine | 51 tests, 0 échec ; politique HTTP validée ; génération de 11 pages ; validation de 12 pages SEO et 31 fichiers publics |
+| `npm test`, racine | Typage strict et 54 tests, 0 échec ; politique HTTP validée ; génération de 11 pages ; validation de 12 pages SEO et 31 fichiers publics |
+| Contre-preuves de typage | Mauvais arguments refusés ; `process` interdit côté navigateur et `document` interdit côté Node |
 | `npm --prefix google-places-proxy ci` | Réussite, scripts natifs autorisés explicitement |
 | `npm --prefix google-places-proxy run typecheck` | TypeScript 7.0.2, sources et tests sans erreur |
 | `npm --prefix google-places-proxy test` | 4 tests, 0 échec, runtime local Cloudflare |
@@ -140,7 +161,7 @@ temporaire du worktree. Les vérifications finales utilisent ces deux versions.
 | `actionlint 1.7.12`, deux workflows | Réussite, aucune erreur |
 | `npm audit`, racine | 15 alertes initiales, dont 1 critique → 0 |
 | `npm audit`, Worker | 17 alertes initiales, dont 2 critiques → 0 |
-| Parité du build | SHA256 identiques sur les 31 fichiers, comparaison avec le build des sources de la base |
+| Parité du build | SHA256 identiques pour 30 fichiers ; `assets/site.js` seul modifié par le typage et les gardes DOM, copie publiée conforme à la source |
 | Vite 8.3.0, HTTP local | 15 pages HTML publiques, module navigateur et client HMR : HTTP 200 ; entrées configurées vérifiées |
 | Vite 8.3.0, prévisualisation | 31 fichiers publics : HTTP 200 et SHA256 conformes au build |
 | Express 5.2.1, HTTP local | Accueil : HTTP 200 ; configuration Google absente : erreur attendue, sans appel Google |
@@ -149,7 +170,7 @@ temporaire du worktree. Les vérifications finales utilisent ces deux versions.
 
 La comparaison du build utilise la même convention de fins de ligne Windows
 pour les deux checkouts et exécute la génération du catalogue dans les deux cas.
-Les fichiers de contenu du dépôt ne changent pas. Les journaux et inventaires
+Les pages HTML et les visuels ne changent pas. Les journaux et inventaires
 bruts sont conservés localement dans `tmp/evidence/` (ignoré par Git).
 
 Après retrait d'Axios, l'installation propre, les 45 tests, le build du site,
@@ -163,6 +184,15 @@ Après corrections serveur, les 51 tests et le build ont été exécutés ensemb
 des 31 SHA256 (`server-smoke.log`). Les dépendances et lockfiles sont inchangés :
 installation propre et audits précédents réutilisables. Les archives des deux
 prototypes ont été comparées au contenu de la révision précédente.
+
+Après ajout du typage site/serveur : nouvelle installation propre, 54 tests,
+build et audit racine sans alerte (`checkjs-ci.log`, `checkjs-site-test.log`,
+`checkjs-audit.json`). HTTP Vite/preview/Express et fichiers publiés vérifiés
+(`checkjs-smoke.log`). Les contre-preuves utilisent des copies temporaires
+(`checkjs-counterproof.log`). Le typage et les 4 tests Worker ont été réexécutés
+pour vérifier l'effet possible des nouveaux types installés dans le dossier
+parent (`checkjs-worker-typecheck.log`, `checkjs-worker-test.log`). Le build
+Wrangler et actionlint précédents restent réutilisables, leurs périmètres inchangés.
 
 Ce sont des preuves locales Windows : aucune exécution CI Linux de ce candidat,
 aucune preuve navigateur interactive, aucune vérification d'un Worker ou d'un

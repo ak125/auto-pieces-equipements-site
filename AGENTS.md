@@ -13,3 +13,7 @@
   documentaires, sans fonctions actives ni avis fictifs de secours.
 - Servir uniquement les fichiers de `publicFiles` et les routes explicitement
   déclarées. Rendre les données externes avec les API DOM/textContent.
+- Maintenir `npm run typecheck` vert : JavaScript actif vérifié en mode strict,
+  environnements DOM et Node séparés, types Node alignés sur le runtime 24.
+  Contrôler les JSON externes comme `unknown` ; ne pas masquer les erreurs avec
+  `@ts-ignore`, `@ts-nocheck` ou un type `any` ajouté pour contourner le contrôle.
