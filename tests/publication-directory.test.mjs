@@ -14,14 +14,21 @@ test('publication scripts use their repository and preserve an unrelated working
   t.after(() => rmSync(fixture, { recursive: true, force: true }));
   const project = path.join(fixture, 'project');
   const unrelated = path.join(fixture, 'unrelated');
-  const scripts = ['site-config.mjs', 'catalog-content.mjs', 'render-catalog-pages.mjs', 'build-static.mjs', 'validate-site.mjs'];
-  for (const file of [...publicFiles, ...scripts.map(file => `scripts/${file}`)]) {
+  const scripts = ['site-config.mjs', 'catalog-content.mjs', 'store-hours.mjs', 'render-catalog-pages.mjs', 'build-static.mjs', 'validate-site.mjs'];
+  for (const file of [...publicFiles, 'data/store-hours.json', ...scripts.map(file => `scripts/${file}`)]) {
     const target = path.join(project, file);
     mkdirSync(path.dirname(target), { recursive: true });
     copyFileSync(path.join(repository, file), target);
   }
   execFileSync('git', ['init', '--quiet', '--template='], { cwd: project });
   execFileSync('git', ['-c', 'core.autocrlf=false', 'add', '.'], { cwd: project });
+
+  // A source-only change must reach the home page, every catalog page and JSON-LD.
+  const hoursPath = path.join(project, 'data/store-hours.json');
+  const hours = JSON.parse(readFileSync(hoursPath, 'utf8'));
+  hours.weekly[0].periods = [['10:00', '18:00']];
+  hours.exceptions = { '2026-12-25': [] };
+  writeFileSync(hoursPath, JSON.stringify(hours));
 
   const run = (script, cwd) => {
     const result = spawnSync(process.execPath, [path.join(project, 'scripts', script)], {
@@ -43,6 +50,7 @@ test('publication scripts use their repository and preserve an unrelated working
   run('render-catalog-pages.mjs', unrelated);
   run('build-static.mjs', unrelated);
   run('validate-site.mjs', unrelated);
+  assert.match(readFileSync(path.join(project, 'dist', 'index.html'), 'utf8'), /25\/12\/2026<\/dt><dd>Fermé/);
 
   for (const [file, content] of expected) {
     assert.deepEqual(readFileSync(path.join(project, 'dist', file)), content, file);

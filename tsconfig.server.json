@@ -18,9 +18,11 @@
     "server/google-places.cjs",
     "scripts/site-config.mjs",
     "scripts/catalog-content.mjs",
+    "scripts/store-hours.mjs",
     "scripts/render-catalog-pages.mjs",
     "scripts/build-static.mjs",
     "scripts/validate-site.mjs",
+    "scripts/verify-publication.mjs",
     "scripts/check-http-policy.mjs",
     "scripts/check-toolchain.mjs",
     "vite.config.mjs"

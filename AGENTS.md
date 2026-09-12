@@ -20,6 +20,13 @@
 - Les scripts de publication résolvent leur racine depuis `import.meta.url`.
   Ne pas utiliser le dossier de lancement pour choisir le `dist` à reconstruire.
   Maintenir le catalogue et les scripts de publication dans le typage strict.
+- Les horaires proviennent de `data/store-hours.json` ; générer les pages après
+  modification et conserver bandeau, affichage et données structurées cohérents.
+  Ne pas inventer de fermeture exceptionnelle. Les exceptions remplacent les
+  horaires habituels de la date concernée, dans le fuseau Europe/Paris.
+- Le contrôle après publication compare le site à l'artefact du même déploiement.
+  Conserver délais, nombre de tentatives et concurrence bornés ; ne pas ignorer
+  les différences de contenu ni les erreurs finales du contrôle.
 - Une mise à niveau du socle doit garder `.nvmrc`, les bornes Node/npm des deux
   manifestes, `packageManager`, TypeScript et les types Node cohérents.
   Le contrôle partagé couvre aussi l'installation et les tests du Worker.

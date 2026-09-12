@@ -1,18 +1,33 @@
-/** @type {Record<number, [number, number][]>} */
-const hours = {
-  1: [[570, 1110]],
-  2: [[570, 1110]],
-  3: [[570, 1110]],
-  4: [[570, 1110]],
-  5: [[570, 810], [870, 1110]],
-  6: [[570, 960]],
-  7: []
-};
+/** @param {unknown} value @returns {value is Record<string, unknown>} */
+function isRecord(value) {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function readStoreHours() {
+  try {
+    /** @type {unknown} */
+    const value = JSON.parse(document.querySelector('[data-store-hours]')?.textContent ?? 'null');
+    return isRecord(value) && value.timeZone === 'Europe/Paris' && isRecord(value.weekly) && isRecord(value.exceptions)
+      ? { weekly: value.weekly, exceptions: value.exceptions } : null;
+  } catch {
+    return null;
+  }
+}
+const storeHours = readStoreHours();
+
+/** @param {unknown} value @returns {value is [number, number][]} */
+function validPeriods(value) {
+  return Array.isArray(value) && value.every(period => Array.isArray(period) && period.length === 2 &&
+    Number.isInteger(period[0]) && Number.isInteger(period[1]) && period[0] >= 0 && period[1] < 1440 && period[0] < period[1]);
+}
 
 function parisNow() {
   const parts = new Intl.DateTimeFormat('fr-FR', {
     timeZone: 'Europe/Paris',
     weekday: 'short',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
     hourCycle: 'h23'
@@ -21,6 +36,7 @@ function parisNow() {
   /** @type {Record<string, number>} */
   const dayByName = { lun: 1, mar: 2, mer: 3, jeu: 4, ven: 5, sam: 6, dim: 7 };
   return {
+    date: `${values.year}-${values.month}-${values.day}`,
     day: dayByName[values.weekday?.replace('.', '').toLowerCase() ?? ''] ?? 0,
     minutes: Number(values.hour) * 60 + Number(values.minute)
   };
@@ -37,10 +53,14 @@ function updateOpeningStatus() {
   const status = document.querySelector('[data-opening-status]');
   if (!status) return;
   const now = parisNow();
-  const currentWindow = (hours[now.day] || []).find(([start, end]) => now.minutes >= start && now.minutes < end);
-  const message = currentWindow
+  const exceptional = storeHours && Object.hasOwn(storeHours.exceptions, now.date);
+  const periods = exceptional ? storeHours.exceptions[now.date] : storeHours?.weekly[now.day];
+  const valid = validPeriods(periods);
+  const currentWindow = valid ? periods.find(([start, end]) => now.minutes >= start && now.minutes < end) : undefined;
+  const message = !valid ? 'Consultez les horaires du magasin avant votre déplacement.' : currentWindow
     ? `Magasin ouvert — fermeture à ${formatTime(currentWindow[1])}. Appelez pour vérifier la disponibilité d'une pièce.`
-    : 'Magasin actuellement fermé — consultez les horaires ou laissez un message sur WhatsApp.';
+    : exceptional ? 'Magasin exceptionnellement fermé — consultez les horaires ou laissez un message sur WhatsApp.'
+      : 'Magasin actuellement fermé — consultez les horaires ou laissez un message sur WhatsApp.';
   // The status is a live region: only announce an actual change.
   if (status.textContent !== message) status.textContent = message;
   status.classList.toggle('is-open', Boolean(currentWindow));

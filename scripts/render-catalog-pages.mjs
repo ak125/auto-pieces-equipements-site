@@ -1,9 +1,11 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { catalogPages } from './catalog-content.mjs';
+import { loadStoreHours, renderHoursTable, hoursStructuredData, renderHoursData, refreshHomeHours } from './store-hours.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+const storeHours = await loadStoreHours();
 const baseUrl = 'https://auto-pieces-equipements.fr';
 const phoneDisplay = '01 48 47 96 27';
 const phoneHref = 'tel:+33148479627';
@@ -107,12 +109,7 @@ function footer(page) {
           </figure>
           <div class="hours-card">
           <h3>Horaires d’ouverture</h3>
-          <dl>
-            <dt>Lundi–jeudi</dt><dd>9h30–18h30</dd>
-            <dt>Vendredi</dt><dd>9h30–13h30<br>14h30–18h30</dd>
-            <dt>Samedi</dt><dd>9h30–16h00</dd>
-            <dt>Dimanche</dt><dd>Fermé</dd>
-          </dl>
+          ${renderHoursTable(storeHours)}
           </div>
         </div>
       </div>
@@ -135,6 +132,7 @@ function footer(page) {
       <a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">WhatsApp</a>
     </nav>
     <a class="floating-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener" aria-label="Demander une pièce sur WhatsApp">WhatsApp</a>
+    ${renderHoursData(storeHours)}
     <script src="/assets/site.js" defer></script>`;
 }
 
@@ -161,12 +159,7 @@ function structuredData(page) {
           addressCountry: 'FR'
         },
         geo: { '@type': 'GeoCoordinates', latitude: 48.91012, longitude: 2.51387 },
-        openingHoursSpecification: [
-          { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:30', closes: '18:30' },
-          { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '09:30', closes: '13:30' },
-          { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '14:30', closes: '18:30' },
-          { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:30', closes: '16:00' }
-        ],
+        ...hoursStructuredData(storeHours),
         areaServed: ['Les Pavillons-sous-Bois', 'Bondy', 'Livry-Gargan', 'Le Raincy', 'Villemomble', 'Noisy-le-Sec'].map((name) => ({ '@type': 'City', name }))
       },
       {
@@ -354,6 +347,9 @@ function renderPage(page) {
 `.replace(/[ \t]+$/gm, '');
 }
 
+const homePath = path.join(root, 'index.html');
+const home = refreshHomeHours(await readFile(homePath, 'utf8'), storeHours);
+await writeFile(homePath, home, 'utf8');
 for (const page of catalogPages) {
   await writeFile(path.join(root, page.slug), renderPage(page), 'utf8');
 }
