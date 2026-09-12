@@ -14,16 +14,52 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
           cache: 'npm'
+
+      - name: Setup npm
+        run: npm install --global npm@12.0.2
 
       - name: Install dependencies
         run: npm ci
 
       - name: Validate public files, content and secrets
         run: npm test
+
+  worker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: google-places-proxy
+    env:
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: 'google-places-proxy/package-lock.json'
+
+      - name: Setup npm
+        run: npm install --global npm@12.0.2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck Worker and tests
+        run: npm run typecheck
+
+      - name: Test Worker locally
+        run: npm test
+
+      - name: Build Worker without deploying
+        run: npm run build
