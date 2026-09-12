@@ -1,8 +1,9 @@
 import { copyFile, mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { publicFiles } from './site-config.mjs';
 
-const root = process.cwd();
+const root = fileURLToPath(new URL('../', import.meta.url));
 const outputDirectory = path.join(root, 'dist');
 
 await rm(outputDirectory, { recursive: true, force: true });

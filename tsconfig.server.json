@@ -17,6 +17,10 @@
     "server/server.js",
     "server/google-places.cjs",
     "scripts/site-config.mjs",
+    "scripts/catalog-content.mjs",
+    "scripts/render-catalog-pages.mjs",
+    "scripts/build-static.mjs",
+    "scripts/validate-site.mjs",
     "scripts/check-http-policy.mjs",
     "vite.config.mjs"
   ]

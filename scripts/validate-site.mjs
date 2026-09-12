@@ -1,20 +1,26 @@
 import { execFileSync } from 'node:child_process';
 import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { publicFiles, retiredPages, seoPages } from './site-config.mjs';
 
-const root = process.cwd();
+const root = fileURLToPath(new URL('../', import.meta.url));
 const outputDirectory = path.join(root, 'dist');
+/** @type {string[]} */
 const failures = [];
+/** @type {Map<string, string>} */
 const seenTitles = new Map();
+/** @type {Map<string, string>} */
 const seenCanonicals = new Map();
 const passwordPrefix = ['GOOGLE', 'PASSWORD'].join('_') + '=';
 const passwordPattern = new RegExp(
   `${passwordPrefix}(?!VOTRE_MOT_DE_PASSE\\b|your-google-password\\b|<[^>]+>)[^\\s\"'\\x60]+`
 );
 
+/** @param {string} value */
 const normalize = (value) => value.split(path.sep).join('/');
 
+/** @param {string} directory @param {string} [base] @returns {Promise<string[]>} */
 async function walk(directory, base = directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
@@ -29,10 +35,12 @@ async function walk(directory, base = directory) {
   return files;
 }
 
+/** @param {string} content @param {RegExp} pattern @param {string} message */
 function requireMatch(content, pattern, message) {
   if (!pattern.test(content)) failures.push(message);
 }
 
+/** @param {string} content @param {RegExp} pattern @param {string} message */
 function forbidMatch(content, pattern, message) {
   if (pattern.test(content)) failures.push(message);
 }
@@ -73,9 +81,9 @@ for (const page of seoPages) {
 
   for (const match of content.matchAll(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi)) {
     try {
-      JSON.parse(match[1]);
+      JSON.parse(match[1] ?? '');
     } catch (error) {
-      failures.push(`${page}: JSON-LD invalide (${error.message})`);
+      failures.push(`${page}: JSON-LD invalide (${error instanceof Error ? error.message : 'erreur inconnue'})`);
     }
   }
 
@@ -107,9 +115,9 @@ const deployedHtml = (
 for (const page of publicFiles.filter((file) => file.endsWith('.html'))) {
   const content = await readFile(path.join(outputDirectory, page), 'utf8');
   for (const match of content.matchAll(/href=["']([^"']+)["']/gi)) {
-    const href = match[1];
+    const href = match[1] ?? '';
     if (/^(?:https?:|tel:|mailto:|#)/i.test(href)) continue;
-    const target = href.split('#')[0].split('?')[0];
+    const target = href.split(/[?#]/)[0];
     if (!target || target === '/') continue;
     const relativeTarget = target.replace(/^\//, '');
     if (!publicFiles.includes(relativeTarget)) {
@@ -137,7 +145,7 @@ forbidMatch(deployedHtml, /confirm\s*\(.*GPS/is, 'Une sollicitation GPS intrusiv
 forbidMatch(deployedHtml, /cdn\.tailwindcss\.com|fonts\.googleapis\.com|cdnjs\.cloudflare\.com|images\.unsplash\.com/i, 'Une dépendance d’affichage distante est encore présente');
 
 const localAssetReferences = [...deployedHtml.matchAll(/(?:src|href)=["']\/(assets\/[^"']+)["']/gi)]
-  .map((match) => match[1]);
+  .flatMap((match) => match[1] ? [match[1]] : []);
 for (const asset of new Set(localAssetReferences)) {
   if (!publicFiles.includes(asset)) {
     failures.push(`${asset}: ressource locale référencée mais absente de la liste publique`);
@@ -168,7 +176,7 @@ for (const file of trackedFiles) {
   try {
     buffer = await readFile(path.join(root, file));
   } catch (error) {
-    if (error.code === 'ENOENT') continue;
+    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') continue;
     throw error;
   }
   if (buffer.includes(0)) continue;

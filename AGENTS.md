@@ -17,3 +17,6 @@
   environnements DOM et Node séparés, types Node alignés sur le runtime 24.
   Contrôler les JSON externes comme `unknown` ; ne pas masquer les erreurs avec
   `@ts-ignore`, `@ts-nocheck` ou un type `any` ajouté pour contourner le contrôle.
+- Les scripts de publication résolvent leur racine depuis `import.meta.url`.
+  Ne pas utiliser le dossier de lancement pour choisir le `dist` à reconstruire.
+  Maintenir le catalogue et les scripts de publication dans le typage strict.

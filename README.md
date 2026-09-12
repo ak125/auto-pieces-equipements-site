@@ -40,6 +40,11 @@ Les tests vérifient le refus des imports, CDN, alias npm et dépendances indire
 Vite 8 utilise `vite.config.mjs`. Le scan des dépendances couvre les pages HTML
 de la liste publique partagée avec le build statique.
 
+Les scripts `render-catalog-pages.mjs`, `build-static.mjs` et `validate-site.mjs`
+résolvent la racine depuis leur propre emplacement. Un lancement par chemin
+absolu depuis un autre dossier génère, reconstruit et valide le même dépôt ;
+le répertoire `dist` du dossier de lancement est préservé.
+
 ## Contrôle de types du JavaScript actif
 
 `npm run typecheck` contrôle les fichiers JavaScript actifs sans les convertir
@@ -49,7 +54,8 @@ par les workflows qualité et publication.
 - `tsconfig.browser.json` : `assets/site.js` et `server/reviews-test.js`, avec
   les API DOM et sans les variables globales Node.
 - `tsconfig.server.json` : serveur, points d'entrée, helper fetch, politique HTTP,
-  liste publique et configuration Vite, avec les types Node 24 et sans le DOM.
+  liste publique, données du catalogue, génération, build, validation et
+  configuration Vite, avec les types Node 24 et sans le DOM.
 
 Les deux activent `strict`, `checkJs` et `noUncheckedIndexedAccess`, sans émission.
 Les paramètres sont documentés en JSDoc ; les données JSON externes restent

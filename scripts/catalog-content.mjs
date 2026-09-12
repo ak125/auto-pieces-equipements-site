@@ -1,3 +1,32 @@
+/**
+ * @typedef {object} CatalogProduct
+ * @property {string} title
+ * @property {string} description
+ * @property {string[]} bullets
+ * @property {string} [image]
+ * @property {string} [link]
+ * @property {string} [price]
+ *
+ * @typedef {object} CatalogPage
+ * @property {string} slug
+ * @property {string} navLabel
+ * @property {string} eyebrow
+ * @property {string} title
+ * @property {string} metaDescription
+ * @property {string} h1
+ * @property {string} intro
+ * @property {string} image
+ * @property {string} imageAlt
+ * @property {string} sectionTitle
+ * @property {string} sectionIntro
+ * @property {CatalogProduct[]} products
+ * @property {string} guideTitle
+ * @property {string} guideIntro
+ * @property {string[]} guideItems
+ * @property {{question: string, answer: string}[]} faq
+ */
+
+/** @type {CatalogPage[]} */
 export const catalogPages = [
   {
     slug: 'pieces-auto-les-pavillons-sous-bois.html',
