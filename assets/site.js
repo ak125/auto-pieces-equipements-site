@@ -63,23 +63,34 @@ function setupNavigation() {
   const button = document.querySelector('[data-menu-button]');
   const navigation = document.querySelector('[data-mobile-nav]');
   if (!button || !navigation) return;
+  function setOpen(open) {
+    button.setAttribute('aria-expanded', String(open));
+    navigation.classList.toggle('is-open', open);
+  }
+  function contains(node) {
+    return button.contains(node) || navigation.contains(node);
+  }
   button.addEventListener('click', () => {
-    const open = button.getAttribute('aria-expanded') === 'true';
-    button.setAttribute('aria-expanded', String(!open));
-    navigation.classList.toggle('is-open', !open);
+    setOpen(button.getAttribute('aria-expanded') !== 'true');
   });
   navigation.addEventListener('click', (event) => {
     if (!event.target.closest('a')) return;
-    button.setAttribute('aria-expanded', 'false');
-    navigation.classList.remove('is-open');
+    setOpen(false);
   });
   function closeOnEscape(event) {
     if (event.key !== 'Escape' || button.getAttribute('aria-expanded') !== 'true') return;
     event.preventDefault();
-    button.setAttribute('aria-expanded', 'false');
-    navigation.classList.remove('is-open');
+    setOpen(false);
     button.focus();
   }
+  function closeOnFocusOut(event) {
+    if (!contains(event.relatedTarget)) setOpen(false);
+  }
+  document.addEventListener('click', (event) => {
+    if (!contains(event.target)) setOpen(false);
+  });
+  button.addEventListener('focusout', closeOnFocusOut);
+  navigation.addEventListener('focusout', closeOnFocusOut);
   button.addEventListener('keydown', closeOnEscape);
   navigation.addEventListener('keydown', closeOnEscape);
 }

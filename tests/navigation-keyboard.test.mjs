@@ -66,6 +66,7 @@ function page({ withMenu = true } = {}) {
   const button = element('BUTTON', body);
   const navigation = element('NAV', body);
   const link = element('A', navigation);
+  const nextLink = element('A', navigation);
   const label = element('SPAN', link);
   const outside = element('INPUT', body);
   button.setAttribute('aria-expanded', 'false');
@@ -75,7 +76,7 @@ function page({ withMenu = true } = {}) {
     : null;
   document.querySelectorAll = () => [];
   vm.runInNewContext(source, { document, window, Date, Intl }, { filename: 'assets/site.js' });
-  return { document, button, navigation, link, label, outside };
+  return { document, button, navigation, link, nextLink, label, outside };
 }
 
 function assertOpen(page, expected) {
@@ -150,4 +151,80 @@ test('Escape on a closed menu does not consume the key or move focus', () => {
 
 test('pages without mobile navigation initialize without errors', () => {
   assert.doesNotThrow(() => page({ withMenu: false }));
+});
+
+function moveFocus(p, from, to) {
+  from.focus();
+  if (to) to.focus();
+  else p.document.activeElement = p.document;
+  const event = from.emit('focusout', { relatedTarget: to });
+  assert.equal(event.defaultPrevented, false);
+  assert.equal(p.document.activeElement, to ?? p.document);
+}
+
+test('leaving a menu link for page content closes navigation without stealing focus', () => {
+  const p = page();
+  p.button.emit('click');
+  moveFocus(p, p.link, p.outside);
+  assertOpen(p, false);
+});
+
+test('leaving the open menu button for page content closes navigation', () => {
+  const p = page();
+  p.button.emit('click');
+  moveFocus(p, p.button, p.outside);
+  assertOpen(p, false);
+});
+
+test('moving from the menu button into its links keeps navigation open', () => {
+  const p = page();
+  p.button.emit('click');
+  moveFocus(p, p.button, p.link);
+  assertOpen(p, true);
+});
+
+test('moving between navigation links keeps navigation open', () => {
+  const p = page();
+  p.button.emit('click');
+  moveFocus(p, p.link, p.nextLink);
+  assertOpen(p, true);
+});
+
+test('returning from a link to the menu button keeps navigation open', () => {
+  const p = page();
+  p.button.emit('click');
+  moveFocus(p, p.link, p.button);
+  assertOpen(p, true);
+});
+
+test('focus leaving the document closes navigation without moving focus back', () => {
+  const p = page();
+  p.button.emit('click');
+  moveFocus(p, p.link, null);
+  assertOpen(p, false);
+});
+
+test('an outside click closes navigation even when opening did not move focus', () => {
+  const p = page();
+  const initialFocus = p.document.activeElement;
+  p.button.emit('click');
+  const event = p.outside.emit('click');
+  assertOpen(p, false);
+  assert.equal(event.defaultPrevented, false);
+  assert.equal(p.document.activeElement, initialFocus);
+});
+
+test('clicking navigation background keeps the menu open', () => {
+  const p = page();
+  p.button.emit('click');
+  p.navigation.emit('click');
+  assertOpen(p, true);
+});
+
+test('returning focus to the button then clicking closes without reopening', () => {
+  const p = page();
+  p.button.emit('click');
+  moveFocus(p, p.link, p.button);
+  p.button.emit('click');
+  assertOpen(p, false);
 });
