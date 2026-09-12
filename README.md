@@ -97,6 +97,16 @@ pour simuler cache ancien, contenu incorrect, fichier absent, chemin privé expo
 et réponse bloquée. Références : [horaires exceptionnels Schema.org](https://schema.org/specialOpeningHoursSpecification)
 et [horaires LocalBusiness Google](https://developers.google.com/search/docs/appearance/structured-data/local-business).
 
+## Liens et ressources du site publié
+
+La validation de `dist/` vérifie les attributs `href` et `src` locaux, y compris
+les URL absolues du même domaine, ainsi que les ancres dans la page cible.
+Une page ou ressource non publiée, une ancre absente ou un identifiant HTML
+dupliqué fait échouer `npm test` et la CI. Le contrôle lit le HTML statique généré,
+ignore commentaires et contenu textuel des scripts, et ne contacte aucun service
+externe. Il ne remplace pas une vérification des liens externes ou du navigateur.
+Les références dans CSS et `srcset` ne font pas partie de ce contrôle.
+
 ## Contrôle de types du JavaScript actif
 
 `npm run typecheck` contrôle les fichiers JavaScript actifs sans les convertir
