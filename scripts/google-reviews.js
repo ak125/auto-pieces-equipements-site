@@ -342,7 +342,6 @@ function formatDate(timestamp) {
  * 2. Option Node.js: Créer un petit serveur Node.js qui fait la même chose
  *    ```javascript
  *    const express = require('express');
- *    const axios = require('axios');
  *    const fs = require('fs');
  *    const app = express();
  *    
@@ -362,14 +361,17 @@ function formatDate(timestamp) {
  *        }
  *        
  *        // Récupérer nouvelles données
- *        const response = await axios.get(
- *          `https://maps.googleapis.com/maps/api/place/details/json?place_id=VOTRE_PLACE_ID&fields=reviews,rating,user_ratings_total&key=VOTRE_CLE_API`
+ *        const response = await fetch(
+ *          `https://maps.googleapis.com/maps/api/place/details/json?place_id=VOTRE_PLACE_ID&fields=reviews,rating,user_ratings_total&key=VOTRE_CLE_API`,
+ *          { signal: AbortSignal.timeout(10_000) }
  *        );
+ *        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+ *        const data = await response.json();
  *        
  *        // Sauvegarder dans le cache
- *        fs.writeFileSync(cacheFile, JSON.stringify(response.data));
+ *        fs.writeFileSync(cacheFile, JSON.stringify(data));
  *        
- *        res.send(response.data);
+ *        res.send(data);
  *      } catch (error) {
  *        res.status(500).send({ error: 'Erreur serveur' });
  *      }

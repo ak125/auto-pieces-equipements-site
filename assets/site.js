@@ -1,3 +1,4 @@
+/** @type {Record<number, [number, number][]>} */
 const hours = {
   1: [[570, 1110]],
   2: [[570, 1110]],
@@ -17,13 +18,15 @@ function parisNow() {
     hourCycle: 'h23'
   }).formatToParts(new Date());
   const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  /** @type {Record<string, number>} */
   const dayByName = { lun: 1, mar: 2, mer: 3, jeu: 4, ven: 5, sam: 6, dim: 7 };
   return {
-    day: dayByName[values.weekday.replace('.', '').toLowerCase()],
+    day: dayByName[values.weekday?.replace('.', '').toLowerCase() ?? ''] ?? 0,
     minutes: Number(values.hour) * 60 + Number(values.minute)
   };
 }
 
+/** @param {number} minutes */
 function formatTime(minutes) {
   const hour = Math.floor(minutes / 60);
   const minute = minutes % 60;
@@ -45,6 +48,7 @@ function updateOpeningStatus() {
 
 function setupOpeningStatus() {
   if (!document.querySelector('[data-opening-status]')) return;
+  /** @type {number | undefined} */
   let timer;
   function refresh() {
     window.clearTimeout(timer);
@@ -63,26 +67,29 @@ function setupNavigation() {
   const button = document.querySelector('[data-menu-button]');
   const navigation = document.querySelector('[data-mobile-nav]');
   if (!button || !navigation) return;
-  function setOpen(open) {
+  if (!(button instanceof HTMLElement) || !(navigation instanceof HTMLElement)) return;
+  /** @param {boolean} open */
+  const setOpen = (open) => {
     button.setAttribute('aria-expanded', String(open));
     navigation.classList.toggle('is-open', open);
-  }
-  function contains(node) {
-    return button.contains(node) || navigation.contains(node);
-  }
+  };
+  /** @param {EventTarget | null} node */
+  const contains = (node) => node instanceof Node && (button.contains(node) || navigation.contains(node));
   button.addEventListener('click', () => {
     setOpen(button.getAttribute('aria-expanded') !== 'true');
   });
   navigation.addEventListener('click', (event) => {
-    if (!event.target.closest('a')) return;
+    if (!(event.target instanceof Element) || !event.target.closest('a')) return;
     setOpen(false);
   });
-  function closeOnEscape(event) {
+  /** @param {KeyboardEvent} event */
+  const closeOnEscape = (event) => {
     if (event.key !== 'Escape' || button.getAttribute('aria-expanded') !== 'true') return;
     event.preventDefault();
     setOpen(false);
     button.focus();
-  }
+  };
+  /** @param {FocusEvent} event */
   function closeOnFocusOut(event) {
     if (!contains(event.relatedTarget)) setOpen(false);
   }
