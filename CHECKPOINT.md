@@ -1,31 +1,34 @@
-# Checkpoint — Scripts de publication, 12 septembre 2026
+# Checkpoint — Horaires et publication, 12 septembre 2026
 
-Objectif : fiabiliser la génération, le build et la validation, puis étendre leur typage strict.
-Base : main f09badd55a82593b49774d7810716006893faf6c, issu de la PR #16 fusionnée.
-La publication de cette base avait été vérifiée : Pages et qualité verts,
-31 fichiers publics conformes à l'artefact, menu mobile et clavier fonctionnels.
+Objectif : centraliser les horaires avec exceptions datées et contrôler le contenu après Pages.
+Base : main 24bba07 (PR #17 publiée). Branche codex/store-hours-publication-checks-20260912.
+La PR #18, alignement du socle, reste indépendante et n'est pas intégrée à ce lot.
 
-Lot actuel : codex/harden-publication-scripts-20260912, worktree auto-pieces-node24-20260912.
-Les trois scripts résolvent la racine depuis import.meta.url. Ils ne choisissent
-plus le dossier de génération ni le dist à effacer à partir du dossier de lancement.
-Typage strict étendu aux données du catalogue, au générateur, au build et au validateur.
-Catalogue documenté en JSDoc ; accès optionnels et erreurs inconnues traités explicitement.
-README et AGENTS mis à jour. Aucune dépendance ni aucun workflow modifié.
+Horaires : data/store-hours.json, mêmes créneaux habituels, exceptions vides.
+Le générateur actualise accueil, 11 pages catalogue, tables visibles, JSON embarqué
+pour le bandeau et données structurées. Exceptions par date Paris : fermeture ou
+créneaux de remplacement. Validation des dates/jours/créneaux avant écriture.
+Le bandeau utilise le calendrier Paris, avec repli neutre si configuration invalide.
+Validation du build : affichage, bandeau et JSON-LD doivent correspondre à la source.
 
-Vérifié localement : npm test (politique HTTP, typage, 55 tests, build, validation).
-Un test isolé exécute les trois scripts depuis un autre dossier : il vérifie la
-régénération des pages, les 31 fichiers de sortie et la préservation d'un autre dist.
-Contre-preuves : ce test échoue avec l'ancien process.cwd() ; un slug numérique
-est refusé par TypeScript (TS2322). Les 31 fichiers publics restent identiques
-à l'artefact de f09badd après normalisation des fins de ligne des fichiers texte.
-Preuves : tmp/evidence/publication-site-test.log, publication-directory-counterproof.log,
-publication-types-counterproof.log et publication-parity.json.
+Publication : nouveau job verify après deploy, archive github-pages du même run,
+download-artifact 8.0.1 (action.yml officiel vérifié). SHA256 des 31 fichiers publics
+et quatre chemins privés HTTP 404. fetch natif, concurrence 5, timeout 8 s sur corps
+inclus, 6 tentatives espacées de 15 s, job limité à 10 min. JSON dans les journaux,
+échec final rend le workflow rouge ; pas de retour arrière automatique.
 
-Les validations précédentes du Worker restent réutilisables : sources, dépendances
-et configuration inchangées. Aucun besoin de rejouer une preuve navigateur pour
-ce lot de scripts sans changement du contenu publié.
+Vérifié local : npm test, typage strict et 78 tests verts, build/validation verts.
+Test d'intégration actualisé réexécuté : changement de la source seule propagé
+sur toutes les pages ; dossier de lancement préservé. Scénarios cache ancien,
+contenu incorrect, 404 public, exposition privée et corps bloqué couverts.
+Actionlint vert. Navigateur local : horaires bureau/mobile corrects, console vide.
+Vérificateur HTTP : 35/35 contre le candidat local et 35/35 contre l'artefact de
+la production existante 24bba07. Aucun nouveau déploiement effectué.
+Preuves : tmp/evidence/hours-publication-*, hours-source-integration-test.log.
+Dépendances et lockfiles inchangés ; validations Worker précédentes réutilisables.
 
-Prochaine action : publier une PR brouillon et vérifier sa CI Linux.
-Résultat distant à consigner dans tmp/evidence/publication-ci-checkpoint.md.
-La fusion et la publication de ce nouveau lot ne sont pas effectuées.
-Checkout initial et note utilisateur préservés ; autres projets inchangés.
+Documentation : README et AGENTS. Références : Schema.org horaires exceptionnels,
+Google LocalBusiness et action download-artifact. Aucune fermeture inventée.
+Suite : publier PR brouillon et vérifier CI Linux exacte ; résultat dans
+ tmp/evidence/hours-publication-ci-checkpoint.md. Le nouveau job Pages sera validé
+lors d'une publication ultérieure. Checkout initial et note utilisateur préservés.

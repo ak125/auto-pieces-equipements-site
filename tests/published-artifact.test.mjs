@@ -16,7 +16,7 @@ test('validation checks the published artifact independently of its source', asy
     mkdirSync(path.dirname(destination), { recursive: true });
     copyFileSync(source, destination);
   };
-  for (const file of [...publicFiles, 'scripts/site-config.mjs', 'scripts/validate-site.mjs']) {
+  for (const file of [...publicFiles, 'data/store-hours.json', 'scripts/site-config.mjs', 'scripts/store-hours.mjs', 'scripts/validate-site.mjs']) {
     copy(path.join(repository, file), path.join(fixture, file));
   }
   // Keep the real tracked-source checks operational in this isolated fixture.
@@ -39,6 +39,7 @@ test('validation checks the published artifact independently of its source', asy
 
   const scenarios = [
     ['missing title', 'index.html', /<title>[^<]+<\/title>/, '', /index\.html: titre manquant/],
+    ['stale opening hours', 'index.html', /9h30–18h30/, '10h00–18h30', /horaires affichés/],
     ['missing canonical', 'index.html', /<link rel="canonical"[^>]+>/, '', /index\.html: URL canonique manquante/],
     ['invalid structured data', 'index.html', /(<script type="application\/ld\+json">)[\s\S]*?(<\/script>)/, '$1{invalid}$2', /index\.html: JSON-LD invalide/],
     ['unapproved price', 'index.html', /<\/body>/, '<p>123 €</p></body>', /index\.html: prix non validé/],

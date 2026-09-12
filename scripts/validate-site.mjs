@@ -3,9 +3,11 @@ import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { publicFiles, retiredPages, seoPages } from './site-config.mjs';
+import { loadStoreHours, publishedHoursMatch } from './store-hours.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const outputDirectory = path.join(root, 'dist');
+const storeHours = await loadStoreHours();
 /** @type {string[]} */
 const failures = [];
 /** @type {Map<string, string>} */
@@ -55,6 +57,7 @@ if (JSON.stringify(builtFiles) !== JSON.stringify(expectedFiles)) {
 for (const page of seoPages) {
   // Validate the artifact uploaded by Pages, not its source copy.
   const content = await readFile(path.join(outputDirectory, page), 'utf8');
+  if (!publishedHoursMatch(content, storeHours)) failures.push(`${page}: horaires affichés, bandeau ou données structurées divergents de la source commune`);
   requireMatch(content, /<title>[^<]+<\/title>/i, `${page}: titre manquant`);
   requireMatch(content, /<meta\s+name="description"\s+content="[^"]+"/i, `${page}: meta description manquante`);
   requireMatch(content, /<link\s+rel="canonical"\s+href="https:\/\/auto-pieces-equipements\.fr\//i, `${page}: URL canonique manquante`);

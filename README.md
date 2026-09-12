@@ -45,6 +45,48 @@ résolvent la racine depuis leur propre emplacement. Un lancement par chemin
 absolu depuis un autre dossier génère, reconstruit et valide le même dépôt ;
 le répertoire `dist` du dossier de lancement est préservé.
 
+## Horaires du magasin
+
+`data/store-hours.json` est la source des horaires : jours 1 (lundi) à 7
+(dimanche), créneaux `HH:MM`, fuseau Europe/Paris. `npm run build` actualise
+l'accueil, les pages du catalogue, leurs données structurées et la configuration
+du bandeau. Ne pas modifier les horaires directement dans les pages générées.
+
+`exceptions` contient des dates `AAAA-MM-JJ` : `[]` ferme la journée entière ;
+une liste de créneaux remplace les horaires habituels de cette date. Une exception
+peut aussi ouvrir un dimanche. Les périodes après minuit doivent être réparties
+entre les deux dates. Aucune exception n'est configurée par défaut.
+
+Les dates exceptionnelles sont affichées avec leurs horaires dans le bloc du
+magasin et dans `specialOpeningHoursSpecification`. Renseigner uniquement des
+horaires confirmés ; retirer les anciennes exceptions lorsqu'elles ne sont plus
+utiles à l'affichage. La génération refuse dates impossibles, jours manquants,
+créneaux inversés ou superposés. Le bandeau utilise la date et l'heure de Paris,
+y compris après minuit, et n'annonce pas une ouverture si sa configuration manque.
+
+## Vérification après publication
+
+Le job `verify` du workflow Pages récupère l'archive `github-pages` du même run
+après le déploiement. Il compare les SHA256 des 31 fichiers servis et vérifie
+quatre chemins internes attendus en HTTP 404. Les requêtes utilisent `fetch`
+natif, cinq au maximum simultanément, avec un délai de huit secondes couvrant
+aussi le corps des réponses. Six tentatives au maximum, espacées de quinze secondes,
+laissent le cache se mettre à jour. Le job est limité à dix minutes.
+
+Un contenu incorrect persistant rend le workflow rouge. Le résultat JSON est
+écrit dans le journal du job ; ce contrôle ne déclenche pas de retour arrière
+automatique. Pour réutiliser le vérificateur :
+
+```sh
+node scripts/verify-publication.mjs /chemin/vers/artefact-extrait https://auto-pieces-equipements.fr/
+```
+
+Le dossier fourni doit être celui de l'artefact attendu, pas une reconstruction
+locale pouvant différer du déploiement. Les tests utilisent un serveur HTTP local
+pour simuler cache ancien, contenu incorrect, fichier absent, chemin privé exposé
+et réponse bloquée. Références : [horaires exceptionnels Schema.org](https://schema.org/specialOpeningHoursSpecification)
+et [horaires LocalBusiness Google](https://developers.google.com/search/docs/appearance/structured-data/local-business).
+
 ## Contrôle de types du JavaScript actif
 
 `npm run typecheck` contrôle les fichiers JavaScript actifs sans les convertir

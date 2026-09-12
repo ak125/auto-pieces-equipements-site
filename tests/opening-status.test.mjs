@@ -2,11 +2,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import vm from 'node:vm';
+import { loadStoreHours } from '../scripts/store-hours.mjs';
 
 const source = readFileSync(new URL('../assets/site.js', import.meta.url), 'utf8');
+const storeHours = await loadStoreHours();
 
 // Run the shipped script with a controlled clock and browser event/timer ports.
-function page(instant, { withStatus = true } = {}) {
+function page(instant, { withStatus = true, configuration = JSON.stringify(storeHours) } = {}) {
   let now = Date.parse(instant);
   let nextId = 0;
   let text = '';
@@ -35,7 +37,7 @@ function page(instant, { withStatus = true } = {}) {
   const document = {
     hidden: false,
     get visibilityState() { return this.hidden ? 'hidden' : 'visible'; },
-    querySelector: (selector) => withStatus && selector === '[data-opening-status]' ? status : null,
+    querySelector: (selector) => selector === '[data-store-hours]' ? { textContent: configuration } : withStatus && selector === '[data-opening-status]' ? status : null,
     querySelectorAll: () => [],
     addEventListener: (name, callback) => listen(documentEvents, name, callback)
   };
@@ -161,4 +163,43 @@ test('pages without a status element need no refresh timer', () => {
   browser.hidden(false);
   browser.pageshow();
   assert.equal(browser.timerCount, 0);
+});
+
+test('an exceptional closure overrides a normally open weekday', () => {
+  const configuration = JSON.stringify({ ...storeHours, exceptions: { '2026-09-14': [] } });
+  const browser = page('2026-09-14T10:00:00Z', { configuration });
+  assert.equal(browser.open, false);
+  assert.match(browser.text, /exceptionnellement fermé/);
+});
+
+test('exceptional periods replace the regular schedule, including a Sunday opening', () => {
+  const configuration = JSON.stringify({ ...storeHours, exceptions: { '2026-09-13': [[600, 660], [840, 900]] } });
+  const browser = page('2026-09-13T07:59:59Z', { configuration });
+  assert.equal(browser.open, false);
+  browser.advance('2026-09-13T08:00:00Z');
+  assert.equal(browser.open, true);
+  assert.match(browser.text, /fermeture à 11h/);
+  browser.advance('2026-09-13T09:00:00Z');
+  assert.equal(browser.open, false);
+  browser.advance('2026-09-13T12:00:00Z');
+  assert.equal(browser.open, true);
+});
+
+test('exceptions follow the Paris calendar date across midnight and expire the next day', () => {
+  const configuration = JSON.stringify({ ...storeHours, exceptions: { '2026-09-14': [[0, 30]] } });
+  const browser = page('2026-09-13T21:59:59Z', { configuration });
+  browser.advance('2026-09-13T22:00:00Z');
+  assert.equal(browser.open, true, 'Monday in Paris while still Sunday in UTC');
+  browser.jump('2026-09-15T08:00:00Z');
+  browser.pageshow();
+  assert.equal(browser.open, true, 'Tuesday uses regular hours again');
+  assert.match(browser.text, /18h30/);
+});
+
+test('missing or malformed schedule never claims the shop is open', () => {
+  for (const configuration of ['null', '{invalid', JSON.stringify({ ...storeHours, weekly: { 1: 'invalid' } })]) {
+    const browser = page('2026-09-14T10:00:00Z', { configuration });
+    assert.equal(browser.open, false);
+    assert.match(browser.text, /Consultez les horaires/);
+  }
 });

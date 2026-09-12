@@ -21,88 +21,146 @@
   <meta property="og:image:alt" content="Façade du magasin Auto Pièces Équipements aux Pavillons-sous-Bois">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "AutoPartsStore",
-        "@id": "https://auto-pieces-equipements.fr/#store",
-        "name": "Auto Pièces Équipements",
-        "url": "https://auto-pieces-equipements.fr/",
-        "logo": "https://auto-pieces-equipements.fr/logo.svg",
-        "image": "https://auto-pieces-equipements.fr/assets/images/facade-magasin.jpg",
-        "telephone": "+33148479627",
-        "email": "contact@auto-pieces-equipements.fr",
-        "foundingDate": "2016",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "184 Avenue Aristide Briand",
-          "addressLocality": "Les Pavillons-sous-Bois",
-          "postalCode": "93320",
-          "addressCountry": "FR"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 48.91012,
-          "longitude": 2.51387
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-            "opens": "09:30",
-            "closes": "18:30"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Friday",
-            "opens": "09:30",
-            "closes": "13:30"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Friday",
-            "opens": "14:30",
-            "closes": "18:30"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "09:30",
-            "closes": "16:00"
-          }
-        ],
-        "areaServed": [
-          {"@type": "City", "name": "Les Pavillons-sous-Bois"},
-          {"@type": "City", "name": "Bondy"},
-          {"@type": "City", "name": "Livry-Gargan"},
-          {"@type": "City", "name": "Le Raincy"},
-          {"@type": "City", "name": "Villemomble"},
-          {"@type": "City", "name": "Noisy-le-Sec"}
-        ],
-        "knowsAbout": ["Batteries automobiles", "Freinage automobile", "Filtres automobiles", "Alternateurs", "Démarreurs", "Suspension automobile", "Embrayage", "Huiles moteur"]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AutoPartsStore",
+      "@id": "https://auto-pieces-equipements.fr/#store",
+      "name": "Auto Pièces Équipements",
+      "url": "https://auto-pieces-equipements.fr/",
+      "logo": "https://auto-pieces-equipements.fr/logo.svg",
+      "image": "https://auto-pieces-equipements.fr/assets/images/facade-magasin.jpg",
+      "telephone": "+33148479627",
+      "email": "contact@auto-pieces-equipements.fr",
+      "foundingDate": "2016",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "184 Avenue Aristide Briand",
+        "addressLocality": "Les Pavillons-sous-Bois",
+        "postalCode": "93320",
+        "addressCountry": "FR"
       },
-      {
-        "@type": "WebSite",
-        "@id": "https://auto-pieces-equipements.fr/#website",
-        "url": "https://auto-pieces-equipements.fr/",
-        "name": "Auto Pièces Équipements",
-        "publisher": {"@id": "https://auto-pieces-equipements.fr/#store"},
-        "inLanguage": "fr-FR"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.91012,
+        "longitude": 2.51387
       },
-      {
-        "@type": "WebPage",
-        "@id": "https://auto-pieces-equipements.fr/#webpage",
-        "url": "https://auto-pieces-equipements.fr/",
-        "name": "Auto Pièces Équipements — Pièces auto aux Pavillons-sous-Bois",
-        "description": "Magasin de pièces auto aux Pavillons-sous-Bois avec vérification de compatibilité avant commande.",
-        "about": {"@id": "https://auto-pieces-equipements.fr/#store"},
-        "isPartOf": {"@id": "https://auto-pieces-equipements.fr/#website"},
-        "inLanguage": "fr-FR"
-      }
-    ]
-  }
-  </script>
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Monday",
+          "opens": "09:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Tuesday",
+          "opens": "09:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Wednesday",
+          "opens": "09:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Thursday",
+          "opens": "09:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "09:30",
+          "closes": "13:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "14:30",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:30",
+          "closes": "16:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "00:00",
+          "closes": "00:00"
+        }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Les Pavillons-sous-Bois"
+        },
+        {
+          "@type": "City",
+          "name": "Bondy"
+        },
+        {
+          "@type": "City",
+          "name": "Livry-Gargan"
+        },
+        {
+          "@type": "City",
+          "name": "Le Raincy"
+        },
+        {
+          "@type": "City",
+          "name": "Villemomble"
+        },
+        {
+          "@type": "City",
+          "name": "Noisy-le-Sec"
+        }
+      ],
+      "knowsAbout": [
+        "Batteries automobiles",
+        "Freinage automobile",
+        "Filtres automobiles",
+        "Alternateurs",
+        "Démarreurs",
+        "Suspension automobile",
+        "Embrayage",
+        "Huiles moteur"
+      ],
+      "specialOpeningHoursSpecification": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://auto-pieces-equipements.fr/#website",
+      "url": "https://auto-pieces-equipements.fr/",
+      "name": "Auto Pièces Équipements",
+      "publisher": {
+        "@id": "https://auto-pieces-equipements.fr/#store"
+      },
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://auto-pieces-equipements.fr/#webpage",
+      "url": "https://auto-pieces-equipements.fr/",
+      "name": "Auto Pièces Équipements — Pièces auto aux Pavillons-sous-Bois",
+      "description": "Magasin de pièces auto aux Pavillons-sous-Bois avec vérification de compatibilité avant commande.",
+      "about": {
+        "@id": "https://auto-pieces-equipements.fr/#store"
+      },
+      "isPartOf": {
+        "@id": "https://auto-pieces-equipements.fr/#website"
+      },
+      "inLanguage": "fr-FR"
+    }
+  ]
+}
+</script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -281,12 +339,7 @@
           </figure>
           <div class="hours-card">
           <h3>Horaires d’ouverture</h3>
-          <dl>
-            <dt>Lundi–jeudi</dt><dd>9h30–18h30</dd>
-            <dt>Vendredi</dt><dd>9h30–13h30<br>14h30–18h30</dd>
-            <dt>Samedi</dt><dd>9h30–16h00</dd>
-            <dt>Dimanche</dt><dd>Fermé</dd>
-          </dl>
+          <!-- store-hours:start --><dl><dt>Lundi–jeudi</dt><dd>9h30–18h30</dd><dt>Vendredi</dt><dd>9h30–13h30<br>14h30–18h30</dd><dt>Samedi</dt><dd>9h30–16h00</dd><dt>Dimanche</dt><dd>Fermé</dd></dl><!-- store-hours:end -->
           </div>
         </div>
       </div>
@@ -311,6 +364,7 @@
     <a class="button button-whatsapp" href="https://wa.me/33148479627?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20site.%0APi%C3%A8ce%20recherch%C3%A9e%20%3A%0APlaque%20d%E2%80%99immatriculation%20%3A%0AV%C3%A9hicule%20(mod%C3%A8le%2C%20ann%C3%A9e%2C%20motorisation)%20%3A%0AR%C3%A9f%C3%A9rence%20de%20la%20pi%C3%A8ce%20(si%20connue)%20%3A%0ABesoin%20d%E2%80%99%C3%AAtre%20orient%C3%A9%20vers%20un%20professionnel%20pour%20le%20montage%20(oui%2Fnon)%20%3A%0APouvez-vous%20confirmer%20le%20prix%20et%20la%20disponibilit%C3%A9%20dans%20la%20journ%C3%A9e%20%3F" target="_blank" rel="noopener">WhatsApp</a>
   </nav>
   <a class="floating-whatsapp" href="https://wa.me/33148479627?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20site.%0APi%C3%A8ce%20recherch%C3%A9e%20%3A%0APlaque%20d%E2%80%99immatriculation%20%3A%0AV%C3%A9hicule%20(mod%C3%A8le%2C%20ann%C3%A9e%2C%20motorisation)%20%3A%0AR%C3%A9f%C3%A9rence%20de%20la%20pi%C3%A8ce%20(si%20connue)%20%3A%0ABesoin%20d%E2%80%99%C3%AAtre%20orient%C3%A9%20vers%20un%20professionnel%20pour%20le%20montage%20(oui%2Fnon)%20%3A%0APouvez-vous%20confirmer%20le%20prix%20et%20la%20disponibilit%C3%A9%20dans%20la%20journ%C3%A9e%20%3F" target="_blank" rel="noopener" aria-label="Demander une pièce sur WhatsApp">WhatsApp</a>
+  <!-- store-hours-data:start --><script type="application/json" data-store-hours>{"timeZone":"Europe/Paris","weekly":{"1":[[570,1110]],"2":[[570,1110]],"3":[[570,1110]],"4":[[570,1110]],"5":[[570,810],[870,1110]],"6":[[570,960]],"7":[]},"exceptions":{}}</script><!-- store-hours-data:end -->
   <script src="/assets/site.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+{
+  "timeZone": "Europe/Paris",
+  "weekly": [
+    { "days": [1, 2, 3, 4], "periods": [["09:30", "18:30"]] },
+    { "days": [5], "periods": [["09:30", "13:30"], ["14:30", "18:30"]] },
+    { "days": [6], "periods": [["09:30", "16:00"]] },
+    { "days": [7], "periods": [] }
+  ],
+  "exceptions": {}
+}
