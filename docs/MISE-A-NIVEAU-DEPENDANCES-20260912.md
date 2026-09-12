@@ -59,7 +59,7 @@ couvre les sources et les tests du Worker, en mode strict préexistant.
 
 ## Transport HTTP natif et interdiction d'Axios
 
-Les trois anciens appels serveur utilisent désormais `fetchPlaceDetails`, dans
+Le serveur commun aux trois commandes de démarrage utilise `fetchPlaceDetails`, dans
 `server/google-places.cjs`, fondé sur `fetch` natif de Node 24. Le helper encode les
 paramètres avec `URLSearchParams`, refuse les réponses HTTP non réussies, décode
 le JSON et limite à 10 secondes la requête et la lecture du corps. L'erreur HTTP
@@ -78,10 +78,33 @@ pour un alias npm, un lockfile indirect, un import et un CDN.
 Les tests du transport couvrent encodage, JSON invalide, erreur réseau, HTTP 503,
 expiration pendant un corps JSON bloqué et réponses de l'endpoint Express actif
 (succès, refus Google, erreur HTTP). Aucun appel réel à Google n'est nécessaire.
-`npm start` utilise `server-simple.js`, vérifié ici. Les prototypes `server.js`
-et `server/server.js` ont aussi été débarrassés de leurs appels Axios, mais ne sont
-pas validés comme applications exécutables : le premier dépend déjà de modules
-non déclarés, le second contient déjà du Java Android dans un fichier JavaScript.
+`npm start` utilise `server-simple.js`, vérifié ici. `server.js` et
+`server/server.js` sont désormais des points d'entrée vers cette même application.
+
+## Corrections du serveur local
+
+Le serveur ne publie plus la racine entière du dépôt. Il sert uniquement les
+fichiers de `publicFiles` et les routes de diagnostic explicites. Les chemins sont
+résolus depuis le dépôt, indépendamment du dossier de lancement. Le `.env` utilise
+aussi un chemin absolu. L'écoute est locale sur `127.0.0.1` par défaut ; `HOST` et
+`PORT` permettent une configuration explicite. Les ports invalides sont refusés
+et les échecs d'écoute signalés avec un code de sortie non nul.
+
+La page `/test` et son script sont séparés du serveur. Le rendu utilise des nœuds
+DOM et `textContent`, sans interpolation des avis dans du HTML. Les photos doivent
+utiliser HTTPS, les étoiles sont bornées entre 0 et 5 et les états de chargement,
+liste vide et erreur sont explicites. La requête navigateur expire après 12 s.
+
+L'API conserve le format de succès ; les échecs HTTP/réseau/JSON ou les résultats
+Google mal formés renvoient 502, les expirations 504. Aucun détail d'exception amont
+n'est renvoyé au navigateur. Les réponses API ne sont pas mises en cache.
+
+Les anciens prototypes étaient inutilisables : modules/données absents dans
+`server.js`, Java Android inséré dans `server/server.js`, diagnostic OBD sans
+réponse et avis fictifs de secours. Leur contenu est conservé intégralement dans
+`docs/archives/prototype-mcp.md` et `prototype-obd.md`. Les deux anciennes commandes
+démarrent maintenant le serveur actif ; les routes MCP/OBD non opérationnelles
+ne sont pas exposées. Aucune dépendance supplémentaire n'a été introduite.
 
 ## Actions GitHub
 
@@ -108,7 +131,7 @@ temporaire du worktree. Les vérifications finales utilisent ces deux versions.
 | Vérification | Résultat |
 |---|---|
 | `npm ci`, racine | Réussite |
-| `npm test`, racine | 45 tests, 0 échec ; politique HTTP validée ; génération de 11 pages ; validation de 12 pages SEO et 31 fichiers publics |
+| `npm test`, racine | 51 tests, 0 échec ; politique HTTP validée ; génération de 11 pages ; validation de 12 pages SEO et 31 fichiers publics |
 | `npm --prefix google-places-proxy ci` | Réussite, scripts natifs autorisés explicitement |
 | `npm --prefix google-places-proxy run typecheck` | TypeScript 7.0.2, sources et tests sans erreur |
 | `npm --prefix google-places-proxy test` | 4 tests, 0 échec, runtime local Cloudflare |
@@ -121,6 +144,8 @@ temporaire du worktree. Les vérifications finales utilisent ces deux versions.
 | Vite 8.3.0, HTTP local | 15 pages HTML publiques, module navigateur et client HMR : HTTP 200 ; entrées configurées vérifiées |
 | Vite 8.3.0, prévisualisation | 31 fichiers publics : HTTP 200 et SHA256 conformes au build |
 | Express 5.2.1, HTTP local | Accueil : HTTP 200 ; configuration Google absente : erreur attendue, sans appel Google |
+| Trois commandes serveur depuis un autre dossier | 31 fichiers publics conformes ; sources, lockfiles, archives, fichiers cachés et traversées refusés ; routes de test disponibles |
+| Rendu de la page de test | Texte hostile inerte, photos non HTTPS refusées, notes bornées, erreurs HTTP et expiration visibles (DOM simulé) |
 
 La comparaison du build utilise la même convention de fins de ligne Windows
 pour les deux checkouts et exécute la génération du catalogue dans les deux cas.
@@ -132,6 +157,12 @@ l'audit racine et les contrôles HTTP ont été réexécutés (`fetch-site-ci.lo
 `fetch-site-test.log`, `fetch-site-audit.json`, `fetch-smoke.log`). Les validations
 Worker et actionlint précédentes sont réutilisées : leurs sources, dépendances,
 configurations et workflows sont inchangés depuis ces résultats verts.
+
+Après corrections serveur, les 51 tests et le build ont été exécutés ensemble
+(`server-site-test.log`), puis les contrôles Vite/preview/Express et la comparaison
+des 31 SHA256 (`server-smoke.log`). Les dépendances et lockfiles sont inchangés :
+installation propre et audits précédents réutilisables. Les archives des deux
+prototypes ont été comparées au contenu de la révision précédente.
 
 Ce sont des preuves locales Windows : aucune exécution CI Linux de ce candidat,
 aucune preuve navigateur interactive, aucune vérification d'un Worker ou d'un

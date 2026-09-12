@@ -39,6 +39,26 @@ Les tests vérifient le refus des imports, CDN, alias npm et dépendances indire
 Vite 8 utilise `vite.config.mjs`. Le scan des dépendances couvre les pages HTML
 de la liste publique partagée avec le build statique.
 
+## Serveur local et diagnostic des avis
+
+`npm start` démarre Express sur `http://127.0.0.1:3000`. `PORT` change le port ;
+`HOST` permet de choisir explicitement une autre interface réseau. Le `.env`
+est lu à la racine du dépôt, même si le serveur est lancé depuis un autre dossier.
+
+- `/` et les fichiers de `publicFiles` servent le site ; les fichiers internes
+  du dépôt ne sont pas accessibles par HTTP.
+- `/test` affiche le diagnostic des avis, avec les contenus Google rendus comme
+  texte et un état d'erreur explicite.
+- `/api/google-reviews` utilise `GOOGLE_PLACE_ID` et `GOOGLE_MAPS_API_KEY`.
+  Un échec amont renvoie 502, une expiration 504, un refus Google 400 et une
+  configuration absente 500. Aucun avis fictif n'est utilisé en remplacement.
+
+`node server.js` et `node server/server.js` démarrent le même serveur.
+Les anciens prototypes MCP et OBD sont conservés dans `docs/archives/`, sous
+forme documentaire. Leurs fonctionnalités incomplètes ne sont pas activées.
+Le serveur Express est indépendant de Vite ; choisir des ports différents pour
+les lancer simultanément. Le build publié sur Pages reste statique.
+
 ## Sous-projet Cloudflare
 
 `google-places-proxy/` contient actuellement le Worker de démonstration

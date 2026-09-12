@@ -65,7 +65,7 @@ test('active review endpoint preserves success, business-error and HTTP-error re
     name: 'Magasin', rating: 4.5, user_ratings_total: 10, reviews: [],
     formatted_address: 'Adresse', formatted_phone_number: '0100000000'
   } });
-  t.mock.method(globalThis, 'fetch', async () => upstream);
+  const mock = t.mock.method(globalThis, 'fetch', async () => upstream);
   const url = `http://127.0.0.1:${server.address().port}/api/google-reviews`;
   let response = await nativeFetch(url);
   assert.equal(response.status, 200);
@@ -78,6 +78,20 @@ test('active review endpoint preserves success, business-error and HTTP-error re
   assert.equal((await response.json()).error, 'REQUEST_DENIED');
   upstream = new Response('unavailable', { status: 503 });
   response = await nativeFetch(url);
-  assert.equal(response.status, 500);
-  assert.equal((await response.json()).details, 'Google Places HTTP 503');
+  assert.equal(response.status, 502);
+  assert.deepEqual(await response.json(), { success: false, error: 'Service Google Places indisponible' });
+  for (const payload of [null, {}, { status: 'OK' }, { status: 'OK', result: { reviews: {} } }]) {
+    upstream = Response.json(payload);
+    response = await nativeFetch(url);
+    assert.equal(response.status, 502);
+  }
+  upstream = new Response('private-upstream-content: invalid JSON');
+  response = await nativeFetch(url);
+  assert.equal(response.status, 502);
+  assert.doesNotMatch(await response.text(), /private-upstream-content|SyntaxError|test-key/);
+  mock.mock.mockImplementation(async () => { throw new DOMException('private timeout details', 'TimeoutError'); });
+  response = await nativeFetch(url);
+  assert.equal(response.status, 504);
+  assert.deepEqual(await response.json(), { success: false, error: 'Délai Google Places dépassé' });
+  assert.equal(response.headers.get('cache-control'), 'no-store');
 });
