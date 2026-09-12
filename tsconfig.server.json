@@ -22,6 +22,7 @@
     "scripts/build-static.mjs",
     "scripts/validate-site.mjs",
     "scripts/check-http-policy.mjs",
+    "scripts/check-toolchain.mjs",
     "vite.config.mjs"
   ]
 }
