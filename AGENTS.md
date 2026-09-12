@@ -20,3 +20,7 @@
 - Les scripts de publication résolvent leur racine depuis `import.meta.url`.
   Ne pas utiliser le dossier de lancement pour choisir le `dist` à reconstruire.
   Maintenir le catalogue et les scripts de publication dans le typage strict.
+- Une mise à niveau du socle doit garder `.nvmrc`, les bornes Node/npm des deux
+  manifestes, `packageManager`, TypeScript et les types Node cohérents.
+  Le contrôle partagé couvre aussi l'installation et les tests du Worker.
+  Les workflows lisent npm depuis `packageManager`, sans recopier sa version.
