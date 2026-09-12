@@ -3,7 +3,7 @@
 Objectif : moderniser les dépendances et améliorer la fiabilité du code actif.
 Worktree auto-pieces-node24-20260912 ; branche
 codex/align-node24-dependencies-20260912 ; base b1f0ede.
-Checkout initial préservé. Aucun push ni déploiement.
+Checkout initial préservé. Reprise : publication du candidat en PR brouillon et validation CI.
 
 Socle : Node 24.21.0, npm 12.0.2, Vite 8.3.0, TypeScript 7.0.2.
 Worker : Vitest 4.1.11, plugin Cloudflare 1.1.8, Wrangler 4.131.1.
@@ -27,5 +27,5 @@ Build Wrangler et actionlint précédents réutilisables, périmètres inchangé
 Décisions : Vitest 5 incompatible avec le plugin. Site toujours JavaScript,
 désormais contrôlé par TS7. Alliance/AutoMecanik lus seulement ; Hermes inchangé.
 Bilan : docs/MISE-A-NIVEAU-DEPENDANCES-20260912.md.
-Suite : PR puis CI Linux avant fusion (main déclenche Pages).
+Étape courante : PR brouillon puis CI Linux. Résultat distant dans la PR et dans tmp/evidence/ci-checkpoint.md. Fusion distincte (main déclenche Pages).
 Aucune preuve navigateur interactive ou de déploiement pour ce candidat.
