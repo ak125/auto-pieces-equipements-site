@@ -22,6 +22,7 @@
     "scripts/render-catalog-pages.mjs",
     "scripts/build-static.mjs",
     "scripts/validate-site.mjs",
+    "scripts/check-public-references.mjs",
     "scripts/verify-publication.mjs",
     "scripts/check-http-policy.mjs",
     "scripts/check-toolchain.mjs",

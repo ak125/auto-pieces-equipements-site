@@ -16,7 +16,7 @@ test('validation checks the published artifact independently of its source', asy
     mkdirSync(path.dirname(destination), { recursive: true });
     copyFileSync(source, destination);
   };
-  for (const file of [...publicFiles, 'data/store-hours.json', 'scripts/site-config.mjs', 'scripts/store-hours.mjs', 'scripts/validate-site.mjs']) {
+  for (const file of [...publicFiles, 'data/store-hours.json', 'scripts/site-config.mjs', 'scripts/store-hours.mjs', 'scripts/validate-site.mjs', 'scripts/check-public-references.mjs']) {
     copy(path.join(repository, file), path.join(fixture, file));
   }
   // Keep the real tracked-source checks operational in this isolated fixture.
@@ -38,6 +38,10 @@ test('validation checks the published artifact independently of its source', asy
   });
 
   const scenarios = [
+    ['broken contact anchor', 'index.html', /href="#contact"/, 'href="#contact-inexistant"', /ancre absente dans index\.html/],
+    ['missing absolute internal page', 'index.html', /href="#contact"/, 'href="https://auto-pieces-equipements.fr/absent.html"', /href vers un fichier non publié/],
+    ['missing local script', 'index.html', /src="\/assets\/site\.js"/, 'src="/assets/absent.js"', /src vers un fichier non publié/],
+    ['duplicate contact target', 'index.html', /<\/body>/, '<div id="contact"></div></body>', /identifiant HTML dupliqué/],
     ['missing title', 'index.html', /<title>[^<]+<\/title>/, '', /index\.html: titre manquant/],
     ['stale opening hours', 'index.html', /9h30–18h30/, '10h00–18h30', /horaires affichés/],
     ['missing canonical', 'index.html', /<link rel="canonical"[^>]+>/, '', /index\.html: URL canonique manquante/],

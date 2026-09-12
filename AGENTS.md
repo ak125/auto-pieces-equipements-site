@@ -31,3 +31,5 @@
   manifestes, `packageManager`, TypeScript et les types Node cohérents.
   Le contrôle partagé couvre aussi l'installation et les tests du Worker.
   Les workflows lisent npm depuis `packageManager`, sans recopier sa version.
+- Vérifier les liens et ressources sur le HTML de `dist/`, avec les ancres des
+  pages cibles. Préserver les tests de références cassées dans le seul artefact.

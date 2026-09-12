@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { publicFiles, retiredPages, seoPages } from './site-config.mjs';
 import { loadStoreHours, publishedHoursMatch } from './store-hours.mjs';
+import { checkPublicReferences } from './check-public-references.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const outputDirectory = path.join(root, 'dist');
@@ -107,27 +108,12 @@ for (const page of ['mentions-legales.html', 'politique-confidentialite.html']) 
   requireMatch(content, /<meta\s+name="robots"\s+content="noindex,follow">/i, `${page}: protection noindex manquante`);
 }
 
-const deployedHtml = (
-  await Promise.all(
-    publicFiles
-      .filter((file) => file.endsWith('.html'))
-      .map((file) => readFile(path.join(outputDirectory, file), 'utf8'))
-  )
-).join('\n');
-
-for (const page of publicFiles.filter((file) => file.endsWith('.html'))) {
-  const content = await readFile(path.join(outputDirectory, page), 'utf8');
-  for (const match of content.matchAll(/href=["']([^"']+)["']/gi)) {
-    const href = match[1] ?? '';
-    if (/^(?:https?:|tel:|mailto:|#)/i.test(href)) continue;
-    const target = href.split(/[?#]/)[0];
-    if (!target || target === '/') continue;
-    const relativeTarget = target.replace(/^\//, '');
-    if (!publicFiles.includes(relativeTarget)) {
-      failures.push(`${page}: lien interne vers un fichier non publié (${href})`);
-    }
-  }
-}
+/** @type {Map<string, string>} */
+const publishedPages = new Map(await Promise.all(publicFiles
+  .filter(file => file.endsWith('.html'))
+  .map(async file => /** @type {[string, string]} */ ([file, await readFile(path.join(outputDirectory, file), 'utf8')]))));
+const deployedHtml = [...publishedPages.values()].join('\n');
+failures.push(...checkPublicReferences(publishedPages, publicFiles));
 
 const sitemap = await readFile(path.join(outputDirectory, 'sitemap.xml'), 'utf8');
 for (const page of seoPages) {
@@ -146,14 +132,6 @@ forbidMatch(deployedHtml, /ouvrons demain à/i, 'Une heure de réouverture non f
 forbidMatch(deployedHtml, /MasterCard_Logo|Visa_Inc\._logo|PayPal\.svg/i, 'Des logos de paiement non justifiés sont présents');
 forbidMatch(deployedHtml, /confirm\s*\(.*GPS/is, 'Une sollicitation GPS intrusive est présente');
 forbidMatch(deployedHtml, /cdn\.tailwindcss\.com|fonts\.googleapis\.com|cdnjs\.cloudflare\.com|images\.unsplash\.com/i, 'Une dépendance d’affichage distante est encore présente');
-
-const localAssetReferences = [...deployedHtml.matchAll(/(?:src|href)=["']\/(assets\/[^"']+)["']/gi)]
-  .flatMap((match) => match[1] ? [match[1]] : []);
-for (const asset of new Set(localAssetReferences)) {
-  if (!publicFiles.includes(asset)) {
-    failures.push(`${asset}: ressource locale référencée mais absente de la liste publique`);
-  }
-}
 
 for (const retiredPage of retiredPages) {
   try {

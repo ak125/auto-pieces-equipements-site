@@ -14,7 +14,7 @@ test('publication scripts use their repository and preserve an unrelated working
   t.after(() => rmSync(fixture, { recursive: true, force: true }));
   const project = path.join(fixture, 'project');
   const unrelated = path.join(fixture, 'unrelated');
-  const scripts = ['site-config.mjs', 'catalog-content.mjs', 'store-hours.mjs', 'render-catalog-pages.mjs', 'build-static.mjs', 'validate-site.mjs'];
+  const scripts = ['site-config.mjs', 'catalog-content.mjs', 'store-hours.mjs', 'render-catalog-pages.mjs', 'build-static.mjs', 'validate-site.mjs', 'check-public-references.mjs'];
   for (const file of [...publicFiles, 'data/store-hours.json', ...scripts.map(file => `scripts/${file}`)]) {
     const target = path.join(project, file);
     mkdirSync(path.dirname(target), { recursive: true });
