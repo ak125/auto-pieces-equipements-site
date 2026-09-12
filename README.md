@@ -37,6 +37,16 @@ npm, y compris les sous-projets et les dépendances indirectes. Ce contrôle est
 exécuté par `preinstall` et par `npm test`, donc aussi dans la CI du site.
 Les tests vérifient le refus des imports, CDN, alias npm et dépendances indirectes.
 
+Ce contrôle vérifie aussi l'alignement du socle : `.nvmrc`, bornes Node/npm,
+`packageManager`, TypeScript commun et majeure de `@types/node`. Les deux `.npmrc`
+doivent conserver `engine-strict=true` et `save-exact=true`. Les versions sources
+sont `.nvmrc` et le manifeste racine ; le Worker doit rester cohérent avec eux.
+Les workflows lisent la version npm depuis `packageManager`.
+
+L'installation et `npm test` dans `google-places-proxy` exécutent également ce
+contrôle commun, y compris l'interdiction HTTP. Ces commandes nécessitent le
+dépôt complet, avec les scripts partagés dans le dossier parent.
+
 Vite 8 utilise `vite.config.mjs`. Le scan des dépendances couvre les pages HTML
 de la liste publique partagée avec le build statique.
 

@@ -10,8 +10,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "preinstall": "node scripts/check-http-policy.mjs",
-    "check:dependencies": "node scripts/check-http-policy.mjs",
+    "preinstall": "npm run check:dependencies",
+    "check:dependencies": "node scripts/check-http-policy.mjs && node scripts/check-toolchain.mjs",
     "dev": "vite --host 0.0.0.0",
     "generate:catalog": "node scripts/render-catalog-pages.mjs",
     "build": "npm run generate:catalog && node scripts/build-static.mjs",

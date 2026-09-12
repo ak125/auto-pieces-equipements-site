@@ -8,6 +8,8 @@
 		"npm": ">=12.0.2 <13"
 	},
 	"scripts": {
+		"preinstall": "npm --prefix .. run check:dependencies",
+		"pretest": "npm --prefix .. run check:dependencies",
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
