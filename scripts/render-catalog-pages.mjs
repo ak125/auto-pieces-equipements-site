@@ -1,11 +1,13 @@
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { catalogPages } from './catalog-content.mjs';
 
-const root = process.cwd();
+const root = fileURLToPath(new URL('../', import.meta.url));
 const baseUrl = 'https://auto-pieces-equipements.fr';
 const phoneDisplay = '01 48 47 96 27';
 const phoneHref = 'tel:+33148479627';
+/** @param {import('./catalog-content.mjs').CatalogPage} page */
 function whatsappLink(page) {
   const deliveryRequest = ['Professionnels', 'Livraison 93'].includes(page.navLabel);
   const message = [
@@ -30,6 +32,7 @@ function whatsappLink(page) {
 const mapsHref = 'https://www.google.com/maps/dir/?api=1&destination=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois';
 const googleProfileHref = 'https://www.google.com/maps/search/?api=1&query=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois';
 
+/** @param {string} value */
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -76,6 +79,7 @@ function header() {
     <div class="status-strip" role="status" data-opening-status>Consultez les horaires du magasin avant votre déplacement.</div>`;
 }
 
+/** @param {import('./catalog-content.mjs').CatalogPage} page */
 function footer(page) {
   const whatsappHref = whatsappLink(page);
   return `
@@ -134,6 +138,7 @@ function footer(page) {
     <script src="/assets/site.js" defer></script>`;
 }
 
+/** @param {import('./catalog-content.mjs').CatalogPage} page */
 function structuredData(page) {
   const pageUrl = `${baseUrl}/${page.slug}`;
   const imageUrl = `${baseUrl}${page.image}`;
@@ -193,6 +198,7 @@ function structuredData(page) {
   };
 }
 
+/** @param {import('./catalog-content.mjs').CatalogPage} page */
 function renderProducts(page) {
   return page.products.map((product) => `
           <article class="product-card">
@@ -205,6 +211,7 @@ function renderProducts(page) {
           </article>`).join('');
 }
 
+/** @param {import('./catalog-content.mjs').CatalogPage} currentPage */
 function renderRelated(currentPage) {
   return catalogPages
     .filter((page) => page.slug !== currentPage.slug)
@@ -213,6 +220,7 @@ function renderRelated(currentPage) {
     .join('');
 }
 
+/** @param {import('./catalog-content.mjs').CatalogPage} page */
 function renderPage(page) {
   const pageUrl = `${baseUrl}/${page.slug}`;
   const imageUrl = `${baseUrl}${page.image}`;
