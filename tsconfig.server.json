@@ -24,6 +24,7 @@
     "scripts/validate-site.mjs",
     "scripts/verify-publication.mjs",
     "scripts/check-http-policy.mjs",
+    "scripts/check-toolchain.mjs",
     "vite.config.mjs"
   ]
 }

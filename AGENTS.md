@@ -27,3 +27,7 @@
 - Le contrôle après publication compare le site à l'artefact du même déploiement.
   Conserver délais, nombre de tentatives et concurrence bornés ; ne pas ignorer
   les différences de contenu ni les erreurs finales du contrôle.
+- Une mise à niveau du socle doit garder `.nvmrc`, les bornes Node/npm des deux
+  manifestes, `packageManager`, TypeScript et les types Node cohérents.
+  Le contrôle partagé couvre aussi l'installation et les tests du Worker.
+  Les workflows lisent npm depuis `packageManager`, sans recopier sa version.

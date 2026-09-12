@@ -1,34 +1,32 @@
-# Checkpoint — Horaires et publication, 12 septembre 2026
+# Checkpoint — intégration du socle et des horaires, 12 septembre 2026
 
-Objectif : centraliser les horaires avec exceptions datées et contrôler le contenu après Pages.
-Base : main 24bba07 (PR #17 publiée). Branche codex/store-hours-publication-checks-20260912.
-La PR #18, alignement du socle, reste indépendante et n'est pas intégrée à ce lot.
+Objectif : livrer le contrôle du socle, les horaires centralisés et la vérification Pages.
+PR #18 fusionnée : main 4d22946fd72bc149df6c185f9004f0f193947cf0.
+PR #19 : codex/store-hours-publication-checks-20260912, actualisée sur cette base.
+Conflits de documentation résolus en conservant les deux ensembles de consignes.
 
-Horaires : data/store-hours.json, mêmes créneaux habituels, exceptions vides.
-Le générateur actualise accueil, 11 pages catalogue, tables visibles, JSON embarqué
-pour le bandeau et données structurées. Exceptions par date Paris : fermeture ou
-créneaux de remplacement. Validation des dates/jours/créneaux avant écriture.
-Le bandeau utilise le calendrier Paris, avec repli neutre si configuration invalide.
-Validation du build : affichage, bandeau et JSON-LD doivent correspondre à la source.
+Socle : contrôle partagé de Node/npm/TypeScript/types Node et options npm.
+Installation et tests du Worker exécutent aussi les contrôles HTTP et du socle.
+Les workflows lisent npm depuis packageManager. Versions des paquets inchangées.
 
-Publication : nouveau job verify après deploy, archive github-pages du même run,
-download-artifact 8.0.1 (action.yml officiel vérifié). SHA256 des 31 fichiers publics
-et quatre chemins privés HTTP 404. fetch natif, concurrence 5, timeout 8 s sur corps
-inclus, 6 tentatives espacées de 15 s, job limité à 10 min. JSON dans les journaux,
-échec final rend le workflow rouge ; pas de retour arrière automatique.
+Horaires : data/store-hours.json alimente 12 pages, bandeau et JSON-LD.
+Horaires habituels conservés ; exceptions vides, dates et créneaux validés.
+Les exceptions remplacent les créneaux du jour dans le fuseau Europe/Paris.
+Le bandeau reste neutre si la configuration est invalide.
 
-Vérifié local : npm test, typage strict et 78 tests verts, build/validation verts.
-Test d'intégration actualisé réexécuté : changement de la source seule propagé
-sur toutes les pages ; dossier de lancement préservé. Scénarios cache ancien,
-contenu incorrect, 404 public, exposition privée et corps bloqué couverts.
-Actionlint vert. Navigateur local : horaires bureau/mobile corrects, console vide.
-Vérificateur HTTP : 35/35 contre le candidat local et 35/35 contre l'artefact de
-la production existante 24bba07. Aucun nouveau déploiement effectué.
-Preuves : tmp/evidence/hours-publication-*, hours-source-integration-test.log.
-Dépendances et lockfiles inchangés ; validations Worker précédentes réutilisables.
+Publication : nouveau job verify après deploy, artefact github-pages du même run.
+Comparaison SHA256 des 31 fichiers publics et quatre chemins privés HTTP 404.
+fetch natif, concurrence 5, délai HTTP 8 s, six tentatives espacées de 15 s,
+job limité à 10 min. Rapport JSON dans les journaux ; aucun rollback automatique.
 
-Documentation : README et AGENTS. Références : Schema.org horaires exceptionnels,
-Google LocalBusiness et action download-artifact. Aucune fermeture inventée.
-Suite : publier PR brouillon et vérifier CI Linux exacte ; résultat dans
- tmp/evidence/hours-publication-ci-checkpoint.md. Le nouveau job Pages sera validé
-lors d'une publication ultérieure. Checkout initial et note utilisateur préservés.
+Preuves antérieures : PR #18 CI verte (67 tests site et 4 Worker), PR #19 avant
+intégration CI verte (78 tests site et 4 Worker), typages et builds réussis.
+Horaires bureau/mobile vérifiés localement, console sans erreur. Contrôle HTTP
+35/35 sur candidat local et production 24bba07 avec son artefact exact.
+Preuves : tmp/evidence/alignment-* et hours-publication-*.
+
+Suite : valider le candidat combiné en CI, confirmer le déploiement de #18, puis
+fusionner #19 et vérifier le déploiement et le nouveau job sur le même commit.
+Résultat final dans tmp/evidence/integration-publication-checkpoint.md.
+Les preuves antérieures ne remplacent pas la CI du candidat combiné.
+Checkout initial et note utilisateur préservés ; autres projets inchangés.
