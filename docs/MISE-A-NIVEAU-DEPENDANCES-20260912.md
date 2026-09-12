@@ -9,8 +9,9 @@ et de l'outillage aux versions stables compatibles.
 
 Base Auto Pièces : `b1f0ede0d32b2d34b4b96a2e5e246370b6cc8ace`.
 Branche : `codex/align-node24-dependencies-20260912`.
-Les dépôts Alliance et AutoMecanik ont été lus, pas modifiés. Aucun push,
-déploiement ou changement de processus de production n'a été effectué.
+Les dépôts Alliance et AutoMecanik ont été lus, pas modifiés. Le candidat est
+publié dans la PR brouillon #16 pour validation CI. Fusion et déploiement
+constituent une étape distincte.
 
 ## Versions retenues dans Auto Pièces
 
@@ -194,9 +195,10 @@ pour vérifier l'effet possible des nouveaux types installés dans le dossier
 parent (`checkjs-worker-typecheck.log`, `checkjs-worker-test.log`). Le build
 Wrangler et actionlint précédents restent réutilisables, leurs périmètres inchangés.
 
-Ce sont des preuves locales Windows : aucune exécution CI Linux de ce candidat,
-aucune preuve navigateur interactive, aucune vérification d'un Worker ou d'un
-site effectivement déployé. Les audits npm portent sur les deux lockfiles
+Cette section décrit les preuves locales Windows. La validation CI Linux est
+suivie dans la PR #16 et dans `tmp/evidence/ci-checkpoint.md`. Aucune preuve
+navigateur interactive ni vérification d'un Worker ou d'un site déployé.
+Les audits npm portent sur les deux lockfiles
 Auto Pièces et les avis du registre au moment de cette vérification.
 
 ## Comparaison actuelle des autres projets
