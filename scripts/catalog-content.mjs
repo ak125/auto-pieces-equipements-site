@@ -204,13 +204,18 @@ export const catalogPages = [
     navLabel: 'Démarrage',
     eyebrow: 'Démarrage & charge · Référence précise',
     title: 'Alternateur et démarreur aux Pavillons-sous-Bois (93)',
-    metaDescription: 'Alternateur et démarreur automobile aux Pavillons-sous-Bois. Puissance, fixation, poulie et connectique vérifiées avec la plaque ou la carte grise.',
+    metaDescription: 'Alternateur et démarreur aux Pavillons-sous-Bois. Appelez avec votre plaque : référence, prix et délai confirmés avant retrait au magasin.',
     h1: 'Alternateur et démarreur aux Pavillons-sous-Bois',
-    intro: 'Deux alternateurs ou démarreurs visuellement proches peuvent avoir une puissance, une fixation ou une connectique différente. Nous contrôlons la référence exacte avant commande.',
+    intro: 'Auto Pièces Équipements fournit vos alternateurs et démarreurs aux Pavillons-sous-Bois. Appelez avec votre plaque et, si possible, la référence de l’ancienne pièce : nous vérifions le montage, le prix et le délai de retrait au magasin.',
     image: '/assets/images/products/alternateur.webp',
     imageAlt: 'Alternateur automobile neuf sans marque',
     sectionTitle: 'Charge électrique et démarrage moteur',
     sectionIntro: 'Un diagnostic est recommandé avant de remplacer une pièce : une batterie déchargée, un câble ou une masse peuvent provoquer des symptômes proches.',
+    purchaseGuide: {
+      title: 'Préparer votre achat d’alternateur ou de démarreur',
+      intro: 'Deux pièces visuellement proches peuvent avoir une puissance, une fixation ou une connectique différente. Faites confirmer la référence avant votre déplacement.',
+      items: ['Préparez votre plaque et la référence demandée par votre garage ou lisible sur l’ancienne pièce.', 'Précisez si vous recherchez un alternateur ou un démarreur ; faites confirmer la panne par un professionnel si le diagnostic reste incertain.', 'Appelez le magasin pour connaître le prix de la pièce compatible et son délai de retrait au 184 Avenue Aristide Briand.']
+    },
     products: [
       { title: 'Alternateur', description: 'Recharge la batterie et alimente les équipements lorsque le moteur tourne.', image: '/assets/images/products/alternateur.webp', bullets: ['Puissance et poulie', 'Fixations et connecteur'] },
       { title: 'Démarreur', description: 'Entraîne le moteur au moment du démarrage.', image: '/assets/images/products/demarreur.webp', bullets: ['Puissance et nombre de dents', 'Fixations et position du solénoïde'] },
@@ -223,7 +228,9 @@ export const catalogPages = [
       { question: 'Comment distinguer alternateur et démarreur ?', answer: 'Un défaut de charge moteur tournant peut orienter vers l’alternateur, tandis qu’un clic sans lancement peut orienter vers le démarreur. Un contrôle électrique reste nécessaire.' },
       { question: 'Pourquoi la plaque est-elle nécessaire ?', answer: 'La motorisation et l’équipement du véhicule déterminent la puissance, la fixation, la poulie et la connectique. La plaque facilite la première recherche de référence.' },
       { question: 'Puis-je apporter l’ancienne pièce ?', answer: 'Oui. Une référence lisible et des photos de la pièce déposée peuvent confirmer le modèle lorsqu’il existe plusieurs montages.' },
-      { question: 'Le magasin effectue-t-il le diagnostic ?', answer: 'Le site présente la fourniture de pièces. Pour un diagnostic électrique et le montage, consultez un garage ou un professionnel qualifié.' }
+      { question: 'Quel est le prix d’un alternateur ou d’un démarreur ?', answer: 'Le prix dépend de la référence et des caractéristiques du véhicule. Appelez le 01 48 47 96 27 avec votre plaque ou l’ancienne référence : nous confirmons la pièce compatible et son tarif avant commande.' },
+      { question: 'Puis-je retirer la pièce dans la journée ?', answer: 'Oui, selon la référence et sa disponibilité. Le magasin confirme le délai avant votre déplacement au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois.' },
+      { question: 'Le magasin effectue-t-il le diagnostic ou le montage ?', answer: 'Le magasin fournit la pièce et peut vous orienter vers un professionnel. Indiquez ce besoin lors de votre demande ; le diagnostic électrique et le montage sont à prévoir avec le professionnel choisi.' }
     ]
   },
   {
@@ -231,13 +238,18 @@ export const catalogPages = [
     navLabel: 'Suspension',
     eyebrow: 'Suspension & liaison au sol',
     title: 'Amortisseurs et suspension aux Pavillons-sous-Bois (93)',
-    metaDescription: 'Amortisseurs, triangles, rotules et biellettes aux Pavillons-sous-Bois. Côté, essieu et montage vérifiés avant commande avec les données du véhicule.',
+    metaDescription: 'Amortisseurs, triangles, rotules et biellettes aux Pavillons-sous-Bois. Appelez avec votre plaque : prix et délai confirmés avant retrait au magasin.',
     h1: 'Amortisseurs et suspension aux Pavillons-sous-Bois',
-    intro: 'Les pièces de suspension influencent la tenue de route, le confort et l’usure des pneus. Nous recherchons la référence selon le modèle, l’essieu, le côté et le montage du véhicule.',
+    intro: 'Amortisseurs, triangles, rotules et biellettes : Auto Pièces Équipements fournit vos pièces de suspension aux Pavillons-sous-Bois. Appelez avec votre plaque, l’essieu et le côté concernés pour vérifier la référence, le prix et le délai de retrait.',
     image: '/assets/images/products/suspension.webp',
     imageAlt: 'Amortisseur, triangle, rotule et biellette de suspension neufs',
     sectionTitle: 'Pièces de suspension et de liaison au sol',
     sectionIntro: 'Une inspection préalable permet d’identifier la pièce réellement usée et d’éviter de commander un composant qui ne correspond pas au montage.',
+    purchaseGuide: {
+      title: 'Préparer votre demande de pièces de suspension',
+      intro: 'La position de la pièce et le montage du véhicule comptent autant que son nom. Le devis ou la liste de pièces de votre garage aide à préciser le besoin.',
+      items: ['Préparez votre plaque et précisez avant ou arrière, gauche ou droite.', 'Indiquez les références et quantités demandées par le professionnel ; ajoutez les coupelles ou accessoires s’ils figurent dans sa liste.', 'Faites confirmer les pièces proposées, leur prix et le délai de retrait au magasin avant de venir.']
+    },
     products: [
       { title: 'Amortisseurs', description: 'Avant ou arrière, selon le châssis et l’équipement du véhicule.', bullets: ['Essieu et côté contrôlés', 'Coupelles et accessoires selon besoin'] },
       { title: 'Triangles & bras', description: 'Bras de suspension complets ou composants selon la référence.', bullets: ['Forme et points de fixation', 'Silentblocs et rotules associés'] },
@@ -250,7 +262,9 @@ export const catalogPages = [
       { question: 'Faut-il remplacer les amortisseurs par paire ?', answer: 'Le remplacement par paire sur le même essieu est généralement recommandé pour conserver un comportement équilibré. Confirmez avec le professionnel chargé du montage.' },
       { question: 'Comment identifier le bon triangle ?', answer: 'Précisez le côté, l’essieu et la motorisation. Une photo, les points de fixation ou la référence de l’ancienne pièce peuvent être nécessaires.' },
       { question: 'Vendez-vous les coupelles et biellettes ?', answer: 'Le magasin recherche également les accessoires et pièces associées selon le montage du véhicule. Disponibilité et délai sont confirmés à la demande.' },
-      { question: 'Le montage est-il proposé ?', answer: 'Le site concerne la fourniture de pièces. La suspension doit être contrôlée et montée par une personne compétente, avec géométrie si nécessaire.' }
+      { question: 'Quel est le prix des pièces de suspension ?', answer: 'Le tarif dépend du véhicule, du montage, du côté et des pièces nécessaires. Appelez le 01 48 47 96 27 avec votre plaque et la liste demandée par votre garage pour obtenir une proposition précise.' },
+      { question: 'Puis-je retirer mes amortisseurs au magasin ?', answer: 'Oui, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. La disponibilité dans la journée dépend de la référence : faites confirmer le délai de retrait avant votre déplacement.' },
+      { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, le magasin fournit les pièces et peut vous orienter vers un professionnel. Celui-ci confirme le diagnostic, les pièces nécessaires et les opérations à prévoir, notamment la géométrie si nécessaire.' }
     ]
   },
   {
@@ -258,13 +272,18 @@ export const catalogPages = [
     navLabel: 'Embrayage',
     eyebrow: 'Embrayage · Moteur et boîte vérifiés',
     title: 'Kit embrayage aux Pavillons-sous-Bois (93)',
-    metaDescription: 'Kit embrayage, disque, mécanisme et butée aux Pavillons-sous-Bois. Référence vérifiée selon le moteur et la boîte avant commande.',
+    metaDescription: 'Kit embrayage aux Pavillons-sous-Bois. Appelez avec votre plaque : contenu du kit, compatibilité, prix et délai de retrait confirmés avant commande.',
     h1: 'Kit embrayage aux Pavillons-sous-Bois',
-    intro: 'La compatibilité d’un embrayage dépend du moteur, de la boîte de vitesses et parfois du type de volant moteur. Nous vérifions la composition et la référence du kit avant commande.',
+    intro: 'Trouvez votre kit embrayage chez Auto Pièces Équipements aux Pavillons-sous-Bois. Appelez avec votre plaque et les informations de votre garage : nous vérifions la référence adaptée au moteur et à la boîte, le contenu du kit, le prix et le délai de retrait.',
     image: '/assets/images/products/embrayage.webp',
     imageAlt: 'Kit embrayage neuf avec disque, mécanisme et butée',
     sectionTitle: 'Les composants d’un kit embrayage',
     sectionIntro: 'Le contenu du kit varie selon le véhicule. Le diagnostic et la vérification du volant moteur doivent être réalisés avant ou pendant le démontage.',
+    purchaseGuide: {
+      title: 'Un devis précis pour votre kit embrayage',
+      intro: 'Le prix d’un kit ne suffit pas à comparer deux propositions : les pièces incluses doivent correspondre à l’intervention prévue par votre garage.',
+      items: ['Préparez votre plaque et, si vous les avez, le code moteur, le type de boîte ou les références demandées par le garage.', 'Faites préciser le contenu du kit : disque, mécanisme, butée et éventuelles pièces à commander séparément.', 'Appelez pour confirmer la compatibilité, le montant de la proposition et la date de retrait avant de planifier le montage.']
+    },
     products: [
       { title: 'Disque & mécanisme', description: 'Le disque transmet le mouvement, le mécanisme assure son serrage.', bullets: ['Diamètre et cannelures', 'Montage lié au moteur et à la boîte'] },
       { title: 'Butée d’embrayage', description: 'Butée mécanique ou hydraulique selon le système.', bullets: ['Type de commande', 'Raccords et fixation contrôlés'] },
@@ -277,7 +296,9 @@ export const catalogPages = [
       { question: 'Que contient un kit embrayage ?', answer: 'Selon la référence, il comprend généralement le disque, le mécanisme et la butée. Le contenu exact est vérifié avant commande.' },
       { question: 'La plaque suffit-elle pour choisir le kit ?', answer: 'Elle permet d’identifier le véhicule, mais le code moteur, la boîte ou la référence de la pièce peuvent être nécessaires lorsqu’il existe plusieurs montages.' },
       { question: 'Faut-il changer le volant moteur ?', answer: 'Pas systématiquement. Son état et son type doivent être contrôlés par le professionnel qui démonte l’embrayage.' },
-      { question: 'Le magasin effectue-t-il le remplacement ?', answer: 'Le site présente la fourniture du kit. Le remplacement doit être confié à un garage ou à une personne qualifiée.' }
+      { question: 'Quel est le prix d’un kit embrayage ?', answer: 'Le tarif dépend du véhicule, de la référence et du contenu du kit. Appelez le 01 48 47 96 27 avec votre plaque ou les références demandées par le garage : nous précisons les éléments inclus et leur prix avant commande.' },
+      { question: 'Où et quand puis-je retirer mon kit embrayage ?', answer: 'Le retrait s’effectue au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. La disponibilité dans la journée dépend de la référence ; le magasin confirme le délai avant votre déplacement et avant l’intervention du garage.' },
+      { question: 'Le magasin effectue-t-il le remplacement ?', answer: 'Le magasin fournit le kit et peut vous orienter vers un professionnel pour le montage. Précisez ce besoin lors de votre demande ; le remplacement est à organiser avec le professionnel choisi.' }
     ]
   },
   {
