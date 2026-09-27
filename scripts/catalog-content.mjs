@@ -24,6 +24,7 @@
  * @property {string} guideIntro
  * @property {string[]} guideItems
  * @property {{question: string, answer: string}[]} faq
+ * @property {{title: string, intro: string, items: string[]}} [purchaseGuide]
  */
 
 /** @type {CatalogPage[]} */
@@ -102,11 +103,16 @@ export const catalogPages = [
     title: 'Batterie voiture aux Pavillons-sous-Bois (93) — Auto Pièces Équipements',
     metaDescription: 'Batterie voiture aux Pavillons-sous-Bois : standard REBORN dès 59 €, Start & Stop EFB dès 159 €. Garantie 1 an, reprise 5 €, compatibilité vérifiée.',
     h1: 'Batterie voiture aux Pavillons-sous-Bois',
-    intro: 'Une batterie doit correspondre aux dimensions, à la polarité, à la capacité et à la technologie prévues par le véhicule. Nous vérifions ces éléments avec votre plaque ou votre carte grise avant toute confirmation.',
+    intro: 'Achetez votre batterie voiture au magasin Auto Pièces Équipements, au 184 Avenue Aristide Briand aux Pavillons-sous-Bois. Batteries standard REBORN ou Start & Stop EFB : appelez avec votre plaque pour faire vérifier la compatibilité, le prix et la disponibilité avant de venir.',
     image: '/assets/images/products/batterie-auto.webp',
     imageAlt: 'Batterie automobile 12 volts neuve sans marque',
     sectionTitle: 'Deux familles de batteries proposées',
-    sectionIntro: 'Les tarifs ci-dessous correspondent aux offres déjà publiées par le magasin. Le prix et la disponibilité exacts dépendent de la référence adaptée au véhicule.',
+    sectionIntro: 'Les tarifs ci-dessous correspondent aux offres déjà publiées par le magasin. Le prix et la disponibilité exacts dépendent de la référence adaptée au véhicule. Le visuel illustre la famille de produits ; il ne représente pas une référence précise du stock.',
+    purchaseGuide: {
+      title: 'Votre batterie à retirer au magasin',
+      intro: 'Avant de vous déplacer depuis Les Pavillons-sous-Bois, Bondy ou Livry-Gargan, faites confirmer la batterie adaptée et son délai de retrait.',
+      items: ['Préparez votre plaque et, si possible, la référence lisible de la batterie actuelle.', 'Précisez si votre véhicule dispose du Start & Stop : la technologie doit être vérifiée avec les autres caractéristiques.', 'Demandez le prix de la référence retenue et les conditions de reprise de votre ancienne batterie.']
+    },
     products: [
       { title: 'Batterie standard REBORN', description: 'Pour véhicules sans système Start & Stop.', price: 'Dès 59 €', bullets: ['Exemple à partir de 50 Ah', 'Garantie 1 an', 'Reprise de l’ancienne batterie : 5 €'] },
       { title: 'Batterie Start & Stop EFB', description: 'Technologie EFB pour véhicules équipés du Start & Stop.', price: 'Dès 159 €', bullets: ['Exemple à partir de 70 Ah', 'Garantie 1 an', 'Reprise de l’ancienne batterie : 5 €'] },
@@ -120,7 +126,9 @@ export const catalogPages = [
       { question: 'Avez-vous des batteries Start & Stop ?', answer: 'Oui, une offre EFB est publiée pour les véhicules équipés du Start & Stop. La compatibilité doit être confirmée avant achat.' },
       { question: 'Combien coûte une batterie ?', answer: 'L’offre publiée démarre à 59 € pour une batterie standard et à 159 € pour une batterie EFB Start & Stop. Le tarif exact varie selon la référence du véhicule.' },
       { question: 'Quelle est la garantie ?', answer: 'Les batteries présentées par le magasin sont annoncées avec une garantie d’un an. Conservez votre justificatif d’achat.' },
-      { question: 'Reprenez-vous l’ancienne batterie ?', answer: 'Oui, le magasin annonce une reprise de l’ancienne batterie à 5 €. Confirmez les conditions avec l’équipe lors de votre demande.' }
+      { question: 'Reprenez-vous l’ancienne batterie ?', answer: 'Oui, le magasin annonce une reprise de l’ancienne batterie à 5 €. Confirmez les conditions avec l’équipe lors de votre demande.' },
+      { question: 'Puis-je acheter ma batterie et la retirer dans la journée ?', answer: 'La disponibilité dans la journée dépend de la référence. Appelez le 01 48 47 96 27 avec les informations du véhicule : le magasin confirme la compatibilité, le prix et le délai avant votre déplacement au 184 Avenue Aristide Briand.' },
+      { question: 'Le montage de la batterie est-il effectué au magasin ?', answer: 'Le magasin fournit la batterie et peut vous orienter vers un professionnel pour le montage. Indiquez ce besoin lors de votre demande ; la pose sur place n’est pas un service annoncé.' }
     ]
   },
   {
@@ -128,13 +136,18 @@ export const catalogPages = [
     navLabel: 'Freinage',
     eyebrow: 'Freinage automobile · Toutes marques',
     title: 'Plaquettes et disques de frein aux Pavillons-sous-Bois (93)',
-    metaDescription: 'Plaquettes, disques, mâchoires, tambours et capteurs de frein aux Pavillons-sous-Bois. Montage vérifié par plaque ou carte grise avant commande.',
+    metaDescription: 'Achetez vos plaquettes et disques de frein aux Pavillons-sous-Bois. Référence vérifiée par plaque, prix et délai confirmés par téléphone avant retrait.',
     h1: 'Plaquettes et disques de frein aux Pavillons-sous-Bois',
-    intro: 'Pour un même modèle, le diamètre, l’épaisseur ou le type de disque peuvent varier. Nous identifions le montage avant ou arrière avec les informations du véhicule avant de confirmer la référence.',
+    intro: 'Plaquettes, disques, mâchoires et tambours : Auto Pièces Équipements fournit vos pièces de freinage aux Pavillons-sous-Bois. Appelez avec votre plaque et l’essieu concerné pour connaître la référence, le prix et le délai de retrait au magasin.',
     image: '/assets/images/products/freinage.webp',
     imageAlt: 'Disque ventilé et plaquettes de frein neufs',
     sectionTitle: 'Les principales pièces de freinage',
-    sectionIntro: 'La sélection dépend du véhicule, de l’essieu et du montage d’origine. Le magasin fournit la pièce ; le montage doit être confié à une personne compétente.',
+    sectionIntro: 'La sélection dépend du véhicule, de l’essieu et du montage d’origine. Le magasin fournit la pièce ; le montage doit être confié à une personne compétente. Le visuel illustre la famille de pièces et ne permet pas d’identifier une référence compatible.',
+    purchaseGuide: {
+      title: 'Un devis pour vos plaquettes et disques',
+      intro: 'Un même modèle de voiture peut recevoir plusieurs montages de freinage. Nous vérifions les pièces demandées avant de confirmer votre achat.',
+      items: ['Indiquez votre plaque et précisez avant ou arrière.', 'Si vous avez un devis de garage, préparez les références et quantités demandées.', 'Faites confirmer le contenu de la proposition, le prix et la disponibilité avant de venir au magasin.']
+    },
     products: [
       { title: 'Plaquettes de frein', description: 'Jeux avant ou arrière selon l’étrier et le montage du véhicule.', bullets: ['Forme et dimensions contrôlées', 'Témoin ou capteur selon équipement'] },
       { title: 'Disques de frein', description: 'Disques pleins ou ventilés selon la motorisation et l’essieu.', bullets: ['Diamètre et épaisseur', 'Hauteur et nombre de fixations'] },
@@ -147,21 +160,28 @@ export const catalogPages = [
       { question: 'Comment trouver les bonnes plaquettes ?', answer: 'La plaque ou la carte grise permet d’identifier le véhicule, mais plusieurs montages peuvent encore exister. Une photo ou les dimensions de la pièce peuvent compléter la recherche.' },
       { question: 'Faut-il changer les disques avec les plaquettes ?', answer: 'Cela dépend de l’usure et de l’épaisseur mesurée des disques. Demandez l’avis du professionnel qui inspecte ou monte le système de freinage.' },
       { question: 'Vendez-vous des kits avant et arrière ?', answer: 'Le magasin recherche les composants nécessaires pour l’essieu concerné. La disponibilité et le délai sont confirmés avant déplacement.' },
-      { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, nous pouvons vous orienter vers un professionnel pour le montage de vos pièces de freinage. Précisez ce besoin lors de votre demande au magasin.' }
+      { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, nous pouvons vous orienter vers un professionnel pour le montage de vos pièces de freinage. Précisez ce besoin lors de votre demande au magasin.' },
+      { question: 'Quel est le prix des plaquettes et disques pour mon véhicule ?', answer: 'Le tarif dépend du montage, de l’essieu et des composants recherchés. Appelez le 01 48 47 96 27 avec votre plaque et les pièces demandées : nous confirmons les références, les quantités, le prix et le délai avant commande.' },
+      { question: 'Où retirer mes pièces de freinage près de Bondy ou Livry-Gargan ?', answer: 'Le retrait se fait au magasin Auto Pièces Équipements, 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois, après confirmation de la disponibilité. Consultez les horaires et l’itinéraire avant de venir.' }
     ]
   },
   {
     slug: 'filtres-vidange-les-pavillons-sous-bois.html',
     navLabel: 'Filtres',
     eyebrow: 'Filtration & vidange · Entretien courant',
-    title: 'Filtres et vidange aux Pavillons-sous-Bois (93)',
-    metaDescription: 'Filtres à huile, air, habitacle et carburant aux Pavillons-sous-Bois. Huile adaptée à la norme constructeur, référence vérifiée par plaque.',
-    h1: 'Filtres et vidange aux Pavillons-sous-Bois',
-    intro: 'Un entretien correct associe le bon filtre à une huile respectant la viscosité et la norme prévues par le constructeur. Nous vérifions les références à partir des informations du véhicule.',
+    title: 'Filtres auto et huile de vidange aux Pavillons-sous-Bois (93)',
+    metaDescription: 'Filtres à huile, air, habitacle et carburant aux Pavillons-sous-Bois. Préparez votre vidange : huile et filtres adaptés, prix et retrait confirmés par téléphone.',
+    h1: 'Filtres auto et huile de vidange aux Pavillons-sous-Bois',
+    intro: 'Achetez les filtres et l’huile nécessaires à votre entretien chez Auto Pièces Équipements. Filtre à huile, à air, d’habitacle ou à carburant : préparez votre plaque pour faire vérifier les références et connaître le prix et la disponibilité au magasin.',
     image: '/assets/images/products/filtration.webp',
     imageAlt: 'Ensemble de filtres automobiles neufs',
     sectionTitle: 'Filtres recherchés pour votre véhicule',
-    sectionIntro: 'Chaque filtre a une fonction différente. La périodicité de remplacement dépend du véhicule, de son usage et du plan d’entretien.',
+    sectionIntro: 'Chaque filtre a une fonction différente. La périodicité de remplacement dépend du véhicule, de son usage et du plan d’entretien. Le visuel présente des exemples de filtres, pas les références exactes de votre véhicule.',
+    purchaseGuide: {
+      title: 'Préparez votre achat de filtres et d’huile',
+      intro: 'Le magasin recherche les consommables pour votre véhicule. Vous pouvez préparer un ensemble filtre à huile et huile moteur, puis faire confirmer son contenu avant retrait.',
+      items: ['Préparez votre plaque ou les références indiquées sur le devis de votre garage.', 'Précisez les filtres souhaités : huile, air, habitacle, essence ou gazole.', 'Pour l’huile, faites vérifier la norme constructeur et la quantité, en plus de la viscosité.', 'Appelez pour confirmer le prix de l’ensemble et le délai de retrait.']
+    },
     products: [
       { title: 'Filtre à huile', description: 'Retient les impuretés présentes dans l’huile moteur.', bullets: ['Référence liée à la motorisation', 'Joint et montage adaptés'] },
       { title: 'Filtres à air & habitacle', description: 'Protègent le moteur et améliorent la qualité de l’air dans l’habitacle.', bullets: ['Dimensions précises', 'Version standard ou charbon selon référence'] },
@@ -174,7 +194,9 @@ export const catalogPages = [
       { question: 'Quelle huile et quel filtre pour ma vidange ?', answer: 'Transmettez la plaque ou la carte grise. Nous recherchons la viscosité, la norme constructeur, la quantité et la référence du filtre compatibles.' },
       { question: 'Peut-on préparer un ensemble filtre et huile ?', answer: 'Oui, le magasin peut rechercher le filtre à huile et l’huile adaptée au même véhicule. Le contenu exact et la disponibilité sont confirmés avant retrait.' },
       { question: 'Avez-vous des filtres d’habitacle et à air ?', answer: 'Oui, ces familles sont proposées selon la référence du véhicule, ainsi que les filtres à carburant.' },
-      { question: 'Quand faut-il remplacer les filtres ?', answer: 'La périodicité varie selon le constructeur, le kilométrage et l’usage. Consultez le carnet d’entretien ou demandez conseil à votre garage.' }
+      { question: 'Quand faut-il remplacer les filtres ?', answer: 'La périodicité varie selon le constructeur, le kilométrage et l’usage. Consultez le carnet d’entretien ou demandez conseil à votre garage.' },
+      { question: 'Faites-vous la vidange au magasin ?', answer: 'Cette page concerne la vente des filtres et de l’huile. Le magasin n’annonce pas de prestation de vidange sur place ; il peut vous orienter vers un professionnel pour l’intervention.' },
+      { question: 'Comment connaître le prix et retirer mes filtres ?', answer: 'Appelez le 01 48 47 96 27 avec votre plaque et la liste des filtres souhaités. Une fois les références, le prix et la disponibilité confirmés, le retrait se fait au 184 Avenue Aristide Briand aux Pavillons-sous-Bois.' }
     ]
   },
   {

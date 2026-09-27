@@ -290,12 +290,19 @@ function renderPage(page) {
           <ul class="check-list">${page.guideItems.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
         </div>
         <div class="notice">
-          <h2>Pourquoi plusieurs références existent&nbsp;?</h2>
+          ${page.purchaseGuide ? `<h2>${escapeHtml(page.purchaseGuide.title)}</h2>
+          <p>${escapeHtml(page.purchaseGuide.intro)}</p>
+          <ul class="check-list">${page.purchaseGuide.items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          <div class="section-actions">
+            <a class="button button-primary" href="${phoneHref}">Appeler le ${phoneDisplay}</a>
+            <a class="button button-outline" href="${mapsHref}" target="_blank" rel="noopener">Itinéraire vers le magasin</a>
+          </div>
+          <p><a href="#contact">Adresse et horaires du magasin</a></p>` : `<h2>Pourquoi plusieurs références existent&nbsp;?</h2>
           <p>La finition, la date de fabrication, la motorisation ou l’équipement peuvent changer le montage d’une pièce sur un même modèle.</p>
           <p><strong>Notre méthode :</strong> identifier le véhicule, comparer les caractéristiques, puis confirmer la disponibilité avant votre déplacement.</p>
           <p><strong>Besoin de montage ?</strong> Nous pouvons vous orienter vers un professionnel. Précisez-le dans votre demande.</p>
           <div class="section-actions"><a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">Envoyer les informations</a></div>
-          <p>Un message à compléter s’ouvre dans WhatsApp. Ajoutez votre véhicule et la pièce recherchée avant de l’envoyer.</p>
+          <p>Un message à compléter s’ouvre dans WhatsApp. Ajoutez votre véhicule et la pièce recherchée avant de l’envoyer.</p>`}
         </div>
       </div>
     </section>
