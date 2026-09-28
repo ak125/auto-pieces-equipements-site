@@ -49,6 +49,30 @@ function formatTime(minutes) {
   return minute ? `${hour}h${String(minute).padStart(2, '0')}` : `${hour}h`;
 }
 
+/** @param {ReturnType<typeof parisNow>} now */
+function nextOpening(now) {
+  if (!storeHours) return null;
+  // Move through Paris calendar dates, without adding hours across a DST change.
+  const date = new Date(`${now.date}T00:00:00Z`);
+  for (let offset = 0; offset <= 7; offset++) {
+    const dateKey = date.toISOString().slice(0, 10);
+    const day = date.getUTCDay() || 7;
+    const periods = Object.hasOwn(storeHours.exceptions, dateKey)
+      ? storeHours.exceptions[dateKey] : storeHours.weekly[day];
+    if (!validPeriods(periods)) return null;
+    const next = periods.find(([start]) => offset > 0 || start > now.minutes);
+    if (next) {
+      const label = offset === 0 ? 'aujourd’hui' : offset === 1 ? 'demain'
+        : new Intl.DateTimeFormat('fr-FR', {
+          timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long'
+        }).format(date);
+      return `${label} à ${formatTime(next[0])}`;
+    }
+    date.setUTCDate(date.getUTCDate() + 1);
+  }
+  return null;
+}
+
 function updateOpeningStatus() {
   const status = document.querySelector('[data-opening-status]');
   if (!status) return;
@@ -57,10 +81,15 @@ function updateOpeningStatus() {
   const periods = exceptional ? storeHours.exceptions[now.date] : storeHours?.weekly[now.day];
   const valid = validPeriods(periods);
   const currentWindow = valid ? periods.find(([start, end]) => now.minutes >= start && now.minutes < end) : undefined;
-  const message = !valid ? 'Consultez les horaires du magasin avant votre déplacement.' : currentWindow
-    ? `Magasin ouvert — fermeture à ${formatTime(currentWindow[1])}. Appelez pour vérifier la disponibilité d'une pièce.`
-    : exceptional ? 'Magasin exceptionnellement fermé — consultez les horaires ou laissez un message sur WhatsApp.'
-      : 'Magasin actuellement fermé — consultez les horaires ou laissez un message sur WhatsApp.';
+  let message = 'Consultez les horaires du magasin avant votre déplacement.';
+  if (currentWindow) {
+    message = `Magasin ouvert — fermeture à ${formatTime(currentWindow[1])}. Appelez pour vérifier la disponibilité d'une pièce.`;
+  } else if (valid) {
+    const next = nextOpening(now);
+    const guidance = next ? `prochaine ouverture ${next}.`
+      : 'consultez les horaires ou laissez un message sur WhatsApp.';
+    message = `Magasin ${exceptional ? 'exceptionnellement' : 'actuellement'} fermé — ${guidance}`;
+  }
   // The status is a live region: only announce an actual change.
   if (status.textContent !== message) status.textContent = message;
   status.classList.toggle('is-open', Boolean(currentWindow));
