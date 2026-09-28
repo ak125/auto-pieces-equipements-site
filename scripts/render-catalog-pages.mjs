@@ -31,8 +31,8 @@ function whatsappLink(page) {
   ].join('\n');
   return `https://wa.me/33148479627?text=${encodeURIComponent(message)}`;
 }
-const mapsHref = 'https://www.google.com/maps/dir/?api=1&destination=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois';
-const googleProfileHref = 'https://www.google.com/maps/search/?api=1&query=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois';
+const mapsHref = 'https://www.google.com/maps/dir/?api=1&destination=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois&destination_place_id=ChIJVVXZlqAT5kcRICTpgHlqx9A';
+const googleProfileHref = 'https://www.google.com/maps/search/?api=1&query=Auto+Pi%C3%A8ces+%C3%89quipements+184+Avenue+Aristide+Briand+93320+Les+Pavillons-sous-Bois&query_place_id=ChIJVVXZlqAT5kcRICTpgHlqx9A';
 
 /** @param {string} value */
 function escapeHtml(value) {
@@ -158,7 +158,7 @@ function structuredData(page) {
           postalCode: '93320',
           addressCountry: 'FR'
         },
-        geo: { '@type': 'GeoCoordinates', latitude: 48.91012, longitude: 2.51387 },
+        geo: { '@type': 'GeoCoordinates', latitude: 48.9097218, longitude: 2.5077193 },
         ...hoursStructuredData(storeHours),
         areaServed: ['Les Pavillons-sous-Bois', 'Bondy', 'Livry-Gargan', 'Le Raincy', 'Villemomble', 'Noisy-le-Sec'].map((name) => ({ '@type': 'City', name }))
       },
