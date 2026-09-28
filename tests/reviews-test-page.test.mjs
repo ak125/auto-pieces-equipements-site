@@ -32,7 +32,7 @@ async function render(fetchResponse, { withContainers = true } = {}) {
   return { stats, content, nodes, text: text(content) };
 }
 
-test('review content remains text, unsafe photos are ignored and ratings are bounded', async () => {
+test('review content remains text, unsafe photos are ignored and invalid ratings stay unavailable', async () => {
   const hostile = '<img src=x onerror=alert(1)>';
   const page = await render(() => Response.json({ success: true, data: {
     name: hostile, address: hostile, phone: hostile, rating: 4.5, totalReviews: 3,
@@ -50,7 +50,7 @@ test('review content remains text, unsafe photos are ignored and ratings are bou
   assert.equal(images.length, 1);
   assert.equal(images[0].src, 'https://example.com/photo.jpg');
   assert.equal(images[0].referrerPolicy, 'no-referrer');
-  assert.deepEqual(page.nodes.filter(node => node.className === 'review-rating').map(node => node.textContent), ['⭐⭐⭐⭐⭐', '', '']);
+  assert.deepEqual(page.nodes.filter(node => node.className === 'review-rating').map(node => node.textContent), Array(3).fill('Note indisponible'));
 });
 
 test('HTTP errors are shown as text and clear the loading state', async () => {
@@ -64,11 +64,24 @@ test('HTTP errors are shown as text and clear the loading state', async () => {
 
 test('empty reviews and timeouts have explicit visible messages', async () => {
   const empty = await render(() => Response.json({ success: true, data: { name: 'Magasin', reviews: [] } }));
-  assert.ok(empty.text.includes('Aucun avis disponible.'));
+  assert.ok(empty.text.includes('Aucun avis fourni dans cette réponse.'));
   const timeout = await render(() => { throw new DOMException('Internal detail', 'TimeoutError'); });
   assert.ok(timeout.text.includes('a dépassé le délai prévu'));
   assert.equal(timeout.content.className, '');
   assert.ok(!timeout.text.includes('Internal detail'));
+});
+
+test('missing review totals stay unavailable while an explicit zero stays zero', async () => {
+  for (const [data, expected] of [
+    [{ reviews: [] }, '—'],
+    [{ reviews: [], totalReviews: null }, '—'],
+    [{ reviews: [], totalReviews: 0 }, '0'],
+    [{ reviews: [{ text: 'Exemple fictif' }], totalReviews: 27 }, '27']
+  ]) {
+    const page = await render(() => Response.json({ success: true, data }));
+    assert.equal(page.stats.children[1].children[0].textContent, expected);
+    assert.equal(page.stats.children[2].children[0].textContent, String(data.reviews.length));
+  }
 });
 
 test('missing containers skip the request and malformed payloads get a clear error', async () => {
@@ -80,4 +93,62 @@ test('missing containers skip the request and malformed payloads get a clear err
   }
   const page = await render(() => { throw null; });
   assert.ok(page.text.includes('Avis indisponibles'));
+});
+
+test('only an explicit boolean success can confirm a successful response', async () => {
+  for (const success of ['false', 'true', 1, [], {}, false, null]) {
+    const page = await render(() => Response.json({ success, data: { reviews: [] } }));
+    assert.equal(page.content.children[0].className, 'error', JSON.stringify(success));
+    assert.equal(page.stats.children.length, 0);
+  }
+});
+
+test('aggregate metrics preserve valid values without coercing malformed values', async () => {
+  for (const [rating, totalReviews, expectedRating, expectedTotal] of [
+    [1, 0, '1', '0'], [4.5, 27, '4.5', '27'], [5, 100, '5', '100'],
+    [undefined, undefined, '—', '—'], [null, null, '—', '—'],
+    [0, -1, '—', '—'], [6, 1.5, '—', '—'], [-1, Number.MAX_SAFE_INTEGER + 1, '—', '—'],
+    ['4.5', '27', '—', '—'], [true, false, '—', '—'], [{}, [], '—', '—']
+  ]) {
+    const page = await render(() => Response.json({ success: true, data: { rating, totalReviews, reviews: [] } }));
+    assert.deepEqual(page.stats.children.slice(0, 2).map(node => node.children[0].textContent),
+      [expectedRating, expectedTotal], JSON.stringify({ rating, totalReviews }));
+  }
+});
+
+test('the displayed count matches rendered records and identifies skipped malformed entries', async () => {
+  const page = await render(() => Response.json({ success: true, data: {
+    totalReviews: 27, reviews: [null, { rating: 1, text: 'Avis négatif fictif' }, [], 'invalid', { rating: 5 }]
+  } }));
+  assert.equal(page.stats.children[1].children[0].textContent, '27');
+  assert.equal(page.stats.children[2].children[0].textContent, '2');
+  assert.equal(page.nodes.filter(node => node.className === 'review-card').length, 2);
+  assert.ok(page.text.includes('Entrées non affichées (format invalide) : 3.'));
+  assert.ok(page.text.includes('Avis négatif fictif'));
+  assert.deepEqual(page.nodes.filter(node => node.className === 'review-rating').map(node => node.textContent), ['⭐', '⭐⭐⭐⭐⭐']);
+
+  const malformed = await render(() => Response.json({ success: true, data: { reviews: [null, 1, []] } }));
+  assert.equal(malformed.stats.children[1].children[0].textContent, '—');
+  assert.equal(malformed.stats.children[2].children[0].textContent, '0');
+  assert.ok(malformed.text.includes('Aucun avis affichable dans cette réponse.'));
+  assert.ok(malformed.text.includes('Entrées non affichées (format invalide) : 3.'));
+});
+
+test('individual ratings must be integers from one to five without rounding or clamping', async () => {
+  const page = await render(() => Response.json({ success: true, data: {
+    reviews: [0, 2.5, '5', true, 999, -1, null, 1, 2, 3, 4, 5].map(rating => ({ rating }))
+  } }));
+  assert.deepEqual(page.nodes.filter(node => node.className === 'review-rating').map(node => node.textContent),
+    [...Array(7).fill('Note indisponible'), '⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐⭐⭐']);
+});
+
+test('the diagnostic distinguishes reported aggregates from the current response subset', async () => {
+  const page = await render(() => Response.json({ success: true, data: { totalReviews: 27, reviews: [] } }));
+  assert.deepEqual(page.stats.children.map(node => node.children[1].textContent),
+    ['Note moyenne rapportée / 5', 'Total rapporté (avec ou sans texte)', 'Avis affichés dans cette réponse']);
+  assert.ok(page.text.includes('Source : réponse du service local Google Places.'));
+  assert.ok(page.text.includes('Période couverte non fournie'));
+  assert.ok(page.text.includes('La liste reçue peut être partielle'));
+  assert.ok(page.text.includes('Aucun avis fourni dans cette réponse.'));
+  assert.equal(page.stats.children[1].children[0].textContent, '27');
 });

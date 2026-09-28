@@ -11,7 +11,7 @@ function decodeAttribute(value) {
 }
 
 /** Read attributes from the static HTML we generate; ignore comments and raw text. @param {string} html */
-function elements(html) {
+export function elements(html) {
   const markup = html.replace(/<!--[\s\S]*?-->/g, '')
     .replace(/(<(script|style|textarea|title)\b[^>]*>)[\s\S]*?<\/\2\s*>/gi, '$1');
   return [...markup.matchAll(/<([a-z][\w:-]*)\b(?:"[^"]*"|'[^']*'|[^'">])*>/gi)].map(match => {

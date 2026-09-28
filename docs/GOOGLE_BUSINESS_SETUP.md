@@ -4,6 +4,8 @@
 > **Date de création** : Octobre 2025  
 > **Dernière mise à jour** : Octobre 2025
 
+> **Statut au 28 septembre 2026 : guide historique, pas une description du fonctionnement actuel.** Les dates ci-dessus datent ce document, pas l’ouverture du magasin ou la création de sa fiche. Les exemples commerciaux, tarifs et états de comptes ne sont pas des mesures actuelles ni des offres validées. Pour la mesure et les avis, utiliser le [rapport existant](../marketing/google-business/audit-2026-09-09.md) et sa [checklist manuelle](../marketing/google-business/plan-optimisation.md). Aucun nouveau compte, service, envoi ou déploiement n’est autorisé par ce guide.
+
 ---
 
 ## 📋 Table des Matières
@@ -528,17 +530,15 @@ R: Oui, retour possible sous 14 jours avec facture et emballage d'origine.
    ```html
    Bonjour [Nom],
    
-   Nous espérons que votre achat chez Auto Pièces Équipements 
-   vous satisfait pleinement !
-   
-   Votre avis compte beaucoup pour nous et aide d'autres clients.
+   Merci pour votre visite chez Auto Pièces Équipements.
+   Vous pouvez partager librement votre expérience, sans contrepartie.
    
    [Bouton : Laisser un avis]
    
    Merci de votre confiance !
    ```
 
-3. **SMS Post-Achat** (24-48h après)
+3. **Ancien exemple de SMS, brouillon sans envoi ni programmation autorisés**
    ```
    Auto Pièces Équipements : Merci pour votre achat !
    Partagez votre expérience : [lien court]
@@ -586,79 +586,19 @@ Auto Pièces Équipements
 
 ## 📊 Analytics et Suivi
 
-### Métriques à Surveiller
+L'ancien tableau Octobre/Novembre 2025, ses notes, quotas et objectifs chiffrés n'étaient pas des mesures sourcées. Ils sont retirés de cette recommandation. Aucun import de performances GBP, traceur GA4 ou calculateur commercial n'est chargé par le site statique actuel ; les prototypes exclus de publication ne prouvent pas une intégration active.
 
-**Google Business Profile Insights :**
-```yaml
-Visibilité:
-  - Recherches directes (nom de l'entreprise)
-  - Recherches de découverte (catégorie/localisation)
-  - Vues totales du profil
+Réutiliser le [suivi mensuel existant](../marketing/google-business/plan-optimisation.md#8-suivi-mensuel), sans nouveau tableau de bord ni intégration. Documenter pour chaque donnée sa source, sa définition, son unité, sa marque, sa période, sa couverture et son statut. Conserver les valeurs manquantes comme indisponibles et les scénarios comme hypothétiques.
 
-Engagement:
-  - Clics vers le site web
-  - Demandes d'itinéraire
-  - Appels téléphoniques
-  - Clics sur les photos
-
-Avis:
-  - Note moyenne
-  - Nombre total d'avis
-  - Taux de réponse
-  - Évolution mensuelle
-```
-
-### Tableau de Bord Recommandé
-
-Créer un suivi mensuel :
-
-| Métrique | Oct 2025 | Nov 2025 | Objectif |
-|----------|----------|----------|----------|
-| Vues profil | - | - | +20% |
-| Clics site web | - | - | +30% |
-| Appels | - | - | +15% |
-| Itinéraires | - | - | +25% |
-| Nouveaux avis | - | - | 5+/mois |
-| Note moyenne | 4.5 | - | 4.7+ |
-
-### Outils de Suivi
-
-1. **Google Business Profile**
-   - Dashboard natif
-   - Rapports hebdomadaires par email
-
-2. **Google Analytics**
-   - UTM tracking pour liens GBP
-   - Segment "Google My Business" dans GA4
-
-3. **Dashboard Personnalisé**
-   - Vous pouvez créer un dashboard dans votre projet
-   - Intégration API Google My Business
-
----
+Les appels GBP sont des clics sur le bouton d'appel ; les clics site ne sont pas des sessions ; ni les clics ni les itinéraires ne prouvent une vente. Les performances peuvent inclure Google Ads. [Définitions Google](https://support.google.com/business/answer/9918094?hl=fr), consultées le 28 septembre 2026.
 
 ## 🔍 SEO Local - Optimisation
 
 ### Facteurs de Classement Google Maps
 
-**Importance par ordre :**
-1. **Pertinence** (30%)
-   - Catégories correctes
-   - Description détaillée
-   - Attributs complets
+Google cite la pertinence, la distance et la popularité. Les anciennes pondérations de ce guide (30 %, 25 %, 25 %, 20 %) n'avaient pas de source établie : elles sont retirées et ne doivent servir ni au calcul d'un score Google ni à une prévision commerciale. Aucun moteur de score exécutant ces valeurs n'a été retrouvé dans les surfaces actives contrôlées.
 
-2. **Distance** (25%)
-   - Optimisation géographique
-   - Mots-clés locaux
-
-3. **Notoriété** (25%)
-   - Nombre et qualité des avis
-   - Activité du profil
-   - Citations locales
-
-4. **Engagement** (20%)
-   - Clics, appels, itinéraires
-   - Photos, posts réguliers
+Ni une cadence de publication, ni un nombre de photos, ni un badge Local Guide ne reçoit ici de coefficient Google. Cela ne prouve pas un effet nul ; cela interdit de présenter une hypothèse comme un poids connu. [Classement local, Google](https://support.google.com/business/answer/7091?hl=fr), consulté le 28 septembre 2026.
 
 ### Citations Locales
 

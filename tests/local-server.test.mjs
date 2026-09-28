@@ -1,16 +1,34 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { readFile } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import { publicFiles } from '../scripts/site-config.mjs';
 
 const root = new URL('../', import.meta.url);
 
-for (const entry of ['server-simple.js', 'server.js', 'server/server.js']) {
-  test(`${entry} starts outside the repository and exposes only public routes`, async (t) => {
-    const child = spawn(process.execPath, [fileURLToPath(new URL(entry, root))], {
+for (const [entry, hiddenParent] of [['server-simple.js', false], ['server.js', false], ['server/server.js', false], ['server-simple.js', true]]) {
+  test(`${entry}${hiddenParent ? ' under a hidden parent' : ''} starts outside the repository and exposes only public routes`, async (t) => {
+    let serverRoot = root;
+    if (hiddenParent) {
+      const temporaryRoot = fileURLToPath(new URL('../tmp/', import.meta.url));
+      await mkdir(temporaryRoot, { recursive: true });
+      const fixture = await mkdtemp(path.join(temporaryRoot, '.local-server-'));
+      t.after(async () => {
+        assert.equal(path.dirname(fixture), path.resolve(temporaryRoot));
+        await rm(fixture, { recursive: true, force: true });
+      });
+      const files = [...publicFiles, 'server-simple.js', 'scripts/site-config.mjs', 'server/google-places.cjs', 'server/reviews-test.html', 'server/reviews-test.js'];
+      for (const file of files) {
+        const target = path.join(fixture, file);
+        await mkdir(path.dirname(target), { recursive: true });
+        await copyFile(new URL(file, root), target);
+      }
+      serverRoot = new URL(`./${path.basename(fixture)}/`, new URL('../tmp/', import.meta.url));
+    }
+    const child = spawn(process.execPath, [fileURLToPath(new URL(entry, serverRoot))], {
       cwd: tmpdir(), windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
       env: { ...process.env, PORT: '0', HOST: '', GOOGLE_MAPS_API_KEY: '', GOOGLE_PLACE_ID: '' }
     });

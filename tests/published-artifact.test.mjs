@@ -38,6 +38,12 @@ test('validation checks the published artifact independently of its source', asy
   });
 
   const scenarios = [
+    ['commercial noindex', 'index.html', /<\/head>/, '<meta name="robots" content="noindex,follow"></head>', /index\.html: directive bloquant l.indexation/],
+    ['Googlebot none with reordered attributes', 'index.html', /<\/head>/, "<META CONTENT='NONE' NAME='GoogleBot'></head>", /index\.html: directive bloquant l.indexation/],
+    ['encoded noindex in body', 'index.html', /<\/body>/, '<meta content="no&#105;ndex" name=robots></body>', /index\.html: directive bloquant l.indexation/],
+    ['canonical with query', 'index.html', /(<link rel="canonical" href="https:\/\/auto-pieces-equipements\.fr\/)"/, '$1?source=test"', /index\.html: canonical différente de l.URL attendue/],
+    ['canonical with fragment', 'index.html', /(<link rel="canonical" href="https:\/\/auto-pieces-equipements\.fr\/)"/, '$1#contact"', /index\.html: canonical différente de l.URL attendue/],
+    ['duplicate canonical', 'index.html', /<\/head>/, '<link href="https://auto-pieces-equipements.fr/" rel="canonical"></head>', /index\.html: plusieurs liens canonical/],
     ['broken contact anchor', 'index.html', /href="#contact"/, 'href="#contact-inexistant"', /ancre absente dans index\.html/],
     ['missing absolute internal page', 'index.html', /href="#contact"/, 'href="https://auto-pieces-equipements.fr/absent.html"', /href vers un fichier non publié/],
     ['missing local script', 'index.html', /src="\/assets\/site\.js"/, 'src="/assets/absent.js"', /src vers un fichier non publié/],
@@ -68,4 +74,40 @@ test('validation checks the published artifact independently of its source', asy
       }
     });
   }
+
+  await t.test('canonical swaps between two published pages fail despite unique URLs', () => {
+    const pages = ['index.html', 'livraison-pieces-auto-93.html'];
+    const originals = pages.map(file => readFileSync(path.join(fixture, 'dist', file), 'utf8'));
+    const urls = originals.map(html => html.match(/<link rel="canonical" href="([^"]+)"/)[1]);
+    try {
+      pages.forEach((file, i) => {
+        writeFileSync(path.join(fixture, 'dist', file),
+          originals[i].replace('href="' + urls[i] + '"', 'href="' + urls[1 - i] + '"'));
+      });
+      const result = validate();
+      assert.equal(result.status, 1, result.stdout + result.stderr);
+      for (const file of pages) assert.ok(result.stderr.includes(file + ': canonical différente'));
+    } finally {
+      pages.forEach((file, i) => writeFileSync(path.join(fixture, 'dist', file), originals[i]));
+    }
+  });
+
+  await t.test('inert examples and non-blocking directives do not prevent publication', () => {
+    const target = path.join(fixture, 'dist', 'index.html');
+    const original = readFileSync(target, 'utf8');
+    try {
+      writeFileSync(target, original
+        .replace(/<link rel="canonical" href="([^"]+)">/, "<link href='$1' rel='CANONICAL'>")
+        .replace('</head>', `
+        <!-- <meta name="robots" content="noindex"><link rel="canonical" href="https://example.com/"> -->
+        <script type="application/json">{"example":"<meta name='robots' content='none'>"}</script>
+        <meta name="robots" content="index,follow,max-image-preview: none">
+        <meta name="googlebot" content="nosnippet">
+        </head>`));
+      const result = validate();
+      assert.equal(result.status, 0, result.stdout + result.stderr);
+    } finally {
+      writeFileSync(target, original);
+    }
+  });
 });
