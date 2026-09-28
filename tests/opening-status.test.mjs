@@ -203,3 +203,55 @@ test('missing or malformed schedule never claims the shop is open', () => {
     assert.match(browser.text, /Consultez les horaires/);
   }
 });
+
+test('closed visitors see the next opening in the Paris calendar', () => {
+  for (const [instant, expected] of [
+    ['2026-09-28T04:00:00Z', /aujourd’hui à 9h30/],
+    ['2026-09-11T11:30:00Z', /aujourd’hui à 14h30/],
+    ['2026-09-11T16:30:00Z', /demain à 9h30/],
+    ['2026-09-12T14:00:00Z', /lundi 14 septembre à 9h30/],
+    ['2026-09-13T21:59:59Z', /demain à 9h30/],
+    ['2026-09-13T22:00:00Z', /aujourd’hui à 9h30/],
+    ['2026-12-31T22:00:00Z', /demain à 9h30/],
+    ['2026-03-28T15:00:00Z', /lundi 30 mars à 9h30/],
+    ['2026-10-24T14:00:00Z', /lundi 26 octobre à 9h30/]
+  ]) {
+    const browser = page(instant);
+    assert.equal(browser.open, false, instant);
+    assert.match(browser.text, /prochaine ouverture/);
+    assert.match(browser.text, expected, instant);
+  }
+});
+
+test('next opening skips exceptional closures and uses exceptional opening hours', () => {
+  const configuration = JSON.stringify({ ...storeHours, exceptions: {
+    '2026-09-14': [],
+    '2026-09-15': [[660, 720]],
+    '2026-09-20': [[600, 660]]
+  } });
+  assert.match(page('2026-09-13T10:00:00Z', { configuration }).text, /mardi 15 septembre à 11h/);
+  assert.match(page('2026-09-14T10:00:00Z', { configuration }).text, /exceptionnellement fermé.*demain à 11h/);
+  assert.match(page('2026-09-19T14:00:00Z', { configuration }).text, /demain à 10h/);
+});
+
+test('next opening is replaced by the open status at the scheduled minute', () => {
+  const browser = page('2026-09-11T12:29:59Z');
+  assert.match(browser.text, /aujourd’hui à 14h30/);
+  browser.advance('2026-09-11T12:30:00Z');
+  assert.equal(browser.open, true);
+  assert.match(browser.text, /fermeture à 18h30/);
+  assert.doesNotMatch(browser.text, /prochaine ouverture/);
+});
+
+test('unknown future hours or a week without opening keeps a cautious fallback', () => {
+  const configurations = [
+    { ...storeHours, weekly: { ...storeHours.weekly, 1: 'invalid' } },
+    { ...storeHours, weekly: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [] } }
+  ];
+  for (const value of configurations) {
+    const browser = page('2026-09-13T10:00:00Z', { configuration: JSON.stringify(value) });
+    assert.equal(browser.open, false);
+    assert.doesNotMatch(browser.text, /prochaine ouverture/);
+    assert.match(browser.text, /consultez les horaires/);
+  }
+});
