@@ -208,7 +208,6 @@ function renderProducts(page) {
 function renderRelated(currentPage) {
   return catalogPages
     .filter((page) => page.slug !== currentPage.slug)
-    .slice(0, 6)
     .map((page) => `<li><a href="/${page.slug}">${escapeHtml(page.navLabel)}</a></li>`)
     .join('');
 }
@@ -341,7 +340,7 @@ function renderPage(page) {
           <p>Auto Pièces Équipements vous accueille au 184 Avenue Aristide Briand, aux Pavillons-sous-Bois. Le magasin répond également aux demandes venant de Bondy, Livry-Gargan, Le Raincy, Villemomble et Noisy-le-Sec.</p>
         </div>
         <div>
-          <p class="kicker">Autres familles</p>
+          <p class="kicker">Guides et services</p>
           <h2>Continuer votre recherche</h2>
           <ul class="plain-list">${renderRelated(page)}</ul>
         </div>

@@ -41,6 +41,11 @@ export const catalogPages = [
     imageAlt: 'Disque et plaquettes de frein automobiles neufs',
     sectionTitle: 'Les familles de pièces recherchées au comptoir',
     sectionIntro: 'Chaque véhicule peut avoir plusieurs montages. Les pages ci-dessous expliquent les familles disponibles et les informations nécessaires pour identifier la bonne référence.',
+    purchaseGuide: {
+      title: 'Trouver votre pièce par téléphone',
+      intro: 'Vous ne connaissez pas le nom exact de la pièce ou vous hésitez entre plusieurs références ? Préparez les informations du véhicule pour commencer la recherche avec le magasin.',
+      items: ['Gardez votre plaque ou votre carte grise à portée de main, ainsi que le devis de votre garage si vous en avez un.', 'Précisez la pièce recherchée, la quantité et, selon le besoin, le côté ou l’essieu concernés.', 'Faites confirmer la référence, le prix et le délai avant de venir au 184 Avenue Aristide Briand aux Pavillons-sous-Bois.']
+    },
     products: [
       { title: 'Batteries', description: 'Standard ou Start & Stop selon la technologie prévue par le véhicule.', image: '/assets/images/products/batterie-auto.webp', link: '/batterie-voiture-les-pavillons-sous-bois.html', bullets: ['Capacité et puissance adaptées', 'Dimensions et polarité vérifiées'] },
       { title: 'Freinage', description: 'Plaquettes, disques, tambours, mâchoires et capteurs selon le montage.', image: '/assets/images/products/freinage.webp', link: '/plaquettes-disques-frein-les-pavillons-sous-bois.html', bullets: ['Montage avant ou arrière', 'Dimensions contrôlées'] },
@@ -80,6 +85,11 @@ export const catalogPages = [
     imageAlt: 'Illustration d’un kit de distribution avec courroie crantée, galets et pompe à eau, sans référence de marque',
     sectionTitle: 'Un kit adapté à votre moteur',
     sectionIntro: 'Le visuel illustre cette famille de pièces : le contenu exact du kit proposé dépend de votre véhicule. La présence de la pompe à eau et des accessoires est confirmée dans le devis.',
+    purchaseGuide: {
+      title: 'Confirmer votre kit avant le rendez-vous au garage',
+      intro: 'Faites valider la composition demandée par votre professionnel, puis appelez le magasin pour organiser l’achat et le retrait.',
+      items: ['Préparez la plaque et la référence ou la liste de pièces demandée par votre garage.', 'Faites préciser les éléments inclus : courroie, galets, pompe à eau et éventuels accessoires selon le kit.', 'Confirmez le prix et la date de retrait avant de fixer l’intervention. Indiquez si vous avez besoin d’être orienté vers un professionnel.']
+    },
     products: [
       { title: 'Courroie et galets', description: 'Nous recherchons la courroie et les galets correspondant au montage du moteur.', bullets: ['Référence et composition vérifiées', 'Motorisation et date de fabrication utiles'] },
       { title: 'Pompe à eau', description: 'Une pompe à eau peut faire partie du kit selon la référence. Nous précisons si elle est incluse dans la proposition.', bullets: ['Contenu du kit confirmé', 'Besoin à valider avec le professionnel chargé du montage'] },
@@ -306,13 +316,18 @@ export const catalogPages = [
     navLabel: 'Entretien',
     eyebrow: 'Huiles, liquides & entretien',
     title: 'Huile moteur et entretien auto aux Pavillons-sous-Bois (93)',
-    metaDescription: 'Huile moteur, liquides, essuie-glaces et ampoules aux Pavillons-sous-Bois. Viscosité et norme constructeur vérifiées avec les données du véhicule.',
+    metaDescription: 'Huile moteur et entretien auto aux Pavillons-sous-Bois. Appelez avec votre plaque : produit adapté, quantité, prix et délai confirmés avant retrait.',
     h1: 'Huile moteur et entretien auto aux Pavillons-sous-Bois',
-    intro: 'Une viscosité identique ne garantit pas toujours la bonne huile : la norme constructeur est déterminante. Nous recherchons la préconisation et les produits d’entretien adaptés au véhicule.',
+    intro: 'Huile moteur, liquides, essuie-glaces et ampoules : Auto Pièces Équipements fournit vos produits d’entretien aux Pavillons-sous-Bois. Appelez avec votre plaque pour vérifier le produit adapté, la quantité, le prix et le délai de retrait au magasin.',
     image: '/assets/images/products/entretien-auto.webp',
     imageAlt: 'Huiles, liquide de refroidissement, essuie-glaces et ampoule automobile',
     sectionTitle: 'Produits pour l’entretien courant',
     sectionIntro: 'Les références et quantités dépendent du véhicule. Vérifiez le carnet d’entretien et faites confirmer la préconisation avant utilisation.',
+    purchaseGuide: {
+      title: 'Préparer votre achat d’huile ou de produits d’entretien',
+      intro: 'Une viscosité identique ne suffit pas à choisir une huile : la norme constructeur et le besoin du véhicule doivent aussi être vérifiés.',
+      items: ['Préparez votre plaque et les indications du carnet d’entretien ou de votre garage.', 'Précisez le besoin : appoint, vidange, liquide, essuie-glace ou ampoule, ainsi que la quantité souhaitée si vous la connaissez.', 'Appelez pour confirmer la référence et le conditionnement proposés, le prix et la disponibilité avant votre déplacement.']
+    },
     products: [
       { title: 'Huile moteur', description: 'Viscosité, norme constructeur et quantité adaptées au moteur.', bullets: ['Préconisation vérifiée', 'Bidon et quantité selon besoin'] },
       { title: 'Liquides automobiles', description: 'Refroidissement, frein ou lave-glace selon la spécification demandée.', bullets: ['Type et compatibilité contrôlés', 'Pas de mélange sans vérification'] },
@@ -325,7 +340,10 @@ export const catalogPages = [
       { question: 'Quelle huile moteur choisir ?', answer: 'La plaque ou la carte grise permet de rechercher la viscosité, la norme constructeur et la quantité adaptées. Le carnet d’entretien reste également une référence importante.' },
       { question: 'Peut-on mélanger deux liquides de refroidissement ?', answer: 'Ne vous fiez pas uniquement à la couleur. Vérifiez la spécification du véhicule et la compatibilité des produits avant tout mélange.' },
       { question: 'Comment choisir les essuie-glaces ?', answer: 'Il faut contrôler la longueur, le côté et le type de fixation. La plaque et une photo de l’ancien balai peuvent faciliter la recherche.' },
-      { question: 'Avez-vous des ampoules pour toutes les voitures ?', answer: 'Le magasin recherche les types courants selon le véhicule. Confirmez la référence et la disponibilité avant de vous déplacer.' }
+      { question: 'Avez-vous des ampoules pour toutes les voitures ?', answer: 'Le magasin recherche les types courants selon le véhicule. Confirmez la référence et la disponibilité avant de vous déplacer.' },
+      { question: 'Quel est le prix d’un bidon d’huile moteur ?', answer: 'Le tarif dépend de la référence, de la norme et du volume du bidon. Appelez le 01 48 47 96 27 avec votre plaque et votre besoin pour faire confirmer le produit adapté, la quantité et le prix.' },
+      { question: 'Puis-je retirer mes produits d’entretien au magasin ?', answer: 'Oui, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. La disponibilité dans la journée dépend de la référence ; faites confirmer le délai avant de venir.' },
+      { question: 'Le magasin réalise-t-il la vidange ?', answer: 'Le magasin fournit les produits et peut vous orienter vers un professionnel. Précisez ce besoin lors de votre demande ; l’intervention est à organiser avec le professionnel choisi.' }
     ]
   },
   {
@@ -340,6 +358,11 @@ export const catalogPages = [
     imageAlt: 'Illustration de filtres automobiles neufs',
     sectionTitle: 'Retrait et livraison en pratique',
     sectionIntro: 'Pour organiser votre approvisionnement, nous confirmons ensemble les références, les quantités, les frais et l’heure de livraison.',
+    purchaseGuide: {
+      title: 'Organiser une livraison à votre garage par téléphone',
+      intro: 'La disponibilité d’une pièce et le créneau de livraison sont deux informations distinctes. Confirmez les deux avec le magasin avant de planifier votre intervention.',
+      items: ['Indiquez les références, les quantités et l’adresse du garage destinataire.', 'Précisez votre heure de besoin : nous vérifions les possibilités de livraison dans votre secteur.', 'Faites confirmer le prix des pièces, les frais et le créneau convenu. Le retrait au magasin reste une option à organiser avec l’équipe.']
+    },
     products: [
       { title: '1. Envoyez la demande', description: 'Transmettez les références ou les informations du véhicule, les quantités et votre commune.', bullets: ['Référence ou photo si disponible', 'Jour et heure de besoin'] },
       { title: '2. Recevez la confirmation', description: 'Le magasin vérifie la compatibilité, le prix, la disponibilité et le délai.', bullets: ['Réponse adaptée à la référence', 'Aucun déplacement inutile'] },
@@ -367,6 +390,11 @@ export const catalogPages = [
     imageAlt: 'Alternateur automobile neuf destiné à un professionnel',
     sectionTitle: 'Familles demandées par les professionnels',
     sectionIntro: 'Batteries, filtration, freinage, distribution, démarrage, suspension, embrayage et entretien : regroupez vos besoins dans une même demande.',
+    purchaseGuide: {
+      title: 'Un interlocuteur pour votre demande professionnelle',
+      intro: 'Appelez le magasin avec votre liste de pièces pour faire préciser les références proposées et organiser votre approvisionnement.',
+      items: ['Indiquez le nom de votre garage ou de votre activité, puis les véhicules, références et quantités concernés.', 'Faites confirmer les prix et disponibilités de chaque référence avant de valider la commande.', 'Convenez du retrait ou, pour une livraison au garage, de l’adresse, des frais et du créneau. Précisez les pièces dont vous avez besoin en priorité.']
+    },
     products: [
       { title: 'Entretien & filtration', description: 'Huiles, filtres et consommables adaptés aux références des véhicules.', bullets: ['Recherche par véhicule', 'Regroupement de la demande'] },
       { title: 'Freinage & démarrage', description: 'Plaquettes, disques, batteries, alternateurs et démarreurs.', bullets: ['Caractéristiques vérifiées', 'Délai communiqué avant commande'] },
