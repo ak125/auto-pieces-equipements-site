@@ -36,7 +36,7 @@ export const catalogPages = [
     title: 'Pièces auto aux Pavillons-sous-Bois (93) — Auto Pièces Équipements',
     metaDescription: 'Large choix de pièces auto neuves aux Pavillons-sous-Bois : batteries, freinage, filtration, distribution et autres familles. Disponibilité dans la journée selon référence.',
     h1: 'Pièces auto aux Pavillons-sous-Bois',
-    intro: 'Batteries, freinage, filtration, distribution, alternateurs, démarreurs, suspension, embrayage et entretien : un large choix de pièces neuves disponibles dans la journée selon la référence. Envoyez votre plaque ou votre ancienne référence pour confirmer prix et délai. Retrait au magasin et livraison aux garages.',
+    intro: 'Batteries, freinage, filtration, distribution, alternateurs, démarreurs, suspension, embrayage et entretien : un large choix de pièces neuves et de consommables disponibles dans la journée selon la référence. Envoyez votre plaque ou votre ancienne référence pour confirmer prix et délai. Retrait au magasin et livraison aux garages.',
     image: '/assets/images/products/freinage.webp',
     imageAlt: 'Disque et plaquettes de frein automobiles neufs',
     sectionTitle: 'Les familles de pièces recherchées au comptoir',
@@ -65,7 +65,7 @@ export const catalogPages = [
       'Côté concerné : avant/arrière et gauche/droite lorsque nécessaire.'
     ],
     faq: [
-      { question: 'Les pièces vendues sont-elles neuves ?', answer: 'Oui, Auto Pièces Équipements vend uniquement des pièces neuves. La référence, la compatibilité, le prix et la disponibilité sont confirmés avec le magasin avant commande.' },
+      { question: 'Les pièces vendues sont-elles neuves ?', answer: 'Oui, Auto Pièces Équipements vend uniquement des pièces neuves, ainsi que des consommables d’entretien. La référence, la compatibilité, le prix et la disponibilité sont confirmés avec le magasin avant commande.' },
       { question: 'Comment être sûr de commander la bonne pièce ?', answer: 'Indiquez la référence de l’ancienne pièce ou les informations du véhicule, puis la plaque si nécessaire à la recherche. Nous vérifions le montage et la compatibilité avant de confirmer la commande.' },
       { question: 'Le magasin fournit-il les garages et revendeurs ?', answer: 'Oui. Auto Pièces Équipements fournit également les professionnels de l’automobile en Seine-Saint-Denis. Les conditions et disponibilités sont confirmées directement avec le magasin.' },
       { question: 'Peut-on retirer une pièce au magasin ?', answer: 'Oui. Le retrait s’effectue au 184 Avenue Aristide Briand aux Pavillons-sous-Bois après confirmation de la référence et de la disponibilité.' },
@@ -386,7 +386,7 @@ export const catalogPages = [
     title: 'Pièces auto pour garages et revendeurs en Seine-Saint-Denis (93)',
     metaDescription: 'Pièces auto neuves pour garages du 93 : large gamme, disponibilité dans la journée selon référence et livraison aux professionnels. Demande par téléphone ou WhatsApp.',
     h1: 'Pièces auto pour garages et revendeurs en Seine-Saint-Denis',
-    intro: 'Nous fournissons uniquement des pièces auto neuves. Votre approvisionnement : large gamme, disponibilité dans la journée selon la référence et livraison aux garages. Envoyez vos références, quantités, commune et heure de besoin ; nous confirmons les prix, les pièces disponibles et le créneau de livraison.',
+    intro: 'Nous fournissons des pièces auto neuves et des consommables. Votre approvisionnement : large gamme, disponibilité dans la journée selon la référence et livraison aux garages. Envoyez vos références, quantités, commune et heure de besoin ; nous confirmons les prix, les pièces disponibles et le créneau de livraison.',
     image: '/assets/images/products/alternateur.webp',
     imageAlt: 'Alternateur automobile neuf destiné à un professionnel',
     sectionTitle: 'Familles demandées par les professionnels',
