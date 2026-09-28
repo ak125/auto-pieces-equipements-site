@@ -105,6 +105,24 @@ test('winter opening uses Paris time independently of host timezone', () => {
   assert.equal(browser.open, true);
 });
 
+test('Paris seasonal clock changes keep exceptional hours on the correct local date', () => {
+  for (const [date, before, opening, transition, closing] of [
+    ['2026-03-29', '2026-03-29T00:29:59Z', '2026-03-29T00:30:00Z', '2026-03-29T01:00:00Z', '2026-03-29T01:30:00Z'],
+    ['2026-10-25', '2026-10-24T23:29:59Z', '2026-10-24T23:30:00Z', '2026-10-25T01:00:00Z', '2026-10-25T02:30:00Z']
+  ]) {
+    const schedule = structuredClone(storeHours);
+    schedule.exceptions = { [date]: [[90, 210]] }; // Browser configuration uses minutes after midnight.
+    const browser = page(before, { configuration: JSON.stringify(schedule) });
+    assert.equal(browser.open, false, date);
+    browser.advance(opening);
+    assert.equal(browser.open, true, date);
+    browser.advance(transition);
+    assert.equal(browser.open, true, 'the clock jump or repeated hour does not close the store');
+    browser.advance(closing);
+    assert.equal(browser.open, false, date);
+  }
+});
+
 test('Saturday closes at 16:00 Paris', () => {
   const browser = page('2026-09-12T13:59:59Z');
   assert.equal(browser.open, true);

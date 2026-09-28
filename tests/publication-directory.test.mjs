@@ -9,6 +9,29 @@ import { publicFiles } from '../scripts/site-config.mjs';
 
 const repository = fileURLToPath(new URL('../', import.meta.url));
 
+test('catalog text cannot close the JSON-LD script and survives JSON decoding', (t) => {
+  const fixture = mkdtempSync(path.join(tmpdir(), 'auto-pieces-jsonld-'));
+  t.after(() => {
+    assert.equal(path.dirname(fixture), path.resolve(tmpdir()));
+    rmSync(fixture, { recursive: true, force: true });
+  });
+  for (const file of ['index.html', 'data/store-hours.json', 'scripts/catalog-content.mjs', 'scripts/store-hours.mjs', 'scripts/render-catalog-pages.mjs']) {
+    const target = path.join(fixture, file);
+    mkdirSync(path.dirname(target), { recursive: true });
+    copyFileSync(path.join(repository, file), target);
+  }
+  const payload = 'Exemple fictif </script><script>test</script> & "texte"';
+  const catalog = path.join(fixture, 'scripts/catalog-content.mjs');
+  writeFileSync(catalog, readFileSync(catalog, 'utf8') + `\ncatalogPages[0].title = ${JSON.stringify(payload)};\n`);
+  execFileSync(process.execPath, [path.join(fixture, 'scripts/render-catalog-pages.mjs')], { cwd: tmpdir() });
+  const html = readFileSync(path.join(fixture, 'pieces-auto-les-pavillons-sous-bois.html'), 'utf8');
+  assert.ok(!html.includes('<script>test</script>'), 'editorial text must not become executable markup');
+  const json = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
+  const page = JSON.parse(json)['@graph'].find(item => item['@type'] === 'WebPage');
+  assert.equal(page.name, payload);
+  assert.match(html, /<title>Exemple fictif &lt;\/script&gt;/);
+});
+
 test('publication scripts use their repository and preserve an unrelated working directory', (t) => {
   const fixture = mkdtempSync(path.join(tmpdir(), 'auto-pieces-publication-'));
   t.after(() => rmSync(fixture, { recursive: true, force: true }));

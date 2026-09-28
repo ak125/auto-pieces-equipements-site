@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { publicFiles, retiredPages, seoPages } from './site-config.mjs';
 import { loadStoreHours, publishedHoursMatch } from './store-hours.mjs';
-import { checkPublicReferences } from './check-public-references.mjs';
+import { checkPublicReferences, elements } from './check-public-references.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const outputDirectory = path.join(root, 'dist');
@@ -61,7 +61,6 @@ for (const page of seoPages) {
   if (!publishedHoursMatch(content, storeHours)) failures.push(`${page}: horaires affichés, bandeau ou données structurées divergents de la source commune`);
   requireMatch(content, /<title>[^<]+<\/title>/i, `${page}: titre manquant`);
   requireMatch(content, /<meta\s+name="description"\s+content="[^"]+"/i, `${page}: meta description manquante`);
-  requireMatch(content, /<link\s+rel="canonical"\s+href="https:\/\/auto-pieces-equipements\.fr\//i, `${page}: URL canonique manquante`);
   requireMatch(content, /<h1\b/i, `${page}: H1 manquant`);
   requireMatch(content, /<link\s+rel="stylesheet"\s+href="\/assets\/site\.css">/i, `${page}: feuille de style locale manquante`);
   requireMatch(content, /<meta\s+property="og:image"\s+content="https:\/\/auto-pieces-equipements\.fr\//i, `${page}: image Open Graph manquante`);
@@ -73,7 +72,23 @@ for (const page of seoPages) {
   forbidMatch(content, /<link\b[^>]+rel=["']stylesheet["'][^>]+href=["']https?:\/\//i, `${page}: feuille de style distante chargée directement`);
 
   const title = content.match(/<title>([^<]+)<\/title>/i)?.[1]?.trim();
-  const canonical = content.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1];
+  const nodes = elements(content);
+  const canonicalLinks = nodes.filter(({ tag, attributes }) =>
+    tag === 'link' && attributes.get('rel')?.toLowerCase().split(/\s+/).includes('canonical'));
+  const canonical = canonicalLinks[0]?.attributes.get('href');
+  const expectedCanonical = `https://auto-pieces-equipements.fr/${page === 'index.html' ? '' : page}`;
+  if (!canonical) failures.push(`${page}: URL canonique manquante`);
+  if (canonicalLinks.length > 1) failures.push(`${page}: plusieurs liens canonical`);
+  if (canonical && canonical !== expectedCanonical) {
+    failures.push(`${page}: canonical différente de l’URL attendue (${expectedCanonical})`);
+  }
+  for (const { tag, attributes } of nodes) {
+    if (tag !== 'meta' || !['robots', 'googlebot'].includes(attributes.get('name')?.trim().toLowerCase() ?? '')) continue;
+    const directives = (attributes.get('content') ?? '').toLowerCase().split(',').map(value => value.trim());
+    if (directives.some(value => value === 'noindex' || value === 'none')) {
+      failures.push(`${page}: directive bloquant l’indexation dans meta ${attributes.get('name')}`);
+    }
+  }
   if (title) {
     if (seenTitles.has(title)) failures.push(`${page}: titre dupliqué avec ${seenTitles.get(title)}`);
     seenTitles.set(title, page);

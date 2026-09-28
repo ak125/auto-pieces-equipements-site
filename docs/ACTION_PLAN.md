@@ -1,4 +1,7 @@
 # 🔒 RÉSUMÉ SÉCURITÉ - ACTIONS URGENTES
+
+> **Note du 28 septembre 2026 — document historique.** Les nombres présentés comme « Actuel », notes, taux, objectifs 2025 et projections de croissance ci-dessous ne sont pas des mesures actuelles sourcées. Ils ne constituent ni quota d’avis ni promesse de classement. Pour les décisions de mesure et de réputation, utiliser le [rapport de référence](../marketing/google-business/audit-2026-09-09.md) et la [procédure manuelle](../marketing/google-business/plan-optimisation.md). Les autres procédures anciennes ne sont pas revalidées par ce complément.
+
 ## Auto Pièces Équipements
 
 **Date:** 2 octobre 2025  

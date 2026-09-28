@@ -16,7 +16,7 @@ function whatsappLink(page) {
     'Bonjour, je vous contacte depuis votre site.',
     `Objet : ${page.navLabel}`,
     'Pièce recherchée :',
-    deliveryRequest ? 'Plaque d’immatriculation de chaque véhicule :' : 'Plaque d’immatriculation :',
+    'Plaque d’immatriculation (si nécessaire à la recherche) :',
     'Véhicule (modèle, année, motorisation) :',
     'Référence de la pièce (si connue) :',
     ...(deliveryRequest ? [
@@ -90,7 +90,8 @@ function footer(page) {
         <div>
           <p class="kicker">Magasin local aux Pavillons-sous-Bois</p>
           <h2>Une référence à vérifier&nbsp;?</h2>
-          <p>Appelez-nous ou envoyez la plaque, la carte grise ou la référence de l’ancienne pièce sur WhatsApp.</p>
+          <p>Appelez-nous ou préparez une demande sur WhatsApp avec la référence de l’ancienne pièce ou les informations du véhicule. La plaque peut compléter la recherche si nécessaire.</p>
+          <p>WhatsApp ouvre un message à compléter : rien n’est envoyé avant votre validation dans l’application. Évitez d’envoyer une carte grise complète ; masquez les données sans rapport avec l’identification technique du véhicule. <a href="/politique-confidentialite.html">Utilisation de vos données</a>.</p>
           <ul class="contact-list">
             <li>184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois</li>
             <li><a href="${phoneHref}">${phoneDisplay}</a></li>
@@ -98,7 +99,7 @@ function footer(page) {
           </ul>
           <div class="section-actions">
             <a class="button button-primary" href="${phoneHref}">Appeler le magasin</a>
-            <a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">Envoyer une demande</a>
+            <a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">Préparer ma demande</a>
             <a class="button button-light" href="${mapsHref}" target="_blank" rel="noopener">Itinéraire</a>
           </div>
         </div>
@@ -237,7 +238,7 @@ function renderPage(page) {
   <meta property="og:image" content="${imageUrl}">
   <meta property="og:image:alt" content="${escapeHtml(page.imageAlt)}">
   <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">${JSON.stringify(structuredData(page))}</script>
+  <script type="application/ld+json">${JSON.stringify(structuredData(page)).replaceAll('<', '\\u003c')}</script>
 </head>
 <body>
   ${header()}
@@ -263,7 +264,7 @@ function renderPage(page) {
 
     <div class="container trust-bar" aria-label="Services essentiels">
       <div class="trust-grid">
-        <div class="trust-item"><strong>Compatibilité vérifiée</strong><span>Plaque, carte grise ou ancienne référence</span></div>
+        <div class="trust-item"><strong>Compatibilité vérifiée</strong><span>Référence de pièce ou informations du véhicule</span></div>
         <div class="trust-item"><strong>Disponible dans la journée</strong><span>Selon la référence, à confirmer avec le magasin</span></div>
         <div class="trust-item"><strong>Livraison aux garages</strong><span>Adresse, frais et créneau convenus ensemble</span></div>
       </div>
@@ -300,7 +301,7 @@ function renderPage(page) {
           <p>La finition, la date de fabrication, la motorisation ou l’équipement peuvent changer le montage d’une pièce sur un même modèle.</p>
           <p><strong>Notre méthode :</strong> identifier le véhicule, comparer les caractéristiques, puis confirmer la disponibilité avant votre déplacement.</p>
           <p><strong>Besoin de montage ?</strong> Nous pouvons vous orienter vers un professionnel. Précisez-le dans votre demande.</p>
-          <div class="section-actions"><a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">Envoyer les informations</a></div>
+          <div class="section-actions"><a class="button button-whatsapp" href="${whatsappHref}" target="_blank" rel="noopener">Préparer ma demande</a></div>
           <p>Un message à compléter s’ouvre dans WhatsApp. Ajoutez votre véhicule et la pièce recherchée avant de l’envoyer.</p>`}
         </div>
       </div>
@@ -313,7 +314,7 @@ function renderPage(page) {
           <h2>Une recherche simple et vérifiable</h2>
         </div>
         <div class="steps">
-          <article class="step-card"><h3>Identifiez le véhicule</h3><p>Plaque, carte grise, motorisation et année lorsque vous les connaissez.</p></article>
+          <article class="step-card"><h3>Identifiez le véhicule</h3><p>Modèle, motorisation, année et référence de pièce si vous les connaissez. La plaque peut compléter la recherche si nécessaire.</p></article>
           <article class="step-card"><h3>Précisez la pièce</h3><p>Symptôme, côté concerné, photo ou référence de l’ancienne pièce.</p></article>
           <article class="step-card"><h3>Confirmez avant de venir</h3><p>Nous vérifions la référence, la disponibilité et le mode de retrait ou livraison.</p></article>
         </div>

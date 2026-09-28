@@ -60,8 +60,8 @@ app.get('/api/google-reviews', cors(), async (req, res) => {
     }
 });
 
-app.get('/test', (req, res) => res.sendFile(path.join(__dirname, 'server/reviews-test.html')));
-app.get('/test/reviews.js', (req, res) => res.sendFile(path.join(__dirname, 'server/reviews-test.js')));
+app.get('/test', (req, res) => res.sendFile('reviews-test.html', { root: path.join(__dirname, 'server'), dotfiles: 'deny' }));
+app.get('/test/reviews.js', (req, res) => res.sendFile('reviews-test.js', { root: path.join(__dirname, 'server'), dotfiles: 'deny' }));
 
 // Share the publication allowlist. Never expose the repository as a static directory.
 const allowedFiles = new Set(publicFiles);
