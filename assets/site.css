@@ -1,10 +1,10 @@
 :root {
   --ink: #0b1324;
   --ink-soft: #16233a;
-  --blue: #0b6ffb;
+  --blue: #0866df;
   --blue-dark: #0759cc;
   --orange: #ff6b00;
-  --green: #168a4a;
+  --green: #13783f;
   --paper: #ffffff;
   --canvas: #f4f7fb;
   --line: #dce4ef;
@@ -161,7 +161,7 @@ select {
 
 .status-strip {
   background: var(--orange);
-  color: #fff;
+  color: var(--ink);
   font-size: 0.85rem;
   font-weight: 700;
   text-align: center;
@@ -170,6 +170,7 @@ select {
 
 .status-strip.is-open {
   background: var(--green);
+  color: #fff;
 }
 
 .breadcrumbs {
@@ -286,7 +287,7 @@ select {
 }
 
 .button-whatsapp {
-  background: #159447;
+  background: var(--green);
   color: #fff;
 }
 
@@ -721,7 +722,7 @@ select {
   bottom: 1rem;
   z-index: 80;
   border-radius: 999px;
-  background: #159447;
+  background: var(--green);
   color: #fff;
   padding: 0.78rem 1rem;
   text-decoration: none;
