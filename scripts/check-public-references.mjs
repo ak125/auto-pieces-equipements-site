@@ -21,11 +21,12 @@ export function elements(html, { includeTemplateContents = true } = {}) {
   return [...markup.matchAll(/<(\/?)([a-z][\w:-]*)\b(?:"[^"]*"|'[^']*'|[^'">])*>/gi)].flatMap(match => {
     const closing = match[1] === '/';
     const tag = match[2]?.toLowerCase();
+    // The outer template element belongs to the document; its contents do not.
+    const inTemplateContents = templateDepth > 0;
     if (!includeTemplateContents && tag === 'template') {
       templateDepth = Math.max(0, templateDepth + (closing ? -1 : 1));
-      return [];
     }
-    if (closing || (!includeTemplateContents && templateDepth > 0)) return [];
+    if (closing || (!includeTemplateContents && inTemplateContents)) return [];
     /** @type {Map<string, string>} */
     const attributes = new Map();
     for (const attribute of match[0].matchAll(/\s([^\s=/>]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g)) {
@@ -44,7 +45,7 @@ export function elements(html, { includeTemplateContents = true } = {}) {
 export function checkPublicReferences(pages, publicFiles) {
   const origin = 'https://auto-pieces-equipements.fr';
   const allowed = new Set(publicFiles);
-  const documents = new Map([...pages].map(([file, html]) => [file, elements(html)]));
+  const documents = new Map([...pages].map(([file, html]) => [file, elements(html, { includeTemplateContents: false })]));
   /** @type {Map<string, Set<string>>} */
   const anchors = new Map();
   /** @type {string[]} */

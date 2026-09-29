@@ -51,3 +51,28 @@ test('invalid encoding, duplicate ids and unsupported base URL fail explicitly',
 test('HTML entity references and legacy named anchors resolve without false positives', () => {
   assert.deepEqual(check('<a name="référence"></a><a href="#r&#233;f&#xE9;rence">Lien</a>'), []);
 });
+
+test('template contents cannot satisfy same-page or cross-page fragment links', () => {
+  assert.deepEqual(check(
+    '<template><div id="contact"></div></template><a href="#contact">Contact</a><a href="catalog/item.html#fiche">Fiche</a>',
+    '<template><template><a name="fiche"></a></template></template>'
+  ), [
+    'index.html: ancre absente dans index.html (#contact)',
+    'index.html: ancre absente dans catalog/item.html (catalog/item.html#fiche)'
+  ]);
+});
+
+test('template ids belong to their document but nested contents do not', () => {
+  assert.deepEqual(check(`
+    <template id="modele"><template id="interne"><div id="contact"></div></template></template>
+    <div id="contact"></div><a href="#contact">Contact</a><a href="#modele">Modèle</a>
+    <a href="#interne">Absent</a>
+  `), ['index.html: ancre absente dans index.html (#interne)']);
+});
+
+test('inert template references do not create published links or resources', () => {
+  assert.deepEqual(check(`
+    <template><template><a href="absent.html">Exemple</a></template><img src="absent.svg"></template>
+    <div id="contact"></div><a href="#contact">Contact</a>
+  `), []);
+});
