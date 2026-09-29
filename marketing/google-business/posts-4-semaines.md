@@ -6,7 +6,7 @@ Le contrôle du 9 septembre confirme les huit posts de ce cycle. Deux offres plu
 
 ## Calendrier enregistré le 9 septembre 2026
 
-Les huit posts sont enregistrés dans Google Business, avec leur texte et leur bouton « En savoir plus ». Le premier a été publié immédiatement. Les sept autres ont été programmés à 10:00 dans l'interface Google (fuseau non affiché). Vérifier les entrées existantes avant tout nouvel envoi pour éviter les doublons.
+**État historique du 9 septembre ; voir la [lecture courante](#lecture-courante--29-septembre-2026) avant réutilisation.** Les huit posts sont enregistrés dans Google Business, avec leur texte et leur bouton « En savoir plus ». Le premier a été publié immédiatement. Les sept autres ont été programmés à 10:00 dans l'interface Google (fuseau non affiché). Vérifier les entrées existantes avant tout nouvel envoi pour éviter les doublons.
 
 | Sujet | Date de diffusion |
 | --- | --- |
@@ -102,3 +102,9 @@ Vous avez acheté une pièce chez Auto Pièces Équipements ? Votre retour réel
 - **Bouton :** En savoir plus
 - **Lien :** https://g.page/r/CSAk6YB5asfQEAE/review
 - **Image :** `images/facade-magasin.jpg` (photo réelle existante, date de prise de vue inconnue)
+
+## Lecture courante — 29 septembre 2026
+
+Ce fichier conserve les textes et programmations historiques ; leur statut du 9 septembre ne vaut pas état actuel. La lecture publique du 29 septembre montre notamment une publication Distribution et plusieurs sujets plus récents. **Aucun nouveau post n'est préparé ou programmé dans cette mission.** Vérifier le contenu exact et le calendrier propriétaire avant toute réutilisation. Le fuseau des anciennes heures 10:00 n'est pas établi.
+
+**PROPOSITION NON PUBLIÉE — À VALIDER**, pour les prochains textes sollicitant plaque/carte grise : « Indiquez la pièce recherchée, la référence connue et les informations techniques du véhicule. La plaque peut compléter la recherche si nécessaire. Évitez d'envoyer une carte grise complète et masquez les données inutiles. » Ce remplacement documentaire n'altère pas les versions historiquement publiées et ne constitue pas un nouveau post. Pour une offre, confirmer dates, conditions, disponibilité, prix et destination ; une actualité récurrente ne remplace pas une offre ou un événement. Voir le [protocole de validation](audit-2026-09-09.md#avis-et-publications--protocole-documentaire).

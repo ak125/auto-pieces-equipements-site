@@ -16,9 +16,9 @@ function whatsappLink(page) {
     'Bonjour, je vous contacte depuis votre site.',
     `Objet : ${page.navLabel}`,
     'Pièce recherchée :',
-    'Plaque d’immatriculation (si nécessaire à la recherche) :',
-    'Véhicule (modèle, année, motorisation) :',
     'Référence de la pièce (si connue) :',
+    'Véhicule (modèle, année, motorisation) :',
+    'Plaque d’immatriculation (si nécessaire à la recherche) :',
     ...(deliveryRequest ? [
       'Quantité :',
       'Commune de livraison :',

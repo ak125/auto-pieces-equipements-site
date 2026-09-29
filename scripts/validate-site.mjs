@@ -48,6 +48,11 @@ function forbidMatch(content, pattern, message) {
   if (pattern.test(content)) failures.push(message);
 }
 
+/** @param {unknown} value @returns {value is Record<string, unknown>} */
+function isRecord(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
 const builtFiles = (await walk(outputDirectory)).sort();
 const expectedFiles = [...publicFiles].sort();
 
@@ -61,7 +66,6 @@ for (const page of seoPages) {
   if (!publishedHoursMatch(content, storeHours)) failures.push(`${page}: horaires affichés, bandeau ou données structurées divergents de la source commune`);
   requireMatch(content, /<title>[^<]+<\/title>/i, `${page}: titre manquant`);
   requireMatch(content, /<meta\s+name="description"\s+content="[^"]+"/i, `${page}: meta description manquante`);
-  requireMatch(content, /<h1\b/i, `${page}: H1 manquant`);
   requireMatch(content, /<link\s+rel="stylesheet"\s+href="\/assets\/site\.css">/i, `${page}: feuille de style locale manquante`);
   requireMatch(content, /<meta\s+property="og:image"\s+content="https:\/\/auto-pieces-equipements\.fr\//i, `${page}: image Open Graph manquante`);
   requireMatch(content, /<script\s+type="application\/ld\+json">/i, `${page}: données structurées manquantes`);
@@ -72,7 +76,9 @@ for (const page of seoPages) {
   forbidMatch(content, /<link\b[^>]+rel=["']stylesheet["'][^>]+href=["']https?:\/\//i, `${page}: feuille de style distante chargée directement`);
 
   const title = content.match(/<title>([^<]+)<\/title>/i)?.[1]?.trim();
-  const nodes = elements(content);
+  const nodes = elements(content, { includeTemplateContents: false });
+  const headingCount = nodes.filter(node => node.tag === 'h1').length;
+  if (headingCount !== 1) failures.push(`${page}: H1 principal attendu une fois (reçu : ${headingCount})`);
   const canonicalLinks = nodes.filter(({ tag, attributes }) =>
     tag === 'link' && attributes.get('rel')?.toLowerCase().split(/\s+/).includes('canonical'));
   const canonical = canonicalLinks[0]?.attributes.get('href');
@@ -100,7 +106,23 @@ for (const page of seoPages) {
 
   for (const match of content.matchAll(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/gi)) {
     try {
-      JSON.parse(match[1] ?? '');
+      /** @type {unknown} */
+      const data = JSON.parse(match[1] ?? '');
+      if (isRecord(data) && Array.isArray(data['@graph'])) {
+        for (const entry of /** @type {unknown[]} */ (data['@graph'])) {
+          if (!isRecord(entry) || entry['@type'] !== 'AutoPartsStore') continue;
+          const address = entry.address;
+          if (entry['@id'] !== 'https://auto-pieces-equipements.fr/#store' ||
+              entry.name !== 'Auto Pièces Équipements' || !isRecord(address) ||
+              String(address.streetAddress).trim().replace(/\s+/g, ' ').toLowerCase() !== '184 avenue aristide briand' ||
+              address.postalCode !== '93320' || address.addressLocality !== 'Les Pavillons-sous-Bois' || address.addressCountry !== 'FR') {
+            failures.push(`${page}: identité AutoPartsStore incohérente`);
+          }
+          // Only the confirmed store number, in the two formats used by this project.
+          const phone = String(entry.telephone).replace(/[\s.()-]/g, '');
+          if (!['+33148479627', '0148479627'].includes(phone)) failures.push(`${page}: téléphone AutoPartsStore incohérent`);
+        }
+      }
     } catch (error) {
       failures.push(`${page}: JSON-LD invalide (${error instanceof Error ? error.message : 'erreur inconnue'})`);
     }
@@ -131,11 +153,25 @@ const deployedHtml = [...publishedPages.values()].join('\n');
 failures.push(...checkPublicReferences(publishedPages, publicFiles));
 
 const sitemap = await readFile(path.join(outputDirectory, 'sitemap.xml'), 'utf8');
-for (const page of seoPages) {
-  const expectedUrl = page === 'index.html'
-    ? 'https://auto-pieces-equipements.fr/'
-    : `https://auto-pieces-equipements.fr/${page}`;
-  requireMatch(sitemap, new RegExp(`<loc>${expectedUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}</loc>`), `sitemap.xml: URL manquante (${expectedUrl})`);
+// Deliberately limited to our flat sitemap format, not a general XML validator.
+// No DTD, CDATA, namespaces with prefixes or extensions. Unknown syntax fails closed.
+const sitemapBody = sitemap.trim().replace(/^<\?xml\s+version=(["'])1\.0\1\s+encoding=(["'])UTF-8\2\s*\?>\s*/, '')
+  .match(/^<urlset\s+xmlns=(["'])http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9\1\s*>([\s\S]*?)<\/urlset>$/)?.[2];
+const entries = [...(sitemapBody ?? '').matchAll(/<url\s*>([\s\S]*?)<\/url>/g)];
+if (sitemapBody === undefined || sitemapBody.replace(/<url\s*>[\s\S]*?<\/url>/g, '').trim() ||
+    entries.some(entry => !/^\s*<loc\s*>[^<>&]+<\/loc>\s*(?:<(lastmod|changefreq|priority)>[^<>&]*<\/\1>\s*)*$/.test(entry[1] ?? ''))) {
+  failures.push('sitemap.xml: format non pris en charge (urlset plat, un loc par url, métadonnées simples)');
+}
+const expectedUrls = new Set(seoPages.map(page => `https://auto-pieces-equipements.fr/${page === 'index.html' ? '' : page}`));
+const sitemapUrls = entries.map(entry => entry[1]?.match(/<loc\s*>([^<]*)<\/loc>/)?.[1]?.trim() ?? '');
+const seenUrls = new Set();
+for (const url of sitemapUrls) {
+  if (seenUrls.has(url)) failures.push(`sitemap.xml: URL dupliquée (${url})`);
+  seenUrls.add(url);
+  if (!expectedUrls.has(url)) failures.push(`sitemap.xml: URL inattendue (${url})`);
+}
+for (const url of expectedUrls) {
+  if (!seenUrls.has(url)) failures.push(`sitemap.xml: URL manquante (${url})`);
 }
 
 forbidMatch(deployedHtml, /<form\b/i, 'Un formulaire sans traitement est présent dans le site public');

@@ -10,17 +10,28 @@ function decodeAttribute(value) {
   });
 }
 
-/** Read attributes from the static HTML we generate; ignore comments and raw text. @param {string} html */
-export function elements(html) {
+/** Read our static HTML, not a general HTML parser.
+ * @param {string} html
+ * @param {{includeTemplateContents?: boolean}} [options]
+ */
+export function elements(html, { includeTemplateContents = true } = {}) {
   const markup = html.replace(/<!--[\s\S]*?-->/g, '')
     .replace(/(<(script|style|textarea|title)\b[^>]*>)[\s\S]*?<\/\2\s*>/gi, '$1');
-  return [...markup.matchAll(/<([a-z][\w:-]*)\b(?:"[^"]*"|'[^']*'|[^'">])*>/gi)].map(match => {
+  let templateDepth = 0;
+  return [...markup.matchAll(/<(\/?)([a-z][\w:-]*)\b(?:"[^"]*"|'[^']*'|[^'">])*>/gi)].flatMap(match => {
+    const closing = match[1] === '/';
+    const tag = match[2]?.toLowerCase();
+    if (!includeTemplateContents && tag === 'template') {
+      templateDepth = Math.max(0, templateDepth + (closing ? -1 : 1));
+      return [];
+    }
+    if (closing || (!includeTemplateContents && templateDepth > 0)) return [];
     /** @type {Map<string, string>} */
     const attributes = new Map();
     for (const attribute of match[0].matchAll(/\s([^\s=/>]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g)) {
       if (attribute[1]) attributes.set(attribute[1].toLowerCase(), decodeAttribute(attribute[2] ?? attribute[3] ?? attribute[4] ?? ''));
     }
-    return { tag: match[1]?.toLowerCase(), attributes };
+    return [{ tag, attributes }];
   });
 }
 

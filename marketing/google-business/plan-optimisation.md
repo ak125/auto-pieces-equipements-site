@@ -1,5 +1,19 @@
 # Plan d’optimisation Google Business Profile
 
+## Pilotage courant — 29 septembre 2026
+
+Point d'entrée unique de la mission. Le [rapport consolidé du 29 septembre](audit-2026-09-09.md#consolidation-seo-local--29-septembre-2026) porte la matrice A–L, les preuves et limites, la couverture des pages, les brouillons et la totalité du reste à faire. Les dates et statuts des sections plus anciennes restent historiques. En particulier, les huit produits et huit posts du 9 septembre ne constituent pas un inventaire actuel. Les consultations de comptes de cette mission sont restituées dans la conversation, sans exporter de données privées dans Git.
+
+Trois priorités :
+
+1. **Marwane — P1 :** examiner le diff consolidé avant toute livraison décidée séparément. Le rapprochement local avec `codex/offre-pieces-consommables-20260928` (`2dc35ba`) est terminé : pièces neuves et consommables, création de l’entreprise en 2016. Les demandes privilégient référence et informations techniques ; plaque/VIN restent conditionnels. Les 143 tests finaux, le typage et la validation du build sont verts. Commit et push de la branche de travail sont désormais explicitement autorisés ; PR, fusion, déploiement et changements de comptes restent hors périmètre. Voir le checkpoint avant commit en fin de rapport.
+2. **Responsable magasin — P1 :** confirmer les conditions commerciales encore actives (Batteries, reprise, garanties, délais et livraison), puis valider uniquement les textes exacts concernés. Les anciens textes demandant une carte grise ne doivent plus servir de modèles : voir les [remplacements proposés](fiches-produits.md#propositions-de-remplacement--29-septembre-2026).
+3. **Propriétaire — P1 :** vérifier l'accès actuel au catalogue Google et l'existence d'une entrée Distribution avant toute saisie ; examiner les informations et suggestions Google signalées dans la conversation. Aucun nouvel accès demandé ni changement enregistré ici.
+
+Routine proposée, non automatisée : responsable magasin avant chaque exception d'horaires ou changement commercial ; propriétaire chaque mois pour fiche, suggestions, avis et liens ; responsable du suivi chaque mois avec périodes complètes comparables GSC/GBP et données métier agrégées déjà autorisées ; responsable technique après un changement du site pour tests adaptés et, après une publication autorisée, comparaison HTTP avec l'artefact du run exact. Sans événement ou anomalie, réutiliser les preuves encore valides. Clôture = valeur confirmée, source/date, état public contrôlé si publication et responsable identifié. Aucune automatisation créée.
+
+Les propositions UTM et la comparaison des trois commerces du 28 septembre ci-dessous sont conservées à leur niveau de preuve. Aucun rang local, chiffre d'affaires attribué ou gain causal n'en est déduit.
+
 État du 9 septembre 2026 : site déployé, huit produits dans le catalogue propriétaire après ajout de Batteries, huit posts illustrés du nouveau cycle (un publié et sept programmés), propriété Search Console validée, sitemap accepté et 11 demandes d’indexation acceptées. Voir `audit-2026-09-09.md` pour les corrections de description, services, avis et anciennes offres, avec leurs statuts de validation. Solocal/PagesJaunes et les photos manquantes sont reportés à la demande du propriétaire. Les étapes déjà réalisées ci-dessous ne doivent pas être répétées.
 
 ## 1. Informations et catégories

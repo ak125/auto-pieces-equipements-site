@@ -169,3 +169,11 @@ Le Worker conserve son propre contrôle TypeScript des sources et des tests.
 Le site reste en JavaScript, désormais vérifié par TypeScript via `checkJs`.
 
 Voir [le bilan de mise à niveau et la comparaison des projets](docs/MISE-A-NIVEAU-DEPENDANCES-20260912.md).
+
+## Contrôles consolidés du 29 septembre 2026
+
+Le [plan opérationnel SEO local](marketing/google-business/plan-optimisation.md#pilotage-courant--29-septembre-2026) pointe vers le rapport existant ; aucun nouveau tableau de bord ni service n'est ajouté.
+
+Le validateur de `dist/` compare l'ensemble exact des URL du sitemap aux canonical de `seoPages` (accueil à la racine). Il rejette doublons, omissions et URL étrangères ou exclues. Format volontairement limité : XML 1.0 UTF-8 optionnel, `urlset` plat dans le namespace sitemap par défaut, un `loc` textuel par `url`, puis métadonnées simples `lastmod`, `changefreq`, `priority` facultatives. Ordre des URL, indentation et espaces autour des valeurs sont indifférents. Les attributs XML acceptent les guillemets simples ou doubles, avec une paire cohérente pour chaque attribut. DTD, CDATA, entités, namespaces préfixés, extensions et commentaires XML ne sont pas pris en charge : leur présence échoue explicitement. Ce contrôle ne certifie pas tout XML ni la validité calendaire des métadonnées. Aucun `lastmod` n'est actualisé au build.
+
+Pour nos gabarits, un seul H1 principal est attendu. Le lecteur statique existant ignore commentaires, contenu de script/style/textarea/title et contenu des `template`, même imbriqués, pour ce comptage. Les templates restent inspectés pour les références publiques, afin d'éviter des ressources cassées lors d'une activation future. Il ne s'agit ni d'un parseur HTML général, ni d'une preuve de visibilité CSS, ni d'une condition universelle d'indexation. L'identité et le numéro des entrées `AutoPartsStore` présentes dans `@graph` sont comparés aux valeurs du magasin ; seuls les formats national et international connus sont équivalents. La présence de toute la structure sémantique et le rendu restent des contrôles distincts.
