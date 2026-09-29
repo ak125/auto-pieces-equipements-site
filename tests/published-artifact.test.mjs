@@ -60,6 +60,7 @@ test('validation checks the published artifact independently of its source', asy
     ['canonical with fragment', 'index.html', /(<link rel="canonical" href="https:\/\/auto-pieces-equipements\.fr\/)"/, '$1#contact"', /index\.html: canonical différente de l.URL attendue/],
     ['duplicate canonical', 'index.html', /<\/head>/, '<link href="https://auto-pieces-equipements.fr/" rel="canonical"></head>', /index\.html: plusieurs liens canonical/],
     ['broken contact anchor', 'index.html', /href="#contact"/, 'href="#contact-inexistant"', /ancre absente dans index\.html/],
+    ['contact anchor only inside template', 'index.html', /(<section\b[^>]*\bid=")contact("[^>]*>)/, '$1contact-deplace$2<template><div id="contact"></div></template>', /ancre absente dans index\.html/],
     ['missing absolute internal page', 'index.html', /href="#contact"/, 'href="https://auto-pieces-equipements.fr/absent.html"', /href vers un fichier non publié/],
     ['missing local script', 'index.html', /src="\/assets\/site\.js"/, 'src="/assets/absent.js"', /src vers un fichier non publié/],
     ['duplicate contact target', 'index.html', /<\/body>/, '<div id="contact"></div></body>', /identifiant HTML dupliqué/],
