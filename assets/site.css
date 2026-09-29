@@ -21,6 +21,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep anchor destinations below the sticky header, including direct links. */
+  scroll-padding-top: 5rem;
 }
 
 body {
