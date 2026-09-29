@@ -38,6 +38,21 @@ test('validation checks the published artifact independently of its source', asy
   });
 
   const scenarios = [
+    ['missing H1', 'index.html', /<h1\b[^>]*>[\s\S]*?<\/h1>/i, '', /index\.html: H1 principal attendu une fois/],
+    ['second real H1', 'index.html', /<\/body>/, '<h1>Deuxième titre</h1></body>', /index\.html: H1 principal attendu une fois/],
+    ['H1 only in comment', 'index.html', /(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, '<!-- $1 -->', /index\.html: H1 principal attendu une fois/],
+    ['H1 only in script', 'index.html', /(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, '<script type="application/json">{"example":"$1"}</script>', /index\.html: H1 principal attendu une fois/],
+    ['H1 only in nested template', 'index.html', /(<h1\b[^>]*>[\s\S]*?<\/h1>)/i, '<template><template>$1</template></template>', /index\.html: H1 principal attendu une fois/],
+    ['wrong structured address', 'index.html', /"streetAddress": "184 Avenue Aristide Briand"/, '"streetAddress": "185 Avenue Aristide Briand"', /index\.html: identité AutoPartsStore incohérente/],
+    ['wrong structured telephone', 'index.html', /"telephone": "\+33148479627"/, '"telephone": "+33148479628"', /index\.html: téléphone AutoPartsStore incohérent/],
+    ['duplicate sitemap URL', 'sitemap.xml', /<\/urlset>/, '<url><loc>https://auto-pieces-equipements.fr/</loc></url></urlset>', /sitemap\.xml: URL dupliquée/],
+    ...['https://example.com/', 'https://auto-pieces-equipements.fr/admin/', 'https://auto-pieces-equipements.fr/mentions-legales.html', 'https://auto-pieces-equipements.fr/?source=test', 'https://auto-pieces-equipements.fr/#contact'].map(url => [
+      'unexpected sitemap URL ' + url, 'sitemap.xml', /<\/urlset>/, `<url><loc>${url}</loc></url></urlset>`, /sitemap\.xml: URL inattendue/
+    ]),
+    ['malformed sitemap', 'sitemap.xml', /<\/url>/, '', /sitemap\.xml: format non pris en charge/],
+    ['mismatched sitemap namespace quotes', 'sitemap.xml', /xmlns="([^"]+)"/, "xmlns=\"$1'", /sitemap\.xml: format non pris en charge/],
+    ['mismatched XML version quotes', 'sitemap.xml', /version="1\.0"/, "version=\"1.0'", /sitemap\.xml: format non pris en charge/],
+    ['mismatched XML encoding quotes', 'sitemap.xml', /encoding="UTF-8"/, "encoding=\"UTF-8'", /sitemap\.xml: format non pris en charge/],
     ['commercial noindex', 'index.html', /<\/head>/, '<meta name="robots" content="noindex,follow"></head>', /index\.html: directive bloquant l.indexation/],
     ['Googlebot none with reordered attributes', 'index.html', /<\/head>/, "<META CONTENT='NONE' NAME='GoogleBot'></head>", /index\.html: directive bloquant l.indexation/],
     ['encoded noindex in body', 'index.html', /<\/body>/, '<meta content="no&#105;ndex" name=robots></body>', /index\.html: directive bloquant l.indexation/],
@@ -54,7 +69,7 @@ test('validation checks the published artifact independently of its source', asy
     ['invalid structured data', 'index.html', /(<script type="application\/ld\+json">)[\s\S]*?(<\/script>)/, '$1{invalid}$2', /index\.html: JSON-LD invalide/],
     ['unapproved price', 'index.html', /<\/body>/, '<p>123 €</p></body>', /index\.html: prix non validé/],
     ['missing legal noindex', 'mentions-legales.html', /<meta name="robots" content="noindex,follow">/, '', /mentions-legales\.html: protection noindex manquante/],
-    ['missing sitemap home', 'sitemap.xml', /<loc>https:\/\/auto-pieces-equipements\.fr\/<\/loc>/, '', /sitemap\.xml: URL manquante/]
+    ['missing sitemap home', 'sitemap.xml', /<url><loc>https:\/\/auto-pieces-equipements\.fr\/<\/loc>[\s\S]*?<\/url>/, '', /sitemap\.xml: URL manquante/]
   ];
   for (const [name, file, pattern, replacement, expected] of scenarios) {
     await t.test(name + ' in dist fails while its source is unchanged', () => {
@@ -72,6 +87,28 @@ test('validation checks the published artifact independently of its source', asy
       } finally {
         writeFileSync(target, original);
       }
+    });
+  }
+
+  const validChanges = [
+    ['paired XML quotes chosen per attribute', 'sitemap.xml', xml => xml.replace('version="1.0"', "version='1.0'").replace(/xmlns="([^"]+)"/, "xmlns='$1'")],
+    ['H1 with case and attributes', 'index.html', html => html.replace(/<h1>/, "<H1 class='principal' data-example='a > b'>").replace('</h1>', '</H1>')],
+    ['inert H1 examples beside the real title', 'index.html', html => html.replace('</body>', '<!-- <h1>Comment</h1> --><script type="application/json">{"example":"<h1>Script</h1>"}</script><template><template><h1>Nested</h1></template><h1>Template</h1></template></body>')],
+    ['national telephone formatting', 'index.html', html => html.replace('"telephone": "+33148479627"', '"telephone": "01 48 47 96 27"')],
+    ['international telephone formatting', 'index.html', html => html.replace('"telephone": "+33148479627"', '"telephone": "+33 1 48 47 96 27"')],
+    ['sitemap reordered and spaced', 'sitemap.xml', xml => xml.replace(/(<url>[\s\S]*<\/url>)/, [...xml.matchAll(/<url>[\s\S]*?<\/url>/g)].reverse().map(match => match[0]).join('\n')).replaceAll('<loc>', '<loc>\n  ').replaceAll('</loc>', '\n</loc>')]
+  ];
+  for (const [name, file, change] of validChanges) {
+    await t.test(name + ' remains valid in dist', () => {
+      const target = path.join(fixture, 'dist', file);
+      const original = readFileSync(target, 'utf8');
+      const changed = change(original);
+      assert.notEqual(changed, original);
+      try {
+        writeFileSync(target, changed);
+        const result = validate();
+        assert.equal(result.status, 0, result.stdout + result.stderr);
+      } finally { writeFileSync(target, original); }
     });
   }
 
