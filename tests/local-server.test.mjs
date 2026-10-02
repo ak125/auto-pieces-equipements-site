@@ -9,6 +9,14 @@ import { publicFiles } from '../scripts/site-config.mjs';
 
 const root = new URL('../', import.meta.url);
 
+// Own the whole response before assertions or child-process teardown. Leaving a
+// fetch body unread can keep its request active until the server is killed.
+async function request(url, options) {
+  const response = await fetch(url, options);
+  const body = Buffer.from(await response.arrayBuffer());
+  return { status: response.status, headers: response.headers, body };
+}
+
 for (const [entry, hiddenParent] of [['server-simple.js', false], ['server.js', false], ['server/server.js', false], ['server-simple.js', true]]) {
   test(`${entry}${hiddenParent ? ' under a hidden parent' : ''} starts outside the repository and exposes only public routes`, async (t) => {
     let serverRoot = root;
@@ -52,34 +60,36 @@ for (const [entry, hiddenParent] of [['server-simple.js', false], ['server.js', 
       });
     });
     for (const file of publicFiles) {
-      const response = await fetch(`${base}/${file}`);
+      const response = await request(`${base}/${file}`);
       assert.equal(response.status, 200, file);
       assert.equal(response.headers.get('x-powered-by'), null);
-      assert.deepEqual(Buffer.from(await response.arrayBuffer()), await readFile(new URL(file, root)), file);
+      assert.deepEqual(response.body, await readFile(new URL(file, root)), file);
     }
-    assert.equal((await fetch(base)).status, 200);
-    const head = await fetch(base, { method: 'HEAD' });
+    const homepage = await request(base);
+    assert.equal(homepage.status, 200);
+    assert.deepEqual(homepage.body, await readFile(new URL('index.html', root)));
+    const head = await request(base, { method: 'HEAD' });
     assert.equal(head.status, 200);
-    assert.equal(await head.text(), '');
+    assert.equal(head.body.length, 0);
     for (const pathname of [
       '/package.json', '/package-lock.json', '/server-simple.js', '/.env', '/.git/config',
       '/node_modules/express/package.json', '/docs/archives/prototype-mcp.md',
       '/tmp/evidence/fetch-site-audit.json', '/server/reviews-test.html', '/server/reviews-test.js',
       '/%2e%2e%2fpackage.json', '/assets%2f..%2fpackage.json', '/INDEX.HTML'
     ]) {
-      const response = await fetch(base + pathname);
+      const response = await request(base + pathname);
       assert.equal(response.status, 404, pathname);
-      assert.equal(await response.text(), 'Page introuvable');
+      assert.equal(response.body.toString('utf8'), 'Page introuvable');
     }
-    assert.equal((await fetch(`${base}/%ZZ`)).status, 400);
-    assert.equal((await fetch(base, { method: 'POST' })).status, 404);
-    assert.equal((await fetch(`${base}/test`)).status, 200);
-    const script = await fetch(`${base}/test/reviews.js`);
+    assert.equal((await request(`${base}/%ZZ`)).status, 400);
+    assert.equal((await request(base, { method: 'POST' })).status, 404);
+    assert.equal((await request(`${base}/test`)).status, 200);
+    const script = await request(`${base}/test/reviews.js`);
     assert.equal(script.status, 200);
     assert.match(script.headers.get('content-type'), /javascript/);
-    const api = await fetch(`${base}/api/google-reviews`);
+    const api = await request(`${base}/api/google-reviews`);
     assert.equal(api.status, 500);
-    assert.equal((await api.json()).error, 'Configuration manquante');
-    assert.equal((await fetch(`${base}/api/obd-diagnostic`, { method: 'POST' })).status, 404);
+    assert.equal(JSON.parse(api.body.toString('utf8')).error, 'Configuration manquante');
+    assert.equal((await request(`${base}/api/obd-diagnostic`, { method: 'POST' })).status, 404);
   });
 }

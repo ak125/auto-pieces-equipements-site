@@ -1,0 +1,56 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-J04",
+  "journey": "J04",
+  "name": "Devis sans réponse",
+  "trigger": "quote-awaiting",
+  "expected": "propose-reminder",
+  "metric": "Décisions sur devis",
+  "object": "syn-object",
+  "version": "v1",
+  "currentVersion": "v1",
+  "source": "fixture-v2",
+  "snapshotAt": "2026-10-02T10:00:00Z",
+  "events": [],
+  "person": {
+    "id": "syn-person",
+    "project": "ak125/auto-pieces-equipements-site",
+    "email": "fixture@example.invalid",
+    "kind": "professional",
+    "historyFrom": "2026-09-01T00:00:00Z",
+    "preferences": [
+      {
+        "brand": "APE",
+        "country": "FR",
+        "channel": "email",
+        "purpose": "marketing",
+        "state": "allowed",
+        "at": "2026-10-01T00:00:00Z",
+        "expiresAt": "2026-11-01T00:00:00Z",
+        "evidence": "fixture-only"
+      }
+    ],
+    "events": [],
+    "relations": []
+  },
+  "quote": {
+    "project": "ak125/auto-pieces-equipements-site",
+    "id": "syn-quote",
+    "version": "v1",
+    "reference": "syn-part",
+    "quantity": 1,
+    "price": 42,
+    "availability": "supplier",
+    "expiresAt": "2026-10-10T10:00:00Z",
+    "evidence": "fixture-only",
+    "conditions": "Exercice sans offre réelle"
+  },
+  "policy": {
+    "dueAt": "2026-10-02T09:00:00Z",
+    "maxAttempts": 1,
+    "attempts": 0
+  }
+}

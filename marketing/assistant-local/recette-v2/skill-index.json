@@ -1,0 +1,14 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-index-example",
+  "context": {"project": "ak125/auto-pieces-equipements-site", "root": "/fixtures/ape"},
+  "index": [
+    {"name":"ape-campagnes-locales","version":"2.0.0","path":"/fixtures/ape/.agents/skills/ape-campagnes-locales/SKILL.md","referencesValid":true},
+    {"name":"ape-avis-google","version":"2.0.0","path":"/fixtures/ape/.agents/skills/ape-avis-google/SKILL.md","referencesValid":true},
+    {"name":"ape-audience-preferences","version":"2.0.0","path":"/fixtures/ape/.agents/skills/ape-audience-preferences/SKILL.md","referencesValid":true},
+    {"name":"ape-revue-mesure","version":"2.0.0","path":"/fixtures/ape/.agents/skills/ape-revue-mesure/SKILL.md","referencesValid":true}
+  ]
+}

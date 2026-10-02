@@ -1,0 +1,73 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "action": {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "account": "syn-account",
+    "operation": "send",
+    "family": "newsletter",
+    "template": "v2",
+    "revision": "r1",
+    "audienceRule": "declared-battery-v1",
+    "contacts": 2,
+    "cost": 1,
+    "currency": "EUR",
+    "channel": "email",
+    "frequency": 1,
+    "exclusions": [
+      "suppressed"
+    ],
+    "actor": "syn-operator"
+  },
+  "grant": {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "account": "syn-account",
+    "operation": "send",
+    "family": "newsletter",
+    "template": "v2",
+    "revision": "r1",
+    "audienceRule": "declared-battery-v1",
+    "contacts": 2,
+    "cost": 1,
+    "currency": "EUR",
+    "channel": "email",
+    "frequency": 1,
+    "exclusions": [
+      "suppressed"
+    ],
+    "actor": "syn-operator",
+    "id": "syn-grant",
+    "issuer": "fixture-authority",
+    "approver": "syn-owner",
+    "revoked": false,
+    "operations": [
+      "send",
+      "suspend"
+    ],
+    "families": [
+      "newsletter"
+    ],
+    "templates": [
+      "v2"
+    ],
+    "revisions": [
+      "r1"
+    ],
+    "maxContacts": 10,
+    "maxCost": 5,
+    "maxFrequency": 1,
+    "timeZone": "Europe/Paris",
+    "startsAt": "2026-10-01T00:00:00Z",
+    "expiresAt": "2026-10-10T00:00:00Z",
+    "stopConditions": [
+      "complaint",
+      "budget"
+    ],
+    "validity": "fixture-only"
+  }
+}

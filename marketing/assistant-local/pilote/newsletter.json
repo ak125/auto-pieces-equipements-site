@@ -1,0 +1,88 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "runId": "ape-pilote-20261002",
+  "skill": {
+    "name": "ape-campagnes-locales",
+    "version": "1.0.0"
+  },
+  "objective": "Tester une offre et une newsletter sans destinataires",
+  "channel": "newsletter",
+  "destination": "non-adressee",
+  "sources": [
+    {
+      "ref": "scripts/catalog-content.mjs",
+      "checkedAt": "2026-10-02"
+    },
+    {
+      "ref": "index.html",
+      "checkedAt": "2026-10-02"
+    },
+    {
+      "ref": "data/store-hours.json",
+      "checkedAt": "2026-10-02"
+    },
+    {
+      "ref": "marketing/assistant-local/pilote/README.md",
+      "checkedAt": "2026-10-02"
+    }
+  ],
+  "content": {
+    "version": "v1",
+    "subject": "EXERCICE FICTIF — Préparer une demande de batterie",
+    "body": "EXERCICE FICTIF : la référence TEST-BATTERIE-APE, à 42 € TTC du 2 au 10 octobre 2026, sert uniquement à tester ce dossier. Ce n’est pas une offre du magasin et aucun stock n’est associé.\n\nPour une demande réelle, préparez la référence connue ou le modèle, l’année et la motorisation du véhicule. La technologie, les dimensions et la polarité sont à vérifier. Prix, compatibilité et délai doivent être confirmés avant commande.\n\nConsultez notre page batterie pour préparer votre demande auprès du magasin des Pavillons-sous-Bois.",
+    "ctaLabel": "Préparer une demande de batterie",
+    "ctaUrl": "https://auto-pieces-equipements.fr/batterie-voiture-les-pavillons-sous-bois.html"
+  },
+  "facts": [
+    {
+      "claim": "La famille batterie est documentée dans le catalogue.",
+      "source": "scripts/catalog-content.mjs"
+    },
+    {
+      "claim": "L’adresse du magasin figure sur l’accueil.",
+      "source": "index.html"
+    },
+    {
+      "claim": "Prix 42 et référence TEST-BATTERIE-APE sont des données exclusivement synthétiques.",
+      "source": "marketing/assistant-local/pilote/README.md"
+    }
+  ],
+  "offer": {
+    "kind": "fictional",
+    "products": [
+      "TEST-BATTERIE-APE — référence fictive"
+    ],
+    "priceTtc": 42,
+    "conditions": "Exercice uniquement. Aucun stock, achat, réservation ou remise applicable.",
+    "startsOn": "2026-10-02",
+    "endsOn": "2026-10-10",
+    "evidence": "Fixture synthétique, sans validation commerciale réelle.",
+    "compatibility": "unverified"
+  },
+  "audience": {
+    "mode": "none",
+    "count": 0
+  },
+  "privacy": {
+    "classification": "synthetic",
+    "containsPersonalData": false
+  },
+  "unknowns": [
+    "Prix, référence, stock, délai et compatibilité réels non confirmés.",
+    "Fournisseur newsletter, expéditeur authentifié et désinscription absents."
+  ],
+  "risks": [
+    "Confusion entre exercice et offre réelle ; conserver la mention FICTIF."
+  ],
+  "validationRequired": [
+    "Relecture humaine de la version exacte, des faits, liens, destinataire du canal et période.",
+    "Aucune publication autorisée par ce pilote."
+  ],
+  "actionsNotPerformed": [
+    "Aucun envoi ni destinataire.",
+    "Aucune publication ou programmation.",
+    "Aucune API externe appelée."
+  ],
+  "approval": null
+}

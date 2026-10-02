@@ -1,0 +1,3925 @@
+{
+  "version": "2.0.0",
+  "project": "ak125/auto-pieces-equipements-site",
+  "checkedAt": "2026-10-02",
+  "purpose": "Couverture du mandat V2, pas un registre de clients ou d'exécution",
+  "stateVocabulary": [
+    "absent",
+    "candidat",
+    "simulé",
+    "vérifié",
+    "non vérifié",
+    "non applicable motivé"
+  ],
+  "dependencies": "ACTIVATION-V2.md",
+  "rows": [
+    {
+      "id": "C01",
+      "besoin": "Stratégie commerciale et plan de croissance",
+      "valeur_attendue": "Brief objectif/public/mesure/arrêt depuis faits sourcés",
+      "source_de_verite": "Sources autorisées et datées correspondant à Stratégie commerciale et plan de croissance ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "C01/C02/C12/C20",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Objectifs/capacité et faits réels à confirmer ; pas de stratégie calibrée sans observations.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Brief objectif/public/mesure/arrêt depuis faits sourcés"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "besoin": "Veille marché et opportunités",
+      "valeur_attendue": "Comparer instantanés datés et signaler péremption",
+      "source_de_verite": "Sources autorisées et datées correspondant à Veille marché et opportunités ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs compare <fixture.json>",
+      "preuve_attendue": "C01/C02/C12/C20",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Aucun collecteur gouverné connecté ; saisir sources publiques autorisées, comparables et unités avant recommandation réelle.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Comparer instantanés datés et signaler péremption"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C03",
+      "besoin": "Acquisition et inscription",
+      "valeur_attendue": "Distinguer reçu/confirmé de visible dans J07 et brief QR",
+      "source_de_verite": "Sources autorisées et datées correspondant à Acquisition et inscription ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J07",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Formulaire, double opt-in, antispam et réception persistante absents ; intégrer uniquement un service autorisé.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Distinguer reçu/confirmé de visible dans J07 et brief QR"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C04",
+      "besoin": "Identités et qualité des données",
+      "valeur_attendue": "Proposer import rejouable sans fusion ambiguë et sans réabonnement",
+      "source_de_verite": "Sources autorisées et datées correspondant à Identités et qualité des données ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/data.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-audience-preferences",
+      "outil_executable": "node scripts/marketing-workbench.mjs import <fixture.json>",
+      "preuve_attendue": "T01/T03",
+      "preuve_locale": "tests/marketing-data.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Import réel, téléphone international et rollback du fournisseur non raccordés ; aucune normalisation téléphonique universelle.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Proposer import rejouable sans fusion ambiguë et sans réabonnement"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C05",
+      "besoin": "Préférences et éligibilité",
+      "valeur_attendue": "Opposition persistante, finalités service/marketing distinctes",
+      "source_de_verite": "Sources autorisées et datées correspondant à Préférences et éligibilité ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/data.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-audience-preferences",
+      "outil_executable": "node scripts/marketing-workbench.mjs segment <fixture.json>",
+      "preuve_attendue": "C05/C17",
+      "preuve_locale": "tests/marketing-data.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Centre de préférences réel et récupération des oppositions manquants ; règle FR fictive non transposable à tous pays.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Opposition persistante, finalités service/marketing distinctes"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C06",
+      "besoin": "Profil et relations métier",
+      "valeur_attendue": "Associer relation exacte ID/type/catégorie dans segment",
+      "source_de_verite": "Sources autorisées et datées correspondant à Profil et relations métier ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/data.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-audience-preferences",
+      "outil_executable": "node scripts/marketing-workbench.mjs segment <fixture.json>",
+      "preuve_attendue": "T04",
+      "preuve_locale": "tests/marketing-data.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Provenance/validité des liens réels à fournir ; aucune base ni résolution d'identité interprojets.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Associer relation exacte ID/type/catégorie dans segment"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C07",
+      "besoin": "Segmentation avancée",
+      "valeur_attendue": "ET/OU/NON à trois valeurs, compteurs, séquences et fenêtre",
+      "source_de_verite": "Sources autorisées et datées correspondant à Segmentation avancée ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/data.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-audience-preferences",
+      "outil_executable": "node scripts/marketing-workbench.mjs segment <fixture.json>",
+      "preuve_attendue": "T04",
+      "preuve_locale": "tests/marketing-data.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Historique complet à établir ; mode dynamique signifie recalcul demandé, pas abonnement à un flux.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "ET/OU/NON à trois valeurs, compteurs, séquences et fenêtre"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C08",
+      "besoin": "Scoring et cycle de vie",
+      "valeur_attendue": "RFM observé de fenêtre, contributions et décote hypothétique",
+      "source_de_verite": "Sources autorisées et datées correspondant à Scoring et cycle de vie ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/data.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D5",
+      "skill": "ape-audience-preferences",
+      "outil_executable": "node scripts/marketing-workbench.mjs score <fixture.json>",
+      "preuve_attendue": "C08",
+      "preuve_locale": "tests/marketing-data.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D5"
+      ],
+      "blocage_exact": "Pas de LTV prédite, churn ou propension : historique, référence simple, calibration, dérive/biais et incertitude non disponibles.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "RFM observé de fenêtre, contributions et décote hypothétique"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C09",
+      "besoin": "Suivi commercial et conversation",
+      "valeur_attendue": "Qualification minimale, devis et proposition de relance",
+      "source_de_verite": "Sources autorisées et datées correspondant à Suivi commercial et conversation ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs qualify <fixture.json>",
+      "preuve_attendue": "P03/P05/P07",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Outil commercial et assignation réels absents ; texte libre requiert lecture humaine, pas classification universelle.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Qualification minimale, devis et proposition de relance"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C10",
+      "besoin": "Parcours événementiels",
+      "valeur_attendue": "Décision sur instantané J01–J18 et chronologie dédupliquée",
+      "source_de_verite": "Sources autorisées et datées correspondant à Parcours événementiels ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "T08",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D4"
+      ],
+      "blocage_exact": "Aucun moteur durable/participants ; délais/réentrée/compensation restent des contrats à relier au service existant.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision sur instantané J01–J18 et chronologie dédupliquée"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C11",
+      "besoin": "Arbitrage des sollicitations",
+      "valeur_attendue": "Priorité et plafonds partagés dans un batch, horaires Paris",
+      "source_de_verite": "Sources autorisées et datées correspondant à Arbitrage des sollicitations ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/operations.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs arbitrate <fixture.json>",
+      "preuve_attendue": "T07",
+      "preuve_locale": "tests/marketing-operations.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs ; tests/marketing-action-boundaries.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Pas de quota atomique partagé entre processus ; coût inconnu bloque. Réservation durable indispensable pour A2.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Priorité et plafonds partagés dans un batch, horaires Paris"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C12",
+      "besoin": "Studio éditorial",
+      "valeur_attendue": "Objet, pré-en-tête, texte, posts, FAQ, script vidéo et variables",
+      "source_de_verite": "Sources autorisées et datées correspondant à Studio éditorial ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D6",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "C01/C02/C12/C20",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D6"
+      ],
+      "blocage_exact": "Vérité commerciale et ton restent humains ; fatigue limitée au sujet répété, pas modèle sémantique validé.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Objet, pré-en-tête, texte, posts, FAQ, script vidéo et variables"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C13",
+      "besoin": "Rendu email et accessibilité",
+      "valeur_attendue": "HTML/texte mobile via rendu existant, échappement et blocs texte",
+      "source_de_verite": "Sources autorisées et datées correspondant à Rendu email et accessibilité ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs render <fixture.json>",
+      "preuve_attendue": "T14",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2"
+      ],
+      "blocage_exact": "Aperçu navigateur seulement ; expéditeur/désinscription, clients messagerie et délivrabilité non vérifiés.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "HTML/texte mobile via rendu existant, échappement et blocs texte"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C14",
+      "besoin": "Offres recommandations et catalogues",
+      "valeur_attendue": "Conditions/prix/période/preuves/stock contrôlés avant préparation",
+      "source_de_verite": "Sources autorisées et datées correspondant à Offres recommandations et catalogues ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "T06/T11",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Pas d'inventaire réel, marge ou compatibilité autorisée ; aucune création de code, pack ou remise.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Conditions/prix/période/preuves/stock contrôlés avant préparation"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C15",
+      "besoin": "Email SMS WhatsApp notifications",
+      "valeur_attendue": "Contrats de canal, fenêtre/template, estimation unités SMS",
+      "source_de_verite": "Sources autorisées et datées correspondant à Email SMS WhatsApp notifications ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/operations.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2,D3",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs channel <fixture.json>",
+      "preuve_attendue": "C15/T13",
+      "preuve_locale": "tests/marketing-operations.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs ; tests/marketing-action-boundaries.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2",
+        "D3"
+      ],
+      "blocage_exact": "Aucun compte connecté ni tarif réel ; réponse entrante et changement de langue à traiter dans outil officiel.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Contrats de canal, fenêtre/template, estimation unités SMS"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C16",
+      "besoin": "Réseaux sociaux et multiformat",
+      "valeur_attendue": "Deux posts, script/sous-titres et droits d'actifs vérifiés sur fixture",
+      "source_de_verite": "Sources autorisées et datées correspondant à Réseaux sociaux et multiformat ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2,D6",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "T06/T11",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2",
+        "D6"
+      ],
+      "blocage_exact": "Pas de rendu carrousel/vidéo ou format compte validé ; API/publication non connectées.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Deux posts, script/sous-titres et droits d'actifs vérifiés sur fixture"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C17",
+      "besoin": "Délivrabilité et hygiène",
+      "valeur_attendue": "Audit d'observations, suppression bounce/plainte",
+      "source_de_verite": "Sources autorisées et datées correspondant à Délivrabilité et hygiène ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/operations.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs delivery-audit <fixture.json>",
+      "preuve_attendue": "C17 positive",
+      "preuve_locale": "tests/marketing-operations.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs ; tests/marketing-delivery-observations.test.mjs ; recette-v2/delivery-audit.json",
+      "priorite": "normale",
+      "dependances": [
+        "D2"
+      ],
+      "blocage_exact": "DNS et domaines non interrogés ; horizon 24h hypothétique, aucune montée en charge ni promesse inbox.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Audit d'observations, suppression bounce/plainte"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C18",
+      "besoin": "Voix client satisfaction avis",
+      "valeur_attendue": "Réponses prudentes, versions/réponse existante et invitations neutres",
+      "source_de_verite": "Sources autorisées et datées correspondant à Voix client satisfaction avis ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-avis-google",
+      "outil_executable": "node scripts/marketing-workbench.mjs review <fixture.json>",
+      "preuve_attendue": "P16/P17",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Lecture Places partielle ; pas de corpus réel pour thèmes/taux/biais, analyse sémantique à revoir.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Réponses prudentes, versions/réponse existante et invitations neutres"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C19",
+      "besoin": "Fidélité parrainage ambassadeurs",
+      "valeur_attendue": "Proposition sans émission, déduplication/remboursement/auto-parrainage",
+      "source_de_verite": "Sources autorisées et datées correspondant à Fidélité parrainage ambassadeurs ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D3",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs loyalty <fixture.json>",
+      "preuve_attendue": "C19",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D3"
+      ],
+      "blocage_exact": "Mécanisme de récompense absent ; attribution différée/règles réelles à décider, tiers jamais inscrit.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Proposition sans émission, déduplication/remboursement/auto-parrainage"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C20",
+      "besoin": "SEO contenu utile conversion",
+      "valeur_attendue": "Brief/FAQ lié aux pages existantes, comparaison de faits",
+      "source_de_verite": "Sources autorisées et datées correspondant à SEO contenu utile conversion ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D5",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "C01/C02/C12/C20",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D5"
+      ],
+      "blocage_exact": "Aucun compte GSC/SEO consulté ni volume inventé ; propositions candidates sans changement indexé.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Brief/FAQ lié aux pages existantes, comparaison de faits"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C21",
+      "besoin": "Publicité acquisition payante",
+      "valeur_attendue": "Plan borné compte/zone/page/budget/arrêt, dépense nulle",
+      "source_de_verite": "Sources autorisées et datées correspondant à Publicité acquisition payante ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2,D3,D5",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs paid <fixture.json>",
+      "preuve_attendue": "C21/C25/C26",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2",
+        "D3",
+        "D5"
+      ],
+      "blocage_exact": "Compte Google/Meta, enchères, flux et conversions non connectés ; partage d'audience autorisation distincte.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Plan borné compte/zone/page/budget/arrêt, dépense nulle"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C22",
+      "besoin": "Instrumentation attribution",
+      "valeur_attendue": "Déduplication métier et distinction des clics/demandes/ventes",
+      "source_de_verite": "Sources autorisées et datées correspondant à Instrumentation attribution ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs report <fixture.json>",
+      "preuve_attendue": "T15/P23",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D5"
+      ],
+      "blocage_exact": "Pas de tracking ajouté, UTM public modifié ou attribution multicanale prouvée ; fenêtres/cohortes sources requises.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Déduplication métier et distinction des clics/demandes/ventes"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C23",
+      "besoin": "Économie cohortes",
+      "valeur_attendue": "CA observé net de remboursements, ratio sourcé et marge sous condition",
+      "source_de_verite": "Sources autorisées et datées correspondant à Économie cohortes ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs report <fixture.json>",
+      "preuve_attendue": "C22/C23",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D5"
+      ],
+      "blocage_exact": "Coûts/taxes/trésorerie inconnus ; EUR seulement ; pas de LTV, cohortes de rétention longues ni causalité inventée.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "CA observé net de remboursements, ratio sourcé et marge sous condition"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C24",
+      "besoin": "Expérimentation",
+      "valeur_attendue": "Affectation stable témoin/variante, contamination et résultat insuffisant",
+      "source_de_verite": "Sources autorisées et datées correspondant à Expérimentation ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs experiment <fixture.json>",
+      "preuve_attendue": "T16",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D5"
+      ],
+      "blocage_exact": "Calcul de puissance/significativité et expérience réelle non réalisés ; rapport renvoie revue statistique, pas gagnant.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Affectation stable témoin/variante, contamination et résultat insuffisant"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C25",
+      "besoin": "Prévisions saisonnalité",
+      "valeur_attendue": "Moyenne/min/max observés et contrainte capacité candidate",
+      "source_de_verite": "Sources autorisées et datées correspondant à Prévisions saisonnalité ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs forecast <fixture.json>",
+      "preuve_attendue": "C21/C25/C26",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D5"
+      ],
+      "blocage_exact": "Pas d'intervalle probabiliste ni saisonnalité apprise ; historique/dates et comparaison envoi/canal non disponibles.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Moyenne/min/max observés et contrainte capacité candidate"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C26",
+      "besoin": "Reporting alertes utiles",
+      "valeur_attendue": "Rapport de rapprochement et regroupement par code/propriétaire",
+      "source_de_verite": "Sources autorisées et datées correspondant à Reporting alertes utiles ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs report <fixture.json>",
+      "preuve_attendue": "C21/C25/C26",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D5"
+      ],
+      "blocage_exact": "Alertes locales calculées, aucun moniteur ni canal de notification actif ; absence de données signalée.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Rapport de rapprochement et regroupement par code/propriétaire"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C27",
+      "besoin": "Planification économique",
+      "valeur_attendue": "Contrat workdir/confiance/compte/budget sans LLM",
+      "source_de_verite": "Sources autorisées et datées correspondant à Planification économique ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/operations.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D3,D4,D7",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs plan-job <fixture.json>",
+      "preuve_attendue": "T19/T20",
+      "preuve_locale": "tests/marketing-operations.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs ; tests/marketing-control-inputs.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D3",
+        "D4",
+        "D7"
+      ],
+      "blocage_exact": "Aucun cron créé ; runtime gateway et utilisateur système non testés, temps plafond contractuel non ordonnanceur.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Contrat workdir/confiance/compte/budget sans LLM"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C28",
+      "besoin": "Robustesse connecteurs",
+      "valeur_attendue": "Test adapter quotas/incertain/replay et rapprochement avant reprise",
+      "source_de_verite": "Sources autorisées et datées correspondant à Robustesse connecteurs ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/operations.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs provider-test <fixture.json>",
+      "preuve_attendue": "T09/T12",
+      "preuve_locale": "tests/marketing-operations.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2",
+        "D4"
+      ],
+      "blocage_exact": "Aucun webhook signé/pagination fournisseur/outbox implémenté sans contrat réel ; pas de exactly-once revendiqué.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Test adapter quotas/incertain/replay et rapprochement avant reprise"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C29",
+      "besoin": "Données privées sécurité",
+      "valeur_attendue": "Entrées fictives bornées, liens fermés, plan rétention/export/effacement",
+      "source_de_verite": "Sources autorisées et datées correspondant à Données privées sécurité ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/data.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D3",
+      "skill": "ape-audience-preferences",
+      "outil_executable": "node scripts/marketing-workbench.mjs privacy <fixture.json>",
+      "preuve_attendue": "T03/T05/T18",
+      "preuve_locale": "tests/marketing-data.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D3"
+      ],
+      "blocage_exact": "Heuristiques non exhaustives ; effacement et liste repoussoir à exécuter uniquement dans source habilitée.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Entrées fictives bornées, liens fermés, plan rétention/export/effacement"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "C30",
+      "besoin": "Qualité des skills",
+      "valeur_attendue": "Index versions/liens/doublons et recette d'invocation bornée",
+      "source_de_verite": "Sources autorisées et datées correspondant à Qualité des skills ; contrat/fixture locale, aucun compte présumé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Dossier assistant-local V1, scripts/marketing-local.mjs, sources publiques et horaires",
+      "ajout_necessaire": "scripts/marketing/operations.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D7",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs skill-index <fixture.json>",
+      "preuve_attendue": "T02",
+      "preuve_locale": "tests/marketing-operations.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-skill-index.test.mjs ; recette-v2/skill-index.json",
+      "priorite": "normale",
+      "dependances": [
+        "D7"
+      ],
+      "blocage_exact": "Routage implicite natif non garanti ; Hermes absent, coûts modèle et évaluation statistique non mesurés.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Index versions/liens/doublons et recette d'invocation bornée"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P01",
+      "besoin": "Fiche commerciale faisant autorité",
+      "valeur_attendue": "Application APE de C01 : Fiche commerciale faisant autorité",
+      "source_de_verite": "data/store-hours.json ; index.html ; CONTEXTE.md",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C01 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs business-facts <fixture.json>",
+      "preuve_attendue": "P01/P14",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Divergence « dans la journée » non arbitrée ; aucune mutation publique.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C01 : Fiche commerciale faisant autorité"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P02",
+      "besoin": "Publics locaux et besoins",
+      "valeur_attendue": "Application APE de C01 : Publics locaux et besoins",
+      "source_de_verite": "Brief source déclaré ; fixture prepare.json",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C01 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "C01/C02/C12/C20",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Zone, publics et besoin à confirmer, aucune inférence sensible.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C01 : Publics locaux et besoins"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P03",
+      "besoin": "Qualification de demandes de pièces",
+      "valeur_attendue": "Application APE de C09 : Qualification de demandes de pièces",
+      "source_de_verite": "Demande réellement reçue dans outil privé ; fixture J01/J02",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C09 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs qualify <fixture.json>",
+      "preuve_attendue": "P03/P05/P07",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Réception réelle et informations véhicule absentes ; pas de VIN importé.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C09 : Qualification de demandes de pièces"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P04",
+      "besoin": "Réponse commerciale multicanale",
+      "valeur_attendue": "Application APE de C09 : Réponse commerciale multicanale",
+      "source_de_verite": "Canal d'origine et dossier privé officiel",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C09 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J01",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D4"
+      ],
+      "blocage_exact": "Pas de boîte de réception/assignation ou verrou de réponse réel.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C09 : Réponse commerciale multicanale"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P05",
+      "besoin": "Devis et propositions",
+      "valeur_attendue": "Application APE de C09 : Devis et propositions",
+      "source_de_verite": "Devis magasin versionné ; fixture J03",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C09 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs quote <fixture.json>",
+      "preuve_attendue": "P03/P05/P07",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Prix/stock/validité réels inconnus, brouillon non engageant.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C09 : Devis et propositions"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P06",
+      "besoin": "Relance de devis",
+      "valeur_attendue": "Application APE de C10 : Relance de devis",
+      "source_de_verite": "Statut/événements devis source",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C10 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J04",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D4"
+      ],
+      "blocage_exact": "Aucune relance programmée ; source statut et service durable requis.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C10 : Relance de devis"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P07",
+      "besoin": "Référence et disponibilité",
+      "valeur_attendue": "Application APE de C14 : Référence et disponibilité",
+      "source_de_verite": "Confirmation magasin/fournisseur autorisé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C14 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J05",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Ni catalogue stock ni accès fournisseur vérifiés ; aucune commande/réservation.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C14 : Référence et disponibilité"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P08",
+      "besoin": "Réservation et retrait",
+      "valeur_attendue": "Application APE de C10 : Réservation et retrait",
+      "source_de_verite": "Réservation officielle + store-hours.json",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C10 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J06",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D4"
+      ],
+      "blocage_exact": "Pas de mécanisme de réservation ; fixture official n'en crée pas.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C10 : Réservation et retrait"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P09",
+      "besoin": "Passage au magasin",
+      "valeur_attendue": "Application APE de C22 : Passage au magasin",
+      "source_de_verite": "store-hours.json ; liens publics",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C22 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J15",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D5"
+      ],
+      "blocage_exact": "Clic itinéraire non visite ; aucun suivi individuel installé.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C22 : Passage au magasin"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P10",
+      "besoin": "Newsletter thématique",
+      "valeur_attendue": "Application APE de C03 : Newsletter thématique",
+      "source_de_verite": "Service abonnement et préférences ; fixture J07/J08",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C03 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J07",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Réception/double opt-in/désinscription réels non raccordés.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C03 : Newsletter thématique"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P11",
+      "besoin": "Offres saisonnières",
+      "valeur_attendue": "Application APE de C14 : Offres saisonnières",
+      "source_de_verite": "Preuve commerciale magasin ; catalogue indicatif",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C14 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "J09",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1"
+      ],
+      "blocage_exact": "Prix de référence et légalité réduction à vérifier au moment de l'offre ; aucune remise tunisienne.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C14 : Offres saisonnières"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P12",
+      "besoin": "Fidélisation et réactivation",
+      "valeur_attendue": "Application APE de C08 : Fidélisation et réactivation",
+      "source_de_verite": "Historique autorisé de ventes/interaction",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C08 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J10",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D5"
+      ],
+      "blocage_exact": "Sans historique complet pas d'inactivité établie ; aucune fréquence depuis clics.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C08 : Fidélisation et réactivation"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P13",
+      "besoin": "Clientèle professionnelle",
+      "valeur_attendue": "Application APE de C09 : Clientèle professionnelle",
+      "source_de_verite": "Qualité professionnelle déclarée et preuves d'éligibilité",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C09 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J11",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Ni emails aspirés ni partenariat/tarifs négociés présumés.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C09 : Clientèle professionnelle"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P14",
+      "besoin": "Google Business audit opérationnel",
+      "valeur_attendue": "Application APE de C02 : Google Business audit opérationnel",
+      "source_de_verite": "Plan GBP existant et référence commerciale",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C02 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs business-facts <fixture.json>",
+      "preuve_attendue": "P01/P14",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2"
+      ],
+      "blocage_exact": "Compte/catégories Google réels non interrogés ; constat documentaire daté seulement.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C02 : Google Business audit opérationnel"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P15",
+      "besoin": "Posts Google calendrier",
+      "valeur_attendue": "Application APE de C16 : Posts Google calendrier",
+      "source_de_verite": "Pack Google Business et sources offre",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C16 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2,D6",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J14",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2",
+        "D6"
+      ],
+      "blocage_exact": "Formats/compte/API non vérifiés ; calendrier proposé non programmé.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C16 : Posts Google calendrier"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P16",
+      "besoin": "Avis lecture réponse modification",
+      "valeur_attendue": "Application APE de C18 : Avis lecture réponse modification",
+      "source_de_verite": "server/google-places.cjs lecture ; version/réponse source",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C18 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2",
+      "skill": "ape-avis-google",
+      "outil_executable": "node scripts/marketing-workbench.mjs review <fixture.json>",
+      "preuve_attendue": "P16/P17",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2"
+      ],
+      "blocage_exact": "Pas d'API GBP écriture disponible, lecture non exhaustive ; recontrôle avant effet.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C18 : Avis lecture réponse modification"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P17",
+      "besoin": "Invitations neutres aux avis",
+      "valeur_attendue": "Application APE de C18 : Invitations neutres aux avis",
+      "source_de_verite": "Expérience réelle et canal autorisé",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C18 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2",
+      "skill": "ape-avis-google",
+      "outil_executable": "node scripts/marketing-workbench.mjs invite <fixture.json>",
+      "preuve_attendue": "P16/P17",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2"
+      ],
+      "blocage_exact": "Invitation fixture neutre uniquement ; aucune note/avantage inventé.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C18 : Invitations neutres aux avis"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P18",
+      "besoin": "Photos vidéos preuves locales",
+      "valeur_attendue": "Application APE de C16 : Photos vidéos preuves locales",
+      "source_de_verite": "Actifs réels et droits magasin",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C16 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D6",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "T06/T11",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D6"
+      ],
+      "blocage_exact": "Brief vidéo/légendes seulement ; aucune façade, équipe ou stock fabriqués.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C16 : Photos vidéos preuves locales"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P19",
+      "besoin": "Réseaux sociaux conversationnels",
+      "valeur_attendue": "Application APE de C16 : Réseaux sociaux conversationnels",
+      "source_de_verite": "Compte professionnel et dossier source",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C16 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2,D4",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs prepare <fixture.json>",
+      "preuve_attendue": "J14",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2",
+        "D4"
+      ],
+      "blocage_exact": "Aucun compte privé ; coordination manuel/auto nécessite service officiel.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C16 : Réseaux sociaux conversationnels"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P20",
+      "besoin": "SEO citations partenariats",
+      "valeur_attendue": "Application APE de C20 : SEO citations partenariats",
+      "source_de_verite": "Pages réelles + rapport GSC/plan GBP existants",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C20 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D5",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs business-facts <fixture.json>",
+      "preuve_attendue": "P01/P14",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D5"
+      ],
+      "blocage_exact": "Aucune inscription annuaire, promesse de rang ou page ville créée.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C20 : SEO citations partenariats"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P21",
+      "besoin": "Supports magasin QR",
+      "valeur_attendue": "Application APE de C16 : Supports magasin QR",
+      "source_de_verite": "Destination publique exacte, finalité et expiration",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C16 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/studio.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D6",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs qr <fixture.json>",
+      "preuve_attendue": "P21",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D6"
+      ],
+      "blocage_exact": "Brief exact testé ; QR non généré/décodé, formulaire/réception non connectés.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C16 : Supports magasin QR"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P22",
+      "besoin": "Acquisition payante locale",
+      "valeur_attendue": "Application APE de C21 : Acquisition payante locale",
+      "source_de_verite": "Compte/budget/zone approuvés",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C21 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D2,D3,D5",
+      "skill": "ape-campagnes-locales",
+      "outil_executable": "node scripts/marketing-workbench.mjs paid <fixture.json>",
+      "preuve_attendue": "J17",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D2",
+        "D3",
+        "D5"
+      ],
+      "blocage_exact": "Plan candidat sans dépense ; clic appel ≠ appel abouti ≠ vente.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C21 : Acquisition payante locale"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P23",
+      "besoin": "Mesure hors ligne devis ventes",
+      "valeur_attendue": "Application APE de C23 : Mesure hors ligne devis ventes",
+      "source_de_verite": "Identifiants devis/vente et période privée autorisée",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C23 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/insights.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D5",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs report <fixture.json>",
+      "preuve_attendue": "T15/P23",
+      "preuve_locale": "tests/marketing-studio.test.mjs et tests/marketing-contracts.test.mjs",
+      "priorite": "haute",
+      "dependances": [
+        "D1",
+        "D5"
+      ],
+      "blocage_exact": "Rapprochement ambigu inconnu ; aucune remontée publicitaire activée.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C23 : Mesure hors ligne devis ventes"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "P24",
+      "besoin": "Calendrier service continuité",
+      "valeur_attendue": "Application APE de C27 : Calendrier service continuité",
+      "source_de_verite": "data/store-hours.json ; événements métier",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Capacité C27 et procédures marketing/google-business",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J06/J09/P24",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D4"
+      ],
+      "blocage_exact": "Horaires courants sans exceptions ; tests de fermeture fictifs seulement.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Application APE de C27 : Calendrier service continuité"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J01",
+      "besoin": "Demande de pièce",
+      "valeur_attendue": "Décision ask : Demandes qualifiées",
+      "source_de_verite": "received-request depuis source privée autorisée ; fixture scenarios.json J01",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J01 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; received-request réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision ask : Demandes qualifiées"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J02",
+      "besoin": "Information véhicule manquante",
+      "valeur_attendue": "Décision ask : Précision reçue",
+      "source_de_verite": "missing-vehicle depuis source privée autorisée ; fixture scenarios.json J02",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J02 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; missing-vehicle réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision ask : Précision reçue"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J03",
+      "besoin": "Devis préparé",
+      "valeur_attendue": "Décision draft : Devis réellement reçus",
+      "source_de_verite": "validated-quote depuis source privée autorisée ; fixture scenarios.json J03",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J03 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; validated-quote réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Devis réellement reçus"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J04",
+      "besoin": "Devis sans réponse",
+      "valeur_attendue": "Décision propose-reminder : Décisions sur devis",
+      "source_de_verite": "quote-awaiting depuis source privée autorisée ; fixture scenarios.json J04",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J04 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; quote-awaiting réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision propose-reminder : Décisions sur devis"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J05",
+      "besoin": "Disponibilité demandée",
+      "valeur_attendue": "Décision draft : Demandes satisfaites",
+      "source_de_verite": "availability-requested depuis source privée autorisée ; fixture scenarios.json J05",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J05 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; availability-requested réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Demandes satisfaites"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J06",
+      "besoin": "Réservation officielle",
+      "valeur_attendue": "Décision draft : Retraits observés",
+      "source_de_verite": "official-reservation depuis source privée autorisée ; fixture scenarios.json J06",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J06 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; official-reservation réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Retraits observés"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J07",
+      "besoin": "Inscription magasin",
+      "valeur_attendue": "Décision draft : Abonnés confirmés",
+      "source_de_verite": "subscription-confirmed depuis source privée autorisée ; fixture scenarios.json J07",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J07 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; subscription-confirmed réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Abonnés confirmés"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J08",
+      "besoin": "Newsletter thématique",
+      "valeur_attendue": "Décision draft : Demandes observables",
+      "source_de_verite": "campaign-reviewed depuis source privée autorisée ; fixture scenarios.json J08",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J08 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; campaign-reviewed réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Demandes observables"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J09",
+      "besoin": "Campagne saisonnière",
+      "valeur_attendue": "Décision draft : Ventes par support",
+      "source_de_verite": "season-approved depuis source privée autorisée ; fixture scenarios.json J09",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J09 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; season-approved réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Ventes par support"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J10",
+      "besoin": "Réactivation locale",
+      "valeur_attendue": "Décision draft : Retours observés",
+      "source_de_verite": "observed-inactivity depuis source privée autorisée ; fixture scenarios.json J10",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J10 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-regressions.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; observed-inactivity réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Retours observés"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J11",
+      "besoin": "Garage prospect",
+      "valeur_attendue": "Décision draft : Accords conclus",
+      "source_de_verite": "eligible-professional depuis source privée autorisée ; fixture scenarios.json J11",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J11 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; eligible-professional réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Accords conclus"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J12",
+      "besoin": "Nouvel avis",
+      "valeur_attendue": "Décision draft : Réponses pertinentes",
+      "source_de_verite": "review-received depuis source privée autorisée ; fixture scenarios.json J12",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J12 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; review-received réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Réponses pertinentes"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J13",
+      "besoin": "Invitation aux avis",
+      "valeur_attendue": "Décision draft : Invitations neutres",
+      "source_de_verite": "experience-confirmed depuis source privée autorisée ; fixture scenarios.json J13",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J13 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; experience-confirmed réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Invitations neutres"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J14",
+      "besoin": "Post d’offre",
+      "valeur_attendue": "Décision draft : Publication relue",
+      "source_de_verite": "post-reviewed depuis source privée autorisée ; fixture scenarios.json J14",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J14 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; post-reviewed réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Publication relue"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J15",
+      "besoin": "Horaires exceptionnels",
+      "valeur_attendue": "Décision change-proposal : Annonces exactes",
+      "source_de_verite": "hours-confirmed depuis source privée autorisée ; fixture scenarios.json J15",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J15 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; hours-confirmed réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision change-proposal : Annonces exactes"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J16",
+      "besoin": "Support magasin QR",
+      "valeur_attendue": "Décision brief-ready : Scans distincts des inscriptions",
+      "source_de_verite": "destination-approved depuis source privée autorisée ; fixture scenarios.json J16",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J16 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D6"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; destination-approved réel non raccordé. QR : brief uniquement, rendu absent.",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision brief-ready : Scans distincts des inscriptions"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J17",
+      "besoin": "Acquisition payante locale",
+      "valeur_attendue": "Décision draft : Coût par demande qualifiée",
+      "source_de_verite": "paid-plan-reviewed depuis source privée autorisée ; fixture scenarios.json J17",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J17 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; paid-plan-reviewed réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision draft : Coût par demande qualifiée"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "vérifié",
+          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    },
+    {
+      "id": "J18",
+      "besoin": "Bilan commercial local",
+      "valeur_attendue": "Décision report : Demandes devis ventes",
+      "source_de_verite": "source-period-closed depuis source privée autorisée ; fixture scenarios.json J18",
+      "proprietaire": "Magasin pour faits/mandats ; Hermes pour préparation ; Codex pour code",
+      "composant_reutilise": "Modules data/studio/operations/insights et source store-hours",
+      "ajout_necessaire": "scripts/marketing/journeys.mjs ; CLI marketing-workbench",
+      "preconditions_donnees_acces": "Corpus synthétique local ; pour réel : D1,D2,D3,D4",
+      "skill": "ape-revue-mesure",
+      "outil_executable": "node scripts/marketing-workbench.mjs journey <fixture.json>",
+      "preuve_attendue": "J18 positive + variantes stop/version/échéance selon périmètre",
+      "preuve_locale": "tests/marketing-journeys.test.mjs et tests/marketing-contracts.test.mjs ; tests/marketing-event-history.test.mjs (fonction commune, intégration J04)",
+      "priorite": "normale",
+      "dependances": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "blocage_exact": "Décision sur instantané simulé, aucune instance durable ; source-period-closed réel non raccordé. ",
+      "etat": {
+        "implementation": {
+          "statut": "candidat",
+          "perimetre": "Décision report : Demandes devis ventes"
+        },
+        "connexion": {
+          "statut": "absent",
+          "perimetre": "Aucun raccordement externe pour cette fonction"
+        },
+        "donnees": {
+          "statut": "simulé",
+          "perimetre": "Fixtures fictives, pas de données clients"
+        },
+        "autorisation": {
+          "statut": "vérifié",
+          "perimetre": "Mandat V2 A1 local ; A2 absent"
+        },
+        "tests": {
+          "statut": "vérifié",
+          "perimetre": "Validation d’intégration locale : 314 verts, dont 167 marketing ; typage marketing inclus dans npm test, concurrence 2 ; limites dans INTEGRATION-V2.md"
+        },
+        "runtime_hermes": {
+          "statut": "non vérifié",
+          "perimetre": "Non testé dans Hermes"
+        },
+        "runtime_codex": {
+          "statut": "non vérifié",
+          "perimetre": "Découverte du skill inchangé réutilisable. J18 corrigé vérifié par fonctions et CLI déterministes ; invocation agent de cette fonction non évaluée."
+        },
+        "activation": {
+          "statut": "absent",
+          "perimetre": "Aucune activation dans ce mandat"
+        }
+      }
+    }
+  ]
+}

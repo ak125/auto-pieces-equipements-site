@@ -1,0 +1,31 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "objective": "Demandes qualifiées",
+  "audience": "Besoin déclaré de batterie",
+  "stop": "Opposition ou source périmée",
+  "metric": "demandes reçues",
+  "topic": "Préparer sa demande",
+  "sources": [
+    {
+      "ref": "scripts/catalog-content.mjs",
+      "checkedAt": "2026-10-01T10:00:00Z",
+      "expiresAt": "2026-11-01T00:00:00Z"
+    }
+  ],
+  "facts": [
+    {
+      "key": "service",
+      "value": "Faire vérifier la référence avant proposition.",
+      "source": "scripts/catalog-content.mjs"
+    }
+  ],
+  "url": "https://auto-pieces-equipements.fr/",
+  "variables": {
+    "theme": "batterie"
+  },
+  "assets": []
+}

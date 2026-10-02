@@ -1,0 +1,38 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "report": {
+    "events": [
+      {
+        "id": "syn-request",
+        "kind": "request",
+        "object": "syn-quote"
+      },
+      {
+        "id": "syn-qevent",
+        "kind": "quote",
+        "object": "syn-quote"
+      },
+      {
+        "id": "syn-sale",
+        "kind": "sale",
+        "object": "syn-order",
+        "quote": "syn-quote",
+        "amount": 42,
+        "currency": "EUR"
+      }
+    ],
+    "salesCoverage": true,
+    "quoteCoverage": true,
+    "costs": null,
+    "source": "fixture-v2",
+    "cohort": "syn-cohort",
+    "period": {
+      "from": "2026-09-01T00:00:00Z",
+      "to": "2026-10-02T10:00:00Z"
+    }
+  }
+}

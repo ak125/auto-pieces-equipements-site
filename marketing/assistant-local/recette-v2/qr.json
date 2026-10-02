@@ -1,0 +1,13 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "qr": {
+    "url": "https://auto-pieces-equipements.fr/",
+    "purpose": "Préparer une demande de pièce",
+    "version": "v2",
+    "expiresAt": "2026-10-10T10:00:00Z"
+  }
+}

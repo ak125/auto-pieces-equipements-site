@@ -1,0 +1,18 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-loyalty-example",
+  "sales": [
+    { "id": "syn-sale", "amount": 100, "refunded": 20, "currency": "EUR" },
+    { "currency": "EUR", "refunded": 20, "amount": 100, "id": "syn-sale" }
+  ],
+  "policy": {
+    "threshold": 50,
+    "reward": 5,
+    "currency": "EUR",
+    "referrer": "syn-referrer",
+    "referred": "syn-referred"
+  }
+}

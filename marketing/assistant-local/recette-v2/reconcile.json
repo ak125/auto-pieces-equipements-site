@@ -1,0 +1,17 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "previous": {
+    "key": "syn-send",
+    "status": "uncertain"
+  },
+  "receipt": {
+    "key": "syn-send",
+    "status": "accepted",
+    "providerId": "syn-provider",
+    "proof": "fixture-receipt"
+  }
+}

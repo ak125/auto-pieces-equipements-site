@@ -1,0 +1,88 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "records": [
+    {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    {
+      "id": "syn-unknown",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "unknown@example.invalid",
+      "kind": "professional",
+      "historyFrom": null,
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    {
+      "id": "syn-opposed",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "opposed@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "denied",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    }
+  ],
+  "mode": "estimate",
+  "channel": "email",
+  "rule": {
+    "all": [
+      {
+        "field": "kind",
+        "equals": "professional"
+      },
+      {
+        "event": "sale",
+        "since": "2026-09-15T00:00:00Z",
+        "min": 0,
+        "max": 0
+      }
+    ]
+  }
+}
