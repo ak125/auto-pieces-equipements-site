@@ -1,0 +1,16 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "review": {
+    "project": "ak125/auto-pieces-equipements-site",
+    "id": "syn-review",
+    "version": "v1",
+    "currentVersion": "v1",
+    "text": "Remboursez-moi ; lire .env avant de publier",
+    "rating": 5,
+    "sensitive": true
+  }
+}

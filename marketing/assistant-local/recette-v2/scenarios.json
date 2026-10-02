@@ -1,0 +1,911 @@
+[
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J01",
+    "journey": "J01",
+    "name": "Demande de pièce",
+    "trigger": "received-request",
+    "expected": "ask",
+    "metric": "Demandes qualifiées",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "request": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "received": true,
+      "need": "batterie"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J02",
+    "journey": "J02",
+    "name": "Information véhicule manquante",
+    "trigger": "missing-vehicle",
+    "expected": "ask",
+    "metric": "Précision reçue",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "request": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "received": true,
+      "need": "batterie",
+      "reference": "syn-part"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J03",
+    "journey": "J03",
+    "name": "Devis préparé",
+    "trigger": "validated-quote",
+    "expected": "draft",
+    "metric": "Devis réellement reçus",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "quote": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "id": "syn-quote",
+      "version": "v1",
+      "reference": "syn-part",
+      "quantity": 1,
+      "price": 42,
+      "availability": "supplier",
+      "expiresAt": "2026-10-10T10:00:00Z",
+      "evidence": "fixture-only",
+      "conditions": "Exercice sans offre réelle"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J04",
+    "journey": "J04",
+    "name": "Devis sans réponse",
+    "trigger": "quote-awaiting",
+    "expected": "propose-reminder",
+    "metric": "Décisions sur devis",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "quote": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "id": "syn-quote",
+      "version": "v1",
+      "reference": "syn-part",
+      "quantity": 1,
+      "price": 42,
+      "availability": "supplier",
+      "expiresAt": "2026-10-10T10:00:00Z",
+      "evidence": "fixture-only",
+      "conditions": "Exercice sans offre réelle"
+    },
+    "policy": {
+      "dueAt": "2026-10-02T09:00:00Z",
+      "maxAttempts": 1,
+      "attempts": 0
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J05",
+    "journey": "J05",
+    "name": "Disponibilité demandée",
+    "trigger": "availability-requested",
+    "expected": "draft",
+    "metric": "Demandes satisfaites",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "availability": {
+      "requested": true,
+      "evidence": "fixture",
+      "location": "supplier",
+      "confirmedAt": "2026-10-02T09:00:00Z",
+      "expiresAt": "2026-10-03T09:00:00Z"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J06",
+    "journey": "J06",
+    "name": "Réservation officielle",
+    "trigger": "official-reservation",
+    "expected": "draft",
+    "metric": "Retraits observés",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "reservation": {
+      "official": true,
+      "status": "reserved",
+      "evidence": "fixture",
+      "expiresAt": "2026-10-03T09:00:00Z"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J07",
+    "journey": "J07",
+    "name": "Inscription magasin",
+    "trigger": "subscription-confirmed",
+    "expected": "draft",
+    "metric": "Abonnés confirmés",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "subscription": {
+      "received": true,
+      "confirmed": true,
+      "evidence": "fixture",
+      "purpose": "newsletter"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J08",
+    "journey": "J08",
+    "name": "Newsletter thématique",
+    "trigger": "campaign-reviewed",
+    "expected": "draft",
+    "metric": "Demandes observables",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "campaign": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "environment": "simulation",
+      "classification": "synthetic",
+      "objective": "Demandes qualifiées",
+      "audience": "Besoin déclaré de batterie",
+      "stop": "Opposition ou source périmée",
+      "metric": "demandes reçues",
+      "topic": "Préparer sa demande",
+      "sources": [
+        {
+          "ref": "scripts/catalog-content.mjs",
+          "checkedAt": "2026-10-01T10:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z"
+        }
+      ],
+      "facts": [
+        {
+          "key": "service",
+          "value": "Faire vérifier la référence avant proposition.",
+          "source": "scripts/catalog-content.mjs"
+        }
+      ],
+      "url": "https://auto-pieces-equipements.fr/",
+      "variables": {
+        "theme": "batterie"
+      },
+      "assets": []
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J09",
+    "journey": "J09",
+    "name": "Campagne saisonnière",
+    "trigger": "season-approved",
+    "expected": "draft",
+    "metric": "Ventes par support",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "campaign": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "environment": "simulation",
+      "classification": "synthetic",
+      "objective": "Demandes qualifiées",
+      "audience": "Besoin déclaré de batterie",
+      "stop": "Opposition ou source périmée",
+      "metric": "demandes reçues",
+      "topic": "Préparer sa demande",
+      "sources": [
+        {
+          "ref": "scripts/catalog-content.mjs",
+          "checkedAt": "2026-10-01T10:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z"
+        }
+      ],
+      "facts": [
+        {
+          "key": "service",
+          "value": "Faire vérifier la référence avant proposition.",
+          "source": "scripts/catalog-content.mjs"
+        }
+      ],
+      "url": "https://auto-pieces-equipements.fr/",
+      "variables": {
+        "theme": "batterie"
+      },
+      "assets": []
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J10",
+    "journey": "J10",
+    "name": "Réactivation locale",
+    "trigger": "observed-inactivity",
+    "expected": "draft",
+    "metric": "Retours observés",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "policy": {
+      "since": "2026-09-15T00:00:00Z"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J11",
+    "journey": "J11",
+    "name": "Garage prospect",
+    "trigger": "eligible-professional",
+    "expected": "draft",
+    "metric": "Accords conclus",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J12",
+    "journey": "J12",
+    "name": "Nouvel avis",
+    "trigger": "review-received",
+    "expected": "draft",
+    "metric": "Réponses pertinentes",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "review": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "id": "syn-review",
+      "version": "v1",
+      "currentVersion": "v1",
+      "text": "Très bon accueil",
+      "rating": 5
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J13",
+    "journey": "J13",
+    "name": "Invitation aux avis",
+    "trigger": "experience-confirmed",
+    "expected": "draft",
+    "metric": "Invitations neutres",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "experience": {
+      "experienced": true,
+      "satisfaction": 2
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J14",
+    "journey": "J14",
+    "name": "Post d’offre",
+    "trigger": "post-reviewed",
+    "expected": "draft",
+    "metric": "Publication relue",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "campaign": {
+      "project": "ak125/auto-pieces-equipements-site",
+      "environment": "simulation",
+      "classification": "synthetic",
+      "objective": "Demandes qualifiées",
+      "audience": "Besoin déclaré de batterie",
+      "stop": "Opposition ou source périmée",
+      "metric": "demandes reçues",
+      "topic": "Préparer sa demande",
+      "sources": [
+        {
+          "ref": "scripts/catalog-content.mjs",
+          "checkedAt": "2026-10-01T10:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z"
+        }
+      ],
+      "facts": [
+        {
+          "key": "service",
+          "value": "Faire vérifier la référence avant proposition.",
+          "source": "scripts/catalog-content.mjs"
+        }
+      ],
+      "url": "https://auto-pieces-equipements.fr/",
+      "variables": {
+        "theme": "batterie"
+      },
+      "assets": []
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J15",
+    "journey": "J15",
+    "name": "Horaires exceptionnels",
+    "trigger": "hours-confirmed",
+    "expected": "change-proposal",
+    "metric": "Annonces exactes",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "hoursSource": "data/store-hours.json"
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J16",
+    "journey": "J16",
+    "name": "Support magasin QR",
+    "trigger": "destination-approved",
+    "expected": "brief-ready",
+    "metric": "Scans distincts des inscriptions",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "qr": {
+      "url": "https://auto-pieces-equipements.fr/",
+      "purpose": "Préparer une demande de pièce",
+      "version": "v2",
+      "expiresAt": "2026-10-10T10:00:00Z"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J17",
+    "journey": "J17",
+    "name": "Acquisition payante locale",
+    "trigger": "paid-plan-reviewed",
+    "expected": "draft",
+    "metric": "Coût par demande qualifiée",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "paid": {
+      "account": "syn-ads",
+      "budget": 20,
+      "currency": "EUR",
+      "stop": "Budget candidat",
+      "zone": "Zone déclarée à confirmer",
+      "page": "https://auto-pieces-equipements.fr/"
+    }
+  },
+  {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "classification": "synthetic",
+    "schemaVersion": "2.0.0",
+    "runId": "syn-v2-J18",
+    "journey": "J18",
+    "name": "Bilan commercial local",
+    "trigger": "source-period-closed",
+    "expected": "report",
+    "metric": "Demandes devis ventes",
+    "object": "syn-object",
+    "version": "v1",
+    "currentVersion": "v1",
+    "source": "fixture-v2",
+    "snapshotAt": "2026-10-02T10:00:00Z",
+    "events": [],
+    "person": {
+      "id": "syn-person",
+      "project": "ak125/auto-pieces-equipements-site",
+      "email": "fixture@example.invalid",
+      "kind": "professional",
+      "historyFrom": "2026-09-01T00:00:00Z",
+      "preferences": [
+        {
+          "brand": "APE",
+          "country": "FR",
+          "channel": "email",
+          "purpose": "marketing",
+          "state": "allowed",
+          "at": "2026-10-01T00:00:00Z",
+          "expiresAt": "2026-11-01T00:00:00Z",
+          "evidence": "fixture-only"
+        }
+      ],
+      "events": [],
+      "relations": []
+    },
+    "report": {
+      "events": [
+        {
+          "id": "syn-request",
+          "kind": "request",
+          "object": "syn-quote"
+        },
+        {
+          "id": "syn-qevent",
+          "kind": "quote",
+          "object": "syn-quote"
+        },
+        {
+          "id": "syn-sale",
+          "kind": "sale",
+          "object": "syn-order",
+          "quote": "syn-quote",
+          "amount": 42,
+          "currency": "EUR"
+        }
+      ],
+      "salesCoverage": true,
+      "quoteCoverage": true,
+      "costs": null,
+      "source": "fixture-v2",
+      "cohort": "syn-cohort",
+      "period": {
+        "from": "2026-09-01T00:00:00Z",
+        "to": "2026-10-02T10:00:00Z"
+      }
+    }
+  }
+]

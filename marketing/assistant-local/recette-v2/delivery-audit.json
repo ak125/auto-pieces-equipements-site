@@ -1,0 +1,18 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-delivery-example",
+  "observations": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "pass",
+    "alignment": true,
+    "senderVerified": true,
+    "unsubscribeVerified": true,
+    "hardBounces": 0,
+    "complaints": 0,
+    "observedAt": "2026-10-02T09:00:00Z"
+  }
+}

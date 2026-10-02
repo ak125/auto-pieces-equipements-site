@@ -1,0 +1,60 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-v2-example",
+  "dossier": {
+    "project": "ak125/auto-pieces-equipements-site",
+    "environment": "simulation",
+    "runId": "syn-newsletter-v2",
+    "skill": {
+      "name": "ape-campagnes-locales",
+      "version": "2.0.0"
+    },
+    "objective": "Préparer une demande",
+    "channel": "newsletter",
+    "destination": "non-adressee",
+    "sources": [
+      {
+        "ref": "scripts/catalog-content.mjs",
+        "checkedAt": "2026-10-02"
+      }
+    ],
+    "content": {
+      "version": "v2",
+      "subject": "Préparez votre demande de pièce",
+      "body": "EXERCICE FICTIF — Pour préparer votre demande, indiquez la référence recherchée. À défaut, le modèle, l’année et la motorisation aideront le magasin à vérifier la pièce.\nCompatibilité, disponibilité et prix restent à confirmer.",
+      "ctaLabel": "Consulter les informations du magasin",
+      "ctaUrl": "https://auto-pieces-equipements.fr/"
+    },
+    "facts": [
+      {
+        "claim": "Familles de pièces présentées dans le catalogue",
+        "source": "scripts/catalog-content.mjs"
+      }
+    ],
+    "offer": null,
+    "audience": {
+      "mode": "none",
+      "count": 0
+    },
+    "privacy": {
+      "classification": "synthetic",
+      "containsPersonalData": false
+    },
+    "unknowns": [
+      "Compatibilité, stock et prix réels"
+    ],
+    "risks": [
+      "Aucune collecte connectée"
+    ],
+    "validationRequired": [
+      "Relecture du magasin"
+    ],
+    "actionsNotPerformed": [
+      "Envoi, programmation, abonnement"
+    ],
+    "approval": null
+  }
+}

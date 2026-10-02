@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.server.json",
+  "files": ["scripts/marketing-local.mjs", "scripts/render-marketing-pilot.mjs", "scripts/marketing-workbench.mjs", "scripts/marketing/common.mjs", "scripts/marketing/data.mjs", "scripts/marketing/studio.mjs", "scripts/marketing/insights.mjs", "scripts/marketing/operations.mjs", "scripts/marketing/journeys.mjs"]
+}

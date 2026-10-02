@@ -1,0 +1,75 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "runId": "ape-pilote-20261002",
+  "skill": {
+    "name": "ape-avis-google",
+    "version": "1.0.0"
+  },
+  "objective": "Préparer une réponse à un avis entièrement synthétique : negatif",
+  "channel": "google-review",
+  "destination": "brouillon-google-non-publie",
+  "sources": [
+    {
+      "ref": "scripts/catalog-content.mjs",
+      "checkedAt": "2026-10-02"
+    },
+    {
+      "ref": "index.html",
+      "checkedAt": "2026-10-02"
+    },
+    {
+      "ref": "data/store-hours.json",
+      "checkedAt": "2026-10-02"
+    },
+    {
+      "ref": "marketing/assistant-local/pilote/README.md",
+      "checkedAt": "2026-10-02"
+    }
+  ],
+  "content": {
+    "version": "v1",
+    "body": "Nous comprenons votre déception après ce déplacement. Nous vous invitons à contacter le magasin pour préciser la pièce recherchée et vérifier sa disponibilité avant une prochaine visite.",
+    "ctaLabel": "Site du magasin",
+    "ctaUrl": "https://auto-pieces-equipements.fr/"
+  },
+  "facts": [
+    {
+      "claim": "Le propos de l’avis est entièrement synthétique et ne décrit aucun client réel.",
+      "source": "marketing/assistant-local/pilote/README.md"
+    }
+  ],
+  "offer": null,
+  "audience": {
+    "mode": "none",
+    "count": 0
+  },
+  "privacy": {
+    "classification": "synthetic",
+    "containsPersonalData": false
+  },
+  "unknowns": [
+    "Aucun avis réel ni dossier client consulté.",
+    "Le fait allégué par le cas synthétique n’est pas admis comme vérifié."
+  ],
+  "risks": [
+    "Ne pas confondre ce cas synthétique avec un avis réel."
+  ],
+  "validationRequired": [
+    "Relecture de la réponse et recontrôle de l’avis réel avant une action séparément autorisée."
+  ],
+  "actionsNotPerformed": [
+    "Aucun envoi ni destinataire.",
+    "Aucune publication ou programmation.",
+    "Aucune API externe appelée."
+  ],
+  "approval": null,
+  "review": {
+    "id": "synthetic-negatif",
+    "date": "2026-10-02",
+    "version": "synthetic-v1",
+    "existingReply": null,
+    "text": "Je suis venu chercher une pièce et elle n’était pas disponible.",
+    "sensitive": false
+  }
+}

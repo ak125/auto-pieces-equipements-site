@@ -1,0 +1,9 @@
+{
+  "project": "ak125/auto-pieces-equipements-site",
+  "environment": "simulation",
+  "classification": "synthetic",
+  "schemaVersion": "2.0.0",
+  "runId": "syn-forecast-example",
+  "observations": [10, 12, 8],
+  "policy": { "capacity": 11 }
+}
