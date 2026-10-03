@@ -1,8 +1,13 @@
-# Assistant marketing local — candidat sans publication
+# Assistant marketing local — simulations intégrées
 
 ## Livraison V2 du 2 octobre 2026
 
-État courant : [stabilisation et préparation d’intégration](INTEGRATION-V2.md).
+État courant : [intégration et recette du 3 octobre 2026](POST-INTEGRATION-V2.md).
+La PR #33 est fusionnée ; le dossier de préparation reste une preuve historique.
+Le code de simulation est intégré, les services marketing réels restent non activés.
+Complément candidat local : références de recette corrigées dans `capabilities`
+et variantes CLI de l'avis sensible déjà répondu vérifiées ; voir le
+[complément local après recette](EXECUTION-HERMES-V2.md#complément-local-après-recette--3-octobre-2026).
 
 Le mandat V2 remplace V1. Les quatre skills sont en version 2.0.0 ; la CLI locale
 ajoute calculs, préparation et décisions simulées. Aucun service externe n'est activé.
@@ -24,6 +29,8 @@ ajoute calculs, préparation et décisions simulées. Aucun service externe n'es
 - [Fiabilité HTTP et validation globale antérieure](FIABILITE-HTTP-V2.md)
 - [Corrections métier et preuves antérieures](CORRECTIONS-V2.md)
 - [Essai d’invocation des skills](RECETTE-AGENT-V2.md)
+- [Recette exécutée dans Hermes et limites](EXECUTION-HERMES-V2.md)
+- [Identification Hermes avant raccordement](RECETTE-HERMES-V2.md)
 - [Activation, suspension et retour arrière V2](ACTIVATION-V2.md)
 - [Plan et décisions V2](PLAN-V2.md)
 

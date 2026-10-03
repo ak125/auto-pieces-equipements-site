@@ -97,4 +97,13 @@ Le délai de démarrage serveur rencontré au lot précédent reste documenté d
 Les dimensions connexion, autorisation réelle
 et activation restent distinctes de ces résultats.
 
-Préparation courante : [INTEGRATION-V2](INTEGRATION-V2.md). Après stabilisation, npm test 314/314 au premier passage, concurrence native 2 et typage marketing intégré. Les résultats ci-dessus restent historiques.
+Préparation historique : [INTEGRATION-V2](INTEGRATION-V2.md). Après stabilisation, npm test 314/314 au premier passage, concurrence native 2 et typage marketing intégré. Les résultats ci-dessus restent historiques.
+
+État courant : [POST-INTEGRATION-V2](POST-INTEGRATION-V2.md), PR #33 intégrée et CI du
+commit fusionné verte. La [recette d'agent suivante](RECETTE-POST-INTEGRATION-V2.md)
+observe six commandes sur des fixtures ; elle ne vérifie pas toutes les capacités de
+chaque ligne C/P/J. Les périmètres de runtime distinguent cet échantillon de la
+validation complète, qui reste non vérifiée. La [recette Hermes](EXECUTION-HERMES-V2.md)
+ajoute une découverte native, quatre chargements et des observations sur fixtures ;
+les périmètres des lignes concernées les précisent sans généralisation. L'activation
+marketing reste absente.

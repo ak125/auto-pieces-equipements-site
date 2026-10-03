@@ -31,7 +31,10 @@ export function dispatch(command,input,ctx) {
     connections:[{name:'Places diagnostic',read:'implemented, access not verified',write:'absent'},
       {name:'email/sms/whatsapp/GBP/ads',read:'not connected',write:'unavailable'},
       {name:'CRM/reservations/subscribers/mandates',read:'not established',write:'unavailable'}],
-    runtime:{hermes:'not tested in Hermes',codex:'see VALIDATION-V2.md for discovery vs invocation'},
+    runtime:{
+      hermes:'See marketing/assistant-local/EXECUTION-HERMES-V2.md for dated, scoped CLI evidence; this command does not verify the current runtime.',
+      codex:'See marketing/assistant-local/RECETTE-POST-INTEGRATION-V2.md for dated, scoped invocation evidence; this command does not verify the current runtime.'
+    },
     activation:false,commands
   };
   const gate=envelopeErrors(r);

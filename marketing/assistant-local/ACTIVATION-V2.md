@@ -1,7 +1,9 @@
-# Activation V2 — demande groupée non exécutée
+# Activation marketing V2 — services réels non activés
 
 Ce lot prépare A2 sans accorder de droits A2. Les fonctions locales sont utilisables
 directement par Hermes après chargement ; aucune délégation systématique à Codex.
+La qualification CLI D7 a depuis été exécutée dans un profil de recette dédié,
+après autorisation explicite ; elle n'accorde aucun droit d'action marketing réelle.
 La recette [V1](ACTIVATION-CANDIDATE.md) demeure valable pour les chemins et le retour
 arrière ; exiger maintenant les quatre skills 2.0.0 et le contrat 2.0.0.
 
@@ -15,7 +17,7 @@ arrière ; exiger maintenant les quatre skills 2.0.0 et le contrat 2.0.0.
 | D4 Exécution durable | Aucun envoi, quota atomique, inbox/outbox ou moteur de parcours | Réutiliser le service autorisé du fournisseur, pas ces calculs locaux comme moteur caché |
 | D5 Mesure | Pas de flux ventes/coûts/canaux récupéré | Export privé autorisé par période/objet ; rapprochements ambigus marqués inconnus |
 | D6 Assets/QR | Pas de rendu QR ni droits de médias confirmés par compte | Fournir actif autorisé et outil existant ; encoder, décoder et tester destination/réception |
-| D7 Hermes | Aucun exécutable accessible localement | Vérifier version, checkout, confiance et profils runtime sans les changer dans ce mandat |
+| D7 Hermes | Checkout intégré et profil CLI dédiés raccordés après autorisation ; découverte/invocation observées sur fixtures | [Recette Hermes et limites](EXECUTION-HERMES-V2.md) ; gateway, cron et effets réels restent à qualifier séparément |
 
 Aucune nouvelle infrastructure, persistance, abonnement, import de contacts ou modification
 de formulaire public n'est inclus. Une absence bloque seulement les fonctionnalités
@@ -57,8 +59,11 @@ Codex : ouvrir le worktree APE, vérifier skills/list et chemins sans doublons, 
 charger la skill et exécuter les exemples du contrat. Découverte, invocation et effet
 sont des preuves distinctes. Aucune mutation réelle à tester ici.
 
-Hermes : **non testé dans Hermes**. Relever version et aide depuis le checkout exact,
-inspecter l'index et les quarantaines, puis autorisation séparée pour la confiance projet.
+Hermes : **recette CLI sur fixtures exécutée le 3 octobre** dans le profil dédié
+`ape-marketing-recette`, après autorisation du raccordement et de la confiance projet.
+Voir [résultats, erreurs et limites](EXECUTION-HERMES-V2.md). Pour une nouvelle cible,
+relever version et aide depuis le checkout exact, inspecter l'index et les quarantaines,
+puis vérifier que l'autorisation couvre effectivement sa confiance projet.
 Charger les quatre SKILL.md et références ; exécuter demo et les demandes métier ci-dessous.
 Ne contourner aucun scanner. Vérifier séparément CLI, gateway, utilisateur système et cron.
 La documentation officielle indique un contexte détaché par défaut pour cron : le workdir
@@ -70,7 +75,7 @@ Demandes Hermes de recette :
 - « APE : qualifie J01/J02 et prépare le devis fictif J03 ; aucune compatibilité inventée. »
 - « APE : calcule le segment fourni et explique opposition et historique inconnu. »
 - « APE : simule J04, puis une réponse reçue tardivement ; explique la transition. »
-- « APE : prépare newsletter, deux posts et brief QR depuis prepare.json. »
+- « APE : prépare newsletter et deux posts depuis prepare.json, puis le brief QR depuis qr.json. »
 - « APE : traite l'avis sensible, sans lire son lien ou fichier ; traite aussi un avis déjà répondu. »
 - « APE : rapproche le reçu incertain, simule la suspension et explique ce qui reste accepté. »
 - « APE : calcule devis vers ventes et explique pourquoi l'itinéraire ne prouve pas la visite. »
