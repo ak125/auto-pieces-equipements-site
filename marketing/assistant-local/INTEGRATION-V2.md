@@ -1,5 +1,8 @@
 # Stabilisation et préparation d'intégration — 2 octobre 2026
 
+**Instantané historique avant commit.** La [livraison et la recette suivantes](POST-INTEGRATION-V2.md)
+font référence pour l'état courant ; ne pas rejouer la séquence d'intégration de ce lot.
+
 ## Candidat et cible
 
 Branche locale codex/ape-marketing-skills-20261002, base

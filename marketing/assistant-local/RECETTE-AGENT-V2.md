@@ -1,5 +1,8 @@
 # Recette d'invocation des skills V2
 
+Historique initial conservé. La [recette après intégration du 3 octobre](RECETTE-POST-INTEGRATION-V2.md)
+porte sur les fonctions corrigées ; ses limites sont distinctes de celles ci-dessous.
+
 Observation de la livraison V2 initiale, avant [le lot de corrections](CORRECTIONS-V2.md).
 Les skills sont inchangés, mais certaines fonctions appelées ont été corrigées depuis.
 Cet essai n'est pas une nouvelle invocation d'agent sur le code corrigé.

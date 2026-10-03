@@ -1,35 +1,17 @@
-# Checkpoint — stabilisation et préparation d’intégration, 2 octobre 2026
+# Checkpoint — corrections après recette Hermes, 3 octobre 2026
 
-**Objectif.** Stabiliser puis préparer l'intégration du candidat APE. Aucune fusion,
-publication ou activation autorisée par cette étape.
+**Objectif.** Consolider la recette marketing V2 et corriger ses écarts locaux sans élargir l'activation.
 
-**État vérifié.** Branche codex/ape-marketing-skills-20261002, base
-3756cba51edff2f280555bab13872edc72efde52, identique à main distant lu ce jour.
-Worktree C:\Users\Marwane\.codex\worktrees\ape-marketing-skills\auto  pieces  equipement codex.
-Non commité. Checkout initial a3c8c0f et ses documents conservés ; main local ancien.
+**État.** Commit intégré `1345111aa109f6f134b5b82ca67e178c104ec0cf`. Checkout VPS `/home/hermes/workspaces/ape-marketing-recette-1345111`, propre. Profil natif `ape-marketing-recette`, compte hermes UID 1001, Astra/high, runtime 0.21.5+4911.g6ec0520.dirty. Confiance limitée au checkout ; quatre skills 2.0.0 et quatre scans safe. Authentification native réutilisée sans copie de jeton.
 
-**Changements.** package.json : concurrence native des tests bornée à 2 ; typage
-marketing intégré à npm test/CI existante. Aucun nouveau lot métier. Correction
-HTTP précédente conservée ; délai serveur 10 s inchangé, aucun retry automatique.
-Diagnostic : premier stdout 6,75 s par défaut contre 3,30 s à concurrence 2 ; pic
-observé de processus 14 contre 5, RSS cumulée 713 contre 256 Mo. Pression système
-variable ; cause OS exacte des timeouts historiques non démontrée. Voir INTEGRATION-V2.
+**Configuration.** `platform_toolsets.cli` sélectionne skills/terminal/no_mcp ; sélection effective vérifiée. Le champ historique toolsets était insuffisant : première passe arrêtée, puis reprise en session neuve. Protections conservées, aucun gateway ou cron de recette activé. Profil actif et unité systemd inchangés, gateway toujours actif.
 
-**Tests réutilisables.** Diagnostics 314/314 chacun ; npm test final sans instrument
-314/314, dont 167 marketing, premier passage ; typages complets, build, validation
-verts. Node 24.21.0/npm 12.0.2. 31 fichiers publics identiques en contenu à la base ;
-parité source/dist avant restauration EOL. Couverture/liens recontrôlés après docs.
-Logs startup-*, integration-full.log et public-parity.json sous tmp/marketing-evidence.
-Nettoyage de lignes vides finales uniquement sur 19 fichiers, contenu utile identique ;
-74 tests concernés rejoués verts, preuve integration-eof.json/format-recheck.log.
-Paquet integration-candidate : patch, manifeste/empreintes, arbre candidat, statistiques
-et preuves sélectionnées ; application vérifiée dans un index temporaire.
+**Preuves.** Session métier `20261003_065119_f12ea8` : onze commandes fictives code 0, huit tests ciblés verts. QR depuis prepare.json bloqué code 1 ; qr.json réussit. Hors projet `20261003_065726_3acd04` : seul skills_list appelé, exclusions AutoMecanik/Alliance et clarification du projet absent. Traces complètes et manifeste dans tmp/marketing-evidence/hermes-20261003.
 
-**Décisions.** Aucun commit, push, PR, merge, permission, dépendance ou workflow modifié.
-Une future fusion vers main déclencherait GitHub Pages : décision distincte nécessaire.
-Hermes non testé ; invocation des fonctions corrigées et CI distante non vérifiées.
-Worker inchangé, à contrôler en CI. Activation marketing D1–D7 toujours absente.
+**Limites Hermes.** Deux scripts inline refusés ; variantes via tests existants. Avis déjà répondu testé sur son propre cas synthétique dans cette session. Typage VPS non réalisé : tsc absent, code 127 ; aucune dépendance installée. La CI intégrée reste une preuve séparée. Aucun effet marketing réel.
 
-**Prochaine action.** Relire INTEGRATION-V2 et le manifeste du paquet, revalider main
-et l'absence de dérive du candidat, puis décider commit/push/PR sur ce périmètre.
-Ne pas ajouter de nouvelles améliorations avant cette revue. Aucune tâche créée.
+**Changements locaux.** Branche codex/ape-recette-post-integration-20261003, checkout .codex/worktrees/ape-marketing-skills/auto pieces equipement codex (nom réel avec doubles espaces). capabilities remplace l'affirmation obsolète « Hermes non testé » par les références datées Hermes/Codex, sans certifier le runtime courant. Nouveau test CLI à partir du review.json canonique : sensible → human, déjà répondu → skip sans brouillon, version changée → recheck sans brouillon. Logique métier inchangée. EXECUTION-HERMES-V2 distingue ce complément local des preuves natives ; documents antérieurs préservés.
+
+**Tests réutilisables.** Node 24.21.0/npm 12.0.2 : npm test complet 318/318, contrôles des dépendances, typages navigateur/serveur/marketing, build et validation 12 pages SEO/31 fichiers publics réussis. Log : tmp/marketing-evidence/integration-post-recette-full.log. HTML suivi identique après normalisation des fins de ligne générées. Ancien contrôle de 60 liens antérieur à ce lot. Preuves natives dans tmp/marketing-evidence/hermes-20261003 inchangées.
+
+**Décision et suite, avant publication.** Intégration du candidat et des comptes rendus autorisée le 3 octobre : commit, PR vers main, contrôles du SHA puis fusion et vérification Pages par les workflows existants. Le résultat GitHub fera référence après cette préparation. Checkout Hermes conservé sur 1345111 ; sa mise à niveau n'est pas incluse. Ne pas rejouer PR #33 ni extrapoler vers gateway/cron ou activation D1–D6. Conserver le worktree et ses preuves ignorées.

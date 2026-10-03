@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "project": "ak125/auto-pieces-equipements-site",
-  "checkedAt": "2026-10-02",
+  "checkedAt": "2026-10-03",
   "purpose": "Couverture du mandat V2, pas un registre de clients ou d'exécution",
   "stateVocabulary": [
     "absent",
@@ -268,11 +268,11 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : segment : une inclusion, historique inconnu et opposition distincts. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "vérifié",
-          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+          "perimetre": "Découverte native historique distincte. Invocation guidée sur une fixture du code intégré : voir RECETTE-POST-INTEGRATION-V2.md. Cas partiel seulement ; ensemble des capacités de cette ligne et sélection implicite non vérifiés."
         },
         "activation": {
           "statut": "absent",
@@ -374,11 +374,11 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : segment sur la fixture fournie ; segmentation complète non évaluée. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "vérifié",
-          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+          "perimetre": "Découverte native historique distincte. Invocation guidée sur une fixture du code intégré : voir RECETTE-POST-INTEGRATION-V2.md. Cas partiel seulement ; ensemble des capacités de cette ligne et sélection implicite non vérifiés."
         },
         "activation": {
           "statut": "absent",
@@ -645,11 +645,11 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : prepare : newsletter et deux posts fictifs. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
-          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+          "perimetre": "Découverte native historique distincte. Invocation guidée sur une fixture du code intégré : voir RECETTE-POST-INTEGRATION-V2.md. Cas partiel seulement ; ensemble des capacités de cette ligne et sélection implicite non vérifiés."
         },
         "activation": {
           "statut": "absent",
@@ -698,11 +698,11 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : render : HTML/texte fictifs sur stdout, aucune réception email. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
-          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+          "perimetre": "Découverte native historique distincte. Invocation guidée sur une fixture du code intégré : voir RECETTE-POST-INTEGRATION-V2.md. Cas partiel seulement ; ensemble des capacités de cette ligne et sélection implicite non vérifiés."
         },
         "activation": {
           "statut": "absent",
@@ -966,11 +966,11 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : review sensible : human ; branche déjà répondu via test existant. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
-          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+          "perimetre": "Découverte native historique distincte. Invocation guidée sur une fixture du code intégré : voir RECETTE-POST-INTEGRATION-V2.md. Cas partiel seulement ; ensemble des capacités de cette ligne et sélection implicite non vérifiés."
         },
         "activation": {
           "statut": "absent",
@@ -1182,7 +1182,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : report : attribution et causalité restent inconnues. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -1236,7 +1236,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : report : revenu fictif observé, marge inconnue ; économie complète non évaluée. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -1396,7 +1396,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : report sur la fixture fournie ; alertes réelles non évaluées. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -1505,7 +1505,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : provider-test/reconcile/suspend fictifs, aucun connecteur réel. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -1612,7 +1612,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : index natif et quatre skill_view observés, quatre scans safe ; qualité globale non évaluée. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -2470,11 +2470,11 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : review sensible et test synthétique déjà répondu ; aucun compte Google. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
-          "perimetre": "Découverte native du SKILL.md vérifiée. Invocation de cette fonction par agent non évaluée ; tests déterministes distincts."
+          "perimetre": "Découverte native historique distincte. Invocation guidée sur une fixture du code intégré : voir RECETTE-POST-INTEGRATION-V2.md. Cas partiel seulement ; ensemble des capacités de cette ligne et sélection implicite non vérifiés."
         },
         "activation": {
           "statut": "absent",
@@ -2737,7 +2737,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : qr.json : brief-ready ; prepare.json seul bloqué, aucun QR généré/scanné. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -2846,7 +2846,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : report et test avec route-click : visites inconnues. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -2956,7 +2956,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : demo : ask, compatibilité non vérifiée. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "vérifié",
@@ -3012,7 +3012,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : demo : demande des informations véhicule manquantes. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "vérifié",
@@ -3068,7 +3068,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : demo : devis fictif draft, total 42, engaging=false. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "vérifié",
@@ -3124,11 +3124,11 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : journey : propose-reminder ; réponse tardive stop via test en mémoire. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "vérifié",
-          "perimetre": "Découverte des skills inchangée. Invocation explicite segment/J04/reconcile de la livraison initiale ; non rejouée par agent après corrections du code. CLI et fonctions corrigées vérifiées par tests, pas de routage implicite garanti."
+          "perimetre": "Découverte native historique distincte. Invocation guidée sur une fixture du code intégré : voir RECETTE-POST-INTEGRATION-V2.md. Cas partiel seulement ; ensemble des capacités de cette ligne et sélection implicite non vérifiés."
         },
         "activation": {
           "statut": "absent",
@@ -3909,7 +3909,7 @@
         },
         "runtime_hermes": {
           "statut": "non vérifié",
-          "perimetre": "Non testé dans Hermes"
+          "perimetre": "Recette CLI Hermes du 3 octobre : demo/report : une demande, un devis, une vente fictive. Observation partielle, pas de validation complète de cette exigence ; voir EXECUTION-HERMES-V2.md."
         },
         "runtime_codex": {
           "statut": "non vérifié",
@@ -3921,5 +3921,19 @@
         }
       }
     }
-  ]
+  ],
+  "integration": {
+    "commit": "1345111aa109f6f134b5b82ca67e178c104ec0cf",
+    "pullRequest": 33,
+    "preuve": "POST-INTEGRATION-V2.md",
+    "activationMarketing": false
+  },
+  "recette_agent": {
+    "date": "2026-10-03",
+    "preuve": "RECETTE-POST-INTEGRATION-V2.md",
+    "demandes": 7,
+    "commandes": 6,
+    "selectionImpliciteVerifiee": false,
+    "hermesVerifie": false
+  }
 }
