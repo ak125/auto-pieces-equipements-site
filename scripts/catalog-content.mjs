@@ -34,9 +34,9 @@ export const catalogPages = [
     navLabel: 'Toutes les pièces',
     eyebrow: 'Magasin de pièces auto · 93',
     title: 'Pièces auto aux Pavillons-sous-Bois (93) — Auto Pièces Équipements',
-    metaDescription: 'Large choix de pièces auto neuves aux Pavillons-sous-Bois : batteries, freinage, filtration, distribution et autres familles. Disponibilité dans la journée selon référence.',
+    metaDescription: 'Large choix de pièces auto neuves aux Pavillons-sous-Bois : batteries, freinage, filtration, distribution et autres familles. Prix et délai confirmés avant commande.',
     h1: 'Pièces auto aux Pavillons-sous-Bois',
-    intro: 'Batteries, freinage, filtration, distribution, alternateurs, démarreurs, suspension, embrayage et entretien : un large choix de pièces neuves et de consommables disponibles dans la journée selon la référence. Indiquez la référence connue ou les informations du véhicule pour confirmer prix et délai. Retrait au magasin et livraison aux garages.',
+    intro: 'Batteries, freinage, filtration, distribution, alternateurs, démarreurs, suspension, embrayage et entretien : un large choix de pièces neuves et de consommables, avec disponibilité vérifiée pour chaque référence. Indiquez la référence connue ou les informations du véhicule pour confirmer prix et délai. Retrait au magasin et livraison aux garages.',
     image: '/assets/images/products/freinage.webp',
     imageAlt: 'Disque et plaquettes de frein automobiles neufs',
     sectionTitle: 'Les familles de pièces recherchées au comptoir',
@@ -81,7 +81,7 @@ export const catalogPages = [
     title: 'Kit distribution aux Pavillons-sous-Bois (93) — Auto Pièces Équipements',
     metaDescription: 'Kit distribution aux Pavillons-sous-Bois : courroie, galets et pompe à eau selon moteur. Référence vérifiée, disponibilité confirmée et livraison aux garages.',
     h1: 'Kit de distribution aux Pavillons-sous-Bois',
-    intro: 'Préparez votre demande de kit de distribution avec la référence connue ou les informations du véhicule. La plaque peut compléter la recherche si nécessaire. Nous recherchons la référence adaptée au moteur et confirmons le contenu du kit, le prix et la disponibilité dans la journée selon la référence. Retrait au magasin et livraison aux garages selon les conditions convenues.',
+    intro: 'Préparez votre demande de kit de distribution avec la référence connue ou les informations du véhicule. La plaque peut compléter la recherche si nécessaire. Nous recherchons la référence adaptée au moteur et confirmons le contenu du kit, le prix et le délai de mise à disposition avant commande. Retrait au magasin et livraison aux garages selon les conditions convenues.',
     image: '/assets/images/products/distribution.webp',
     imageAlt: 'Illustration d’un kit de distribution avec courroie crantée, galets et pompe à eau, sans référence de marque',
     sectionTitle: 'Un kit adapté à votre moteur',
@@ -94,7 +94,7 @@ export const catalogPages = [
     products: [
       { title: 'Courroie et galets', description: 'Nous recherchons la courroie et les galets correspondant au montage du moteur.', bullets: ['Référence et composition vérifiées', 'Motorisation et date de fabrication utiles'] },
       { title: 'Pompe à eau', description: 'Une pompe à eau peut faire partie du kit selon la référence. Nous précisons si elle est incluse dans la proposition.', bullets: ['Contenu du kit confirmé', 'Besoin à valider avec le professionnel chargé du montage'] },
-      { title: 'Retrait et livraison garages', description: 'Faites confirmer la référence et le délai avant votre déplacement ou votre intervention.', bullets: ['Disponibilité dans la journée selon référence', 'Zone, frais et créneau de livraison convenus'] }
+      { title: 'Retrait et livraison garages', description: 'Faites confirmer la référence et le délai avant votre déplacement ou votre intervention.', bullets: ['Délai de mise à disposition confirmé avant commande', 'Zone, frais et créneau de livraison convenus'] }
     ],
     guideTitle: 'Les informations utiles pour votre devis',
     guideIntro: 'La référence connue, le modèle et la motorisation permettent de commencer la recherche. La plaque peut la compléter si nécessaire pour départager plusieurs montages.',
@@ -102,7 +102,7 @@ export const catalogPages = [
     faq: [
       { question: 'Quel est le prix d’un kit de distribution ?', answer: 'Le prix dépend de la référence et du contenu : courroie, galets, pompe à eau ou accessoires selon le montage. Indiquez la référence connue ou les informations du moteur, ainsi que votre besoin pour recevoir une proposition précise avant commande.' },
       { question: 'La pompe à eau est-elle toujours incluse ?', answer: 'Non, la composition varie selon la référence du kit. Nous confirmons les éléments inclus dans votre devis ; faites valider le besoin complet par le professionnel chargé du montage.' },
-      { question: 'La pièce peut-elle être disponible dans la journée ?', answer: 'Oui, selon la référence et sa disponibilité. Contactez-nous avant de vous déplacer : nous vous confirmons le délai de retrait ou les conditions de livraison aux garages.' },
+      { question: 'Quand puis-je retirer mon kit de distribution ?', answer: 'Le délai dépend de la référence et de sa disponibilité. Contactez-nous avant de commander : nous confirmons le délai de retrait ou les conditions de livraison aux garages.' },
       { question: 'Et si mon moteur utilise une chaîne de distribution ?', answer: 'Précisez-le dans votre demande avec la référence connue ou les informations du moteur ; la plaque peut compléter la recherche si nécessaire. Un kit courroie ne doit pas être commandé pour un moteur à chaîne ; la référence et la disponibilité sont vérifiées avant toute proposition.' },
       { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, nous pouvons vous orienter vers un professionnel. Indiquez ce besoin lors de la demande de devis afin de préparer les pièces adaptées à l’intervention.' }
     ]
@@ -138,7 +138,7 @@ export const catalogPages = [
       { question: 'Combien coûte une batterie ?', answer: 'L’offre publiée démarre à 59 € pour une batterie standard et à 159 € pour une batterie EFB Start & Stop. Le tarif exact varie selon la référence du véhicule.' },
       { question: 'Quelle est la garantie ?', answer: 'Les batteries présentées par le magasin sont annoncées avec une garantie d’un an. Conservez votre justificatif d’achat.' },
       { question: 'Reprenez-vous l’ancienne batterie ?', answer: 'Oui, le magasin annonce une reprise de l’ancienne batterie à 5 €. Confirmez les conditions avec l’équipe lors de votre demande.' },
-      { question: 'Puis-je acheter ma batterie et la retirer dans la journée ?', answer: 'La disponibilité dans la journée dépend de la référence. Appelez le 01 48 47 96 27 avec les informations du véhicule : le magasin confirme la compatibilité, le prix et le délai avant votre déplacement au 184 Avenue Aristide Briand.' },
+      { question: 'Comment connaître le délai de retrait de ma batterie ?', answer: 'Le délai de mise à disposition dépend de la référence et de sa disponibilité. Appelez le 01 48 47 96 27 avec les informations du véhicule : le magasin confirme la compatibilité, le prix et le délai avant votre déplacement au 184 Avenue Aristide Briand.' },
       { question: 'Le montage de la batterie est-il effectué au magasin ?', answer: 'Le magasin fournit la batterie et peut vous orienter vers un professionnel pour le montage. Indiquez ce besoin lors de votre demande ; la pose sur place n’est pas un service annoncé.' }
     ]
   },
@@ -240,7 +240,7 @@ export const catalogPages = [
       { question: 'Quelles informations permettent de trouver la bonne référence ?', answer: 'La motorisation et l’équipement du véhicule déterminent la puissance, la fixation, la poulie et la connectique. Préparez la référence de l’ancienne pièce ou les informations du véhicule ; la plaque peut compléter la recherche si nécessaire.' },
       { question: 'Puis-je apporter l’ancienne pièce ?', answer: 'Oui. Une référence lisible et des photos de la pièce déposée peuvent confirmer le modèle lorsqu’il existe plusieurs montages.' },
       { question: 'Quel est le prix d’un alternateur ou d’un démarreur ?', answer: 'Le prix dépend de la référence et des caractéristiques du véhicule. Appelez le 01 48 47 96 27 avec l’ancienne référence ou les informations du véhicule : nous confirmons la pièce compatible et son tarif avant commande.' },
-      { question: 'Puis-je retirer la pièce dans la journée ?', answer: 'Oui, selon la référence et sa disponibilité. Le magasin confirme le délai avant votre déplacement au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois.' },
+      { question: 'Quand puis-je retirer mon alternateur ou mon démarreur ?', answer: 'Le délai dépend de la référence et de sa disponibilité. Le magasin le confirme avant commande et avant votre déplacement au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois.' },
       { question: 'Le magasin effectue-t-il le diagnostic ou le montage ?', answer: 'Le magasin fournit la pièce et peut vous orienter vers un professionnel. Indiquez ce besoin lors de votre demande ; le diagnostic électrique et le montage sont à prévoir avec le professionnel choisi.' }
     ]
   },
@@ -274,7 +274,7 @@ export const catalogPages = [
       { question: 'Comment identifier le bon triangle ?', answer: 'Précisez le côté, l’essieu et la motorisation. Une photo, les points de fixation ou la référence de l’ancienne pièce peuvent être nécessaires.' },
       { question: 'Vendez-vous les coupelles et biellettes ?', answer: 'Le magasin recherche également les accessoires et pièces associées selon le montage du véhicule. Disponibilité et délai sont confirmés à la demande.' },
       { question: 'Quel est le prix des pièces de suspension ?', answer: 'Le tarif dépend du véhicule, du montage, du côté et des pièces nécessaires. Appelez le 01 48 47 96 27 avec les références connues ou les informations du véhicule et la liste demandée par votre garage pour obtenir une proposition précise.' },
-      { question: 'Puis-je retirer mes amortisseurs au magasin ?', answer: 'Oui, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. La disponibilité dans la journée dépend de la référence : faites confirmer le délai de retrait avant votre déplacement.' },
+      { question: 'Puis-je retirer mes amortisseurs au magasin ?', answer: 'Oui, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. Le délai dépend de la référence et de sa disponibilité : faites confirmer le délai de retrait avant votre déplacement.' },
       { question: 'Pouvez-vous m’orienter pour le montage ?', answer: 'Oui, le magasin fournit les pièces et peut vous orienter vers un professionnel. Celui-ci confirme le diagnostic, les pièces nécessaires et les opérations à prévoir, notamment la géométrie si nécessaire.' }
     ]
   },
@@ -308,7 +308,7 @@ export const catalogPages = [
       { question: 'Comment vérifier le montage du kit ?', answer: 'La référence de la pièce, le code moteur et le type de boîte permettent de préciser le montage. La plaque peut compléter la recherche si nécessaire, mais ne suffit pas toujours lorsqu’il existe plusieurs montages.' },
       { question: 'Faut-il changer le volant moteur ?', answer: 'Pas systématiquement. Son état et son type doivent être contrôlés par le professionnel qui démonte l’embrayage.' },
       { question: 'Quel est le prix d’un kit embrayage ?', answer: 'Le tarif dépend du véhicule, de la référence et du contenu du kit. Appelez le 01 48 47 96 27 avec les références demandées par le garage ou les informations du véhicule : nous précisons les éléments inclus et leur prix avant commande.' },
-      { question: 'Où et quand puis-je retirer mon kit embrayage ?', answer: 'Le retrait s’effectue au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. La disponibilité dans la journée dépend de la référence ; le magasin confirme le délai avant votre déplacement et avant l’intervention du garage.' },
+      { question: 'Où et quand puis-je retirer mon kit embrayage ?', answer: 'Le retrait s’effectue au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. Le délai dépend de la référence et de sa disponibilité ; le magasin confirme le délai avant votre déplacement et avant l’intervention du garage.' },
       { question: 'Le magasin effectue-t-il le remplacement ?', answer: 'Le magasin fournit le kit et peut vous orienter vers un professionnel pour le montage. Précisez ce besoin lors de votre demande ; le remplacement est à organiser avec le professionnel choisi.' }
     ]
   },
@@ -343,7 +343,7 @@ export const catalogPages = [
       { question: 'Comment choisir les essuie-glaces ?', answer: 'Il faut contrôler la longueur, le côté et le type de fixation. La référence ou une photo de l’ancien balai peuvent faciliter la recherche ; la plaque peut la compléter si nécessaire.' },
       { question: 'Avez-vous des ampoules pour toutes les voitures ?', answer: 'Le magasin recherche les types courants selon le véhicule. Confirmez la référence et la disponibilité avant de vous déplacer.' },
       { question: 'Quel est le prix d’un bidon d’huile moteur ?', answer: 'Le tarif dépend de la référence, de la norme et du volume du bidon. Appelez le 01 48 47 96 27 avec la référence connue ou les informations du véhicule et votre besoin pour faire confirmer le produit adapté, la quantité et le prix.' },
-      { question: 'Puis-je retirer mes produits d’entretien au magasin ?', answer: 'Oui, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. La disponibilité dans la journée dépend de la référence ; faites confirmer le délai avant de venir.' },
+      { question: 'Puis-je retirer mes produits d’entretien au magasin ?', answer: 'Oui, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois. Le délai dépend de la référence et de sa disponibilité ; faites confirmer le délai avant de venir.' },
       { question: 'Le magasin réalise-t-il la vidange ?', answer: 'Le magasin fournit les produits et peut vous orienter vers un professionnel. Précisez ce besoin lors de votre demande ; l’intervention est à organiser avec le professionnel choisi.' }
     ]
   },
@@ -352,9 +352,9 @@ export const catalogPages = [
     navLabel: 'Livraison 93',
     eyebrow: 'Livraison aux garages & retrait magasin',
     title: 'Livraison de pièces auto en Seine-Saint-Denis (93)',
-    metaDescription: 'Livraison de pièces auto aux garages du 93. Large gamme, disponibilité dans la journée selon référence. Frais et créneau confirmés avec le magasin.',
+    metaDescription: 'Livraison de pièces auto aux garages du 93. Prix et délai vérifiés pour chaque référence. Frais et créneau confirmés avec le magasin.',
     h1: 'Livraison de pièces auto aux garages du 93',
-    intro: 'Batteries, filtration, freinage, distribution et autres pièces : nous approvisionnons les garages autour des Pavillons-sous-Bois. Des pièces sont disponibles dans la journée selon la référence. Envoyez votre demande pour convenir du créneau de livraison ou d’un retrait au magasin.',
+    intro: 'Batteries, filtration, freinage, distribution et autres pièces : nous approvisionnons les garages autour des Pavillons-sous-Bois. Envoyez vos références pour connaître le prix et le délai de mise à disposition. Le créneau et les frais de livraison sont confirmés séparément avant commande ; le retrait au magasin est également possible.',
     image: '/assets/images/products/filtration.webp',
     imageAlt: 'Illustration de filtres automobiles neufs',
     sectionTitle: 'Retrait et livraison en pratique',
@@ -374,7 +374,7 @@ export const catalogPages = [
     guideItems: ['Dimensions, poids et nature de la pièce.', 'Adresse ou commune de destination.', 'Disponibilité réelle de la référence.', 'Organisation et délai convenus avec le magasin.'],
     faq: [
       { question: 'Livrez-vous dans toute la Seine-Saint-Denis ?', answer: 'La livraison est locale et étudiée au cas par cas autour des Pavillons-sous-Bois. Indiquez votre commune et la pièce recherchée pour obtenir une réponse.' },
-      { question: 'Quels sont les délais ?', answer: 'Des pièces sont disponibles dans la journée selon la référence. Nous confirmons séparément l’heure de disponibilité et le créneau de livraison selon votre destination et l’organisation des tournées.' },
+      { question: 'Quels sont les délais ?', answer: 'Le délai dépend des références demandées et de leur disponibilité. Avant commande, nous confirmons le délai de mise à disposition, puis le créneau de livraison selon votre destination et l’organisation des tournées.' },
       { question: 'Puis-je retirer au magasin ?', answer: 'Oui, après confirmation de la référence et de la disponibilité, au 184 Avenue Aristide Briand, 93320 Les Pavillons-sous-Bois.' },
       { question: 'Livrez-vous les garages ?', answer: 'Oui, nous livrons les garages du secteur. Envoyez références, quantités, commune et heure de besoin. Nous confirmons prix, frais et créneau avant de valider la livraison.' }
     ]
@@ -384,9 +384,9 @@ export const catalogPages = [
     navLabel: 'Professionnels',
     eyebrow: 'Garages & revendeurs · Seine-Saint-Denis',
     title: 'Pièces auto pour garages et revendeurs en Seine-Saint-Denis (93)',
-    metaDescription: 'Pièces auto neuves pour garages du 93 : large gamme, disponibilité dans la journée selon référence et livraison aux professionnels. Demande par téléphone ou WhatsApp.',
+    metaDescription: 'Pièces auto neuves pour garages du 93 : prix et délais confirmés avant commande, retrait ou livraison aux professionnels. Demande par téléphone ou WhatsApp.',
     h1: 'Pièces auto pour garages et revendeurs en Seine-Saint-Denis',
-    intro: 'Nous fournissons des pièces auto neuves et des consommables. Votre approvisionnement : large gamme, disponibilité dans la journée selon la référence et livraison aux garages. Envoyez vos références, quantités, commune et heure de besoin ; nous confirmons les prix, les pièces disponibles et le créneau de livraison.',
+    intro: 'Nous fournissons des pièces auto neuves et des consommables. Pour votre approvisionnement, nous vérifions la disponibilité de chaque référence et proposons le retrait au magasin ou la livraison aux garages. Envoyez vos références, quantités, commune et heure de besoin ; nous confirmons les prix, les pièces disponibles et le créneau de livraison.',
     image: '/assets/images/products/alternateur.webp',
     imageAlt: 'Alternateur automobile neuf destiné à un professionnel',
     sectionTitle: 'Familles demandées par les professionnels',
@@ -408,7 +408,7 @@ export const catalogPages = [
     faq: [
       { question: 'Travaillez-vous avec les garages et revendeurs ?', answer: 'Oui. Contactez le magasin pour présenter votre activité et obtenir les informations adaptées sur les références, les conditions et les disponibilités.' },
       { question: 'Comment transmettre une commande ?', answer: 'Par téléphone ou WhatsApp, avec les informations du véhicule, la référence recherchée et la quantité. Le magasin confirme ensuite les éléments utiles.' },
-      { question: 'Livrez-vous les professionnels ?', answer: 'Oui, nous livrons les garages du secteur. Les pièces peuvent être disponibles dans la journée selon la référence ; le créneau de livraison et les frais sont confirmés avec le magasin. Retrait au comptoir également possible.' },
+      { question: 'Livrez-vous les professionnels ?', answer: 'Oui, nous livrons les garages du secteur. La disponibilité des pièces, le délai, le créneau de livraison et les frais sont confirmés avec le magasin avant commande. Retrait au comptoir également possible.' },
       { question: 'Quelles familles de pièces fournissez-vous ?', answer: 'Batteries, entretien, filtration, freinage, distribution, démarrage et charge, suspension, embrayage et autres références selon la demande.' }
     ]
   }
