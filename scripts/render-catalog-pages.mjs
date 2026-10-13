@@ -26,7 +26,7 @@ function whatsappLink(page) {
       'Pouvez-vous confirmer le prix, la disponibilité, les frais et le créneau de livraison ?'
     ] : [
       'Besoin d’être orienté vers un professionnel pour le montage (oui/non) :',
-      'Pouvez-vous confirmer le prix et la disponibilité dans la journée ?'
+      'Pouvez-vous confirmer la compatibilité, le prix et le délai de mise à disposition avant commande ?'
     ])
   ].join('\n');
   return `https://wa.me/33148479627?text=${encodeURIComponent(message)}`;
@@ -265,7 +265,7 @@ function renderPage(page) {
     <div class="container trust-bar" aria-label="Services essentiels">
       <div class="trust-grid">
         <div class="trust-item"><strong>Compatibilité vérifiée</strong><span>Référence de pièce ou informations du véhicule</span></div>
-        <div class="trust-item"><strong>Disponible dans la journée</strong><span>Selon la référence, à confirmer avec le magasin</span></div>
+        <div class="trust-item"><strong>Prix et délai confirmés</strong><span>Avant commande et déplacement au magasin</span></div>
         <div class="trust-item"><strong>Livraison aux garages</strong><span>Adresse, frais et créneau convenus ensemble</span></div>
       </div>
     </div>
