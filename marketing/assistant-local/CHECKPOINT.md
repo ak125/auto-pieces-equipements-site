@@ -2,7 +2,7 @@
 
 **Objectif.** Consolider la recette marketing V2 et corriger ses écarts locaux sans élargir l'activation.
 
-**État.** Commit intégré `1345111aa109f6f134b5b82ca67e178c104ec0cf`. Checkout VPS `/home/hermes/workspaces/ape-marketing-recette-1345111`, propre. Profil natif `ape-marketing-recette`, compte hermes UID 1001, Astra/high, runtime 0.21.5+4911.g6ec0520.dirty. Confiance limitée au checkout ; quatre skills 2.0.0 et quatre scans safe. Authentification native réutilisée sans copie de jeton.
+**État.** Commit intégré `1345111aa109f6f134b5b82ca67e178c104ec0cf`. Checkout VPS `<chemin serveur retiré du dépôt public>`, propre. Profil natif `ape-marketing-recette`, compte de service dédié, Astra/high, runtime 0.21.5+4911.g6ec0520.dirty. Confiance limitée au checkout ; quatre skills 2.0.0 et quatre scans safe. Authentification native réutilisée sans copie de jeton.
 
 **Configuration.** `platform_toolsets.cli` sélectionne skills/terminal/no_mcp ; sélection effective vérifiée. Le champ historique toolsets était insuffisant : première passe arrêtée, puis reprise en session neuve. Protections conservées, aucun gateway ou cron de recette activé. Profil actif et unité systemd inchangés, gateway toujours actif.
 

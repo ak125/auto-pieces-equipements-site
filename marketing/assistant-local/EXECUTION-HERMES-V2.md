@@ -14,9 +14,9 @@ le gateway, cron, les comptes marketing ou des effets réels.
 
 ## Raccordement appliqué et état final
 
-- Compte système : `hermes` (UID 1001), accès administratif via `admin-hermes`.
+- Compte système : compte de service dédié, accès administratif par un compte séparé.
 - Runtime existant : `v0.21.5+4911.g6ec0520.dirty`, Python 3.14.7 ; aucune mise à jour.
-- Checkout Git dédié : `/home/hermes/workspaces/ape-marketing-recette-1345111`.
+- Checkout Git dédié : `<chemin serveur retiré du dépôt public>`.
   Origine `https://github.com/ak125/auto-pieces-equipements-site.git`, HEAD détachée
   `1345111aa109f6f134b5b82ca67e178c104ec0cf`, arbre
   `2bf703db459757d9cf1d9741bbc8697e1b97025b`. Propre après la recette.
@@ -35,7 +35,7 @@ le gateway, cron, les comptes marketing ou des effets réels.
   Les appels observés dans les passes finales sont uniquement `skills_list`,
   `skill_view` et `terminal`. La gestion de skills n'a pas été utilisée.
 - Node et npm observés : 24.21.0 et 12.0.2. Le terminal résout Node via
-  `/home/hermes/.local/bin/node` ; le binaire connu sous `/opt/codex-project-tools`
+  `<chemin serveur retiré du dépôt public>` ; le binaire connu sous `<chemin serveur retiré du dépôt public>`
   confirme la même version.
 
 Le profil de recette et son checkout restent disponibles. Ils n'ont ni gateway
@@ -136,7 +136,7 @@ historique. Ce candidat n'a pas été transféré au checkout Hermes épinglé.
 ## Traces et reprise
 
 Preuves distantes :
-`/home/hermes/.hermes/profiles/ape-marketing-recette/recette-20261003`.
+`<chemin serveur retiré du dépôt public>`.
 Copie locale : `tmp/marketing-evidence/hermes-20261003`, non publiée et non suivie.
 Elle contient prompts, journaux JSONL, codes de sortie, contrôles avant/après,
 résumé vérifié et manifeste SHA-256. Les aperçus `tool_result` JSONL sont tronqués
