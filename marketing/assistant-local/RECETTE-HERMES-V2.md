@@ -16,15 +16,15 @@ dans [la recette après intégration](RECETTE-POST-INTEGRATION-V2.md).
 
 | Élément | Observation |
 |---|---|
-| Accès SSH | Alias `hermes`, compte `admin-hermes` (UID 1000) |
-| Compte du runtime | `hermes`, UID/GID 1001 ; lancement vérifié via `sudo -n -iu hermes` |
-| Lanceur | `/home/hermes/.local/bin/hermes`, puis `/home/hermes/.hermes/hermes-agent/.hermes/bin/hermes` |
+| Accès SSH | détail retiré du dépôt public |
+| Compte du runtime | compte de service dédié ; lancement vérifié par un accès administratif séparé |
+| Lanceur | `<chemin serveur retiré du dépôt public>`, puis `<chemin serveur retiré du dépôt public>` |
 | Version | Hermes Agent `v0.21.5+4911.g6ec0520.dirty` ; révision `6ec05205a943cf813bd56c3c79d64bcf922dac67` |
-| Python natif | `3.14.7`, sous `/home/hermes/.hermes/tools/python-3.14.7+20260901-linux-x64/bin/python3` |
+| Python natif | `3.14.7`, sous `<chemin serveur retiré du dépôt public>` |
 | Profil APE actif | `orchestration-auto-pieces-cycle` |
 | Modèle configuré | `gpt-6-astra`, fournisseur `openai-codex`, effort `high`, maximum de quatre tours ; aucun appel modèle réalisé |
 | Gateway | Service utilisateur `hermes-gateway-orchestration-auto-pieces-cycle.service`, actif ; répertoire de travail = racine du profil |
-| Node disponible au compte Hermes | `/opt/codex-project-tools/node-v24.21.0-linux-x64/bin/node`, version `v24.21.0` |
+| Node disponible au compte Hermes | `<chemin serveur retiré du dépôt public>`, version `v24.21.0` |
 | Inventaire natif du profil | `hermes -p orchestration-auto-pieces-cycle skills list` : deux skills, `typesafe-ai` et `hermes-agent`, aucun `ape-*` |
 
 La mention `dirty` est celle du runtime installé ; aucune mise à niveau ou réparation
@@ -50,17 +50,16 @@ du scanner n'a été effectué. Voir aussi la
 
 ## Checkouts et permissions
 
-`/home/hermes/workspaces/development-contexts/auto-pieces` contient les méthodes
+`<chemin serveur retiré du dépôt public>` contient les méthodes
 d'ingénierie : son AGENTS.md précise explicitement qu'il ne contient pas
 l'application. Ce répertoire ne remplace pas un checkout APE.
 
 Le service système historique `codex-auto-pieces-cycle@.service`, avec son
-complément `60-contract.conf`, utilise le compte `codex-auto-pieces` (UID 996,
-GID 987) et le checkout `navigation-keyboard-20260911` ci-dessous. Le socket
+complément `60-contract.conf`, utilise un compte dédié et le checkout `navigation-keyboard-20260911` ci-dessous. Le socket
 `codex-auto-pieces-cycle.socket` est **inactif** et son chemin de socket est absent.
 Cette mission historique n'a pas été soumise ou réactivée.
 
-Inventaire sous `/var/lib/codex-auto-pieces/workspace`, relevé avec le compte
+Inventaire sous `<chemin serveur retiré du dépôt public>`, relevé avec le compte
 propriétaire uniquement pour lire les métadonnées Git :
 
 | Checkout | HEAD observé | État |
@@ -85,7 +84,7 @@ Ce constat porte sur les répertoires inventoriés, pas sur tous les disques du 
 
 1. Préparer un checkout Git dédié du commit intégré
    `1345111aa109f6f134b5b82ca67e178c104ec0cf`, à l'emplacement proposé
-   `/home/hermes/workspaces/ape-marketing-recette-1345111`. Vérifier révision,
+   `<chemin serveur retiré du dépôt public>`. Vérifier révision,
    origine et intégrité depuis la source APE ; conserver les checkouts historiques.
    Charger les skills depuis ce checkout, sans copie indépendante de leurs fichiers.
 2. Créer par la CLI native un profil de recette `ape-marketing-recette`, sous
