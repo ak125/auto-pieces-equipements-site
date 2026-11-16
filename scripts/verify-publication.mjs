@@ -7,7 +7,7 @@ import { publicFiles } from './site-config.mjs';
 
 /** @param {Uint8Array} bytes */
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
-const privateFiles = ['package.json', 'server-simple.js', '.env', 'google-places-proxy/package.json'];
+const privateFiles = ['package.json', '.env', 'AGENTS.md', 'scripts/site-config.mjs'];
 /** @typedef {{file: string, expectedStatus: number, expectedHash?: string}} Target */
 /** @typedef {Target & {status: number, match: boolean, actualHash?: string, error?: string}} Result */
 

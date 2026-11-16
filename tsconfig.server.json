@@ -3,8 +3,12 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ES2022"],
-    "types": ["node"],
+    "lib": [
+      "ES2022"
+    ],
+    "types": [
+      "node"
+    ],
     "allowJs": true,
     "checkJs": true,
     "strict": true,
@@ -12,10 +16,6 @@
     "noEmit": true
   },
   "files": [
-    "server-simple.js",
-    "server.js",
-    "server/server.js",
-    "server/google-places.cjs",
     "scripts/site-config.mjs",
     "scripts/catalog-content.mjs",
     "scripts/store-hours.mjs",

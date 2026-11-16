@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,8 +11,7 @@ const repository = fileURLToPath(new URL('../', import.meta.url));
 test('toolchain alignment rejects independent version and installation-policy drift', async (t) => {
   const fixture = await mkdtemp(path.join(tmpdir(), 'auto-pieces-toolchain-'));
   t.after(() => rm(fixture, { recursive: true, force: true }));
-  await mkdir(path.join(fixture, 'google-places-proxy'));
-  const files = ['.nvmrc', 'package.json', '.npmrc', 'google-places-proxy/package.json', 'google-places-proxy/.npmrc'];
+  const files = ['.nvmrc', 'package.json', '.npmrc'];
   const originals = new Map();
   for (const file of files) {
     const content = await readFile(path.join(repository, file), 'utf8');
@@ -29,14 +28,12 @@ test('toolchain alignment rejects independent version and installation-policy dr
     ['floating Node', '.nvmrc', () => '24', /version Node stable exacte/],
     ['unbounded Node', 'package.json', json(m => { m.engines.node = '>=24.0.0'; }), /engines.node/],
     ['floating npm', 'package.json', json(m => { m.packageManager = 'npm@latest'; }), /packageManager/],
-    ['different Worker npm', 'google-places-proxy/package.json', json(m => { m.packageManager = 'npm@11.0.0'; }), /packageManager/],
-    ['different npm engine', 'google-places-proxy/package.json', json(m => { m.engines.npm = '>=11'; }), /engines.npm/],
-    ['different Worker TypeScript', 'google-places-proxy/package.json', json(m => { m.devDependencies.typescript = '0.0.0'; }), /TypeScript/],
+    ['bounded npm engine drift', 'package.json', json(m => { m.engines.npm = '>=11'; }), /engines.npm/],
     ['floating TypeScript', 'package.json', json(m => { m.devDependencies.typescript = '^7.0.2'; }), /version stable exacte/],
     ['wrong Node types major', 'package.json', json(m => { m.devDependencies['@types/node'] = '0.0.0'; }), /@types\/node/],
-    ['disabled engine enforcement', 'google-places-proxy/.npmrc', text => text + '\nengine-strict=false\n', /engine-strict=true/],
+    ['disabled engine enforcement', '.npmrc', text => text + '\nengine-strict=false\n', /engine-strict=true/],
     ['disabled exact saving', '.npmrc', text => text + '\nsave-exact=false\n', /save-exact=true/],
-    ['missing manifest fields', 'google-places-proxy/package.json', () => '{}', /engines.node/]
+    ['missing manifest fields', 'package.json', () => '{}', /packageManager/]
   ];
   for (const [name, file, mutate, expected] of scenarios) {
     await t.test(name, async () => {

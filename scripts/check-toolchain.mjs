@@ -18,10 +18,7 @@ export async function checkToolchain(root) {
   const nodeVersion = (await readFile(path.join(root, '.nvmrc'), 'utf8')).trim();
   /** @type {unknown} */
   const siteJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
-  /** @type {unknown} */
-  const workerJson = JSON.parse(await readFile(path.join(root, 'google-places-proxy/package.json'), 'utf8'));
   const site = record(siteJson);
-  const worker = record(workerJson);
   /** @type {string[]} */
   const failures = [];
   const exactVersion = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
@@ -40,7 +37,7 @@ export async function checkToolchain(root) {
     failures.push('package.json : @types/node doit être épinglé à la majeure de .nvmrc.');
   }
 
-  for (const [directory, manifest] of /** @type {[string, Record<string, unknown>][]} */ ([['', site], ['google-places-proxy', worker]])) {
+  for (const [directory, manifest] of /** @type {[string, Record<string, unknown>][]} */ ([['', site]])) {
     const label = path.join(directory, 'package.json');
     if (manifest.packageManager !== packageManager) failures.push(`${label} : packageManager doit être aligné sur le site.`);
     const engines = record(manifest.engines);
@@ -68,7 +65,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
       console.error(failures.join('\n'));
       process.exitCode = 1;
     } else {
-      console.log('Socle aligné : Node, npm, TypeScript et types Node cohérents entre site et Worker.');
+      console.log('Socle aligné : Node, npm, TypeScript et types Node cohérents.');
     }
   } catch (error) {
     console.error(`Contrôle du socle impossible : ${error instanceof Error ? error.message : 'erreur inconnue'}`);
