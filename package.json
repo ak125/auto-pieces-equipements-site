@@ -8,7 +8,6 @@
     "npm": ">=12.0.2 <13"
   },
   "description": "",
-  "main": "server.js",
   "scripts": {
     "preinstall": "npm run check:dependencies",
     "check:dependencies": "node scripts/check-http-policy.mjs && node scripts/check-toolchain.mjs",
@@ -18,20 +17,12 @@
     "preview": "vite preview --host 0.0.0.0",
     "test:unit": "node --test --test-concurrency=2 tests/*.test.mjs",
     "typecheck": "tsc -p tsconfig.browser.json && tsc -p tsconfig.server.json && tsc -p tsconfig.marketing.json",
-    "test": "npm run check:dependencies && npm run typecheck && npm run test:unit && npm run build && node scripts/validate-site.mjs",
-    "start": "node server-simple.js"
+    "test": "npm run check:dependencies && npm run typecheck && npm run test:unit && npm run build && node scripts/validate-site.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "2.8.6",
-    "dotenv": "17.4.2",
-    "express": "5.2.1"
-  },
   "devDependencies": {
-    "@types/cors": "2.8.19",
-    "@types/express": "5.0.6",
     "@types/node": "24.13.4",
     "typescript": "7.0.2",
     "vite": "8.3.0"
