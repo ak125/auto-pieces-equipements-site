@@ -10,7 +10,7 @@ applicatif n'est utilisé.
 
 - Node **24.21.0 LTS**, version de référence dans `.nvmrc`, utilisée aussi par les workflows.
 - npm **12.0.2**, déclaré dans le manifeste et installé explicitement en CI.
-- Vite **8.3.0** pour le site ; TypeScript **7.0.2** pour le contrôle de types.
+- Vite **8.3.3** pour le site ; TypeScript **7.0.2** pour le contrôle de types.
 - Types Node **24.13.4**, alignés sur la majeure du runtime Node 24.
 - Dépendances de développement épinglées et `package-lock.json` conservé ; aucune dépendance d'exécution.
 
