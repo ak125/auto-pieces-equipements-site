@@ -112,7 +112,7 @@ export const catalogPages = [
     navLabel: 'Batteries',
     eyebrow: 'Batteries auto · Compatibilité vérifiée',
     title: 'Batterie voiture aux Pavillons-sous-Bois (93) — Auto Pièces Équipements',
-    metaDescription: 'Batterie voiture aux Pavillons-sous-Bois : standard REBORN dès 59 €, Start & Stop EFB dès 159 €. Garantie 1 an, reprise 5 €, compatibilité vérifiée.',
+    metaDescription: 'Batterie voiture aux Pavillons-sous-Bois : standard REBORN dès 59 €, Start & Stop EFB dès 159 €. Garantie 1 an, compatibilité vérifiée.',
     h1: 'Batterie voiture aux Pavillons-sous-Bois',
     intro: 'Achetez votre batterie voiture au magasin Auto Pièces Équipements, au 184 Avenue Aristide Briand aux Pavillons-sous-Bois. Batteries standard REBORN ou Start & Stop EFB : indiquez la référence de la batterie actuelle ou les informations du véhicule pour faire vérifier la compatibilité, le prix et la disponibilité avant de venir.',
     image: '/assets/images/products/batterie-auto.webp',
@@ -122,11 +122,11 @@ export const catalogPages = [
     purchaseGuide: {
       title: 'Votre batterie à retirer au magasin',
       intro: 'Avant de vous déplacer depuis Les Pavillons-sous-Bois, Bondy ou Livry-Gargan, faites confirmer la batterie adaptée et son délai de retrait.',
-      items: ['Préparez la référence lisible de la batterie actuelle ou les informations du véhicule. La plaque peut compléter la recherche si nécessaire.', 'Précisez si votre véhicule dispose du Start & Stop : la technologie doit être vérifiée avec les autres caractéristiques.', 'Demandez le prix de la référence retenue et les conditions de reprise de votre ancienne batterie.']
+      items: ['Préparez la référence lisible de la batterie actuelle ou les informations du véhicule. La plaque peut compléter la recherche si nécessaire.', 'Précisez si votre véhicule dispose du Start & Stop : la technologie doit être vérifiée avec les autres caractéristiques.', 'Demandez le prix de la référence retenue avant votre déplacement.']
     },
     products: [
-      { title: 'Batterie standard REBORN', description: 'Pour véhicules sans système Start & Stop.', price: 'Dès 59 €', bullets: ['Exemple à partir de 50 Ah', 'Garantie 1 an', 'Reprise de l’ancienne batterie : 5 €'] },
-      { title: 'Batterie Start & Stop EFB', description: 'Technologie EFB pour véhicules équipés du Start & Stop.', price: 'Dès 159 €', bullets: ['Exemple à partir de 70 Ah', 'Garantie 1 an', 'Reprise de l’ancienne batterie : 5 €'] },
+      { title: 'Batterie standard REBORN', description: 'Pour véhicules sans système Start & Stop.', price: 'Dès 59 €', bullets: ['Exemple à partir de 50 Ah', 'Garantie 1 an'] },
+      { title: 'Batterie Start & Stop EFB', description: 'Technologie EFB pour véhicules équipés du Start & Stop.', price: 'Dès 159 €', bullets: ['Exemple à partir de 70 Ah', 'Garantie 1 an'] },
       { title: 'Référence vérifiée', description: 'La capacité seule ne suffit pas pour choisir une batterie.', bullets: ['Dimensions et sens des bornes', 'Puissance de démarrage', 'Technologie prévue par le constructeur'] }
     ],
     guideTitle: 'Signes possibles d’une batterie fatiguée',
@@ -137,7 +137,6 @@ export const catalogPages = [
       { question: 'Avez-vous des batteries Start & Stop ?', answer: 'Oui, une offre EFB est publiée pour les véhicules équipés du Start & Stop. La compatibilité doit être confirmée avant achat.' },
       { question: 'Combien coûte une batterie ?', answer: 'L’offre publiée démarre à 59 € pour une batterie standard et à 159 € pour une batterie EFB Start & Stop. Le tarif exact varie selon la référence du véhicule.' },
       { question: 'Quelle est la garantie ?', answer: 'Les batteries présentées par le magasin sont annoncées avec une garantie d’un an. Conservez votre justificatif d’achat.' },
-      { question: 'Reprenez-vous l’ancienne batterie ?', answer: 'Oui, le magasin annonce une reprise de l’ancienne batterie à 5 €. Confirmez les conditions avec l’équipe lors de votre demande.' },
       { question: 'Comment connaître le délai de retrait de ma batterie ?', answer: 'Le délai de mise à disposition dépend de la référence et de sa disponibilité. Appelez le 01 48 47 96 27 avec les informations du véhicule : le magasin confirme la compatibilité, le prix et le délai avant votre déplacement au 184 Avenue Aristide Briand.' },
       { question: 'Le montage de la batterie est-il effectué au magasin ?', answer: 'Le magasin fournit la batterie et peut vous orienter vers un professionnel pour le montage. Indiquez ce besoin lors de votre demande ; la pose sur place n’est pas un service annoncé.' }
     ]
